@@ -2,16 +2,12 @@
 
 # Vorabberechnungen für die Übersicht der Art der Tage
 
-weekday_beacon <- sum(subset(date_data, day_weekday == TRUE)$count_beacon)
-weekend_beacon <- sum(subset(date_data, day_weekend == TRUE)$count_beacon)
-holiday_beacon <- sum(subset(date_data, holiday == TRUE)$count_beacon)
-weekday_infrared <- sum(subset(date_data, day_weekday == TRUE)$count_infrared)
-weekend_infrared <- sum(subset(date_data, day_weekend == TRUE)$count_infrared)
-holiday_infrared <- sum(subset(date_data, holiday == TRUE)$count_infrared)
-
-weekday_sum <- c(weekday_beacon, weekday_infrared)
-weekend_sum <- c(weekend_beacon, weekend_infrared)
-holiday_sum <- c(holiday_beacon, holiday_infrared)
+weekday_sum <- c(sum(subset(date_data, day_weekday == TRUE)$count_beacon),
+                 sum(subset(date_data, day_weekday == TRUE)$count_infrared))
+weekend_sum <- c(sum(subset(date_data, day_weekend == TRUE)$count_beacon),
+                 sum(subset(date_data, day_weekend == TRUE)$count_infrared))
+holiday_sum <- c(sum(subset(date_data, holiday == TRUE)$count_beacon),
+                 sum(subset(date_data, holiday == TRUE)$count_infrared))
 
 day_type_count <- data.frame(weekday_sum, weekend_sum, holiday_sum)
 

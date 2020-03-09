@@ -27,9 +27,10 @@ summary_list
 # -> am wenigsten Messungen Montags, am meisten am Wochenende
 date_data_plot
 # -> sunhours hängt vollkommen von date ab (Achtung beim Modell!)
-date_plots
+(date_type + date_ratio)/
+  (date_snowhight + date_temperature + date_solar_radiation)
 # -> hohe Schwankung am Anfang (bei ratio), wie zu erklären?
-ratio_plots
+snowhight_ratio / solar_radiation_ratio / temperature_ratio
 snowhight_solar_radiation
 time_type
 avalanche_plot

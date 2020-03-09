@@ -2,16 +2,12 @@
 
 # Vorabberechnungen für die Übersicht der Art der Tage
 
-weekday_beacon <- sum(subset(date_data, day_weekday == TRUE)$count_beacon)
-weekend_beacon <- sum(subset(date_data, day_weekend == TRUE)$count_beacon)
-holiday_beacon <- sum(subset(date_data, holiday == TRUE)$count_beacon)
-weekday_infrared <- sum(subset(date_data, day_weekday == TRUE)$count_infrared)
-weekend_infrared <- sum(subset(date_data, day_weekend == TRUE)$count_infrared)
-holiday_infrared <- sum(subset(date_data, holiday == TRUE)$count_infrared)
-
-weekday_sum <- c(weekday_beacon, weekday_infrared)
-weekend_sum <- c(weekend_beacon, weekend_infrared)
-holiday_sum <- c(holiday_beacon, holiday_infrared)
+weekday_sum <- c(sum(subset(date_data, day_weekday == TRUE)$count_beacon),
+                 sum(subset(date_data, day_weekday == TRUE)$count_infrared))
+weekend_sum <- c(sum(subset(date_data, day_weekend == TRUE)$count_beacon),
+                 sum(subset(date_data, day_weekend == TRUE)$count_infrared))
+holiday_sum <- c(sum(subset(date_data, holiday == TRUE)$count_beacon),
+                 sum(subset(date_data, holiday == TRUE)$count_infrared))
 
 day_type_count <- data.frame(weekday_sum, weekend_sum, holiday_sum)
 
@@ -82,11 +78,6 @@ date_solar_radiation <- ggplot(date_data) +
                           xlab("Datum") +
                           ylab("solar radiation")
 
-# zusammen anzeigen
-
-date_plots <- (date_type + date_ratio)/
-                (date_snowhight + date_temperature + date_solar_radiation)
-
 ## Ratio
 
 # Ratio und Schneehöhe
@@ -109,10 +100,6 @@ solar_radiation_ratio <- ggplot(date_data) +
                           geom_point(aes(solar_radiation, ratio), alpha = 0.5) +
                           xlab("solar radiation") +
                           ylab("Ratio")
-
-# zusammen anzeigen
-
-ratio_plots <- snowhight_ratio / solar_radiation_ratio / temperature_ratio
 
 ## Schneehöhe und radiation
 

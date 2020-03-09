@@ -78,11 +78,6 @@ date_solar_radiation <- ggplot(date_data) +
                           xlab("Datum") +
                           ylab("solar radiation")
 
-# zusammen anzeigen
-
-date_plots <- (date_type + date_ratio)/
-                (date_snowhight + date_temperature + date_solar_radiation)
-
 ## Ratio
 
 # Ratio und Schneehöhe
@@ -105,10 +100,6 @@ solar_radiation_ratio <- ggplot(date_data) +
                           geom_point(aes(solar_radiation, ratio), alpha = 0.5) +
                           xlab("solar radiation") +
                           ylab("Ratio")
-
-# zusammen anzeigen
-
-ratio_plots <- snowhight_ratio / solar_radiation_ratio / temperature_ratio
 
 ## Schneehöhe und radiation
 

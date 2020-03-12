@@ -98,7 +98,8 @@ lvs_data <- group_by(lvs_data, date) %>%
 
 ## lvs_date_data erstellen
 
-lvs_date_data <- distinct(subset(lvs_data, select = -c(lvs, time)))
+lvs_date_data <- distinct(subset(lvs_data, 
+                                 select = -c(lvs, time, position, id)))
 
 ## als RDS speichern
 

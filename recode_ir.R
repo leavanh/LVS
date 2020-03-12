@@ -31,6 +31,15 @@ lvs_false_data <- data %>%
 # läuft alle Reihen von lvs_true_data ab und prüft, ob eine korrespondierende
 # Infrarotmessung in lvs_false_data vorliegt. Falls ja, wird diese gelöscht.
 
-for (row in 1:nrow(lvs_true_data)) {
-  
+for (i in 1:nrow(lvs_true_data)) {
+  # Zeit der Beobachtung erhalten
+  time_i <- lvs_true_data[[i, "time"]]
+  # Datum der Beobachtung erhalten
+  date_i <- lvs_true_data[[i, "date"]]
+  # Zeitintervall definieren (5 Minuten drumherum)
+  interval_i <- interval(time_i - minutes(5), time_i + minutes(5))
+  # die passenden Infrarotmessungen raussuchen
+  infrared_i
 }
+
+

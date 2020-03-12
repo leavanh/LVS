@@ -13,6 +13,8 @@ library("GGally")
 
 data <- readRDS(file = "Daten/data.RDS")
 date_data <- readRDS(file = "Daten/date_data.RDS")
+lvs_data <- readRDS(file = "Daten/lvs_data.RDS")
+lvs_date_data <- readRDS(file = "Daten/lvs_date_data.RDS")
 
 ## Deskriptive Auswertung
 

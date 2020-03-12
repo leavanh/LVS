@@ -12,10 +12,9 @@ library("GGally")
 ## Daten laden
 
 data <- readRDS(file = "Daten/data.RDS")
-
-## Datumsdatensatz erstellen
-
-date_data <- distinct(subset(data, select = -c(type, time)))
+date_data <- readRDS(file = "Daten/date_data.RDS")
+lvs_data <- readRDS(file = "Daten/lvs_data.RDS")
+lvs_date_data <- readRDS(file = "Daten/lvs_date_data.RDS")
 
 ## Deskriptive Auswertung
 
@@ -26,7 +25,7 @@ summary_list
 # -> mehr Messungen bei S
 # -> am wenigsten Messungen Montags, am meisten am Wochenende
 date_data_plot
-# -> sunhours hängt vollkommen von date ab (Achtung beim Modell!)
+# -> day_length hängt vollkommen von date ab (Achtung beim Modell!)
 (date_type + date_ratio)/
   (date_snowhight + date_temperature + date_solar_radiation)
 # -> hohe Schwankung am Anfang (bei ratio), wie zu erklären?

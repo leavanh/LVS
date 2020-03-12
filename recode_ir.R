@@ -1,4 +1,4 @@
-# Diese R-Datei erstellt die RDS-Datei lvs_data.RDS
+# Diese R-Datei erstellt die RDS-Datein lvs_data.RDS und lvs_date_data.RDS
 
 # zueinander gehörende Beacon- und Infrarotmessungen werden erkannt
 # es wird ein Datensatz erstellt, der nicht mehr die Art der Messung angibt,
@@ -82,6 +82,25 @@ lvs_data <- lvs_false_data %>%
               rbind(lvs_true_data) %>%
               # mit date_data zu einem großen Datensatz verbinden
               full_join(date_data, by = "date")
+
+# count_beacon und count_infrared durch lvs_true und lvs_false ersetzen
+# ratio neu berechnen
+# insgesamte Anzahl der Leute am Tag hinzufügen
+
+lvs_data <- group_by(lvs_data, date) %>%
+              # neue Variablen hinzufügen
+              mutate(lvs_true = sum(lvs == TRUE),
+                     lvs_false = sum(lvs == FALSE),
+                     n_people = lvs_true + lvs_false,
+                     ratio = lvs_true/(n_people)) %>%
+              # alte Variablen werden gelöscht
+              subset(select = -c(count_beacon, count_infrared))
+
+## lvs_date_data erstellen
+
+lvs_date_data <- distinct(subset(lvs_data, select = -c(lvs, time)))
+
 ## als RDS speichern
 
+saveRDS(lvs_date_data, file = "Daten/lvs_date_data.RDS")
 saveRDS(lvs_data, file = "Daten/lvs_data.RDS")

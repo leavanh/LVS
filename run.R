@@ -20,11 +20,11 @@ lvs_date_data <- readRDS(file = "Daten/lvs_date_data.RDS")
 
 source("descriptive.R", encoding = "UTF-8")
 
-str(data)
+str(lvs_data)
 summary_list
 # -> mehr Messungen bei S
 # -> am wenigsten Messungen Montags, am meisten am Wochenende
-date_data_plot
+lvs_date_data_plot
 # -> day_length hängt vollkommen von date ab (Achtung beim Modell!)
 (date_type + date_ratio)/
   (date_snowhight + date_temperature + date_solar_radiation)

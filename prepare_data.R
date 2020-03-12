@@ -81,7 +81,7 @@ date_data$avalanche_report_top <- factor(date_data$avalanche_report_top)
 
 ## date_data und all_checkpoint_stats zusammenführen
 
-data <- full_join(all_checkpoint_stats, date_data, by = "date")
+data <- left_join(all_checkpoint_stats, date_data, by = "date")
 
 ## Daten prüfen
 

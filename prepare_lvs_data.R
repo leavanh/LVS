@@ -81,7 +81,7 @@ lvs_data <- lvs_false_data %>%
               # mit lvs_true_data verbinden
               rbind(lvs_true_data) %>%
               # mit date_data zu einem großen Datensatz verbinden
-              full_join(date_data, by = "date")
+              left_join(date_data, by = "date")
 
 # count_beacon und count_infrared durch lvs_true und lvs_false ersetzen
 # ratio neu berechnen

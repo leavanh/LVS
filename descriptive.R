@@ -158,18 +158,39 @@ snowhight_solar_radiation <- ggplot(lvs_date_data) +
 
 ## Uhrzeit
 
+# vor der Umcodierung
+
 time_type <- ggplot() +
   geom_freqpoly(data = subset(data, type == "Infrared"),
                 aes(time, colour = "red"), binwidth = 15) +
   geom_freqpoly(data = subset(data, type == "Beacon"),
                 aes(time, colour = "blue"), binwidth = 15) +
+  scale_y_continuous(limits = c(0, 100)) +
   scale_color_identity(name = "Messung",
                        breaks = c("red", "blue"),
                        labels = c("Infrarot", "Beacon"),
                        guide = "legend") + 
-  scale_x_datetime(date_labels = "%H:%M") +
-  xlab("Uhrzeit") +
-  ylab("Absolute Häufigkeit")
+  scale_x_datetime(date_breaks = "2 hour", date_labels = "%H:%M") +
+  labs(title = "Messungen vor dem Umcodieren",
+       x = "Uhrzeit",
+       y = "Absolute Häufigkeit")
+
+# nach der Umcodierung
+
+time_lvs <- ggplot() +
+  geom_freqpoly(data = lvs_data,
+                aes(time, colour = "red"), binwidth = 15) +
+  geom_freqpoly(data = subset(lvs_data, lvs == TRUE),
+                aes(time, colour = "blue"), binwidth = 15) +
+  scale_y_continuous(limits = c(0, 100)) +
+  scale_color_identity(name = "LVS-Gerät",
+                       breaks = c("red", "blue"),
+                       labels = c("Nein", "Ja"),
+                       guide = "legend") + 
+  scale_x_datetime(date_breaks = "2 hour", date_labels = "%H:%M") +
+  labs(title = "Messungen nach dem Umcodieren",
+       x = "Uhrzeit",
+       y = "Absolute Häufigkeit")
 
 ## Lawinen
 

@@ -32,18 +32,18 @@ colnames(all_date) <- c("day", "date", "count_all", "count_selected",
 all_checkpoint_stats <- subset(all_checkpoint_stats,
                                type %in% c("Beacon", "Infrared"))
 
-## sunhours-Tabelle einlesen
+## day_length-Tabelle einlesen
 
 day_length <- read_excel("Daten/sunhours.xlsx",
                        col_names = c("date", "sunrise", "sunset", "day_length"))
 
 # date in POSIXct umwandeln
 
-sunhours$date <- as.POSIXct(sunhours$date, format = "%d %B %Y", tz = "UTC")
+day_length$date <- as.POSIXct(day_length$date, format = "%d %B %Y", tz = "UTC")
 
 ## Tabellen zusammenführen
 
-# sunhours und all_date
+# day_length und all_date
 
 date_data <- left_join(all_date, day_length, by = "date")
 

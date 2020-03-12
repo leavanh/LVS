@@ -40,8 +40,10 @@ date_data_plot <- ggpairs(date_data[,c(1, 4:9, 17)])
 # Datum und absolute Häufigkeit
 
 date_type <- ggplot(date_data, aes(date)) +
-              geom_col(aes(y = count_infrared, colour = "red"), fill = "transparent") +
-              geom_col(aes(y = count_beacon, colour = "blue"), fill = "transparent") +
+              geom_col(aes(y = count_infrared, colour = "red"),
+                       fill = "transparent") +
+              geom_col(aes(y = count_beacon, colour = "blue"),
+                       fill = "transparent") +
               scale_color_identity(name = "Messung",
                                    breaks = c("red", "blue"),
                                    labels = c("Infrarot", "Beacon"),
@@ -135,7 +137,8 @@ avalanche_data <- date_data %>%
 # Plotten
 
 avalanche_plot <- ggplot(avalanche_data) +
-                    geom_boxplot(aes(avalanche_risk, ratio, colour = position)) +
+                    geom_boxplot(aes(avalanche_risk, ratio,
+                                     colour = position)) +
                     scale_color_manual(values = c("green", "orange"), 
                                       name = "Position",
                                       breaks = c("avalanche_report_down",

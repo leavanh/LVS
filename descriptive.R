@@ -61,23 +61,48 @@ lvs_date_data_plot <- ggpairs(lvs_date_data[,c("date", "lvs_true", "lvs_false",
 # Datum und absolute Häufigkeit nach Typ
 
 date_type <- ggplot(date_data, aes(date)) +
-  geom_col(aes(y = count_infrared, colour = "red"),
-           fill = "transparent") +
-  geom_col(aes(y = count_beacon, colour = "blue"),
-           fill = "transparent") +
-  scale_color_identity(name = "Messung",
+  geom_col(aes(y = count_infrared, fill = "red")) +
+  geom_col(aes(y = count_beacon, fill = "blue")) +
+  scale_y_continuous(limits = c(0, 1000)) +
+  scale_fill_identity(name = "Messung",
                        breaks = c("red", "blue"),
                        labels = c("Infrarot", "Beacon"),
                        guide = "legend") + 
-  xlab("Datum") +
-  ylab("Absolute Häufigkeit")
+  labs(title = "Messungen vor dem Umcodieren",
+       x = "Datum",
+       y = "Absolute Häufigkeit")
 
-# Datum und Ratio
+# Datum und lvs-Gerät
+
+date_lvs <- ggplot(lvs_date_data, aes(date)) +
+  geom_col(aes(y = n_people, fill = "red")) +
+  geom_col(aes(y = lvs_true, fill = "blue")) +
+  scale_y_continuous(limits = c(0, 1000)) +
+  scale_fill_identity(name = "LVS-Gerät",
+                       breaks = c("red", "blue"),
+                       labels = c("Nein", "Ja"),
+                       guide = "legend") + 
+  labs(title = "Messungen nach dem Umcodieren",
+       x = "Datum",
+       y = "Absolute Häufigkeit")
+
+# Datum und Ratio (vor dem Umcodieren)
 
 date_ratio <- ggplot(date_data) +
   geom_line(aes(date, ratio)) +
-  xlab("Datum") +
-  ylab("Ratio")
+  labs(title = "Anteil vor dem Umcodieren",
+       x = "Datum",
+       y = "Anteil")
+# -> hohe Schwankung am Anfang, wie zu erklären?
+# durch das Umcodieren teilweise behoben
+
+# Datum und Ratio (nach dem Umcodieren)
+
+lvs_date_ratio <- ggplot(lvs_date_data) +
+  geom_line(aes(date, ratio)) +
+  labs(title = "Anteil nach dem Umcodieren",
+       x = "Datum",
+       y = "Anteil")
 # -> hohe Schwankung am Anfang, wie zu erklären?
 
 # Datum und Schneehöhe

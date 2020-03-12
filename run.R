@@ -12,10 +12,7 @@ library("GGally")
 ## Daten laden
 
 data <- readRDS(file = "Daten/data.RDS")
-
-## Datumsdatensatz erstellen
-
-date_data <- distinct(subset(data, select = -c(type, time)))
+date_data <- readRDS(file = "Daten/date_data.RDS")
 
 ## Deskriptive Auswertung
 

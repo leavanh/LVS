@@ -1,4 +1,4 @@
-# Diese R-Datei erstellt die RDS-Datei data.RDS
+# Diese R-Datei erstellt die RDS-Dateien data.RDS und date_data.RDS
 
 ## Pakete laden
 
@@ -92,5 +92,7 @@ data <- full_join(all_checkpoint_stats, date_data, by = "date")
 # an 8 Tagen wurden mehr LVS-Geräte als Personen gemessen!
 
 ## als RDS speichern
+
+saveRDS(date_data, file = "Daten/date_data.RDS")
 
 saveRDS(data, file = "Daten/data.RDS")

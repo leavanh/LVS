@@ -10,7 +10,8 @@ library("tidyverse")
 
 all_date <- read_excel("Daten/Projektdaten_DAV (muss_aufbereitet_werden).xlsx",
                        sheet = "all_Date", range = "A1:V115")
-all_checkpoint_stats <- read_excel("Daten/Projektdaten_DAV (muss_aufbereitet_werden).xlsx",
+all_checkpoint_stats <- read_excel(
+  "Daten/Projektdaten_DAV (muss_aufbereitet_werden).xlsx",
                                    sheet = "all_CheckPoint_stats", 
                                    range = "A8:E38290",
                                    col_names = 
@@ -18,21 +19,23 @@ all_checkpoint_stats <- read_excel("Daten/Projektdaten_DAV (muss_aufbereitet_wer
 
 # Variablen in all_date umbenennen
 
-colnames(all_date) <- c("day", "date", "count_all", "count_selected", "count_beacon",
-                        "count_infrared", "ratio", "snowhight", "temperature", "precipitation", 
-                        "solar_radiation", "avalanche_report_down", "avalanche_report_top", 
-                        "avalanche_report_border", "avalanche_report_comment", "avalanche_1",
-                        "avalanche_2", "avalanche_3", "avalanche_4", "day_weekday",
-                        "day_weekend", "holiday" )
+colnames(all_date) <- c("day", "date", "count_all", "count_selected",
+                        "count_beacon", "count_infrared", "ratio", "snowhight",
+                        "temperature", "precipitation", "solar_radiation",
+                        "avalanche_report_down", "avalanche_report_top", 
+                        "avalanche_report_border", "avalanche_report_comment",
+                        "avalanche_1", "avalanche_2", "avalanche_3", 
+                        "avalanche_4", "day_weekday","day_weekend", "holiday" )
 
 # Reihen die nicht Beacon oder Infrared sind aus all_checkpoint_stats rauslöschen
 
-all_checkpoint_stats <- subset(all_checkpoint_stats, type %in% c("Beacon", "Infrared"))
+all_checkpoint_stats <- subset(all_checkpoint_stats,
+                               type %in% c("Beacon", "Infrared"))
 
 ## sunhours-Tabelle einlesen
 
-sunhours <- read_excel("Daten/sunhours.xlsx",
-                       col_names = c("date", "sunrise", "sunset", "sunhours"))
+day_length <- read_excel("Daten/sunhours.xlsx",
+                       col_names = c("date", "sunrise", "sunset", "day_length"))
 
 # date in POSIXct umwandeln
 
@@ -42,13 +45,11 @@ sunhours$date <- as.POSIXct(sunhours$date, format = "%d %B %Y", tz = "UTC")
 
 # sunhours und all_date
 
-date_data <- left_join(all_date, sunhours, by = "date")
+date_data <- left_join(all_date, day_length, by = "date")
 
 # date_data und all_checkpoint_stats
 
-data <- left_join(all_checkpoint_stats, date_data, by = "date")
-
-# brauchen wir für spätere Sachen vielleicht fortlaufende Datumsangaben, dann full_join
+data <- full_join(all_checkpoint_stats, date_data, by = "date")
 
 ## Daten prüfen
 
@@ -61,8 +62,8 @@ data <- left_join(all_checkpoint_stats, date_data, by = "date")
 ## unnötige Variablen entfernen
 
 data <- subset(data, select = -c(id, count_all, count_selected, precipitation,
-                                 avalanche_1, avalanche_2, avalanche_3, avalanche_4,
-                                 sunrise, sunset))
+                                 avalanche_1, avalanche_2, avalanche_3, 
+                                 avalanche_4, sunrise, sunset))
 
 ## Tagesindikatoren umkodieren
 

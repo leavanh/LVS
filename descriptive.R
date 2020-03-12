@@ -50,8 +50,11 @@ summary_list <- list(
 # alle Variablen gegeinander geplottet zur Übersicht
 # keine Faktorvariablen und ohne Zeit
 
-date_data_plot <- ggpairs(date_data[,c(1, 4:9, 17)])
-# -> sunhours hängt vollkommen von date ab (Achtung beim Modell!)
+date_data_plot <- ggpairs(date_data[,c("date", "count_beacon", "count_infrared",
+                                       "ratio", "snowhight", 
+                                       "temperature", "solar_radiation",
+                                       "day_length")])
+# -> day_length hängt vollkommen von date ab (Achtung beim Modell!)
 
 ## Datum
 

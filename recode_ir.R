@@ -26,3 +26,11 @@ lvs_false_data <- data %>%
 # Falls eine Beaconmessung zugeordnet werden kann, soll die Infrarotmessung
 # entfernt werden
 
+## Schleife
+
+# läuft alle Reihen von lvs_true_data ab und prüft, ob eine korrespondierende
+# Infrarotmessung in lvs_false_data vorliegt. Falls ja, wird diese gelöscht.
+
+for (row in 1:nrow(lvs_true_data)) {
+  
+}

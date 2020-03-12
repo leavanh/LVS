@@ -9,6 +9,9 @@ library("patchwork")
 if (!require("GGally")) install.packages("GGally")
 library("GGally")
 
+if (!require("lubridate")) install.packages("lubridate")
+library("lubridate")
+
 ## Daten laden
 
 data <- readRDS(file = "Daten/data.RDS")

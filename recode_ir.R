@@ -43,17 +43,21 @@ for (i in 1:nrow(lvs_true_data)) {
   # die passenden Infrarotmessungen raussuchen
   infrared_i <- subset(lvs_false_data,
                        time %within% interval_i & date == date_i)
-  # die Infrarotmessung finden, die am nächsten an der Beaconmessung ist
-  # falls es keine Infrarotmessung gibt die ID auf 0 setzen
-  if(nrow(infrared_i) = 0) {
-    id_i <- 0
-  } else {
+  # prüfen, ob überhaupt Infrarotmessungen vorhanden sind
+  if(nrow(infrared_i) != 0){
+    # die Infrarotmessung finden, die am nächsten an der Beaconmessung ist
     id_i <- infrared_i[which.min(abs(time_i - infrared_i$time)),]$ID
+    # aus lvs_false_data entfernen
+    lvs_false_data <- lvs_false_data[-id_i,]
   }
-  # falls es keine Infrarotmessung gibt die ID auf 0 setzen
-  # aus lvs_false_data entfernen
-  lvs_false_data <- lvs_false_data[-id_i,]
+  # mit der nächsten Beaconmessung weitermachen
   i <- i + 1
 }
 
+## Zu einem Datensatz zusammenführen
 
+lvs_data <- lvs_false_data %>%
+              # ID entfernen
+              select(-ID) %>%
+              # zusammenführen
+              rbind(lvs_true_data)

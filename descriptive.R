@@ -2,12 +2,17 @@
 
 # Vorabberechnungen für die Übersicht der Art der Tage
 
+# Absolute Anzahl der Beacons und Infrared, jeweils für Wochentage,
+# Wochenendtage und Ferientage
+
 weekday_sum <- c(sum(subset(date_data, day_weekday == TRUE)$count_beacon),
                  sum(subset(date_data, day_weekday == TRUE)$count_infrared))
 weekend_sum <- c(sum(subset(date_data, day_weekend == TRUE)$count_beacon),
                  sum(subset(date_data, day_weekend == TRUE)$count_infrared))
 holiday_sum <- c(sum(subset(date_data, holiday == TRUE)$count_beacon),
                  sum(subset(date_data, holiday == TRUE)$count_infrared))
+
+# In einem data.frame zusammenführen und Reihen und Spalten benennen
 
 day_type_count <- data.frame(weekday_sum, weekend_sum, holiday_sum)
 
@@ -16,13 +21,25 @@ colnames(day_type_count) <- c("weekday", "weekend", "holiday")
 
 # Liste erstellen
 
+# addmargins() fügt die Summenspalte bzw -Reihe hinzu
+
 summary_list <- list(
+  
+                  # Übersicht
                   summary(data),
+                  
+                  # Typ und Position
                   addmargins(table(data$type, data$position, useNA = "ifany")),
                   # -> mehr Messungen bei S
+                  
+                  # Typ und Wochentag
                   addmargins(table(data$type, data$day, useNA = "ifany")),
                   # -> am wenigsten Messungen Montags, am meisten am Wochenende
+                  
+                  # Welche avalanche_report_comment gibt es?
                   table(data$avalanche_report_comment, useNA = "ifany"),
+                  
+                  # Typ und Art des Tages (Summenspalte händisch hinzugefügt)
                   rbind(day_type_count, Total = c(sum(day_type_count$weekday),
                                                   sum(day_type_count$weekend),
                                                   sum(day_type_count$holiday)))
@@ -30,6 +47,7 @@ summary_list <- list(
 
 ## Plot
 
+# alle Variablen gegeinander geplottet zur Übersicht
 # keine Faktorvariablen und ohne Zeit
 
 date_data_plot <- ggpairs(date_data[,c(1, 4:9, 17)])
@@ -37,11 +55,13 @@ date_data_plot <- ggpairs(date_data[,c(1, 4:9, 17)])
 
 ## Datum
 
-# Datum und absolute Häufigkeit
+# Datum und absolute Häufigkeit nach Typ
 
 date_type <- ggplot(date_data, aes(date)) +
-              geom_col(aes(y = count_infrared, colour = "red"), fill = "transparent") +
-              geom_col(aes(y = count_beacon, colour = "blue"), fill = "transparent") +
+              geom_col(aes(y = count_infrared, colour = "red"),
+                       fill = "transparent") +
+              geom_col(aes(y = count_beacon, colour = "blue"),
+                       fill = "transparent") +
               scale_color_identity(name = "Messung",
                                    breaks = c("red", "blue"),
                                    labels = c("Infrarot", "Beacon"),
@@ -64,7 +84,7 @@ date_snowhight <- ggplot(date_data) +
                     xlab("Datum") +
                     ylab("Schneehöhe (in cm)")
 
-# Datum und temperatur
+# Datum und Temperatur
 
 date_temperature <- ggplot(date_data) +
                     geom_line(aes(date, temperature)) +
@@ -135,7 +155,8 @@ avalanche_data <- date_data %>%
 # Plotten
 
 avalanche_plot <- ggplot(avalanche_data) +
-                    geom_boxplot(aes(avalanche_risk, ratio, colour = position)) +
+                    geom_boxplot(aes(avalanche_risk, ratio,
+                                     colour = position)) +
                     scale_color_manual(values = c("green", "orange"), 
                                       name = "Position",
                                       breaks = c("avalanche_report_down",

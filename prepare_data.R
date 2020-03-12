@@ -60,14 +60,19 @@ for (k in c("day_weekday", "day_weekend", "holiday")) {
   date_data[,k] <- c(!is.na(date_data [,k])) 
 }
 
-## Ratio berechnen
+## Ratio und Avalanche_report berechnen
 
 # alte Ratio wird hier durch die neu berechnete überschrieben
 
-date_data <- mutate(date_data, ratio = count_beacon/count_infrared)
+# avalanche_report_down und avalanche_report_top werden zu einem Durchschnitt
+# zusammengefasst
+
+date_data <- mutate(date_data, ratio = count_beacon/count_infrared,
+                    avalanche_report = 
+                      (avalanche_report_down + avalanche_report_top)/2)
 
 # überlegen, was mit ratios > 1 und Inf passiert!
-# -> Problem wird durch die spätere Umkodierung gelöst
+# -> Problem wird durch die Umkodierung in prepare_lvs_data.R gelöst
 
 ## factors festlegen
 
@@ -78,6 +83,7 @@ date_data$day <- factor(date_data$day,
                               "Freitag", "Samstag", "Sonntag"))
 date_data$avalanche_report_down <- factor(date_data$avalanche_report_down)
 date_data$avalanche_report_top <- factor(date_data$avalanche_report_top)
+date_data$avalanche_report <- factor(date_data$avalanche_report)
 
 ## date_data und all_checkpoint_stats zusammenführen
 

@@ -94,7 +94,8 @@ lvs_data <- group_by(lvs_data, date) %>%
                      n_people = lvs_true + lvs_false,
                      ratio = lvs_true/(n_people)) %>%
               # alte Variablen werden gelöscht
-              subset(select = -c(count_beacon, count_infrared))
+              subset(select = -c(count_beacon, count_infrared)) %>%
+              ungroup()
 
 ## lvs_date_data erstellen
 

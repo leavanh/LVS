@@ -78,13 +78,15 @@ date_lvs <- ggplot(lvs_date_data, aes(date)) +
   geom_col(aes(y = n_people, fill = "red")) +
   geom_col(aes(y = lvs_true, fill = "blue")) +
   scale_y_continuous(limits = c(0, 1000)) +
-  scale_fill_identity(name = "LVS-Gerät",
+  scale_fill_identity(name = "Messung",
                        breaks = c("red", "blue"),
-                       labels = c("Nein", "Ja"),
+                       labels = c("Person", "Lvs-Gerät"),
                        guide = "legend") + 
   labs(title = "Messungen nach dem Umcodieren",
        x = "Datum",
        y = "Absolute Häufigkeit")
+
+# Wie viel verändert sich durch das Umcodieren?
 
 # Datum und Ratio (vor dem Umcodieren)
 
@@ -183,9 +185,9 @@ time_lvs <- ggplot() +
   geom_freqpoly(data = subset(lvs_data, lvs == TRUE),
                 aes(time, colour = "blue"), binwidth = 15) +
   scale_y_continuous(limits = c(0, 100)) +
-  scale_color_identity(name = "LVS-Gerät",
+  scale_color_identity(name = "Messung",
                        breaks = c("red", "blue"),
-                       labels = c("Nein", "Ja"),
+                       labels = c("Person", "Lvs-Gerät"),
                        guide = "legend") + 
   scale_x_datetime(date_breaks = "2 hour", date_labels = "%H:%M") +
   labs(title = "Messungen nach dem Umcodieren",

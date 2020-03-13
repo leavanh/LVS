@@ -89,10 +89,10 @@ lvs_data <- lvs_false_data %>%
 
 lvs_data <- group_by(lvs_data, date) %>%
               # neue Variablen hinzufügen
-              mutate(lvs_true = sum(lvs == TRUE),
-                     lvs_false = sum(lvs == FALSE),
-                     n_people = lvs_true + lvs_false,
-                     ratio = lvs_true/(n_people)) %>%
+              mutate(lvs_true = sum(lvs == TRUE, na.rm = TRUE), # Anzahl mit LVS
+                     lvs_false = sum(lvs == FALSE, na.rm = TRUE), # Anzahl ohne LVS
+                     count_people = lvs_true + lvs_false, # Anzahl Leute insg.
+                     ratio = lvs_true/(count_people)) %>% # Ratio
               # alte Variablen werden gelöscht
               subset(select = -c(count_beacon, count_infrared)) %>%
               ungroup()

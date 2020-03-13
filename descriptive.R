@@ -75,7 +75,7 @@ date_type <- ggplot(date_data, aes(date)) +
 # Datum und lvs-Gerät
 
 date_lvs <- ggplot(lvs_date_data, aes(date)) +
-  geom_col(aes(y = n_people, fill = "red")) +
+  geom_col(aes(y = count_people, fill = "red")) +
   geom_col(aes(y = lvs_true, fill = "blue")) +
   scale_y_continuous(limits = c(0, 1000)) +
   scale_fill_identity(name = "Messung",
@@ -87,6 +87,14 @@ date_lvs <- ggplot(lvs_date_data, aes(date)) +
        y = "Absolute Häufigkeit")
 
 # Wie viel verändert sich durch das Umcodieren?
+
+# neuen Datensatz zusammenführen
+
+date_diff_data <- date_data %>%
+                    full_join(lvs_date_data, by = "date") %>%
+                    select(date, count_infrared, count_people)
+
+date_diff_plot <- ggplot()
 
 # Datum und Ratio (vor dem Umcodieren)
 

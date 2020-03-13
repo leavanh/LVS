@@ -91,10 +91,16 @@ date_lvs <- ggplot(lvs_date_data, aes(date)) +
 # neuen Datensatz zusammenführen
 
 date_diff_data <- date_data %>%
-                    full_join(lvs_date_data, by = "date") %>%
-                    select(date, count_infrared, count_people)
+                    right_join(lvs_date_data, by = "date") %>%
+                    select(date, count_infrared, count_people) %>%
+                    mutate(diff = count_people - count_infrared)
 
-date_diff_plot <- ggplot()
+date_diff_plot <- ggplot(date_diff_data) +
+  geom_col(aes(date, diff)) + 
+  labs(title = "Unterschätzung der Personen vor dem Umcodieren",
+       x = "Datum",
+       y = "Absolute Häufigkeit")
+  
 
 # Datum und Ratio (vor dem Umcodieren)
 

@@ -26,7 +26,7 @@ summary_list
 # -> am wenigsten Messungen Montags, am meisten am Wochenende
 lvs_date_data_plot
 # -> day_length hängt vollkommen von date ab (Achtung beim Modell!)
-(date_type/date_lvs/lvs_date_ratio)
+date_type/date_lvs/lvs_date_ratio/date_diff_plot
 # -> hohe Schwankung am Anfang, wie zu erklären?
 date_snowhight + date_temperature + date_solar_radiation
 snowhight_ratio / solar_radiation_ratio / temperature_ratio

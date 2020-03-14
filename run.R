@@ -32,4 +32,4 @@ date_snowhight + date_temperature + date_solar_radiation
 snowhight_ratio / solar_radiation_ratio / temperature_ratio
 snowhight_solar_radiation
 (time_type/time_lvs)
-avalanche_plot
+avalanche_position_plot + avalanche_mean_plot

@@ -95,6 +95,8 @@ date_diff_data <- date_data %>%
                     select(date, count_infrared, count_people) %>%
                     mutate(diff = count_people - count_infrared)
 
+# Plotten
+
 date_diff_plot <- ggplot(date_diff_data) +
   geom_col(aes(date, diff)) + 
   labs(title = "Unterschätzung der Personen vor dem Umcodieren",
@@ -214,20 +216,31 @@ time_lvs <- ggplot() +
 
 avalanche_data <- lvs_date_data %>%
   select(ratio, avalanche_report_down, 
-         avalanche_report_top, avalanche_report) %>%
+         avalanche_report_top) %>%
   gather("position", "avalanche_risk",
          -c("ratio"))
 
 # Plotten
 
-avalanche_plot <- ggplot(avalanche_data) +
+# Unten und Oben
+
+avalanche_position_plot <- ggplot(avalanche_data) +
   geom_boxplot(aes(avalanche_risk, ratio,
                    colour = position)) +
-  scale_color_manual(values = c("green", "orange", "purple"), 
+  scale_color_manual(values = c("green", "orange"), 
                      name = "Messung",
-                     breaks = c("avalanche_report",
-                                "avalanche_report_down",
+                     breaks = c("avalanche_report_down",
                                 "avalanche_report_top"),
-                     labels = c("Durchschnitt", "Unten", "Oben")) + 
-  xlab("Lawinenwarnstufe") +
-  ylab("Ratio")
+                     labels = c("Unten", "Oben")) + 
+  labs(title = "Anteil der Mitnahme von LVS\nnach Lawinenwarnstufe",
+       x = "Lawinenwarnstufe",
+       y = "Anteil LVS-Geräte")
+
+# Durschnittswert
+
+avalanche_mean_plot <- ggplot(lvs_date_data) +
+  geom_boxplot(aes(avalanche_report, ratio)) + 
+  labs(title = 
+         "Anteil der Mitnahme von LVS\nnach Durchschnitts-Lawinenwarnstufe",
+       x = "Lawinenwarnstufe",
+       y = "Anteil LVS-Geräte")

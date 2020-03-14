@@ -75,8 +75,8 @@ for (i in 1:nrow(lvs_true_data)) {
   i <- i + 1
 }
 
-# 29125 - 23998 = 5127 Fälle konnten zugeordnet werden
-# 8468 - 5127 = 3341 Beacon ohne Infrarot gemessen
+# 29125 - 23106 = 6019 Fälle konnten zugeordnet werden
+# 8468 - 6019 = 2449 Beacon ohne Infrarot gemessen
 
 ## Zu einem Datensatz zusammenführen
 

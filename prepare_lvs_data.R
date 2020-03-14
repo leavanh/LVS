@@ -69,7 +69,7 @@ for (i in 1:nrow(lvs_true_data)) {
     # die Infrarotmessung finden, die am nächsten an der Beaconmessung ist
     id_i <- infrared_i[which.min(abs(time_i - infrared_i$time)),]$id
     # aus lvs_false_data entfernen
-    lvs_false_data <- lvs_false_data[which(id != id_i),]
+    lvs_false_data <- subset(lvs_false_data, id != id_i)
   }
   # mit der nächsten Beaconmessung weitermachen
   i <- i + 1

@@ -1,5 +1,11 @@
 # Diese R-Datei erstellt die RDS-Datei time_data.RDS
 
+# erklären was passiert
+
+# Zum Glück haben wir an Tagen an denen keine Messungen vom Tag vorher 
+# vorliegen (21.12.18 und 25.12.18) keine Messungen in dem kritischen
+# Intervall
+
 ## Pakete laden
 
 if (!require("lubridate")) install.packages("lubridate")
@@ -40,7 +46,10 @@ for(i in 1:nrow(time_data)) {
     # Datum des Tags davor
     date_new <- date_i - days(1)
     # neue Werte zuweisen
-    time_data <- replace_many()
+    time_data[[i, "date"]] <- lvs_date_data[[
+                                lvs_date_data$date == date_new, "date"]]
+    time_data[[i, "day"]] <- lvs_date_data[[
+      lvs_date_data$date == date_new, "day"]]
   }
   # mit der nächsten Messung weitermachen
   i <- i + 1

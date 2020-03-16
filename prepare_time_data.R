@@ -8,6 +8,10 @@ library("lubridate")
 if (!require("tidyverse")) install.packages("tidyverse")
 library("tidyverse")
 
+## Funktion laden
+
+source("functions.R", encoding = "UTF-8")
+
 ## Daten laden
 
 lvs_data <- readRDS(file = "Daten/lvs_data.RDS")
@@ -36,7 +40,7 @@ for(i in 1:nrow(time_data)) {
     # Datum des Tags davor
     date_new <- date_i - days(1)
     # neue Werte zuweisen
-    time_data <- replaye_many()
+    time_data <- replace_many()
   }
   # mit der nächsten Messung weitermachen
   i <- i + 1

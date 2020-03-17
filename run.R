@@ -22,11 +22,11 @@ time_date_data <- readRDS(file = "Daten/time_date_data.RDS")
 
 source("descriptive.R", encoding = "UTF-8")
 
-str(lvs_data)
+str(time_data)
 summary_list
 # -> mehr Messungen bei S
 # -> am wenigsten Messungen Montags, am meisten am Wochenende
-lvs_date_data_plot
+time_date_data_plot
 # -> day_length hängt vollkommen von date ab (Achtung beim Modell!)
 date_type/date_lvs/lvs_date_ratio/date_diff_plot
 # -> hohe Schwankung am Anfang, wie zu erklären?

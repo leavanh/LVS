@@ -5,12 +5,12 @@
 # Absolute Anzahl der Beacons und Infrared, jeweils für Wochentage,
 # Wochenendtage und Ferientage
 
-weekday_sum <- c(sum(subset(lvs_date_data, day_weekday == TRUE)$lvs_true),
-                 sum(subset(lvs_date_data, day_weekday == TRUE)$lvs_false))
-weekend_sum <- c(sum(subset(lvs_date_data, day_weekend == TRUE)$lvs_true),
-                 sum(subset(lvs_date_data, day_weekend == TRUE)$lvs_false))
-holiday_sum <- c(sum(subset(lvs_date_data, holiday == TRUE)$lvs_true),
-                 sum(subset(lvs_date_data, holiday == TRUE)$lvs_false))
+weekday_sum <- c(sum(subset(time_date_data, day_weekday == TRUE)$lvs_true),
+                 sum(subset(time_date_data, day_weekday == TRUE)$lvs_false))
+weekend_sum <- c(sum(subset(time_date_data, day_weekend == TRUE)$lvs_true),
+                 sum(subset(time_date_data, day_weekend == TRUE)$lvs_false))
+holiday_sum <- c(sum(subset(time_date_data, holiday == TRUE)$lvs_true),
+                 sum(subset(time_date_data, holiday == TRUE)$lvs_false))
 
 # In einem data.frame zusammenführen und Reihen und Spalten benennen
 
@@ -26,18 +26,18 @@ colnames(day_type_count) <- c("weekday", "weekend", "holiday")
 summary_list <- list(
   
   # Übersicht
-  summary(lvs_data),
+  summary(time_data),
   
   # Typ und Position
-  addmargins(table(lvs_data$lvs, lvs_data$position, useNA = "ifany")),
+  addmargins(table(time_data$lvs, time_data$position, useNA = "ifany")),
   # -> mehr Messungen bei S
   
   # Typ und Wochentag
-  addmargins(table(lvs_data$lvs, lvs_data$day, useNA = "ifany")),
+  addmargins(table(time_data$lvs, time_data$day, useNA = "ifany")),
   # -> am wenigsten Messungen Montags, am meisten am Wochenende
   
   # Welche avalanche_report_comment gibt es?
-  table(lvs_data$avalanche_report_comment, useNA = "ifany"),
+  table(time_data$avalanche_report_comment, useNA = "ifany"),
   
   # Typ und Art des Tages (Summenspalte händisch hinzugefügt)
   rbind(day_type_count, Total = c(sum(day_type_count$weekday),
@@ -50,7 +50,7 @@ summary_list <- list(
 # alle Variablen gegeinander geplottet zur Übersicht
 # keine Faktorvariablen und ohne Zeit
 
-lvs_date_data_plot <- ggpairs(lvs_date_data[,c("date", "lvs_true", "lvs_false",
+time_date_data_plot <- ggpairs(time_date_data[,c("date", "lvs_true", "lvs_false",
                                        "ratio", "snowhight", 
                                        "temperature", "solar_radiation",
                                        "day_length")])
@@ -74,7 +74,7 @@ date_type <- ggplot(date_data, aes(date)) +
 
 # Datum und lvs-Gerät
 
-date_lvs <- ggplot(lvs_date_data, aes(date)) +
+date_lvs <- ggplot(time_date_data, aes(date)) +
   geom_col(aes(y = count_people, fill = "red")) +
   geom_col(aes(y = lvs_true, fill = "blue")) +
   scale_y_continuous(limits = c(0, 1000)) +
@@ -91,7 +91,7 @@ date_lvs <- ggplot(lvs_date_data, aes(date)) +
 # neuen Datensatz zusammenführen
 
 date_diff_data <- date_data %>%
-                    right_join(lvs_date_data, by = "date") %>%
+                    right_join(time_date_data, by = "date") %>%
                     select(date, count_infrared, count_people) %>%
                     mutate(diff = count_people - count_infrared)
 
@@ -116,7 +116,7 @@ date_ratio <- ggplot(date_data) +
 
 # Datum und Ratio (nach dem Umcodieren)
 
-lvs_date_ratio <- ggplot(lvs_date_data) +
+lvs_date_ratio <- ggplot(time_date_data) +
   geom_line(aes(date, ratio)) +
   labs(title = "Anteil nach dem Umcodieren",
        x = "Datum",
@@ -125,21 +125,21 @@ lvs_date_ratio <- ggplot(lvs_date_data) +
 
 # Datum und Schneehöhe
 
-date_snowhight <- ggplot(lvs_date_data) +
+date_snowhight <- ggplot(time_date_data) +
   geom_line(aes(date, snowhight)) +
   xlab("Datum") +
   ylab("Schneehöhe (in cm)")
 
 # Datum und Temperatur
 
-date_temperature <- ggplot(lvs_date_data) +
+date_temperature <- ggplot(time_date_data) +
   geom_line(aes(date, temperature)) +
   xlab("Datum") +
   ylab("Temperatur (in °C)")
 
 # Datum und solar radiation
 
-date_solar_radiation <- ggplot(lvs_date_data) +
+date_solar_radiation <- ggplot(time_date_data) +
   geom_line(aes(date, solar_radiation)) +
   xlab("Datum") +
   ylab("solar radiation")
@@ -169,7 +169,7 @@ solar_radiation_ratio <- ggplot(date_data) +
 
 ## Schneehöhe und radiation
 
-snowhight_solar_radiation <- ggplot(lvs_date_data) +
+snowhight_solar_radiation <- ggplot(time_date_data) +
   geom_point(aes(snowhight, solar_radiation), alpha = 0.5) +
   xlab("Schneehöhe (in cm)") +
   ylab("solar radiation")
@@ -196,9 +196,9 @@ time_type <- ggplot() +
 # nach der Umcodierung
 
 time_lvs <- ggplot() +
-  geom_freqpoly(data = lvs_data,
+  geom_freqpoly(data = time_data,
                 aes(time, colour = "red"), binwidth = 15) +
-  geom_freqpoly(data = subset(lvs_data, lvs == TRUE),
+  geom_freqpoly(data = subset(time_data, lvs == TRUE),
                 aes(time, colour = "blue"), binwidth = 15) +
   scale_y_continuous(limits = c(0, 100)) +
   scale_color_identity(name = "Messung",
@@ -214,7 +214,7 @@ time_lvs <- ggplot() +
 
 # Daten umformen
 
-avalanche_data <- lvs_date_data %>%
+avalanche_data <- time_date_data %>%
   select(ratio, avalanche_report_down, 
          avalanche_report_top) %>%
   gather("position", "avalanche_risk",
@@ -238,7 +238,7 @@ avalanche_position_plot <- ggplot(avalanche_data) +
 
 # Durchschnittswert
 
-avalanche_mean_plot <- ggplot(lvs_date_data) +
+avalanche_mean_plot <- ggplot(time_date_data) +
   geom_boxplot(aes(avalanche_report, ratio)) + 
   labs(title = 
          "Anteil der Mitnahme von LVS\nnach Durchschnitts-Lawinenwarnstufe",

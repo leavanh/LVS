@@ -45,11 +45,37 @@ for(i in 1:nrow(time_data)) {
   if(time_i %within% time_interval) {
     # Datum des Tags davor
     date_new <- date_i - days(1)
+    # Reihe der Beobachtung herausfinden
+    row_i <- which(lvs_date_data$date == date_new)
     # neue Werte zuweisen
-    time_data[[i, "date"]] <- lvs_date_data[[
-                                lvs_date_data$date == date_new, "date"]]
-    time_data[[i, "day"]] <- lvs_date_data[[
-      lvs_date_data$date == date_new, "day"]]
+    time_data[[i, "date"]] <- lvs_date_data[[row_i, "date"]]
+    time_data[[i, "day"]] <- lvs_date_data[[row_i, "day"]]
+    time_data[[i, "ratio"]] <- lvs_date_data[[row_i, "ratio"]]
+    time_data[[i, "snowhight"]] <- lvs_date_data[[row_i, "snowhight"]]
+    time_data[[i, "temperature"]] <- lvs_date_data[[row_i, "temperature"]]
+    time_data[[i, "solar_radiation"]] <- lvs_date_data[[row_i,
+                                                        "solar_radiation"]]
+    time_data[[i, "avalanche_report_down"]] <- lvs_date_data[[
+                                                row_i, "avalanche_report_down"]]
+    time_data[[i, "avalanche_report_top"]] <- lvs_date_data[[
+                                                row_i, "avalanche_report_top"]]
+    time_data[[i, "avalanche_report_border"]] <- lvs_date_data[[
+                                                  row_i,
+                                                  "avalanche_report_border"]]
+    time_data[[i, "avalanche_report_comment"]] <- lvs_date_data[[
+                                                    row_i, 
+                                                    "avalanche_report_comment"]]
+    time_data[[i, "day_weekday"]] <- lvs_date_data[[row_i, "day_weekday"]]
+    time_data[[i, "day_weekend"]] <- lvs_date_data[[row_i, "day_weekend"]]
+    time_data[[i, "holiday"]] <- lvs_date_data[[row_i, "holiday"]]
+    time_data[[i, "sunrise"]] <- lvs_date_data[[row_i, "sunrise"]]
+    time_data[[i, "sunset"]] <- lvs_date_data[[row_i, "sunset"]]
+    time_data[[i, "day_length"]] <- lvs_date_data[[row_i, "day_length"]]
+    time_data[[i, "avalanche_report"]] <- lvs_date_data[[row_i,
+                                                         "avalanche_report"]]
+    time_data[[i, "lvs_true"]] <- lvs_date_data[[row_i, "lvs_true"]]
+    time_data[[i, "lvs_false"]] <- lvs_date_data[[row_i, "lvs_false"]]
+    time_data[[i, "count_people"]] <- lvs_date_data[[row_i, "count_people"]]
   }
   # mit der nächsten Messung weitermachen
   i <- i + 1

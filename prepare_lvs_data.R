@@ -1,4 +1,4 @@
-# Diese R-Datei erstellt die RDS-Datein lvs_data.RDS und lvs_date_data.RDS
+# Diese R-Datei erstellt die RDS-Dateien lvs_data.RDS und lvs_date_data.RDS
 
 # zueinander gehörende Beacon- und Infrarotmessungen werden erkannt
 # es wird ein Datensatz erstellt, der nicht mehr die Art der Messung angibt,

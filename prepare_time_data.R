@@ -1,6 +1,7 @@
-# Diese R-Datei erstellt die RDS-Datei time_data.RDS
+# Diese R-Datei erstellt die RDS-Dateien time_data.RDS und time_date_data.RDS
 
-# erklären was passiert
+# Messungen zwischen 0 und 5 am Morgen sollen dem vorherigen Tag zugeordnet
+# werden
 
 # Zum Glück haben wir an Tagen an denen keine Messungen vom Tag vorher 
 # vorliegen (21.12.18 und 25.12.18) keine Messungen in dem kritischen
@@ -76,3 +77,23 @@ for(i in 1:nrow(time_data)) {
   # mit der nächsten Messung weitermachen
   i <- i + 1
 }
+
+## Variablen neu berechnen
+
+time_data <- group_by(time_data, date) %>%
+  # neu berechnen
+  mutate(lvs_true = sum(lvs == TRUE), # Anzahl mit LVS
+         lvs_false = sum(lvs == FALSE), # Anzahl ohne LVS
+         count_people = lvs_true + lvs_false, # Anzahl Leute insg.
+         ratio = lvs_true/(count_people)) %>% # Ratio
+  ungroup()
+
+## time_date_data erstellen
+
+time_date_data <- distinct(subset(time_data, 
+                                 select = -c(lvs, time, position, id)))
+
+## als RDS speichern
+
+saveRDS(time_date_data, file = "Daten/time_date_data.RDS")
+saveRDS(time_data, file = "Daten/time_data.RDS")

@@ -58,7 +58,7 @@ time_date_data_plot <- ggpairs(time_date_data[,c("date", "lvs_true", "lvs_false"
 
 ## Datum
 
-# Datum und absolute Häufigkeit nach Typ
+# Datum und absolute Häufigkeit nach Typ (vor dem Umcodieren)
 
 date_type <- ggplot(date_data, aes(date)) +
   geom_col(aes(y = count_infrared, fill = "red")) +
@@ -72,7 +72,7 @@ date_type <- ggplot(date_data, aes(date)) +
        x = "Datum",
        y = "Absolute Häufigkeit")
 
-# Datum und lvs-Gerät
+# Datum und lvs-Gerät (nach allem Umcodieren)
 
 date_lvs <- ggplot(time_date_data, aes(date)) +
   geom_col(aes(y = count_people, fill = "red")) +
@@ -148,21 +148,21 @@ date_solar_radiation <- ggplot(time_date_data) +
 
 # Ratio und Schneehöhe
 
-snowhight_ratio <- ggplot(date_data) +
+snowhight_ratio <- ggplot(time_date_data) +
   geom_point(aes(snowhight, ratio), alpha = 0.5) +
   xlab("Schneehöhe (in cm)") +
   ylab("Ratio")
 
 # Ratio und Temperatur
 
-temperature_ratio <- ggplot(date_data) +
+temperature_ratio <- ggplot(time_date_data) +
   geom_point(aes(temperature, ratio), alpha = 0.5) +
   xlab("Temperatur (in °C)") +
   ylab("Ratio")
 
 # Ratio und solar radiation
 
-solar_radiation_ratio <- ggplot(date_data) +
+solar_radiation_ratio <- ggplot(time_date_data) +
   geom_point(aes(solar_radiation, ratio), alpha = 0.5) +
   xlab("solar radiation") +
   ylab("Ratio")

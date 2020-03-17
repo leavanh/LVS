@@ -26,7 +26,7 @@ colnames(day_type_count) <- c("weekday", "weekend", "holiday")
 summary_list <- list(
   
   # Übersicht
-  summary(time_data),
+  summary(time_date_data),
   
   # Typ und Position
   addmargins(table(time_data$lvs, time_data$position, useNA = "ifany")),

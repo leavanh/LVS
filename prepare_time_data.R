@@ -14,10 +14,6 @@ library("lubridate")
 if (!require("tidyverse")) install.packages("tidyverse")
 library("tidyverse")
 
-## Funktion laden
-
-source("functions.R", encoding = "UTF-8")
-
 ## Daten laden
 
 lvs_data <- readRDS(file = "Daten/lvs_data.RDS")

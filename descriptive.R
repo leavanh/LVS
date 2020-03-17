@@ -72,15 +72,15 @@ date_type <- ggplot(date_data, aes(date)) +
        x = "Datum",
        y = "Absolute Häufigkeit")
 
-# Datum und lvs-Gerät (nach allem Umcodieren)
+# Datum und lvs-Gerät (nach dem Umcodieren der LVS-Geräte)
 
-date_lvs <- ggplot(time_date_data, aes(date)) +
+date_lvs <- ggplot(lvs_date_data, aes(date)) +
   geom_col(aes(y = count_people, fill = "red")) +
   geom_col(aes(y = lvs_true, fill = "blue")) +
   scale_y_continuous(limits = c(0, 1000)) +
   scale_fill_identity(name = "Messung",
                        breaks = c("red", "blue"),
-                       labels = c("Person", "Lvs-Gerät"),
+                       labels = c("Person", "LVS-Gerät"),
                        guide = "legend") + 
   labs(title = "Messungen nach dem Umcodieren",
        x = "Datum",
@@ -88,10 +88,13 @@ date_lvs <- ggplot(time_date_data, aes(date)) +
 
 # Wie viel verändert sich durch das Umcodieren?
 
+# ohne Zeit umcodierung, da sonst negative Werte rauskommen können und das 
+# auch nicht der Sinn der Grafik ist
+
 # neuen Datensatz zusammenführen
 
 date_diff_data <- date_data %>%
-                    right_join(time_date_data, by = "date") %>%
+                    right_join(lvs_date_data, by = "date") %>%
                     select(date, count_infrared, count_people) %>%
                     mutate(diff = count_people - count_infrared)
 

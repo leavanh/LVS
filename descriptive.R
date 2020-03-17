@@ -236,7 +236,7 @@ avalanche_position_plot <- ggplot(avalanche_data) +
        x = "Lawinenwarnstufe",
        y = "Anteil LVS-Geräte")
 
-# Durschnittswert
+# Durchschnittswert
 
 avalanche_mean_plot <- ggplot(lvs_date_data) +
   geom_boxplot(aes(avalanche_report, ratio)) + 
@@ -244,3 +244,4 @@ avalanche_mean_plot <- ggplot(lvs_date_data) +
          "Anteil der Mitnahme von LVS\nnach Durchschnitts-Lawinenwarnstufe",
        x = "Lawinenwarnstufe",
        y = "Anteil LVS-Geräte")
+

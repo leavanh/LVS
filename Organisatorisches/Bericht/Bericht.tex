@@ -1,11 +1,12 @@
 \documentclass[11pt,a4paper]{report}
+\usepackage{ucs}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
-\usepackage{ngerman}
+\usepackage[ngerman]{babel}
 
 \usepackage{hyperref}
 
@@ -24,36 +25,36 @@
 \chapter{Hintergrund (wie das Ergebnisprotokoll ausformuliert + Beschreibung neuer Daten)}
 
 \section{Hintergrund des Projekts}
-Als beliebtes Ziel für Touristen und Wintersportler besteht im Alpengebiet ein besondere Konfliktsituation zwischen Mensch- und Tierreich. Routen für Spaziergänger, SKifahrer und Skitourengänger grenzen oft direkt an Lebensräume von Wildtieren an und führen so zu Stress für das Wildtierreich. Die vom Deutschen Alpenverein (DAV) in Kooperation mit  auf den Weg gebrachte Kampagne "Natürlich auf Tour" soll für eine Sensibilisierung und Informationsgebung für rund um das Thema Naturschutz dienen, insbesondere durch einen jährlichen Aktionstag.
+Als beliebtes Ziel für Touristen und Wintersportler besteht im Alpengebiet eine besondere Konfliktsituation zwischen Mensch- und Tierreich. Routen für Spaziergänger, Skifahrer und Skitourengänger grenzen oft direkt an Lebensräume von Wildtieren an und führen so zu Stress für das Wildtierreich. Die vom Deutschen Alpenverein (DAV) in Kooperation mit dem Freistaat Bayern auf den Weg gebrachte Kampagne "`Natürlich auf Tour"' soll für eine Sensibilisierung und Informationsgebung rund um das Thema Naturschutz dienen.
 
-Ein weiteres Ziel ist es dabei, das Verhalten der menschlichen Besucher zu analysieren und inwiefern man es womöglich steuern kann. In diesem Sinne untersuchte das DAV in Zusammenarbeit mit dem Department für Geographie an der LMU am Berg Taubenstein im Mangfallgebirge rund um den Spitzingsee zur Saison 18/19 und 19/20 den Anteil der Skitourengänger mit sogenannten LVS-Geräten. LVS-Gerät ist die Abkürzung für Lawinenverschüttungssuchgerät, mit Hilfe dieser Geräte sollen von Lawinen verschüttete Personen schnell gefunden werden. Ein LVS-Gerät kann auf entweder auf Suchbetrieb oder Sendebetrieb eingestellt werden. Auf Suchbetrieb eingestellte Geräte können dann andere Geräte im Sendebetrieb orten.
+Neben der Aufklärung ist ein weiteres Ziel dabei, das Verhalten der menschlichen Besucher zu analysieren um daraus abzuleiten inwiefern man es womöglich steuern kann. In diesem Sinne untersuchte der DAV in Zusammenarbeit mit dem Departement für Geographie der LMU am Berg Taubenstein im Mangfallgebirge rund um den Spitzingsee in der Saison 18/19 und 19/20 den Anteil der Skitourengänger mit sogenannten LVS-Geräten. LVS-Gerät ist die Abkürzung für Lawinenverschüttetensuchgerät, mit Hilfe dieser Geräte können von Lawinen verschüttete Personen schnell gefunden werden. Personen, die ein LVS-Gerät dabeihaben, können mit diesem andere LVS-Geräte suchen und auch selbst gefunden werden.
 
-Die Erfassung der Skitourengänger und LVS-Geräte fand auf zwei Arten statt. Für den Aufstieg am Taubenstein gibt es zwei Routen, eine Nord- und eine Südroute. An beiden Routen wurde jeweils ein Checkpoint aufgestellt, an dem vorbeigehende Besucher durch zwei Signale gemessen werden. Durch Infrarotmessung wird erfasst, ob ein Mensch am Checkpoint vorbeigeht. Außerdem werden mit einem weiteren Signal LVS-Geräte, die auf Sendebetrieb geschaltet sind, erfasst. Für jede einzelne Checkpointmessung liegt das jeweilige Datum mit Uhrzeit vor und an welcher der zwei Routen gemessen wurde.
-Zusätzlich zu diesen automatischen Messungen wurden manuell Gruppen von (?)Studenten/Mitarbeitern des Departments für Geographie(?) an bestimmten Tagen vor Ort eingesetzt, um durch Befragungen manuelle Daten zu gewinnen. Dabei wurde festgestellt, dass bei den durch die Checkpoints erhobenen Daten Messfehler vorliegen.
-
-Quellen: 
-\url{https://www.alpenverein.de/natur/aktionstag-natuerlich-auf-tour_aid_32844.html}
-
-Folien vom Erstgespräch
-
+Quelle:
 \url{https://de.wikipedia.org/wiki/Lawinenverschüttetensuchgerät}
 
-Neben der Erfassung der Besucher und LVS-Geräte liegen verschiedene weitere Daten vor. Dabei wurden die Messungen nach Tag gruppiert und die weiteren Werte liegen für den jeweiligen Tag vor. "count\_beacon" und "count\_infrared" entahlten die Anzahl der gemessenen LVS-Geräte bzw. Infrarotmessungen pro Tag. "snowhight" bemisst die Schneehöhe in cm. In "temperature" sieht man die jeweilige Temperatur um 12:00 mittags. "global\_solar\_radiation" zeigt die Sonneneinstrahlung in $W/cm^2$. Es gibt jeden Tag eine Lawinenwarnstufe je nach Schwere, diese kann dabei ab einer bestimmten Höhe größer ausfallen, da die Bedingungen näher am Gipfel des Berges anders sind als näher zum Tal. Die Warnstufen des unteren und oberen Bereichs und, falls unterschiedlich, ab welcher Höhe sie sich unterscheiden, sind respektive angegeben in den Variablen "avalanche\_report\_down", "avalanche\_report\_top" und "avalanche\_report\_border". "day\_weekday", "day\_weekend" und "holiday" geben jweils an, ob der Tag ein Tag unter der Woche oder am Wochenende war und ob er sich innerhalb einer Ferienzeit befunden hat.
-
-
-
-
-
 \section{Datengrundlage}
-Für die erste Untersuchung benutzen wir vorerst nur die automatisch erfassten Daten zur Saison 18/19. Der umfasste Zeitraum läuft dabei vom 21.12.2018 bis zum 13.02.2019. Anzumerken ist dabei, dass am 23.12. und 24.12. keine Messungen vorliegen, zudem werden Messungen vom 07.01. bis zum 15.01. außer Acht gelassen, da aufgrund von starkem Schneefall die Checkpoints zugeschaufelt waren.
+Um auf den Anteil der Skitourengängen, die ein LVS-Gerät bei sich hatten, schließen zu können, hat man Checkpoints aufgestellt. Für den Aufstieg am Taubenstein gibt es zwei Routen, eine Nord- und eine Südroute. An beiden Routen wurde jeweils ein Checkpoint aufgestellt, an dem vorbeigehende Besucher gemessen werden. Durch Infrarotmessung wird erfasst, ob ein Mensch am Checkpoint vorbeigeht. Außerdem werden LVS-Geräte, die auf Sendebetrieb geschaltet sind, erfasst. Für jede einzelne Checkpointmessung liegt das jeweilige Datum mit Uhrzeit vor und an welcher der zwei Routen (N oder S) sie erfasst wurde.
+Für die erste Untersuchung benutzen wir vorerst nur diese automatisch erfassten Daten zur Saison 18/19. Der umfasste Zeitraum läuft dabei vom 21.12.2018 bis zum 13.02.2019. Anzumerken ist dabei, dass am 23.12. und 24.12. keine Messungen vorliegen, zudem werden Messungen vom 07.01. bis zum 15.01. außer Acht gelassen, da aufgrund von starkem Schneefall die Checkpoints bedeckt waren.
+
+Zusätzlich zu diesen automatischen Messungen wurden manuell Gruppen von (?)Studenten/Mitarbeitern des Departments für Geographie(?) an bestimmten Tagen vor Ort eingesetzt, um durch Befragungen manuelle Daten zu gewinnen. Dabei wurde festgestellt, dass bei den durch die Checkpoints erhobenen Daten Messfehler vorliegen.
+
+Quelle:
+Folien vom Erstgespräch
+
+(Noch dazu schreiben was maximal und minimal Wert?)
+(Schauen, ob wirklich alle Variablen erfasst)
+
+Neben der Erfassung von Personen und LVS-Geräten liegen verschiedene weitere Daten vor.Für jeden Tag an dem gemessen wurde gibt es Information zu den Wetterbedingungen bzw. anderen möglichen Einflussvariablen. "`snowhight"' bemisst die Schneehöhe in cm (um welche Uhrzeit?). "`temperature"' ist die Temperatur des Tages um 12:00 mittags. "`global\_solar\_radiation"' zeigt die Sonneneinstrahlung in $W/cm^2$ (wann?). Außerdem sind die Lawinenwarnstufen des jeweiligen Tages angegeben. Es kann vorkommen, dass die Lawinenwarnstufe auf der Spitze des Berges eine andere ist als im Tal, deshalb gibt es zwei Variablen: "`avalanche\_report\_top"' und "`avalanche\_report\_down"'. Diese geben die Lawinenwarnstufe an der Spitze und am Fuß des Berges an. Obwohl es Stufen von 1 (niedrig) bis 5 (sehr hoch) gibt, war die in dem beobachteten Zeitraum höchste Stufe eine 4. An Tagen an denen die Stufen unterschiedlich waren wurde außerdem in "`avalanche\_report\_border"' der Höhenmeter angegeben, ab dem sich die Lawinengefahr unterscheidet. In "`avalanche\_report\_comment"' ist vermerkt, ob es sich dabei um eine Waldgrenze handelt. "`day"' gibt an, um welchen Tag der Woche es sich handelt und "`day\_weekday"', "`day\_weekend"' und "`holiday"' geben jeweils an, ob der Tag ein Tag unter der Woche oder am Wochenende war und ob er sich innerhalb einer Ferienzeit befunden hat.
 
 Bearbeitung der Daten durch uns:
+(noch mehr schreiben)
+"`count\_beacon"' und "`count\_infrared"' enthalten die Anzahl der gemessenen LVS-Geräte bzw. Infrarotmessungen pro Tag.
 Umwandlung der Messungen zu Personendaten. Umstellung des Tages von 04:00 bis 04:00.
 
 \section{Fragestellung}
-	\item Anhand der zur Verfügung gestellten Daten zur Saison 18/19 soll durch ein Modell der Anteil der Skitourengänger mit LVS-Gerät in Abhängigkeit von anderen Faktoren (wie z.B. Uhrzeit, Temperatur, Schneehöhe) analysiert werden.
-\item Zudem soll untersucht werden, von welchen Einflussgrößen die Messfehler abhängen, welcher Art (Über-/Unterschätzung) sie sind und ob eine Struktur (mögl. Verteilung) vorliegt.
-\item Unter Berücksichtigung der Erkenntnisse über die Messfehler sollen Hypothesen aufgestellt werden, in welcher Form1 die Messfehler die geschätzten Abhängigkeiten beeinflussen.
+Anhand der zur Verfügung gestellten Daten zur Saison 18/19 soll durch ein Modell der Anteil der Skitourengänger mit LVS-Gerät in Abhängigkeit von anderen Faktoren (wie z.B. Uhrzeit, Temperatur, Schneehöhe) analysiert werden.
+Zudem soll untersucht werden, von welchen Einflussgrößen die Messfehler abhängen, welcher Art (Über-/Unterschätzung) sie sind und ob eine Struktur (mögl. Verteilung) vorliegt.
+Unter Berücksichtigung der Erkenntnisse über die Messfehler sollen Hypothesen aufgestellt werden, in welcher Form die Messfehler die geschätzten Abhängigkeiten beeinflussen.
 
 
 

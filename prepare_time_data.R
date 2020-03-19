@@ -1,6 +1,6 @@
 # Diese R-Datei erstellt die RDS-Dateien time_data.RDS und time_date_data.RDS
 
-# Messungen zwischen 0 und 5 am Morgen sollen dem vorherigen Tag zugeordnet
+# Messungen zwischen 0 und 4 am Morgen sollen dem vorherigen Tag zugeordnet
 # werden
 
 # Zum Glück haben wir an Tagen an denen keine Messungen vom Tag vorher 
@@ -26,11 +26,11 @@ time_data <- lvs_data
 
 ## Schleife
 
-# Zeit von 0 ohne 5 soll umkodiert werden
+# Zeit von 0 ohne 4 soll umkodiert werden
 
 time_interval <- interval(
   as.POSIXct("1899-12-31 00:00:00", tz = "UTC"),
-  as.POSIXct("1899-12-31 04:59:59", tz = "UTC")
+  as.POSIXct("1899-12-31 03:59:59", tz = "UTC")
 )
 
 for(i in 1:nrow(time_data)) {
@@ -38,7 +38,7 @@ for(i in 1:nrow(time_data)) {
   time_i <- time_data[[i, "time"]]
   # Datum der Beobachtung
   date_i <- time_data[[i, "date"]]
-  # prüfen, ob Zeit von 0 bis 5 Uhr ist und umkodiert werden muss
+  # prüfen, ob Zeit von 0 bis 4 Uhr ist und umkodiert werden muss
   if(time_i %within% time_interval) {
     # Datum des Tags davor
     date_new <- date_i - days(1)

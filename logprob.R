@@ -1,9 +1,7 @@
+### Modelle
 
 
-## Probit-Modelle
-
-
-## Modell 1 nur mit Temperatur
+## Modell 1 nur mit Temperatur (Logit)
 
 lvs_model_1 <- glm(lvs ~ temperature, 
                    family = binomial(link = "logit"), 
@@ -15,7 +13,7 @@ summary(lvs_model_1)
 # exp(-0.072668) = 0.9299095
 
 
-## Modell 2 mit metrischen Einflussgrößen
+## Modell 2 mit metrischen Einflussgrößen (Logit)
 
 lvs_model_2 <- glm(lvs ~ temperature + snowhight + solar_radiation, 
                    family = binomial(link = "logit"), 
@@ -35,33 +33,36 @@ logitmfx(lvs ~ temperature + snowhight + solar_radiation, data = lvs_data)
 
 # so ein geringer Effekt, aber trotzdem signifikant?
 
-## Modell 3 mit metrischen und kategorialen Einflussgrößen
+## Modell 3 mit metrischen und kategorialen Einflussgrößen (Logit)
 
-lvs_model_3 <- glm(lvs ~ temperature + snowhight + solar_radiation + day + avalanche_report, 
+lvs_model_3 <- glm(lvs ~ temperature + snowhight + solar_radiation + day + 
+                     avalanche_report, 
                    family = binomial(link = "logit"), 
                    data = lvs_data)
 summary(lvs_model_3)
 
-# Samstag und Sonntag haben keinen sign. Einfluss. Auch solar_radiation hat keinen
-# signifkaten Einfluss mehr
+# Samstag und Sonntag haben keinen sign. Einfluss. Auch solar_radiation hat 
+# keinen signifkaten Einfluss mehr
 
-logitmfx(lvs ~ temperature + snowhight + solar_radiation + day + avalanche_report, data = lvs_data)
+logitmfx(lvs ~ temperature + snowhight + solar_radiation + day + 
+           avalanche_report, data = lvs_data)
 
 # kuriose Werte bei den avalanche_reports: steigen nicht mit höherer Warnstufe, 
 # sondern schwanken hin und her
 
-
 ## Modell 4: Probit-Modell
 
-lvs_model_4 <- glm(lvs ~ temperature + snowhight + solar_radiation + day + avalanche_report, 
+lvs_model_4 <- glm(lvs ~ temperature + snowhight + solar_radiation + day + 
+                     avalanche_report, 
                    family = binomial(link = "probit"), 
                    data = lvs_data)
 summary(lvs_model_4)
 
-# andere Werte (auch Vorzeichen!) als beim logi-Modell, aber Effekte eh sehr klein
+# andere Werte (auch Vorzeichen!) als beim logit-Modell, aber Effekte eh sehr 
+# klein
 
-probitmfx(lvs ~ temperature + snowhight + solar_radiation + day + avalanche_report, data = lvs_data)
-
+probitmfx(lvs ~ temperature + snowhight + solar_radiation + day + 
+            avalanche_report, data = lvs_data)
 
 ## Modell 5: loglog-Modell
 
@@ -70,6 +71,8 @@ lvs_model_5 <- glm(lvs ~ temperature + snowhight + solar_radiation + day + avala
                    data = lvs_data)
 summary(lvs_model_5)
 
+
+### Modellvergleiche
 
 ## Vergleich des Logit- und Probit-Modells
 
@@ -83,8 +86,6 @@ list(
 
 # je kleiner AIC/BIC desto besser -> cloglog-Modell am besten
 
-#### noch ausprobieren: Effekte zwischen einzelnen Kovariablen. Welche machen Sinn?
-
 
 ## Schrittweiser Aufbau des Modells zur Minimierung des AIC
 
@@ -92,23 +93,22 @@ logitMinAIC <- step(lvs_model_3)
 summary(logitMinAIC)
 
 
-
-
-
-
-######## Ab jetzt Daten aus Datensatz time_data und Uhrzeit als Variable ins Modell aufgenommen
+######## Ab jetzt Daten aus Datensatz time_data und Uhrzeit als 
+######## Variable ins Modell aufgenommen
 
 ## Modell 3 mit metrischen und kategorialen Einflussgrößen
 
-lvs_model_3t <- glm(lvs ~ temperature + snowhight + solar_radiation + day + avalanche_report + time, 
+lvs_model_3t <- glm(lvs ~ temperature + snowhight + solar_radiation + 
+                      day + avalanche_report + time, 
                     family = binomial(link = "logit"), 
                     data = time_data)
 summary(lvs_model_3t)
 
-# Samstag und Sonntag haben keinen sign. Einfluss. Auch solar_radiation hat keinen
-# signifkaten Einfluss mehr
+# Samstag und Sonntag haben keinen sign. Einfluss. Auch solar_radiation hat 
+# keinen signifikanten Einfluss mehr
 
-logitmfx(lvs ~ temperature + snowhight + solar_radiation + day + avalanche_report, data = lvs_data)
+logitmfx(lvs ~ temperature + snowhight + solar_radiation + day + 
+           avalanche_report, data = lvs_data)
 
 # kuriose Werte bei den avalanche_reports: steigen nicht mit höherer Warnstufe, 
 # sondern schwanken hin und her
@@ -116,19 +116,23 @@ logitmfx(lvs ~ temperature + snowhight + solar_radiation + day + avalanche_repor
 
 ## Modell 4: Probit-Modell
 
-lvs_model_4t <- glm(lvs ~ temperature + snowhight + solar_radiation + day + avalanche_report + time, 
+lvs_model_4t <- glm(lvs ~ temperature + snowhight + solar_radiation + day + 
+                      avalanche_report + time, 
                     family = binomial(link = "probit"), 
                     data = time_data)
 summary(lvs_model_4t)
 
-# andere Werte (auch Vorzeichen!) als beim logi-Modell, aber Effekte eh sehr klein
+# andere Werte (auch Vorzeichen!) als beim logi-Modell, aber Effekte eh 
+# sehr klein
 
-probitmfx(lvs ~ temperature + snowhight + solar_radiation + day + avalanche_report, data = lvs_data)
+probitmfx(lvs ~ temperature + snowhight + solar_radiation + day + 
+            avalanche_report, data = lvs_data)
 
 
 ## Modell 5: loglog-Modell
 
-lvs_model_5t <- glm(lvs ~ temperature + snowhight + solar_radiation + day + avalanche_report + time, 
+lvs_model_5t <- glm(lvs ~ temperature + snowhight + solar_radiation + day + 
+                      avalanche_report + time, 
                     family = binomial(link = "cloglog"), 
                     data = time_data)
 summary(lvs_model_5t)
@@ -143,9 +147,3 @@ list(
 list(
   "Logit-BIC" = BIC(lvs_model_3t), "Probit-BIC" = BIC(lvs_model_4t), "loglog-BIC" = BIC(lvs_model_5t)
 )
-
-
-
-
-
-

@@ -161,7 +161,8 @@ model_6 <- glm(cbind(lvs_true, lvs_false) ~ temperature + snowhight +
                data = time_date_data)
 summary(model_6)
 
-# Stepwise Selection AIC
+# Stepwise Selection AIC 
+
 if (!require("MASS")) install.packages("MASS")
 library("MASS")
 

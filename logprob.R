@@ -58,7 +58,8 @@ summary(lvs_model_4)
 
 # andere Werte (auch Vorzeichen!) als beim logi-Modell, aber Effekte eh sehr klein
 
-probitmfx(lvs ~ temperature + snowhight + solar_radiation + day + avalanche_report, data = lvs_data)
+probitmfx(lvs ~ temperature + snowhight + solar_radiation + day + 
+            avalanche_report, data = lvs_data)
 
 
 ## Vergleich des Logit- und Probit-Modells

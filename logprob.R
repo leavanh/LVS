@@ -151,3 +151,12 @@ list(
 list(
   "Logit-BIC" = BIC(lvs_model_3t), "Probit-BIC" = BIC(lvs_model_4t), "loglog-BIC" = BIC(lvs_model_5t)
 )
+
+
+## Modell 6: mit gruppierten Daten
+
+model_6 <- glm(cbind(lvs_true, lvs_false) ~ temperature + snowhight + 
+                 solar_radiation + holiday + day + avalanche_report,
+               family = binomial(link = "logit"), 
+               data = time_date_data)
+summary(model_6)

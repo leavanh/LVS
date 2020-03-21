@@ -93,6 +93,32 @@ time_data <- group_by(time_data, date) %>%
 time_date_data <- distinct(subset(time_data, 
                                  select = -c(lvs, time, position, id)))
 
+## nach Zeit gruppieren
+
+# in time_data für jede Stunde die absoluten Zahlen von lvs_true und lvs_false
+# berechnen (wie bisher täglich)
+
+# zuerst date und time zu einer gemeinsamen Variable zusammenführen
+
+# brauchen wir doch nicht
+
+# time_data$date_time <- with(time_data, ymd(date) + 
+#                              hms(strftime(time_data$time,
+#                                          format = "%H:%M:%S",
+#                                         tz = "UTC")))
+
+# doppelt gruppieren
+
+time_data <- group_by(time_data, date) %>%
+  group_by(hour(time)) %>%
+  # neu berechnen
+  mutate(lvs_true_hourly = sum(lvs == TRUE), # Anzahl mit LVS
+         lvs_false_hourly = sum(lvs == FALSE), # Anzahl ohne LVS
+         count_people_hourly = lvs_true_hourly + lvs_false_hourly, # Anzahl
+                                                                  # Leute insg.
+         ratio_hourly = lvs_true_hourly/(count_people_hourly)) %>% # Ratio
+  ungroup()
+
 ## als RDS speichern
 
 saveRDS(time_date_data, file = "Daten/time_date_data.RDS")

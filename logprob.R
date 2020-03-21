@@ -64,17 +64,16 @@ summary(lvs_model_4)
 probitmfx(lvs ~ temperature + snowhight + solar_radiation + day + 
             avalanche_report, data = lvs_data)
 
-<<<<<<< HEAD
 probitmfx(lvs ~ temperature + snowhight + solar_radiation + day + 
             avalanche_report, data = lvs_data)
-=======
+
 ## Modell 5: loglog-Modell
 
-lvs_model_5 <- glm(lvs ~ temperature + snowhight + solar_radiation + day + avalanche_report, 
+lvs_model_5 <- glm(lvs ~ temperature + snowhight + solar_radiation + day + 
+                     avalanche_report, 
                    family = binomial(link = "cloglog"), 
                    data = lvs_data)
 summary(lvs_model_5)
->>>>>>> 34c52c0c89b4aed4b3152f814543687e5c658ed3
 
 
 ### Modellvergleiche

@@ -12,6 +12,9 @@ library("GGally")
 if (!require("mfx")) install.packages("mfx")
 library("mfx")
 
+if (!require("gee")) install.packages("gee")
+library("gee")
+
 ## Daten laden
 
 data <- readRDS(file = "Daten/data.RDS")

@@ -179,3 +179,12 @@ model_8  <- gls(cbind(lvs_true, lvs_false) ~ temperature + snowhight +
                    data = time_data,
                    corr = corAR1(form = ~ date))
 summary(model_8)
+
+# Stepwise Selection AIC 
+
+if (!require("MASS")) install.packages("MASS")
+library("MASS")
+
+oef_AIC = stepAIC(object = model_6, 
+                  scope = list(upper = ~ ., lower = ~ 1), direction = "both")
+

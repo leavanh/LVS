@@ -170,3 +170,12 @@ model_7 <- geeglm(cbind(lvs_true, lvs_false) ~ temperature + snowhight +
                id = date,
                corstr = "ar1")
 summary(model_7)
+
+## Modell 8: GLS
+
+model_8  <- gls(cbind(lvs_true, lvs_false) ~ temperature + snowhight + 
+                     solar_radiation + holiday + day + avalanche_report,
+                   family = binomial(link = "logit"), 
+                   data = time_data,
+                   corr = corAR1(form = ~ date))
+summary(model_8)

@@ -15,6 +15,9 @@ library("mfx")
 if (!require("geepack")) install.packages("geepack")
 library("geepack")
 
+if (!require("nlme")) install.packages("nlme")
+library("nlme")
+
 ## Daten laden
 
 data <- readRDS(file = "Daten/data.RDS")

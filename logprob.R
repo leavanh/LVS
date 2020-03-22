@@ -160,3 +160,13 @@ model_6 <- glm(cbind(lvs_true, lvs_false) ~ temperature + snowhight +
                family = binomial(link = "logit"), 
                data = time_date_data)
 summary(model_6)
+
+## Modell 7: GEE
+
+model_7 <- geeglm(cbind(lvs_true, lvs_false) ~ temperature + snowhight + 
+                 solar_radiation + holiday + day + avalanche_report,
+               family = binomial(link = "logit"), 
+               data = time_date_data,
+               id = date,
+               corstr = "ar1")
+summary(model_7)

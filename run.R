@@ -12,8 +12,8 @@ library("GGally")
 if (!require("mfx")) install.packages("mfx")
 library("mfx")
 
-if (!require("gee")) install.packages("gee")
-library("gee")
+if (!require("geepack")) install.packages("geepack")
+library("geepack")
 
 ## Daten laden
 

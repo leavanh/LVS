@@ -7,6 +7,9 @@
 if (!require("readxl")) install.packages("readxl")
 library("readxl")
 
+if (!require("lubridate")) install.packages("lubridate")
+library("lubridate")
+
 if (!require("tidyverse")) install.packages("tidyverse")
 library("tidyverse")
 
@@ -41,21 +44,13 @@ colnames(all_date) <- c("day", "date", "count_all", "count_selected",
 all_checkpoint_stats <- subset(all_checkpoint_stats,
                                type %in% c("Beacon", "Infrared"))
 
-# date in POSIXct umwandeln
+# date in day_length in POSIXct umwandeln
 
 day_length$date <- as.POSIXct(day_length$date, format = "%d %B %Y", tz = "UTC")
 
 ## day_length und all_date zusammenführen
 
 date_data <- left_join(all_date, day_length, by = "date")
-
-## unnötige Variablen entfernen
-
-date_data <- subset(date_data, select = -c(count_all, count_selected, 
-                                           count_beacon, count_infrared,
-                                           ratio, precipitation, avalanche_1, 
-                                           avalanche_2, avalanche_3, 
-                                           avalanche_4))
 
 ## Tagesindikatoren in logical umkodieren
 
@@ -66,6 +61,62 @@ for (k in c("day_weekday", "day_weekend", "holiday")) {
 ## date_data und all_checkpoint_stats zusammenführen
 
 data <- left_join(all_checkpoint_stats, date_data, by = "date")
+
+## Uhrzeit umkodieren
+
+# Messungen zwischen 0 und 4 am Morgen sollen dem vorherigen Tag zugeordnet
+# werden
+
+# Zum Glück haben wir an Tagen an denen keine Messungen vom Tag vorher 
+# vorliegen (21.12.18 und 25.12.18) keine Messungen in dem kritischen
+# Intervall
+
+# Schleife
+
+time_interval <- interval(
+  as.POSIXct("1899-12-31 00:00:00", tz = "UTC"),
+  as.POSIXct("1899-12-31 03:59:59", tz = "UTC")
+)
+
+for(i in 1:nrow(data)) {
+  # Zeit der Beobachtung 
+  time_i <- data[[i, "time"]]
+  # Datum der Beobachtung
+  date_i <- data[[i, "date"]]
+  # prüfen, ob Zeit von 0 bis 4 Uhr ist und umkodiert werden muss
+  if(time_i %within% time_interval) {
+    # Datum des Tags davor
+    date_new <- date_i - days(1)
+    # Reihe der Beobachtung herausfinden
+    row_i <- which(date_data$date == date_new)
+    # neue Werte zuweisen
+    data[[i, "date"]] <- date_data[[row_i, "date"]]
+    data[[i, "day"]] <- date_data[[row_i, "day"]]
+    data[[i, "ratio"]] <- date_data[[row_i, "ratio"]]
+    data[[i, "snowhight"]] <- date_data[[row_i, "snowhight"]]
+    data[[i, "temperature"]] <- date_data[[row_i, "temperature"]]
+    data[[i, "solar_radiation"]] <- date_data[[row_i,
+                                                        "solar_radiation"]]
+    data[[i, "avalanche_report_down"]] <- date_data[[
+      row_i, "avalanche_report_down"]]
+    data[[i, "avalanche_report_top"]] <- date_data[[
+      row_i, "avalanche_report_top"]]
+    data[[i, "avalanche_report_border"]] <- date_data[[
+      row_i,
+      "avalanche_report_border"]]
+    data[[i, "avalanche_report_comment"]] <- date_data[[
+      row_i, 
+      "avalanche_report_comment"]]
+    data[[i, "day_weekday"]] <- date_data[[row_i, "day_weekday"]]
+    data[[i, "day_weekend"]] <- date_data[[row_i, "day_weekend"]]
+    data[[i, "holiday"]] <- date_data[[row_i, "holiday"]]
+    data[[i, "sunrise"]] <- date_data[[row_i, "sunrise"]]
+    data[[i, "sunset"]] <- date_data[[row_i, "sunset"]]
+    data[[i, "day_length"]] <- date_data[[row_i, "day_length"]]
+  }
+  # mit der nächsten Messung weitermachen
+  i <- i + 1
+}
 
 ## neue Variablen berechnen
 
@@ -80,13 +131,38 @@ data <- left_join(all_checkpoint_stats, date_data, by = "date")
 
 data <- group_by(data, date) %>%
   # neue Variablen hinzufügen
-  mutate(lvs_true = sum(type == "Beacon"), # Anzahl Beaconmessung
+  mutate(avalanche_report = # Avalanche_report
+           (avalanche_report_down + avalanche_report_top)/2,
+         lvs_true = sum(type == "Beacon"), # Anzahl Beaconmessung
          lvs_false = sum(type == "Infrared"), # Anzahl Infrarotmessungen
          count_people = lvs_true + lvs_false, # Anzahl Leute insg.
-         ratio = lvs_true/(count_people), #ratio
-         avalanche_report = # Avalanche_report
-           (avalanche_report_down + avalanche_report_top)/2) %>%
+         ratio = lvs_true/(count_people)) %>% # Anteil
   ungroup()
+
+# außerdem die Werte für jede Stunde berechnen
+
+# doppelt gruppieren
+
+data <- group_by(data, date) %>%
+  group_by(hour_time = hour(time)) %>%
+  # neu berechnen
+  mutate(lvs_true_hourly = sum(type == "Beacon"), # Anzahl mit LVS
+         lvs_false_hourly = sum(type == "Infrared"), # Anzahl ohne LVS
+         count_people_hourly = lvs_true_hourly + lvs_false_hourly, # Anzahl
+         # Leute insg.
+         ratio_hourly = lvs_true_hourly/(count_people_hourly)) %>% # Ratio
+  ungroup()
+
+## unnötige Variablen entfernen
+
+data <- subset(data, select = -c(count_all, count_selected, 
+                                 count_beacon, count_infrared,
+                                 ratio, precipitation, avalanche_1, 
+                                 avalanche_2, avalanche_3, 
+                                 avalanche_4, avalanche_report_down,
+                                 avalanche_report_top,
+                                 avalanche_report_border,
+                                 avalanche_report_comment, hour_time))
 
 ## factors festlegen
 
@@ -99,7 +175,9 @@ data$day <- factor(data$day,
 ## neue date_data erstellen
 
 date_data <- distinct(subset(data, 
-                             select = -c(lvs, time, position, id)))
+                             select = -c(type, time, position, id, 
+                                         lvs_true_hourly, lvs_false_hourly,
+                                         count_people_hourly, ratio_hourly)))
 
 ## als RDS speichern
 

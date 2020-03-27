@@ -57,6 +57,8 @@ date_data_plot <- ggpairs(date_data[,c("date", "count_people",
 
 # Datum und absolute Häufigkeit der Messungen
 
+# warning message verstehen
+
 date_type <- ggplot(date_data, aes(date)) +
   geom_col(aes(y = count_people, fill = "red")) +
   geom_col(aes(y = lvs_true, fill = "blue")) +

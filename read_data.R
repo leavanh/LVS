@@ -62,13 +62,21 @@ for (k in c("day_weekday", "day_weekend", "holiday")) {
 
 data <- left_join(all_checkpoint_stats, date_data, by = "date")
 
+## Tage löschen
+
+# vom 07.01.19 mit einschließlich 15.01.19 waren die Checkpoints überdeckt und 
+# die Messungen werden entfernt
+
+data <- data %>%
+  filter(date > as.Date("2019-01-15") | date < as.Date("2019-01-07"))
+
 ## Uhrzeit umkodieren
 
 # Messungen zwischen 0 und 4 am Morgen sollen dem vorherigen Tag zugeordnet
 # werden
 
 # Zum Glück haben wir an Tagen an denen keine Messungen vom Tag vorher 
-# vorliegen (21.12.18 und 25.12.18) keine Messungen in dem kritischen
+# vorliegen (21.12.18, 25.12.18 und 16.01.19) keine Messungen in dem kritischen
 # Intervall
 
 # Schleife

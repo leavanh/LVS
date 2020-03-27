@@ -9,6 +9,15 @@ library("patchwork")
 if (!require("GGally")) install.packages("GGally")
 library("GGally")
 
+if (!require("mfx")) install.packages("mfx")
+library("mfx")
+
+if (!require("geepack")) install.packages("geepack")
+library("geepack")
+
+if (!require("nlme")) install.packages("nlme")
+library("nlme")
+
 ## Daten laden
 
 data <- readRDS(file = "Daten/data.RDS")
@@ -35,3 +44,7 @@ snowhight_ratio / solar_radiation_ratio / temperature_ratio
 snowhight_solar_radiation
 (time_type/time_lvs)
 avalanche_position_plot + avalanche_mean_plot
+
+## Modell fitting
+
+source("logprob.R", encoding = "UTF-8")

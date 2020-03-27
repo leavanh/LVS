@@ -143,8 +143,7 @@ data <- group_by(data, date) %>%
 
 # doppelt gruppieren
 
-data <- group_by(data, date) %>%
-  group_by(hour_time = hour(time)) %>%
+data <- group_by(data, date, hour_time = hour(time)) %>%
   # neu berechnen
   mutate(lvs_true_hourly = sum(type == "Beacon"), # Anzahl mit LVS
          lvs_false_hourly = sum(type == "Infrared"), # Anzahl ohne LVS
@@ -157,7 +156,7 @@ data <- group_by(data, date) %>%
 
 data <- subset(data, select = -c(count_all, count_selected, 
                                  count_beacon, count_infrared,
-                                 ratio, precipitation, avalanche_1, 
+                                 precipitation, avalanche_1, 
                                  avalanche_2, avalanche_3, 
                                  avalanche_4, avalanche_report_down,
                                  avalanche_report_top,

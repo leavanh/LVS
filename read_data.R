@@ -143,7 +143,7 @@ data <- group_by(data, date) %>%
 
 # doppelt gruppieren
 
-data <- group_by(data, date, hour_time = hour(time)) %>%
+data <- group_by(data, date, hour(time)) %>%
   # neu berechnen
   mutate(lvs_true_hourly = sum(type == "Beacon"), # Anzahl mit LVS
          lvs_false_hourly = sum(type == "Infrared"), # Anzahl ohne LVS
@@ -152,16 +152,15 @@ data <- group_by(data, date, hour_time = hour(time)) %>%
          ratio_hourly = lvs_true_hourly/(count_people_hourly)) %>% # Ratio
   ungroup()
 
-## unnötige Variablen entfernen
+## nur wichtige Variablen behalten
 
-data <- subset(data, select = -c(count_all, count_selected, 
-                                 count_beacon, count_infrared,
-                                 precipitation, avalanche_1, 
-                                 avalanche_2, avalanche_3, 
-                                 avalanche_4, avalanche_report_down,
-                                 avalanche_report_top,
-                                 avalanche_report_border,
-                                 avalanche_report_comment, hour_time))
+data <- subset(data, select = c(id, type, position, time, date, day,
+                                day_weekday, day_weekend, holiday,
+                                snowhight, temperature, solar_radiation,
+                                avalanche_report, sunrise, sunset, day_length,
+                                lvs_true, lvs_false, count_people, ratio,
+                                lvs_true_hourly, lvs_false_hourly,
+                                count_people_hourly, ratio_hourly))
 
 ## factors festlegen
 

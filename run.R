@@ -36,8 +36,9 @@ date_data_plot
 date_type/date_ratio
 # -> hohe Schwankung am Anfang, wie zu erklären?
 date_snowhight + date_temperature + date_solar_radiation
-snowhight_ratio / solar_radiation_ratio / temperature_ratio
-snowhight_solar_radiation + avalanche_plot
+(snowhight_ratio + solar_radiation_ratio) / 
+  (temperature_ratio + avalanche_ratio)
+snowhight_solar_radiation
 time_type
 
 ## Modell fitting

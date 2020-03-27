@@ -47,12 +47,10 @@ summary_list <- list(
 # alle Variablen gegeinander geplottet zur Übersicht
 # keine Faktorvariablen und ohne Zeit
 
-# überarbeiten
-
-date_data_plot <- ggpairs(date_data[,c("date", "lvs_true", "lvs_false",
+date_data_plot <- ggpairs(date_data[,c("date", "count_people",
                                        "ratio", "snowhight", 
                                        "temperature", "solar_radiation",
-                                       "day_length")])
+                                       "avalanche_report", "day_length")])
 # -> day_length hängt vollkommen von date ab (Achtung beim Modell!)
 
 ## Datum
@@ -66,7 +64,7 @@ date_type <- ggplot(date_data, aes(date)) +
   scale_fill_identity(name = "Messung",
                        breaks = c("red", "blue"),
                        labels = c("Person", "LVS-Gerät"),
-                       guide = "legend") + 
+                       guide = "legend") +
   labs(title = "Die Messungen in der Wintersaison 18/19",
        x = "Datum",
        y = "Absolute Häufigkeit")
@@ -77,7 +75,7 @@ date_ratio <- ggplot(date_data) +
   geom_line(aes(date, ratio)) +
   labs(title = "Anteil der Personen mit LVS-Gerät in der Wintersaison 18/19",
        x = "Datum",
-       y = "Anteil")
+       y = "Anteil LVS-Geräte")
 # -> hohe Schwankung am Anfang, wie zu erklären?
 
 # Datum und Schneehöhe
@@ -108,21 +106,28 @@ date_solar_radiation <- ggplot(date_data) +
 snowhight_ratio <- ggplot(date_data) +
   geom_point(aes(snowhight, ratio), alpha = 0.5) +
   xlab("Schneehöhe (in cm)") +
-  ylab("Ratio")
+  ylab("Anteil LVS-Geräte")
 
 # Ratio und Temperatur
 
 temperature_ratio <- ggplot(date_data) +
   geom_point(aes(temperature, ratio), alpha = 0.5) +
   xlab("Temperatur (in °C)") +
-  ylab("Ratio")
+  ylab("Anteil LVS-Geräte")
 
 # Ratio und solar radiation
 
 solar_radiation_ratio <- ggplot(date_data) +
   geom_point(aes(solar_radiation, ratio), alpha = 0.5) +
   xlab("solar radiation") +
-  ylab("Ratio")
+  ylab("Anteil LVS-Geräte")
+
+# Ratio und Lawinenwarnstufe
+
+avalanche_ratio <- ggplot(date_data) +
+  geom_jitter(aes(avalanche_report, ratio), alpha = 0.5) + 
+  labs(x = "Lawinenwarnstufe",
+       y = "Anteil LVS-Geräte")
 
 ## Schneehöhe und radiation
 
@@ -130,17 +135,6 @@ snowhight_solar_radiation <- ggplot(date_data) +
   geom_point(aes(snowhight, solar_radiation), alpha = 0.5) +
   xlab("Schneehöhe (in cm)") +
   ylab("solar radiation")
-
-## Lawinen
-
-# überarbeiten
-
-avalanche_plot <- ggplot(date_data) +
-  geom_boxplot(aes(avalanche_report, ratio)) + 
-  labs(title = 
-         "Anteil der Mitnahme von LVS\nnach Lawinenwarnstufe",
-       x = "Lawinenwarnstufe",
-       y = "Anteil LVS-Geräte")
 
 ## Uhrzeit
 

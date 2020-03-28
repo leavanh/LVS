@@ -13,9 +13,6 @@ library("lubridate")
 if (!require("tidyverse")) install.packages("tidyverse")
 library("tidyverse")
 
-if (!require("naniar")) install.packages("naniar")
-library("naniar")
-
 ## Exceltabellen einlesen
 
 all_date <- read_excel("Daten/Projektdaten_DAV (muss_aufbereitet_werden).xlsx",
@@ -61,21 +58,18 @@ for (k in c("day_weekday", "day_weekend", "holiday")) {
   date_data[,k] <- c(!is.na(date_data [,k])) 
 }
 
-## date_data und all_checkpoint_stats zusammenführen
-
-data <- full_join(all_checkpoint_stats, date_data, by = "date")
-
 ## Tage löschen
 
 # vom 07.01.19 mit einschließlich 15.01.19 waren die Checkpoints überdeckt und 
 # die Messungen werden entfernt
 
-data <- replace_with_na_at(data, .vars = c("id", "type", "time", "position"), 
-                           date %within% interval(ymd("2019-01-07"),
-                                                  ymd("2019-01-15")) |
-                           date == as.Date("2018-12-23") |
-                           date == as.Date("2018-12-24"))
-  
+all_checkpoint_stats <- filter(all_checkpoint_stats,
+                               !(date %within% interval(ymd("2019-01-07"),
+                                                      ymd("2019-01-15"))))
+
+## date_data und all_checkpoint_stats zusammenführen
+
+data <- full_join(all_checkpoint_stats, date_data, by = "date")
 
 ## Uhrzeit umkodieren
 

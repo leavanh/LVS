@@ -161,6 +161,15 @@ data <- group_by(data, date, hour(time)) %>%
          ratio_hourly = lvs_true_hourly/(count_people_hourly)) %>% # Ratio
   ungroup()
 
+# Tage bei denen eine Messung möglich war, aber nichts gemessen wurde zu 0 
+# umcodieren (23./24.12.18)
+
+data[data$date %within% interval(ymd("2018-12-23"),
+                                 ymd("2018-12-24")),
+             c("lvs_true", "lvs_false", "count_people", "ratio",
+               "lvs_true_hourly", "lvs_false_hourly", "count_people_hourly",
+               "ratio_hourly")] <- 0
+
 ## nur wichtige Variablen behalten
 
 data <- subset(data, select = c(id, type, position, time, date, day,

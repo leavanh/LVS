@@ -5,12 +5,18 @@
 # Absolute Anzahl der Beacons und Infrared, jeweils für Wochentage,
 # Wochenendtage und Ferientage
 
-weekday_sum <- c(sum(subset(date_data, day_weekday == TRUE)$lvs_true),
-                 sum(subset(date_data, day_weekday == TRUE)$lvs_false))
-weekend_sum <- c(sum(subset(date_data, day_weekend == TRUE)$lvs_true),
-                 sum(subset(date_data, day_weekend == TRUE)$lvs_false))
-holiday_sum <- c(sum(subset(date_data, holiday == TRUE)$lvs_true),
-                 sum(subset(date_data, holiday == TRUE)$lvs_false))
+weekday_sum <- c(sum(subset(
+                   date_data, day_weekday == TRUE)$lvs_true, na.rm = TRUE),
+                 sum(subset(
+                   date_data, day_weekday == TRUE)$lvs_false, na.rm = TRUE))
+weekend_sum <- c(sum(subset(
+                   date_data, day_weekend == TRUE)$lvs_true, na.rm = TRUE),
+                 sum(subset(
+                   date_data, day_weekend == TRUE)$lvs_false, na.rm = TRUE))
+holiday_sum <- c(sum(subset(
+                   date_data, holiday == TRUE)$lvs_true, na.rm = TRUE),
+                 sum(subset(
+                   date_data, holiday == TRUE)$lvs_false, na.rm = TRUE))
 
 # In einem data.frame zusammenführen und Reihen und Spalten benennen
 
@@ -29,11 +35,11 @@ summary_list <- list(
   summary(date_data),
   
   # Typ und Position
-  addmargins(table(data$type, data$position, useNA = "ifany")),
+  addmargins(table(data$type, data$position)),
   # -> mehr Messungen bei S
   
   # Typ und Wochentag
-  addmargins(table(data$type, data$day, useNA = "ifany")),
+  addmargins(table(data$type, data$day)),
   # -> am wenigsten Messungen Montags, am meisten am Wochenende
   
   # Typ und Art des Tages (Summenspalte händisch hinzugefügt)

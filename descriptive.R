@@ -52,23 +52,25 @@ summary_list <- list(
 
 # alle Variablen gegeinander geplottet zur Übersicht
 # keine Faktorvariablen und ohne Zeit
+# NAs (Tage an denen Messungen nicht möglich waren) werden davor entfernt
 
-date_data_plot <- ggpairs(date_data[,c("date", "count_people",
+date_data_plot <- date_data[!is.na(date_data$count_people),
+                            c("date", "count_people",
                                        "ratio", "snowhight", 
                                        "temperature", "solar_radiation",
-                                       "avalanche_report", "day_length")])
+                                       "avalanche_report", "day_length")] %>%
+                  ggpairs()
 # -> day_length hängt vollkommen von date ab (Achtung beim Modell!)
 
 ## Datum
 
 # Datum und absolute Häufigkeit der Messungen
+# NAs (Tage an denen Messungen nicht möglich waren) werden davor entfernt
 
-# warning message verstehen
-
-date_type <- ggplot(date_data, aes(date)) +
+date_type <- date_data[!is.na(date_data$count_people),] %>%
+  ggplot(aes(date)) +
   geom_col(aes(y = count_people, fill = "red")) +
   geom_col(aes(y = lvs_true, fill = "blue")) +
-  scale_y_continuous(limits = c(0, 1000)) +
   scale_fill_identity(name = "Messung",
                        breaks = c("red", "blue"),
                        labels = c("Person", "LVS-Gerät"),
@@ -78,6 +80,7 @@ date_type <- ggplot(date_data, aes(date)) +
        y = "Absolute Häufigkeit")
 
 # Datum und Ratio
+# NAs (Tage an denen Messungen nicht möglich waren) werden davor entfernt
 
 date_ratio <- ggplot(date_data) +
   geom_line(aes(date, ratio)) +
@@ -108,31 +111,36 @@ date_solar_radiation <- ggplot(date_data) +
   ylab("solar radiation")
 
 ## Ratio
+# NAs (Tage an denen Messungen nicht möglich waren) werden davor entfernt
 
 # Ratio und Schneehöhe
 
-snowhight_ratio <- ggplot(date_data) +
+snowhight_ratio <- date_data[!is.na(date_data$count_people),] %>%
+  ggplot() +
   geom_point(aes(snowhight, ratio), alpha = 0.5) +
   xlab("Schneehöhe (in cm)") +
   ylab("Anteil LVS-Geräte")
 
 # Ratio und Temperatur
 
-temperature_ratio <- ggplot(date_data) +
+temperature_ratio <- date_data[!is.na(date_data$count_people),] %>%
+  ggplot() +
   geom_point(aes(temperature, ratio), alpha = 0.5) +
   xlab("Temperatur (in °C)") +
   ylab("Anteil LVS-Geräte")
 
 # Ratio und solar radiation
 
-solar_radiation_ratio <- ggplot(date_data) +
+solar_radiation_ratio <- date_data[!is.na(date_data$count_people),] %>%
+  ggplot() +
   geom_point(aes(solar_radiation, ratio), alpha = 0.5) +
   xlab("solar radiation") +
   ylab("Anteil LVS-Geräte")
 
 # Ratio und Lawinenwarnstufe
 
-avalanche_ratio <- ggplot(date_data) +
+avalanche_ratio <- date_data[!is.na(date_data$count_people),] %>%
+  ggplot() +
   geom_jitter(aes(avalanche_report, ratio), alpha = 0.5) + 
   labs(x = "Lawinenwarnstufe",
        y = "Anteil LVS-Geräte")
@@ -145,13 +153,14 @@ snowhight_solar_radiation <- ggplot(date_data) +
   ylab("solar radiation")
 
 ## Uhrzeit
+# NAs (Tage an denen Messungen nicht möglich waren) werden entfernt
 
 time_type <- ggplot() +
-  geom_freqpoly(data = data,
+  geom_freqpoly(data = data[!is.na(data$time),],
                 aes(time, colour = "red"), binwidth = 15) +
-  geom_freqpoly(data = subset(data, type == "Beacon"),
+  geom_freqpoly(data = subset(data[!is.na(data$time),],
+                              type == "Beacon"),
                 aes(time, colour = "blue"), binwidth = 15) +
-  scale_y_continuous(limits = c(0, 100)) +
   scale_color_identity(name = "Messung",
                        breaks = c("red", "blue"),
                        labels = c("Person", "Lvs-Gerät"),

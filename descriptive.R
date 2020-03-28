@@ -87,7 +87,6 @@ date_ratio <- ggplot(date_data) +
   labs(title = "Anteil der Personen mit LVS-Gerät in der Wintersaison 18/19",
        x = "Datum",
        y = "Anteil LVS-Geräte")
-# -> hohe Schwankung am Anfang, wie zu erklären?
 
 # Datum und Schneehöhe
 

@@ -9,6 +9,9 @@ library("patchwork")
 if (!require("GGally")) install.packages("GGally")
 library("GGally")
 
+if (!require("mgcv")) install.packages("mgcv")
+library("mgcv")
+
 ## Daten laden
 
 data <- readRDS(file = "Daten/data.RDS")
@@ -33,4 +36,4 @@ time_type
 
 ## Modell fitting
 
-source("logprob.R", encoding = "UTF-8")
+source("model.R", encoding = "UTF-8")

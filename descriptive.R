@@ -1,3 +1,7 @@
+## theme setzen (ändert nur die Ästhetik der Plots, nichts inhaltliches)
+
+theme_set(theme_minimal())
+
 ## Übersicht
 
 # Vorabberechnungen für die Übersicht der Art der Tage

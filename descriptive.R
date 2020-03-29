@@ -109,6 +109,18 @@ date_solar_radiation <- ggplot(date_data) +
   xlab("Datum") +
   ylab("solar radiation")
 
+# Datum und Position
+
+date_position <- ggplot(data[!is.na(data$position),]) +
+  geom_bar(aes(date, fill = position), position = "dodge") +
+  scale_fill_manual(values = c("black", "orange"), 
+                    name = "Position",
+                    breaks = c("N", "S"),
+                    labels = c("Nord", "Süd")) + 
+  labs(title = "Die Messungen nach Position und Datum",
+       x = "Datum",
+       y = "Absolute Häufigkeit")
+
 ## Ratio
 # NAs (Tage an denen Messungen nicht möglich waren) werden davor entfernt
 

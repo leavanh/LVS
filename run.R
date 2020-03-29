@@ -25,6 +25,7 @@ summary_list
 date_data_plot
 # -> day_length hängt vollkommen von date ab (Achtung beim Modell!)
 date_type/date_ratio
+date_position
 date_snowhight + date_temperature + date_solar_radiation
 (snowhight_ratio + solar_radiation_ratio) / 
   (temperature_ratio + avalanche_ratio)

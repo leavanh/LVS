@@ -9,7 +9,7 @@
 data_1920_01 <- read_excel("Daten/Daten_1920.xlsx", sheet = "1920_01", col_names = c("type", "date", "time"))
 data_1920_02 <- read_excel("Daten/Daten_1920.xlsx", sheet = "1920_02", col_names = c("type", "date", "time"))
 
-data_1920 <- rbind(data_1920_01, data1920_02)
+data_1920 <- rbind(data_1920_01, data_1920_02)
 
 # Reihen, die nicht Beacon oder Infrared enthalten, rauslöschen
 

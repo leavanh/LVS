@@ -47,7 +47,8 @@ summary(model_2)
 par(mfrow = c(2,2))
 gam.check(model_2)
 
-# noch was dazu schreiben
+# Verteilung falsch! Autokorrelierte Daten nicht beachtet
+# ein Ausreißer ist in response vs. fitted values zu sehen
 
 # plotten
 

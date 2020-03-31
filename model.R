@@ -56,10 +56,10 @@ date_data$int_date <- as.integer(as.Date(date_data$date, format = "%d/%m/%Y"))
 
 # Modell spezifizieren
 
-model_3 <- gam(
+model_3 <- gamm(
   cbind(lvs_true, lvs_false) ~ s(temperature) + s(snowhight) + 
-    s(solar_radiation) + 
-    s(int_date) + avalanche_report + day + holiday,
+    s(solar_radiation) + avalanche_report + day + holiday,
+  correlation = corAR1(form = ~ int_date),
   data = date_data,
   family = binomial(link = "logit"),
   method = "REML")

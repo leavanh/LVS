@@ -73,14 +73,16 @@ data <- full_join(all_checkpoint_stats, date_data, by = "date")
 
 ## Uhrzeit umkodieren
 
-# Uhrzeit soll manuell auf Sommerzeit umgestellt werden
-# Umstellung am 31.03.19: 2 wurde zu 3 Uhr
-# vor 2 Uhr gibt es keine Messungen
-# -> es kann einfach der ganze Tag umcodiert werden anstatt nur die Stunden ab 2
+# Sonnenauf- und Untergang soll manuell auf Winterzeit umgestellt werden
+# Umstellung am 31.03.19: 2 wurde zu 3 Uhr -> wieder zurück
 
-data[data$date >= as.POSIXct("2019-03-31", tz = "UTC"), "time"] <- 
+data[data$date >= as.POSIXct("2019-03-31", tz = "UTC"), "sunrise"] <- 
   data[data$date >= as.POSIXct("2019-03-31", tz = "UTC"),] %>%
-  pull(time) + hours(1)
+  pull(sunrise) - hours(1)
+
+data[data$date >= as.POSIXct("2019-03-31", tz = "UTC"), "sunset"] <- 
+  data[data$date >= as.POSIXct("2019-03-31", tz = "UTC"),] %>%
+  pull(sunset) - hours(1)
 
 # Messungen zwischen 0 und 4 am Morgen sollen dem vorherigen Tag zugeordnet
 # werden

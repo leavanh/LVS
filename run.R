@@ -12,9 +12,6 @@ library("GGally")
 if (!require("mgcv")) install.packages("mgcv")
 library("mgcv")
 
-if (!require("gamm4")) install.packages("gamm4")
-library("gamm4")
-
 ## Daten laden
 
 data <- readRDS(file = "Daten/data.RDS")

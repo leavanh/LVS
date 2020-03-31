@@ -1,12 +1,15 @@
 ### Modelle
 
+# bei allen Modellen sind p-splines verwendet worden
+
 ## Modell 1: nur stetige Variablen, Datum nicht beachtet
 
 # Modell spezifizieren
 
 model_1 <- gam(
-  cbind(lvs_true, lvs_false) ~ s(temperature) + s(snowhight) + 
-    s(solar_radiation),
+  cbind(lvs_true, lvs_false) ~ s(temperature, bs = "ps") + 
+    s(snowhight, bs = "ps") + 
+    s(solar_radiation, bs = "ps"),
   data = date_data,
   family = binomial(link = "logit"),
   method = "REML")
@@ -18,7 +21,7 @@ summary(model_1)
 par(mfrow = c(2,2))
 gam.check(model_1)
 
-# noch was dazu schreiben
+# Verteilung falsch! Autokorrelierte Daten nicht beachtet
 
 # plotten
 
@@ -29,8 +32,10 @@ plot(model_1)
 # Modell spezifizieren
 
 model_2 <- gam(
-  cbind(lvs_true, lvs_false) ~ s(temperature) + s(snowhight) + 
-    s(solar_radiation) + avalanche_report + day + holiday,
+  cbind(lvs_true, lvs_false) ~ s(temperature, bs = "ps") + 
+    s(snowhight, bs = "ps") + 
+    s(solar_radiation, bs = "ps") + 
+    avalanche_report + day + holiday,
   data = date_data,
   family = binomial(link = "logit"),
   method = "REML")
@@ -57,8 +62,10 @@ date_data$int_date <- as.integer(as.Date(date_data$date, format = "%d/%m/%Y"))
 # Modell spezifizieren
 
 model_3 <- gamm(
-  cbind(lvs_true, lvs_false) ~ s(temperature) + s(snowhight) + 
-    s(solar_radiation) + avalanche_report + day + holiday,
+  cbind(lvs_true, lvs_false) ~ s(temperature, bs = "ps") + 
+    s(snowhight, bs = "ps") + 
+    s(solar_radiation, bs = "ps") + 
+    avalanche_report + day + holiday,
   correlation = corAR1(form = ~ int_date),
   data = date_data,
   family = binomial(link = "logit"),
@@ -76,28 +83,3 @@ gam.check(model_3)
 # plotten
 
 plot(model_3)
-
-## Modell 4: Datum als interaction hinzufügen
-
-# Modell spezifizieren
-
-model_4 <- gam(
-  cbind(lvs_true, lvs_false) ~ s(temperature, int_date) + 
-    s(snowhight, int_date) + s(solar_radiation, int_date) + 
-    s(int_date) + avalanche_report + day + holiday,
-  data = date_data,
-  family = binomial(link = "logit"),
-  method = "REML")
-
-summary(model_4)
-
-# Diagnostikplots checken
-
-par(mfrow = c(2,2))
-gam.check(model_4)
-
-# noch was dazu schreiben
-
-# plotten
-
-plot(model_4)

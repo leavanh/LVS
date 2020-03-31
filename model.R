@@ -11,8 +11,7 @@ model_1 <- gam(
     s(snowhight, bs = "ps") + 
     s(solar_radiation, bs = "ps"),
   data = date_data,
-  family = binomial(link = "logit"),
-  method = "REML")
+  family = binomial(link = "logit"))
 
 summary(model_1)
 
@@ -25,7 +24,7 @@ gam.check(model_1)
 
 # plotten
 
-plot(model_1)
+plot(model_1, pages = 1, residuals = TRUE)
 
 ## Modell 2: auch kategorielle Variablen, Datum nicht beachtet
 
@@ -37,8 +36,7 @@ model_2 <- gam(
     s(solar_radiation, bs = "ps") + 
     avalanche_report + day + holiday,
   data = date_data,
-  family = binomial(link = "logit"),
-  method = "REML")
+  family = binomial(link = "logit"))
 
 summary(model_2)
 
@@ -52,7 +50,7 @@ gam.check(model_2)
 
 # plotten
 
-plot(model_2)
+plot(model_2, pages = 1, residuals = TRUE)
 
 ## Modell 3: Datum hinzufügen
 
@@ -69,8 +67,7 @@ model_3 <- gamm(
     avalanche_report + day + holiday,
   correlation = corAR1(form = ~ int_date),
   data = date_data,
-  family = binomial(link = "logit"),
-  method = "REML")
+  family = binomial(link = "logit"))
 
 summary(model_3)
 
@@ -83,4 +80,4 @@ gam.check(model_3)
 
 # plotten
 
-plot(model_3)
+plot(model_3, pages = 1, residuals = TRUE)

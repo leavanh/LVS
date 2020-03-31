@@ -14,6 +14,10 @@ library("GGally")
 data <- readRDS(file = "Daten/data.RDS")
 date_data <- readRDS(file = "Daten/date_data.RDS")
 
+# NAs rauswerfen
+
+date_data_noNa <- date_data[!is.na(date_data$count_people),]
+
 ## Deskriptive Auswertung
 
 source("descriptive.R", encoding = "UTF-8")

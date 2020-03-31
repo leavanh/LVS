@@ -58,7 +58,7 @@ summary_list <- list(
 # keine Faktorvariablen und ohne Zeit
 # NAs (Tage an denen Messungen nicht möglich waren) werden davor entfernt
 
-date_data_plot <- date_data[!is.na(date_data$count_people),
+date_data_plot <- date_data_noNa[,
                             c("date", "count_people",
                                        "ratio", "snowhight", 
                                        "temperature", "solar_radiation",
@@ -71,7 +71,7 @@ date_data_plot <- date_data[!is.na(date_data$count_people),
 # Datum und absolute Häufigkeit der Messungen
 # NAs (Tage an denen Messungen nicht möglich waren) werden davor entfernt
 
-date_type <- date_data[!is.na(date_data$count_people),] %>%
+date_type <- date_data_noNA %>%
   ggplot(aes(date)) +
   geom_col(aes(y = count_people, fill = "red")) +
   geom_col(aes(y = lvs_true, fill = "blue")) +
@@ -130,7 +130,7 @@ date_position <- ggplot(data[!is.na(data$position),]) +
 
 # Ratio und Schneehöhe
 
-snowhight_ratio <- date_data[!is.na(date_data$count_people),] %>%
+snowhight_ratio <- date_data_noNa %>%
   ggplot() +
   geom_point(aes(snowhight, ratio), alpha = 0.5) +
   xlab("Schneehöhe (in cm)") +
@@ -138,7 +138,7 @@ snowhight_ratio <- date_data[!is.na(date_data$count_people),] %>%
 
 # Ratio und Temperatur
 
-temperature_ratio <- date_data[!is.na(date_data$count_people),] %>%
+temperature_ratio <- date_data_noNa %>%
   ggplot() +
   geom_point(aes(temperature, ratio), alpha = 0.5) +
   xlab("Temperatur (in °C)") +
@@ -146,7 +146,7 @@ temperature_ratio <- date_data[!is.na(date_data$count_people),] %>%
 
 # Ratio und solar radiation
 
-solar_radiation_ratio <- date_data[!is.na(date_data$count_people),] %>%
+solar_radiation_ratio <- date_data_noNa %>%
   ggplot() +
   geom_point(aes(solar_radiation, ratio), alpha = 0.5) +
   xlab("solar radiation") +
@@ -154,7 +154,7 @@ solar_radiation_ratio <- date_data[!is.na(date_data$count_people),] %>%
 
 # Ratio und Lawinenwarnstufe
 
-avalanche_ratio <- date_data[!is.na(date_data$count_people),] %>%
+avalanche_ratio <- date_data_noNa %>%
   ggplot() +
   geom_jitter(aes(avalanche_report, ratio), alpha = 0.5) + 
   labs(x = "Lawinenwarnstufe",

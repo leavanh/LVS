@@ -2,33 +2,6 @@
 
 theme_set(theme_minimal())
 
-## Übersicht
-
-# Vorabberechnungen für die Übersicht der Art der Tage
-
-# Absolute Anzahl der Beacons und Infrared, jeweils für Wochentage,
-# Wochenendtage und Ferientage
-
-weekday_sum <- c(sum(subset(
-                   date_data, day_weekday == TRUE)$lvs_true, na.rm = TRUE),
-                 sum(subset(
-                   date_data, day_weekday == TRUE)$lvs_false, na.rm = TRUE))
-weekend_sum <- c(sum(subset(
-                   date_data, day_weekend == TRUE)$lvs_true, na.rm = TRUE),
-                 sum(subset(
-                   date_data, day_weekend == TRUE)$lvs_false, na.rm = TRUE))
-holiday_sum <- c(sum(subset(
-                   date_data, holiday == TRUE)$lvs_true, na.rm = TRUE),
-                 sum(subset(
-                   date_data, holiday == TRUE)$lvs_false, na.rm = TRUE))
-
-# In einem data.frame zusammenführen und Reihen und Spalten benennen
-
-day_type_count <- data.frame(weekday_sum, weekend_sum, holiday_sum)
-
-rownames(day_type_count) <- c("LVS: True", "LVS: False")
-colnames(day_type_count) <- c("weekday", "weekend", "holiday")
-
 # Liste erstellen
 
 # addmargins() fügt die Summenspalte bzw -Reihe hinzu
@@ -43,13 +16,8 @@ summary_list <- list(
   # -> mehr Messungen bei S
   
   # Typ und Wochentag
-  addmargins(table(data$type, data$day)),
+  addmargins(table(data$type, data$day))
   # -> am wenigsten Messungen Montags, am meisten am Wochenende
-  
-  # Typ und Art des Tages (Summenspalte händisch hinzugefügt)
-  rbind(day_type_count, Total = c(sum(day_type_count$weekday),
-                                  sum(day_type_count$weekend),
-                                  sum(day_type_count$holiday)))
 )
 
 ## Plot

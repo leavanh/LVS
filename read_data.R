@@ -36,7 +36,7 @@ colnames(all_date) <- c("day", "date", "count_all", "count_selected",
                         "avalanche_report_down", "avalanche_report_top", 
                         "avalanche_report_border", "avalanche_report_comment",
                         "avalanche_1", "avalanche_2", "avalanche_3", 
-                        "avalanche_4", "day_weekday","day_weekend", "holiday" )
+                        "avalanche_4","day_weekend", "holiday" )
 
 # Reihen die nicht Beacon oder Infrared sind aus all_checkpoint_stats
 # rauslöschen
@@ -54,7 +54,7 @@ date_data <- left_join(all_date, day_length, by = "date")
 
 ## Tagesindikatoren in logical umkodieren
 
-for (k in c("day_weekday", "day_weekend", "holiday")) { 
+for (k in c("day_weekend", "holiday")) { 
   date_data[,k] <- c(!is.na(date_data [,k])) 
 }
 
@@ -116,7 +116,6 @@ for(i in 1:nrow(data)) {
     data[[i, "avalanche_report_comment"]] <- date_data[[
       row_i, 
       "avalanche_report_comment"]]
-    data[[i, "day_weekday"]] <- date_data[[row_i, "day_weekday"]]
     data[[i, "day_weekend"]] <- date_data[[row_i, "day_weekend"]]
     data[[i, "holiday"]] <- date_data[[row_i, "holiday"]]
     data[[i, "sunrise"]] <- date_data[[row_i, "sunrise"]]
@@ -164,7 +163,7 @@ data <- group_by(data, date, hour(time)) %>%
 ## nur wichtige Variablen behalten
 
 data <- subset(data, select = c(id, type, position, time, date, day,
-                                day_weekday, day_weekend, holiday,
+                                day_weekend, holiday,
                                 snowhight, temperature, solar_radiation,
                                 avalanche_report, sunrise, sunset, day_length,
                                 lvs_true, lvs_false, count_people, ratio,

@@ -71,22 +71,23 @@ all_checkpoint_stats <- filter(all_checkpoint_stats,
                                !(date %within% interval(ymd("2018-12-22"),
                                                       ymd("2018-12-24"))))
 
+## Alles auf Winterzeit kodieren
+# Sonnenauf- und Untergang soll manuell auf Winterzeit umgestellt werden
+# Umstellung am 31.03.19: 2 wurde zu 3 Uhr -> wieder zurück
+
+date_data[date_data$date >= as.POSIXct("2019-03-31", tz = "UTC"), "sunrise"] <- 
+  date_data[date_data$date >= as.POSIXct("2019-03-31", tz = "UTC"),] %>%
+  pull(sunrise) - hours(1)
+
+date_data[date_data$date >= as.POSIXct("2019-03-31", tz = "UTC"), "sunset"] <- 
+  date_data[date_data$date >= as.POSIXct("2019-03-31", tz = "UTC"),] %>%
+  pull(sunset) - hours(1)
+
 ## date_data und all_checkpoint_stats zusammenführen
 
 data <- full_join(all_checkpoint_stats, date_data, by = "date")
 
 ## Uhrzeit umkodieren
-
-# Sonnenauf- und Untergang soll manuell auf Winterzeit umgestellt werden
-# Umstellung am 31.03.19: 2 wurde zu 3 Uhr -> wieder zurück
-
-data[data$date >= as.POSIXct("2019-03-31", tz = "UTC"), "sunrise"] <- 
-  data[data$date >= as.POSIXct("2019-03-31", tz = "UTC"),] %>%
-  pull(sunrise) - hours(1)
-
-data[data$date >= as.POSIXct("2019-03-31", tz = "UTC"), "sunset"] <- 
-  data[data$date >= as.POSIXct("2019-03-31", tz = "UTC"),] %>%
-  pull(sunset) - hours(1)
 
 # Messungen zwischen 0 und 4 am Morgen sollen dem vorherigen Tag zugeordnet
 # werden

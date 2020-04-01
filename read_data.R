@@ -103,6 +103,8 @@ for(i in 1:nrow(data)) {
   time_i <- data[[i, "time"]]
   # Datum der Beobachtung
   date_i <- data[[i, "date"]]
+  # prüfen, ob überhaupt Messungen an dem Tag vorhanden
+  if(!is.na(time_i)) {
   # prüfen, ob Zeit von 0 bis 4 Uhr ist und umkodiert werden muss
   if(time_i %within% time_interval) {
     # Datum des Tags davor
@@ -132,7 +134,7 @@ for(i in 1:nrow(data)) {
     data[[i, "sunrise"]] <- date_data[[row_i, "sunrise"]]
     data[[i, "sunset"]] <- date_data[[row_i, "sunset"]]
     data[[i, "day_length"]] <- date_data[[row_i, "day_length"]]
-  }
+  }}
   # mit der nächsten Messung weitermachen
   i <- i + 1
 }

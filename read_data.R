@@ -62,10 +62,14 @@ for (k in c("day_weekend", "holiday")) {
 
 # vom 07.01.19 mit einschließlich 15.01.19 waren die Checkpoints überdeckt und 
 # die Messungen werden entfernt
+# am 22.12.18 findet sich nur eine Messung, an den 2 darauffolgenden Tagen
+# keine, wir gehen von Checkpoints überdeckt aus und entfernen die Tage
 
 all_checkpoint_stats <- filter(all_checkpoint_stats,
                                !(date %within% interval(ymd("2019-01-07"),
-                                                      ymd("2019-01-15"))))
+                                                      ymd("2019-01-15"))) &
+                               !(date %within% interval(ymd("2018-12-22"),
+                                                      ymd("2018-12-24"))))
 
 ## date_data und all_checkpoint_stats zusammenführen
 

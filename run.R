@@ -50,6 +50,7 @@ summary(model_1)
 par(mfrow = c(2,2))
 gam.check(model_1)
 # Verteilung falsch! Autokorrelierte Daten nicht beachtet
+# response vs. fitted values: ein paar response bei 0
 
 plot(model_1, pages = 1, residuals = TRUE)
 # auch durch linear zu ersetzen teilweise?
@@ -62,7 +63,7 @@ summary(model_2)
 par(mfrow = c(2,2))
 gam.check(model_2)
 # Verteilung falsch! Autokorrelierte Daten nicht beachtet
-# ein Ausreißer ist in response vs. fitted values zu sehen
+# response vs. fitted values: ein paar response bei 0
 
 plot(model_2, pages = 1, residuals = TRUE)
 # siehe model_1
@@ -74,7 +75,6 @@ summary(model_3)
 par(mfrow = c(2,2))
 gam.check(model_3)
 # Verteilung falsch! Autokorrelierte Daten nicht beachtet
-# ein Ausreißer ist in response vs. fitted values zu sehen
 # k ist zu niedrig
 
 plot(model_3, pages = 1, residuals = TRUE)

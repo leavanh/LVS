@@ -39,13 +39,12 @@ model_3 <- gam(
   family = binomial(link = "logit"))
 
 ## Modell 4: Autokorrelation hinzufügen
+# nur stetige Variablen
 
-model_3 <- gamm(
+model_4 <- gamm(
   cbind(lvs_true, lvs_false) ~ s(temperature, bs = "ps") + 
     s(snowhight, bs = "ps") + 
-    s(solar_radiation, bs = "ps") + 
-    s(int_date, bs = "ps") + 
-    avalanche_report + day + holiday,
+    s(solar_radiation, bs = "ps"),
   correlation = corAR1(form = ~ int_date),
   data = date_data,
   family = binomial(link = "logit"))

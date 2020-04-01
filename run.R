@@ -79,3 +79,7 @@ gam.check(model_3)
 
 plot(model_3, pages = 1, residuals = TRUE)
 # temperatur vielleicht nur linear rein?
+
+# Modell 4: Autokorrelation hinzufügen (nur stetige Variablen)
+
+plot(model_4)

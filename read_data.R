@@ -36,7 +36,7 @@ colnames(all_date) <- c("day", "date", "count_all", "count_selected",
                         "avalanche_report_down", "avalanche_report_top", 
                         "avalanche_report_border", "avalanche_report_comment",
                         "avalanche_1", "avalanche_2", "avalanche_3", 
-                        "avalanche_4","day_weekend", "holiday" )
+                        "avalanche_4","day_weekday", "day_weekend", "holiday" )
 
 # Reihen die nicht Beacon oder Infrared sind aus all_checkpoint_stats
 # rauslöschen

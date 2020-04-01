@@ -111,6 +111,8 @@ for(i in 1:nrow(data)) {
     date_new <- date_i - days(1)
     # Reihe der Beobachtung herausfinden
     row_i <- which(date_data$date == date_new)
+    # Uhrzeit am "nächsten Tag gemessen" (um in Plot darstellen zu können)
+    data[[i, "time"]] <- data[[i, "time"]] + days(1)
     # neue Werte zuweisen
     data[[i, "date"]] <- date_data[[row_i, "date"]]
     data[[i, "day"]] <- date_data[[row_i, "day"]]

@@ -37,3 +37,15 @@ model_3 <- gam(
     avalanche_report + day + holiday,
   data = date_data,
   family = binomial(link = "logit"))
+
+## Modell 4: Autokorrelation hinzufügen
+
+model_3 <- gamm(
+  cbind(lvs_true, lvs_false) ~ s(temperature, bs = "ps") + 
+    s(snowhight, bs = "ps") + 
+    s(solar_radiation, bs = "ps") + 
+    s(int_date, bs = "ps") + 
+    avalanche_report + day + holiday,
+  correlation = corAR1(form = ~ int_date),
+  data = date_data,
+  family = binomial(link = "logit"))

@@ -100,4 +100,4 @@ summary(model_5$gam)
 
 gam.check(model_5$gam)
 
-plot(model_5$gam, pages = 1, residuals = TRUE, pch = 19, cex = .3)
+plot(model_5$gam, pages = 1, residuals = TRUE, pch = 19, cex = .3, scale = 0)

@@ -82,4 +82,14 @@ plot(model_3, pages = 1, residuals = TRUE)
 
 # Modell 4: Autokorrelation hinzufügen (nur stetige Variablen)
 
-plot(model_4)
+summary(model_4$gam)
+# wie viel deviance explained?
+
+par(mfrow = c(2,2))
+gam.check(model_4$gam)
+# keine Normalverteilung
+# komische Werte sowohl in resids vs lin pred als resp vs fit values
+
+plot(model_4$gam, pages = 1, residuals = TRUE)
+# auch durch linear zu ersetzen teilweise?
+# oversmoothing bei solar radiation?

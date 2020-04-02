@@ -87,9 +87,10 @@ summary(model_4$gam)
 
 par(mfrow = c(2,2))
 gam.check(model_4$gam)
-# keine Normalverteilung
-# komische Werte sowohl in resids vs lin pred als resp vs fit values
+# annähernde Normalverteilung
+# ein Ausreißer (?) sowohl in resids vs lin pred als resp vs fit values
+# k zu klein bei solar_radiation und int_date?
 
 plot(model_4$gam, pages = 1, residuals = TRUE)
-# auch durch linear zu ersetzen teilweise?
+# auch durch linear zu ersetzen bei temperature?
 # oversmoothing bei solar radiation?

@@ -17,7 +17,7 @@ model_2 <- gam(
   cbind(lvs_true, lvs_false) ~ s(temperature, bs = "ps") + 
     s(snowhight, bs = "ps") + 
     s(solar_radiation, bs = "ps") + 
-    avalanche_report + day + holiday,
+    avalanche_report + day_weekend + holiday,
   data = date_data,
   family = binomial(link = "logit"))
 
@@ -34,7 +34,7 @@ model_3 <- gam(
     s(snowhight, bs = "ps") + 
     s(solar_radiation, bs = "ps") + 
     s(int_date, bs = "ps") + 
-    avalanche_report + day + holiday,
+    avalanche_report + day_weekend + holiday,
   data = date_data,
   family = binomial(link = "logit"))
 
@@ -49,3 +49,16 @@ model_4 <- gamm(
   correlation = corAR1(form = ~ int_date),
   data = date_data,
   family = binomial(link = "logit"))
+
+## Modell 5: kategorielle Variablen hinzufügen
+
+model_5 <- gamm(
+  cbind(lvs_true, lvs_false) ~ s(temperature, bs = "ps") + 
+    s(snowhight, bs = "ps") + 
+    s(solar_radiation, bs = "ps") +
+    s(int_date, bs = "ps") +
+  avalanche_report + day_weekend + holiday,
+  correlation = corAR1(form = ~ int_date),
+  data = date_data,
+  family = binomial(link = "logit"))
+

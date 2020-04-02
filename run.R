@@ -88,9 +88,23 @@ summary(model_4$gam)
 par(mfrow = c(2,2))
 gam.check(model_4$gam)
 # annähernde Normalverteilung
-# ein Ausreißer (?) sowohl in resids vs lin pred als resp vs fit values
-# k zu klein bei solar_radiation und int_date?
+# ein paar blöde Werte sowohl in resids vs lin pred als resp vs fit values
+# k zu klein bei snowhight, solar_radiation und int_date?
 
 plot(model_4$gam, pages = 1, residuals = TRUE)
 # auch durch linear zu ersetzen bei temperature?
 # oversmoothing bei solar radiation?
+
+# Modell 5: kategorielle Variablen hinzufügen
+
+summary(model_5$gam)
+# wie viel deviance explained?
+
+par(mfrow = c(2,2))
+gam.check(model_5$gam)
+# annähernde Normalverteilung
+# ein paar blöde Werte sowohl in resids vs lin pred als resp vs fit values
+# k zu klein bei snowhight,solar_radiation und int_date?
+
+plot(model_5$gam, pages = 1, residuals = TRUE)
+# auch durch linear zu ersetzen bei temperature?

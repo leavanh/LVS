@@ -54,6 +54,12 @@ model_4 <- gamm(
 # 1. Knoten kontrollieren
 # 2. Wochentage statt nur Wochenende
 
+# wird umcodiert als Zahl
+
+date_data$int_day <- as.integer(date_data$day)
+
+# Modell
+
 model_5 <- gamm(
   cbind(lvs_true, lvs_false) ~ s(temperature, bs = "ps", k = 30) +
     s(snowhight, bs = "ps", k = 15) + 

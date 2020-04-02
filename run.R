@@ -43,11 +43,16 @@ time_type
 
 source("model.R", encoding = "UTF-8")
 
+# Diagnostikplots immer als 2x2 darstellen
+
+par(mfrow=c(2,2))
+
 # Modell 1: nur stetige Variablen, Datum nicht beachtet
 
 summary(model_1)
 
 gam.check(model_1)
+
 # Verteilung falsch! Autokorrelierte Daten nicht beachtet
 # response vs. fitted values: ein paar response bei 0
 

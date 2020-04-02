@@ -47,12 +47,11 @@ source("model.R", encoding = "UTF-8")
 
 summary(model_1)
 
-par(mfrow = c(2,2))
 gam.check(model_1)
 # Verteilung falsch! Autokorrelierte Daten nicht beachtet
 # response vs. fitted values: ein paar response bei 0
 
-plot(model_1, pages = 1, residuals = TRUE)
+plot(model_1, pages = 1, residuals = TRUE, pch = 19, cex = .3)
 # auch durch linear zu ersetzen teilweise?
 # oversmoothing bei solar radiation?
 
@@ -60,59 +59,40 @@ plot(model_1, pages = 1, residuals = TRUE)
 
 summary(model_2)
 
-par(mfrow = c(2,2))
 gam.check(model_2)
 # Verteilung falsch! Autokorrelierte Daten nicht beachtet
 # response vs. fitted values: ein paar response bei 0
 
-plot(model_2, pages = 1, residuals = TRUE)
+plot(model_2, pages = 1, residuals = TRUE, pch = 19, cex = .3)
 # siehe model_1
 
 # Modell 3: Datum hinzufügen (noch nicht als Autokorrelation)
 
 summary(model_3)
 
-par(mfrow = c(2,2))
 gam.check(model_3)
 # Verteilung falsch! Autokorrelierte Daten nicht beachtet
 # k ist zu niedrig
 
-plot(model_3, pages = 1, residuals = TRUE)
+plot(model_3, pages = 1, residuals = TRUE, pch = 19, cex = .3)
 # temperatur vielleicht nur linear rein?
 
-# Modell 4: Autokorrelation hinzufügen (nur stetige Variablen)
+# Modell 4: Autokorrelation hinzufügen
 
 summary(model_4$gam)
-# wie viel deviance explained?
 
-par(mfrow = c(3,2))
 gam.check(model_4$gam)
-acf(residuals(model_4$gam), main = "raw residual ACF")
-acf(residuals(model_4$lme, type = "normalized"),
-    main = "standardized residual ACF")
-# annähernde Normalverteilung
-# ein paar blöde Werte sowohl in resids vs lin pred als resp vs fit values
-# k zu klein bei snowhight, solar_radiation und int_date?
-# Problem der autocorrelation noch nicht gelöst (siehe acf)
+# annähernde Normalverteilung (rechtsschief)
+# ein paar auffällige Werte sowohl in resids vs lin pred als resp vs fit values
+# k zu klein bei snowhight,solar_radiation und int_date?
 
-plot(model_4$gam, pages = 1, residuals = TRUE)
+plot(model_4$gam, pages = 1, residuals = TRUE, pch = 19, cex = .3)
 # auch durch linear zu ersetzen bei temperature?
-# oversmoothing bei solar radiation?
 
-# Modell 5: kategorielle Variablen hinzufügen
+# Modell 5: bisher aufgetretene Probleme lösen
 
 summary(model_5$gam)
-# wie viel deviance explained?
 
-par(mfrow = c(3,2))
 gam.check(model_5$gam)
-acf(residuals(model_5$gam), main = "raw residual ACF")
-acf(residuals(model_5$lme, type = "normalized"),
-    main = "standardized residual ACF")
-# annähernde Normalverteilung
-# ein paar blöde Werte sowohl in resids vs lin pred als resp vs fit values
-# k zu klein bei snowhight,solar_radiation und int_date?
-# Problem der autocorrelation noch nicht gelöst (siehe acf)
 
-plot(model_5$gam, pages = 1, residuals = TRUE)
-# auch durch linear zu ersetzen bei temperature?
+plot(model_5$gam, pages = 1, residuals = TRUE, pch = 19, cex = .3)

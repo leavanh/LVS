@@ -39,37 +39,29 @@ model_3 <- gam(
   family = binomial(link = "logit"))
 
 ## Modell 4: Autokorrelation hinzufügen
-# nur stetige Variablen
 
 model_4 <- gamm(
   cbind(lvs_true, lvs_false) ~ s(temperature, bs = "ps") + 
     s(snowhight, bs = "ps") + 
     s(solar_radiation, bs = "ps") +
-    s(int_date, bs = "ps"),
+    s(int_date, bs = "ps") +
+    avalanche_report + day_weekend + holiday,
   correlation = corAR1(form = ~ int_date),
   data = date_data,
   family = binomial(link = "logit"))
 
-## Modell 5: kategorielle Variablen hinzufügen
+## Modell 5: bisher aufgetretene Probleme lösen
+# 1. Knoten kontrollieren
+# 2. Wochentage statt nur Wochenende
 
 model_5 <- gamm(
-  cbind(lvs_true, lvs_false) ~ s(temperature, bs = "ps") + 
-    s(snowhight, bs = "ps") + 
-    s(solar_radiation, bs = "ps") +
-    s(int_date, bs = "ps") +
-  avalanche_report + day_weekend + holiday,
+  cbind(lvs_true, lvs_false) ~ s(temperature, bs = "ps", k = 30) +
+    s(snowhight, bs = "ps", k = 15) + 
+    s(solar_radiation, bs = "ps", k = 10) +
+    s(int_date, bs = "ps", k = 30) +
+    avalanche_report + day + holiday,
   correlation = corAR1(form = ~ int_date),
   data = date_data,
   family = binomial(link = "logit"))
 
-## Modell 6: bisher aufgetretene Probleme lösen
-
-model_6 <- gamm(
-  cbind(lvs_true, lvs_false) ~ s(temperature, bs = "ps") + 
-    s(snowhight, bs = "ps") + 
-    s(solar_radiation, bs = "ps") +
-    avalanche_report + day_weekend + holiday,
-    correlation = corAR1(form = ~ int_date),
-  data = date_data,
-  family = binomial(link = "logit"))
 

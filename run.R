@@ -85,11 +85,15 @@ plot(model_3, pages = 1, residuals = TRUE)
 summary(model_4$gam)
 # wie viel deviance explained?
 
-par(mfrow = c(2,2))
+par(mfrow = c(3,2))
 gam.check(model_4$gam)
+acf(residuals(model_4$gam), main = "raw residual ACF")
+acf(residuals(model_4$lme, type = "normalized"),
+    main = "standardized residual ACF")
 # annähernde Normalverteilung
 # ein paar blöde Werte sowohl in resids vs lin pred als resp vs fit values
 # k zu klein bei snowhight, solar_radiation und int_date?
+# Problem der autocorrelation noch nicht gelöst (siehe acf)
 
 plot(model_4$gam, pages = 1, residuals = TRUE)
 # auch durch linear zu ersetzen bei temperature?
@@ -100,11 +104,15 @@ plot(model_4$gam, pages = 1, residuals = TRUE)
 summary(model_5$gam)
 # wie viel deviance explained?
 
-par(mfrow = c(2,2))
+par(mfrow = c(3,2))
 gam.check(model_5$gam)
+acf(residuals(model_5$gam), main = "raw residual ACF")
+acf(residuals(model_5$lme, type = "normalized"),
+    main = "standardized residual ACF")
 # annähernde Normalverteilung
 # ein paar blöde Werte sowohl in resids vs lin pred als resp vs fit values
 # k zu klein bei snowhight,solar_radiation und int_date?
+# Problem der autocorrelation noch nicht gelöst (siehe acf)
 
 plot(model_5$gam, pages = 1, residuals = TRUE)
 # auch durch linear zu ersetzen bei temperature?

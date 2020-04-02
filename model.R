@@ -62,3 +62,14 @@ model_5 <- gamm(
   data = date_data,
   family = binomial(link = "logit"))
 
+## Modell 6: bisher aufgetretene Probleme lösen
+
+model_6 <- gamm(
+  cbind(lvs_true, lvs_false) ~ s(temperature, bs = "ps") + 
+    s(snowhight, bs = "ps") + 
+    s(solar_radiation, bs = "ps") +
+    avalanche_report + day_weekend + holiday,
+    correlation = corAR1(form = ~ int_date),
+  data = date_data,
+  family = binomial(link = "logit"))
+

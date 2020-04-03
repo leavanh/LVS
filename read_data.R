@@ -21,7 +21,7 @@ all_date <- read_excel("Daten/Projektdaten_DAV (muss_aufbereitet_werden).xlsx",
 all_checkpoint_stats <- read_excel(
   "Daten/Projektdaten_DAV (muss_aufbereitet_werden).xlsx",
   sheet = "all_CheckPoint_stats", 
-  range = "A8:E38290",
+  range = "A315:E38290",
   col_names = 
     c("id","type", "date", "time", "position"))
 
@@ -62,14 +62,10 @@ for (k in c("day_weekend", "holiday")) {
 
 # vom 07.01.19 mit einschließlich 15.01.19 waren die Checkpoints überdeckt und 
 # die Messungen werden entfernt
-# am 22.12.18 findet sich nur eine Messung, an den 2 darauffolgenden Tagen
-# keine, wir gehen von Checkpoints überdeckt aus und entfernen die Tage
 
 all_checkpoint_stats <- filter(all_checkpoint_stats,
                                !(date %within% interval(ymd("2019-01-07"),
-                                                      ymd("2019-01-15"))) &
-                               !(date %within% interval(ymd("2018-12-22"),
-                                                      ymd("2018-12-24"))))
+                                                      ymd("2019-01-15"))))
 
 ## Alles auf Winterzeit kodieren
 # Sonnenauf- und Untergang soll manuell auf Winterzeit umgestellt werden
@@ -93,7 +89,7 @@ data <- full_join(all_checkpoint_stats, date_data, by = "date")
 # werden
 
 # Zum Glück haben wir an Tagen an denen keine Messungen vom Tag vorher 
-# vorliegen (21.12.18, 25.12.18 und 16.01.19) keine Messungen in dem kritischen
+# vorliegen (25.12.18 und 16.01.19) keine Messungen in dem kritischen
 # Intervall
 
 # Schleife
@@ -167,18 +163,18 @@ data <- group_by(data, date) %>%
          ratio = lvs_true/(count_people)) %>% # Anteil
   ungroup()
 
-# außerdem die Werte für jede Stunde berechnen
-
-# doppelt gruppieren
-
-data <- group_by(data, date, hour(time)) %>%
-  # neu berechnen
-  mutate(lvs_true_hourly = sum(type == "Beacon"), # Anzahl mit LVS
-         lvs_false_hourly = sum(type == "Infrared"), # Anzahl ohne LVS
-         count_people_hourly = lvs_true_hourly + lvs_false_hourly, # Anzahl
-         # Leute insg.
-         ratio_hourly = lvs_true_hourly/(count_people_hourly)) %>% # Ratio
-  ungroup()
+# # außerdem die Werte für jede Stunde berechnen
+# 
+# # doppelt gruppieren
+# 
+# data <- group_by(data, date, hour(time)) %>%
+#   # neu berechnen
+#   mutate(lvs_true_hourly = sum(type == "Beacon"), # Anzahl mit LVS
+#          lvs_false_hourly = sum(type == "Infrared"), # Anzahl ohne LVS
+#          count_people_hourly = lvs_true_hourly + lvs_false_hourly, # Anzahl
+#          # Leute insg.
+#          ratio_hourly = lvs_true_hourly/(count_people_hourly)) %>% # Ratio
+#   ungroup()
 
 ## nur wichtige Variablen behalten
 
@@ -186,9 +182,7 @@ data <- subset(data, select = c(id, type, position, time, date, day,
                                 day_weekend, holiday,
                                 snowhight, temperature, solar_radiation,
                                 avalanche_report, sunrise, sunset, day_length,
-                                lvs_true, lvs_false, count_people, ratio,
-                                lvs_true_hourly, lvs_false_hourly,
-                                count_people_hourly, ratio_hourly))
+                                lvs_true, lvs_false, count_people, ratio))
 
 ## factors festlegen
 
@@ -201,9 +195,8 @@ data$day <- factor(data$day,
 ## neue date_data erstellen
 
 date_data <- distinct(subset(data, 
-                             select = -c(type, time, position, id, 
-                                         lvs_true_hourly, lvs_false_hourly,
-                                         count_people_hourly, ratio_hourly)))
+                             select = -c(type, time, position, id))) %>%
+              subset(date >= as.Date("2018-12-25"))
 
 ## als RDS speichern
 

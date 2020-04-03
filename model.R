@@ -50,23 +50,22 @@ model_4 <- gamm(
   data = date_data,
   family = binomial(link = "logit"))
 
-## Modell 5: bisher aufgetretene Probleme lösen
-# 1. Knoten kontrollieren
-# 2. Wochentage statt nur Wochenende
+# Modell 5: Wochentage statt nur Wochenende und avalanche_report als smooth
 
-# wird umcodiert als Zahl
+# day wird umcodiert als Zahl
 
 date_data$int_day <- as.integer(date_data$day)
 
 # Modell
 
 model_5 <- gamm(
-  cbind(lvs_true, lvs_false) ~ s(temperature, bs = "ps", k = 30) +
-    s(snowhight, bs = "ps", k = 15) + 
-    s(solar_radiation, bs = "ps", k = 15) +
-    s(int_date, bs = "ps", k = 30) +
-    s(int_day, bs = "cc", k = 7) +
-    avalanche_report + holiday,
+  cbind(lvs_true, lvs_false) ~ s(temperature, bs = "ps") +
+    s(snowhight, bs = "ps") + 
+    s(solar_radiation, bs = "ps") +
+    s(int_date, bs = "ps") +
+    s(int_day, bs = "cc", k = 7) + 
+    s(avalanche_report, bs = "ps", k = 5) +
+    holiday,
   correlation = corAR1(form = ~ int_date),
   data = date_data,
   family = binomial(link = "logit"))

@@ -86,18 +86,11 @@ plot(model_3, pages = 1, residuals = TRUE, pch = 19, cex = .3)
 
 summary(model_4$gam)
 
-gam.check(model_4$gam)
-# annähernde Normalverteilung (rechtsschief)
-# ein paar auffällige Werte sowohl in resids vs lin pred als resp vs fit values
-# k zu klein bei snowhight,solar_radiation und int_date?
-
 plot(model_4$gam, pages = 1, residuals = TRUE, pch = 19, cex = .3)
 # auch durch linear zu ersetzen bei temperature?
 
-# Modell 5: bisher aufgetretene Probleme lösen
+# Modell 5: Wochentage statt nur Wochenende und avalanche_report als smooth
 
 summary(model_5$gam)
-
-gam.check(model_5$gam)
 
 plot(model_5$gam, pages = 1, residuals = TRUE, pch = 19, cex = .3, scale = 0)

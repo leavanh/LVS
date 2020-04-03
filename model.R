@@ -59,17 +59,16 @@ date_data$int_day <- as.integer(date_data$day)
 # Modell
 
 model_5 <- gamm(
-  cbind(lvs_true, lvs_false) ~ s(temperature, bs = "ps") +
-    s(snowhight, bs = "ps") + 
-    s(solar_radiation, bs = "ps") +
-    s(int_date, bs = "ps") +
-    s(int_day, bs = "cc", k = 7) + 
+  cbind(lvs_true, lvs_false) ~ s(temperature, bs = "ps", k = 10) +
+    s(snowhight, bs = "ps", k = 20) + 
+    s(solar_radiation, bs = "ps", k = 20) +
+    s(int_date, bs = "ps", k = 30) +
+    s(int_day, bs = "ps", k = 7) + 
     s(avalanche_report, bs = "ps", k = 5) +
     holiday,
   correlation = corAR1(form = ~ int_date),
   data = date_data,
   family = binomial(link = "logit"))
-
 
 ## Auswertung
 

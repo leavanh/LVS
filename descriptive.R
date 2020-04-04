@@ -1,29 +1,6 @@
-## Übersicht
+## theme setzen (ändert nur die Ästhetik der Plots, nichts inhaltliches)
 
-# Vorabberechnungen für die Übersicht der Art der Tage
-
-# Absolute Anzahl der Beacons und Infrared, jeweils für Wochentage,
-# Wochenendtage und Ferientage
-
-weekday_sum <- c(sum(subset(
-                   date_data, day_weekday == TRUE)$lvs_true, na.rm = TRUE),
-                 sum(subset(
-                   date_data, day_weekday == TRUE)$lvs_false, na.rm = TRUE))
-weekend_sum <- c(sum(subset(
-                   date_data, day_weekend == TRUE)$lvs_true, na.rm = TRUE),
-                 sum(subset(
-                   date_data, day_weekend == TRUE)$lvs_false, na.rm = TRUE))
-holiday_sum <- c(sum(subset(
-                   date_data, holiday == TRUE)$lvs_true, na.rm = TRUE),
-                 sum(subset(
-                   date_data, holiday == TRUE)$lvs_false, na.rm = TRUE))
-
-# In einem data.frame zusammenführen und Reihen und Spalten benennen
-
-day_type_count <- data.frame(weekday_sum, weekend_sum, holiday_sum)
-
-rownames(day_type_count) <- c("LVS: True", "LVS: False")
-colnames(day_type_count) <- c("weekday", "weekend", "holiday")
+theme_set(theme_minimal())
 
 # Liste erstellen
 
@@ -39,13 +16,8 @@ summary_list <- list(
   # -> mehr Messungen bei S
   
   # Typ und Wochentag
-  addmargins(table(data$type, data$day)),
+  addmargins(table(data$type, data$day))
   # -> am wenigsten Messungen Montags, am meisten am Wochenende
-  
-  # Typ und Art des Tages (Summenspalte händisch hinzugefügt)
-  rbind(day_type_count, Total = c(sum(day_type_count$weekday),
-                                  sum(day_type_count$weekend),
-                                  sum(day_type_count$holiday)))
 )
 
 ## Plot
@@ -54,7 +26,7 @@ summary_list <- list(
 # keine Faktorvariablen und ohne Zeit
 # NAs (Tage an denen Messungen nicht möglich waren) werden davor entfernt
 
-date_data_plot <- date_data[!is.na(date_data$count_people),
+date_data_plot <- date_data_noNA[,
                             c("date", "count_people",
                                        "ratio", "snowhight", 
                                        "temperature", "solar_radiation",
@@ -67,7 +39,7 @@ date_data_plot <- date_data[!is.na(date_data$count_people),
 # Datum und absolute Häufigkeit der Messungen
 # NAs (Tage an denen Messungen nicht möglich waren) werden davor entfernt
 
-date_type <- date_data[!is.na(date_data$count_people),] %>%
+date_type <- date_data_noNA %>%
   ggplot(aes(date)) +
   geom_col(aes(y = count_people, fill = "red")) +
   geom_col(aes(y = lvs_true, fill = "blue")) +
@@ -109,12 +81,24 @@ date_solar_radiation <- ggplot(date_data) +
   xlab("Datum") +
   ylab("solar radiation")
 
+# Datum und Position
+
+date_position <- ggplot(data[!is.na(data$position),]) +
+  geom_bar(aes(date, fill = position), position = "dodge") +
+  scale_fill_manual(values = c("black", "orange"), 
+                    name = "Position",
+                    breaks = c("N", "S"),
+                    labels = c("Nord", "Süd")) + 
+  labs(title = "Die Messungen nach Position und Datum",
+       x = "Datum",
+       y = "Absolute Häufigkeit")
+
 ## Ratio
 # NAs (Tage an denen Messungen nicht möglich waren) werden davor entfernt
 
 # Ratio und Schneehöhe
 
-snowhight_ratio <- date_data[!is.na(date_data$count_people),] %>%
+snowhight_ratio <- date_data_noNA %>%
   ggplot() +
   geom_point(aes(snowhight, ratio), alpha = 0.5) +
   xlab("Schneehöhe (in cm)") +
@@ -122,7 +106,7 @@ snowhight_ratio <- date_data[!is.na(date_data$count_people),] %>%
 
 # Ratio und Temperatur
 
-temperature_ratio <- date_data[!is.na(date_data$count_people),] %>%
+temperature_ratio <- date_data_noNA %>%
   ggplot() +
   geom_point(aes(temperature, ratio), alpha = 0.5) +
   xlab("Temperatur (in °C)") +
@@ -130,7 +114,7 @@ temperature_ratio <- date_data[!is.na(date_data$count_people),] %>%
 
 # Ratio und solar radiation
 
-solar_radiation_ratio <- date_data[!is.na(date_data$count_people),] %>%
+solar_radiation_ratio <- date_data_noNA %>%
   ggplot() +
   geom_point(aes(solar_radiation, ratio), alpha = 0.5) +
   xlab("solar radiation") +
@@ -138,7 +122,7 @@ solar_radiation_ratio <- date_data[!is.na(date_data$count_people),] %>%
 
 # Ratio und Lawinenwarnstufe
 
-avalanche_ratio <- date_data[!is.na(date_data$count_people),] %>%
+avalanche_ratio <- date_data_noNA %>%
   ggplot() +
   geom_jitter(aes(avalanche_report, ratio), alpha = 0.5) + 
   labs(x = "Lawinenwarnstufe",

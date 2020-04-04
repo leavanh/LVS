@@ -9,10 +9,17 @@ library("patchwork")
 if (!require("GGally")) install.packages("GGally")
 library("GGally")
 
+if (!require("mgcv")) install.packages("mgcv")
+library("mgcv")
+
 ## Daten laden
 
 data <- readRDS(file = "Daten/data.RDS")
 date_data <- readRDS(file = "Daten/date_data.RDS")
+
+# NAs rauswerfen
+
+date_data_noNA <- date_data[!is.na(date_data$count_people),]
 
 ## Deskriptive Auswertung
 
@@ -25,6 +32,7 @@ summary_list
 date_data_plot
 # -> day_length hängt vollkommen von date ab (Achtung beim Modell!)
 date_type/date_ratio
+date_position
 date_snowhight + date_temperature + date_solar_radiation
 (snowhight_ratio + solar_radiation_ratio) / 
   (temperature_ratio + avalanche_ratio)
@@ -33,4 +41,4 @@ time_type
 
 ## Modell fitting
 
-source("logprob.R", encoding = "UTF-8")
+source("model.R", encoding = "UTF-8")

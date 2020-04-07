@@ -16,4 +16,7 @@
 \contentsline {subsubsection}{\numberline {4.2.1}Standardmodell GAM}{6}{subsubsection.4.2.1}%
 \contentsline {subsubsection}{\numberline {4.2.2}Basis Splines (B-Splines)}{7}{subsubsection.4.2.2}%
 \contentsline {subsubsection}{\numberline {4.2.3}Penalisierte Splines (P-Splines)}{7}{subsubsection.4.2.3}%
+<<<<<<< HEAD
 \contentsline {subsubsection}{\numberline {4.2.4}Autokorrelation}{8}{subsubsection.4.2.4}%
+=======
+>>>>>>> 68aa06a7ea88e5035963ade778282bd88f2d4bc2

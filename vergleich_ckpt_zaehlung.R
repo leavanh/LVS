@@ -9,20 +9,17 @@ ckpt_28_breaks <- mutate(ckpt_28, breaks = cut(ckpt_28$time, breaks = "5 min"))
 
 ckpt_28_grouped_5min <- ckpt_28_breaks %>% group_by(breaks) %>% summarise(erfasst = frequency(type))
 
+zaehlung_lvs_check_28_02[is.na(zaehlung_lvs_check_28_02)] <- 0
+zaehlung_lvs_check_28_02 <- zaehlung_lvs_check_28_02[!(zaehlung_lvs_check_28_02$Erfasst_SG == "XXXX"),]
+zaehlung_lvs_check_28_02 <- mutate(zaehlung_lvs_check_28_02,
+                                   erfasst = as.numeric(Erfasst_SG) + 
+                                     as.numeric(Erfasst_aK))
 
 
 
-plot_ckpt_vs_z <- ggplot() +
-  geom_freqpoly(data = ckpt_28,
+plot_ckpt_vs_z 
+ggplot() +
+  geom_freqpoly(data = checkpoint_stats_28_02,
                 aes(x = time, colour = "red"), binwidth = 5) +
-  geom_bar(data = z_28_grouped_5min,
-           aes(x = as.POSIXct(breaks, tz = "UTC"), y = erfasst, colour = "blue")) +
-  scale_y_continuous(limits = c(0, 100)) +
-  scale_color_identity(name = "Messung",
-                       breaks = c("red", "blue"),
-                       labels = c("Person", "Lvs-Gerät"),
-                       guide = "legend") + 
-  scale_x_datetime(date_breaks = "2 hour", date_labels = "%H:%M") +
-  labs(title = "Messungen nach dem Umcodieren",
-       x = "Uhrzeit",
-       y = "Absolute Häufigkeit")
+  geom_bar(data =zaehlung_lvs_check_28_02,
+           aes(x = time,y = erfasst, colour = "blue"), stat = "identity")

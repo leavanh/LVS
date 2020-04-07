@@ -24,9 +24,9 @@ all_checkpoint_stats_1920$time <- as.POSIXct(all_checkpoint_stats_1920$time, for
 
 # manuelle Zählung einlesen
 
-zaehlung_lvs_check_27_02 <- read_excel("Daten/Zählung_LVS-check.xlsx", sheet = 1, skip = 1,
+zaehlung_lvs_check_27_02 <- read_excel("Daten/Zaehlung_LVS-check.xlsx", sheet = 1, skip = 1,
                                        col_names = c("time", "Erfasst_SG", "Nicht_erfasst_SG", "Erfasst_aK", "Nicht_erfasst_aK"))
-zaehlung_lvs_check_28_02 <- read_excel("Daten/Zählung_LVS-check.xlsx", sheet = 2, skip = 1,
+zaehlung_lvs_check_28_02 <- read_excel("Daten/Zaehlung_LVS-check.xlsx", sheet = 2, skip = 1,
                                        col_names = c("time", "Erfasst_SG", "Nicht_erfasst_SG", "Erfasst_aK", "Nicht_erfasst_aK"))
 
 # Checkpoint-Daten an den Tagen der manuellen Zählung

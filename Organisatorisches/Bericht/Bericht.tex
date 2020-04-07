@@ -269,12 +269,12 @@
 	Das Standardmodell für das generalisierte additive Modell hat dabei 
 	folgende Struktur: \\
 	\begin{align} 
-	\eta_{i}=f_{1}(z_{i1})+...+f_{q}(z_{iq})+\beta_{0}+\beta_{1}x_{i1}+...+x_{ik}
+	\eta_{i}=\underbrace{f_{1}(z_{i1})+...+f_{q}(z_{iq})}_{\text{nicht-parametrische Effekte}}+\underbrace{\beta_{0}+\beta_{1}x_{i1}+...+x_{ik}}_{\text{parametrische Effekte}}+\epsilon_{i}
 	\end{align}
 	wobei die Funktionen $f_{1}(z_{1}),...,f_{q}(z_{q})$ den nicht-linearen Glättungseffekte der stetigen  Kovariablen $z_{1},...,z_{q}$ beschreiben. Im nächten Schritt werden nicht-parametrische Schätzfunktionen für die Funktion $f(z)$ betrachtet.
 	
 	\subsubsection{Basis Splines (B-Splines)}
-	Ziel der Basis Splines ist es Datenpunkte durch lokale Glattheit möglichst präzise darzustellen. Der Wertebereich wird in $m-1$ Intervalle geteilt, zwischen denen m Knoten definiert werden (GLM Vorlesung F.194). Nach der Schätzung von einem Polynom vom Grad l auf jedem Intervall werden die Polynomfunktionen vom Grad $l$ über $l + 2$ Knoten gebildet, um die Polynome der einzelnen Intervalle zusammenzuführen, ohne, dass es an den Knoten-Punkten zu Sprüngen kommt. Anschlie"send wird $f(z)$ durch $d = m+l-1$ Basisfunktionen und damit folgende Funktion :
+	Eine Möglichkeit, die Schätzfunktionf sinnvoll und flexibel zu modellieren ist die Darstellung von Polynom-Splines mittels der Spline-Basisfunktionen. Der Wertebereich wird in $m-1$ Intervalle geteilt, zwischen denen m Knoten definiert werden (GLM Vorlesung F.194). Nach der Schätzung von einem Polynom vom Grad l auf jedem Intervall werden die Polynomfunktionen vom Grad $l$ über $l + 2$ Knoten gebildet, um die Polynome der einzelnen Intervalle zusammenzuführen, ohne, dass es an den Knoten-Punkten zu Sprüngen kommt. Anschlie"send wird $f(z)$ durch $d = m+l-1$ Basisfunktionen und damit folgende Funktion :
 	
 	\begin{align}
 	f(z)=\sum_{j=1}^d\gamma_{j}B_{j}z
@@ -295,6 +295,7 @@
 	
 	\noindent\textbf{Zyklische P-Splines} \\
 	
+	\subsubsection{Autokorrelation} 
 	
 	
 

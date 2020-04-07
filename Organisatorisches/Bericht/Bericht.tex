@@ -1,4 +1,4 @@
-\documentclass[12pt]{article}
+\documentclass[12pt]{scrreprt}
 \usepackage[utf8]{inputenc}
 \usepackage[ngerman]{babel}
 \usepackage[utf8]{inputenc}
@@ -106,7 +106,7 @@
 	\newpage
 	\pagenumbering{arabic}
 	
-	\section{Einleitung}
+	\chapter{Einleitung}
 	\setcounter{page}{1}
 	Als beliebtes Ziel für Touristen und Wintersportler besteht im Alpengebiet eine besondere Konfliktsituation zwischen Mensch- und Tierreich. Routen für Spaziergänger, Skifahrer und Skitourengänger grenzen oft direkt an Lebensräume von Wildtieren an und führen so zu Stress für das Wildtierreich. Die vom Deutschen Alpenverein (DAV) in Kooperation mit dem Freistaat Bayern auf den Weg gebrachte Kampagne "`Natürlich auf Tour"' soll für eine Sensibilisierung und Informationsgebung rund um das Thema Naturschutz dienen.
 	
@@ -121,8 +121,8 @@
 	Quelle:
 	\url{https://de.wikipedia.org/wiki/Lawinenverschüttetensuchgerät}
 	
-	\section{Datenbasis}
-	\subsection{Datengrundlage}
+	\chapter{Datenbasis}
+	\section{Datengrundlage}
 	Um auf den Anteil der Skitourengängen, die ein LVS-Gerät bei sich hatten, schließen zu können, hat man Checkpoints aufgestellt. Für den Aufstieg am Taubenstein gibt es zwei Routen, eine Nord- und eine Südroute. Die genauen Lagen kann man Abbildung \ref{pic:checkpoints} entnehmen. An beiden Routen wurde jeweils ein Checkpoint aufgestellt, an dem vorbeigehende Besucher gemessen werden. Durch Infrarotmessung wird erfasst, ob ein Mensch am Checkpoint vorbeigeht. Außerdem werden LVS-Geräte, die auf Sendebetrieb geschaltet sind, erfasst. Für jede einzelne Checkpointmessung liegt das jeweilige Datum mit Uhrzeit vor und an welcher der zwei Routen (N oder S) sie erfasst wurde.
 	
 	\begin{figure}[H]
@@ -141,7 +141,7 @@
 	
 	Neben der Erfassung von Personen und LVS-Geräten liegen verschiedene weitere Daten vor.Für jeden Tag an dem gemessen wurde gibt es Information zu den Wetterbedingungen bzw. anderen möglichen Einflussvariablen. "`snowhight"' bemisst die Schneehöhe in cm. "`temperature"' ist die Temperatur des Tages um 12:00 mittags. "`solar\_radiation"' zeigt die Sonneneinstrahlung in $W/cm^2$. Außerdem sind die Lawinenwarnstufen des jeweiligen Tages angegeben. Es kann vorkommen, dass die Lawinenwarnstufe auf der Spitze des Berges eine andere ist als im Tal, deshalb gibt es zwei Variablen: "`avalanche\_report\_top"' und "`avalanche\_report\_down"'. Diese geben die Lawinenwarnstufe an der Spitze und am Fuß des Berges an. Obwohl es Stufen von 1 (niedrig) bis 5 (sehr hoch) gibt, war die in dem beobachteten Zeitraum höchste Stufe eine 4. An Tagen an denen die Stufen unterschiedlich waren wurde außerdem in "`avalanche\_report\_border"' der Höhenmeter angegeben, ab dem sich die Lawinengefahr unterscheidet. In "`avalanche\_report\_comment"' ist vermerkt, ob es sich dabei um eine Waldgrenze handelt. "`day"' gibt an, um welchen Tag der Woche es sich handelt und "`day\_weekday"', "`day\_weekend"' und "`holiday"' geben jeweils an, ob der Tag ein Tag unter der Woche oder am Wochenende war und ob er sich innerhalb einer Ferienzeit befunden hat.
 	
-	\subsection{Datenaufbereitung}
+	\section{Datenaufbereitung}
 	Der erste Schritt besteht darin, die gegebenen Daten um weitere 
 	Bearbeitung der Daten durch uns:
 	(noch mehr schreiben)
@@ -190,7 +190,7 @@
 		\label{tab:var}
 		\end{table}
 	
-	\section{Deskriptive Analyse}
+	\chapter{Deskriptive Analyse}
 	Insgesamt 37593 Messungen an 114 Tagen
 	
 	8468 Beacons, 29125 Infrareds (vor Umkodierung)
@@ -221,70 +221,28 @@
 	
 	mit steigender Lawinengefahr steigt die Anzahl
 	
-	\section{Methodik}
-	In folgendem Kapitel soll anhand der zur Verfügung gestellten Daten zur Saison 18/19 in einem Modell der Zusammenhang einer beobachteten abhängigen Variable, in unserem Fall die Skitourengänger mit LVS-Gerät,  durch mehrere unabhängige Variablen erklärt werden. \\
-	Dabei wird für die Erklärung schrittweise vom binären Regressionsmodell zum generalisierten additiven Modell  vorgegangen,  welches  letztendlich  für  unsere  Regressionsanalyse gewählt wurde.
+	\chapter{Methodik}
+	In folgendem Kapitel soll anhand der zur Verfügung gestellten Daten zur Saison 18/19 in einem Modell der Zusammenhang einer beobachteten abhängigen Variable, in unserem Fall die Skitourengänger mit LVS-Gerät,  durch mehrere unabhängige Variablen erklärt werden.
+	Mithilfe der generalisierten additiven Regression lässt sich diese Fragestellung auf eine flexible und strukturierte Weise lösen. Die Modellierung wird mittels nichparametrischer Regression durchgeführt.
+	Dabei wird für die Erklärung schrittweise von den B-Splines, hin zu P-Splines und letztendlich zu dem generalisierten additiven Regressionsmodell vorgegangen.
 	
+	\section{Nichtparametrische Regression}
+	Bei einem linearen Regressionsmodell wird der Erwartungswert einer  Zielvariable durch die Linearkombination von Einflussgrö"sen, auch  Kovariablen genannt, beschrieben. In praktischen Anwendungen ist dies oft unzureichend, da neben den linearen Einflüssen auch nicht-lineare, flexible Einflüsse von stetigen Kovariablen auf die abhängige Variable wirken können.
+	Zunächst wird der Einfluss einer metrischen Kovariable auf eine bernoulli-verteilte Zielvariable betrachtet. Dies wird als univariate Glättung bezeichnet, welche uns die Modellierung einer felxiblen und glatten Funktion ermöglicht. Die Zielvariable lässt sich durch die Funktion der Kovariablen und einen additiven Störterm erklären.\\
+	\textbf{(Annahmen für Standardmodell der univariaten nichtparametrischen Regression hier noch ergänzen) }
 	
-	\subsection{Generalisierte lineare Modelle}
-	Das lineare Regressionsmodell eignet sich für stetige Zielvariablen, die sich zumindest approximativ normalverteilt modellieren lassen. Der Erwartungswert einer  Zielvariable wird durch die Linearkombination von Einflussgrößen, auch  Kovariablen genannt, beschrieben.
-	In unserem Fall handelt es sich jedoch nicht um eine stetige, sondern eine binäre  Zielvariable: \\
-	Skitourengänger mit LVS-Gerät: ja/nein. \\
-	Daher eignet sich ein generalisiertes lineares Modell, welches Regressionsanalysen für nicht zwangsläufig normalverteilte Zielvariablen ermöglicht.
-	
-	\subsubsection{Binäre Regressionsmodelle}
-	Die binäre Zielvariablen $y_{i}$ sind $0/1$-kodiert und bei gegebenen Kovariablen $x_{i1},...,x_{ik}$ (bedingt) unabhängig. In unserem Fall, lässt sich die Zielvariable (Person mit beigeführtem LVS-Gerät) folgendermaßen darstellen:
-	\[y_{i}=\begin{cases}
-	1 & \text{Person mit LVS-Gerät } \\
-	0 & \text{sonst} \\
-	\end{cases}\]
-	Des weiteren sind die Wahrscheinlichkeit $\pi_{i}=P(y_{i}=1|x_{i1},...,x_{ik})$ und der lineare Prädiktor:
-	
-	\begin{align}
-	\eta _{i}&= \beta _{0}+ \beta _{1}x_{i1}+...+ \beta _{k}x_{ik}=x'_{i} \beta 
-	\end{align}
-	
-	durch eine Responsefunktion $h(\eta)\in[0,1]$ miteinander verknüft:
-	
-	\begin{align}
-	\pi_{i}&=h(\eta_{i}).
-	\end{align}
-	
-	Im Logit-Modell gilt der Ansatz:
-	
-	\begin{align}
-	\underbrace{\pi=\frac{exp(\eta)}{1+exp(\eta)}}_{\text{Responsefunktion}} \iff \underbrace{log\frac{\pi}{1-\pi}=\eta}_{\text{Logit-Linkfunktion}}.
-	\end{align}
-	
-	\subsubsection{Gruppierte Daten (hier vllt noch eine Daten-Tabelle)}
-	Bislang sind wir davon ausgegangen, dass die vorliegenden Daten in ungruppierter Form, d.h. als Individualdaten, vorliegen. In unserem Fall bietet es sich an, die Daten nach dem Datum zu gruppieren, da dies zu Rechenzeit- und Speicherplatzersparnis führt. Die transormierte Datenmatrix enthält nun 110 Gruppen ($observations$).
-	
-	\subsubsection{Überdispersion}
-	\subsection{Generalisiertes additives Modell (GAM)}
-	Bei den bisher aufgstellten generalisierten linearen Regressionsmodell tritt das Problem auf, dass der Effekt der stetigen Kovariablen auf die Zielvariable möglicherweise nicht-linear ist. Eine Möglichkeit dieses Problem zu lösen ist, ein generalisiertes additives Modell in Betracht zu ziehen.
-	Das generalisierte additive Modell stellt ein nichtparametrisches Regressionsmodell dar.
-	\subsubsection{Standardmodell GAM}
-	Das generalisierte additive Modell stellt ein nichtparametrisches Regressionsmodell dar.
-	Neben den linearen Einﬂüssen können hier also auch nicht-lineare, flexible Einflüsse von stetigen Kovariablen auf die abhängige Variable, hier Personen mit beigeführtem LVS-Gerät, berücksichtigt werden. Dabei wird die Annahme getroffen, dass sich die Effekte der einzelnen Kovariablen additiv auf die Zielvariable auswirken. Des weiteren wird angenommen, dass die Verteilung der auf die Kovariablen bedingte Zielvariable zur Binomialfamilie gehört.
-	Das Standardmodell für das generalisierte additive Modell hat dabei 
-	folgende Struktur: \\
-	\begin{align} 
-	\eta_{i}=\underbrace{f_{1}(z_{i1})+...+f_{q}(z_{iq})}_{\text{nicht-parametrische Effekte}}+\underbrace{\beta_{0}+\beta_{1}x_{i1}+...+x_{ik}}_{\text{parametrische Effekte}}+\epsilon_{i}
-	\end{align}
-	wobei die Funktionen $f_{1}(z_{1}),...,f_{q}(z_{q})$ den nicht-linearen Glättungseffekte der stetigen  Kovariablen $z_{1},...,z_{q}$ beschreiben. Im nächten Schritt werden nicht-parametrische Schätzfunktionen für die Funktion $f(z)$ betrachtet.
-	
-	\subsubsection{Basis Splines (B-Splines)}
-	Eine Möglichkeit, die Schätzfunktionf sinnvoll und flexibel zu modellieren ist die Darstellung von Polynom-Splines mittels der Spline-Basisfunktionen. Der Wertebereich wird in $m-1$ Intervalle geteilt, zwischen denen m Knoten definiert werden (GLM Vorlesung F.194). Nach der Schätzung von einem Polynom vom Grad l auf jedem Intervall werden die Polynomfunktionen vom Grad $l$ über $l + 2$ Knoten gebildet, um die Polynome der einzelnen Intervalle zusammenzuführen, ohne, dass es an den Knoten-Punkten zu Sprüngen kommt. Anschlie"send wird $f(z)$ durch $d = m+l-1$ Basisfunktionen und damit folgende Funktion :
+	\subsection{Basis Splines (B-Splines)}
+	Eine Möglichkeit, die Schätzfunktion sinnvoll und flexibel zu modellieren ist die Darstellung von Polynom-Splines mittels der Spline-Basisfunktionen. Der Wertebereich wird in $m-1$ Intervalle geteilt, zwischen denen m Knoten definiert werden (GLM Vorlesung F.194). Nach der Schätzung von einem Polynom vom Grad l auf jedem Intervall werden die Polynomfunktionen vom Grad $l$ über $l + 2$ Knoten gebildet, um die Polynome der einzelnen Intervalle zusammenzuführen, ohne, dass es an den Knoten-Punkten zu Sprüngen kommt. Anschlie"send wird $f(z)$ durch $d = m+l-1$ Basisfunktionen und damit folgende Funktion :
 	
 	\begin{align}
 	f(z)=\sum_{j=1}^d\gamma_{j}B_{j}z
 	\end{align}
-	dargestellt.
+	dargestellt.\\
 	
-	\subsubsection{Penalisierte Splines (P-Splines)} 
+	\subsection{Penalisierte Splines (P-Splines)} 
 	Die Idee von P-Splines ist es die zu schätzdenen Funktionen $f(z)$ durch einen Polynom-Spline zu approximieren und eine hohen Anzahl an Knoten, in der Regel zwischen 20 und 40, festzulegen. Die Anzahl der Knoten bestimmt in hohem Ma"se die Glattheit der Funktion. Eine gro"se Zahl an Knoten führt zu einer rauen Schätzung, welche für Flexibilität,auch bei stark variierenden Funktionen sorgt. \\
 	Eine weitere Idee ist es einen Strafterm für zu hohe Variabiltiät der Schätzung einzuführen. \\
-	\newpage
+	
 	\noindent\textbf{P-Splines basierend auf B-Splines} \\
 	P-Splines kombinieren eine B-Spline-Basis verbunden mit einem Strafterm. Um einen Strafterm für B-Splines zu entwickeln bietet es sich an, quadrierte Ableitungen zu verwenden. Diese werden als Ma"s der Variabiltät angesehen und sind daher in der Lage die Glattheit einer Funktion einzuschätzen.
 	Der Strafterm 
@@ -293,12 +251,30 @@
 	\end{align}
 	beruht auf der quadrierten zweiten Ableitung der Schätz-Funktion, welche nach $z$ integriert wird und durch den Glättungsparameter $\lambda$ dargestellt wird. Die Glattheit der Schätzung des Modells im penalisierten Fall, wird primär durch den Glättungsparameter ($\lambda$) reguliert, d.h. je grö"ser $\lambda$, desto glatter ist die Schätzung.\\
 	
+	\newpage
 	\noindent\textbf{Zyklische P-Splines} \\
+	Eine Glättungsfunktion hei"st $zyklisch$, wenn die Funktion dieselben Werte und ersten Ableitungen an ihrer oberen und unteren Grenze aufweist. Beispielsweise kann man die Funktion für die Variable Woche mit Hilfe von zyklische P-Splines modellieren. So könnte man sicher stellen, dass die Werte am Ende einer Woche zusammenhängend zu den Werten am Anfang der Woche sind. Der Penalisierungsansatz für zyklische P-Splines ist simultan zu der Penalisierung von P-Splines basierend auf B-Splines (siehe 4.2) 
 	
-	\subsubsection{Autokorrelation} 
 	
+	\section{Additives Modell}
+	Das additive Modell stellt ein nicht-parametrisches Regressionsmodell dar, welches einen eindimesionalen Glätter zur Modellierung der Schätzfunktion einsetzt. 
+	\subsection{Generalizierte additive Modell}
+	Das generalisierte additive Modell stellt eine Erweiterung zum additiven Regressionsmodell dar.
+	Neben den linearen Einﬂüssen können hier also auch nicht-lineare, flexible Einflüsse von stetigen Kovariablen auf die abhängige Variable, hier Personen mit beigeführtem LVS-Gerät, berücksichtigt werden. In unserem Fall, lässt sich die Zielvariable (Person mit beigeführtem LVS-Gerät) folgenderma"sen darstellen:
+	\[y_{i}=\begin{cases}
+	1 & \text{Person mit LVS-Gerät } \\
+	0 & \text{sonst.} \\
+	\end{cases}\]
+	Dabei wird die Annahme getroffen, dass sich die Effekte der einzelnen Kovariablen, additiv auf die Zielvariable auswirken. Des weiteren wird angenommen, dass die Verteilung der auf die Kovariablen bedingte Zielvariable zur Exponentialfamilie gehört. Au"serdem wird für die Analyse in R-Studio ein Logit-Link verwendet.
+	Das Standardmodell für das generalisierte additive Modell hat folgende Struktur: \\
+	\begin{align} 
+	y_{i}=\underbrace{f_{1}(z_{i1})+...+f_{q}(z_{iq})}_{\text{nicht-parametrische Effekte}}+\underbrace{\beta_{0}+\beta_{1}x_{i1}+...+\beta_{k}x_{ik}}_{\text{parametrische Effekte}}+\epsilon_{i}
+	\end{align}
+	wobei die Funktionen $f_{1}(z_{1}),...,f_{q}(z_{q})$ den nicht-linearen Glättungseffekte der stetigen  Kovariablen $z_{1},...,z_{q}$ beschreiben.
 	
-
-
+	\subsection{Autokorrelation} 
 	
+	\subsection{Überdispersion}
+	
+		
 \end{document}

@@ -1,46 +1,19 @@
 
 
-# Checkpoint-Stats nach type
+# Zeitlimit der manuellen Messungen für die Plots später
 
-table(checkpoint_stats_27_02$type)
-table(checkpoint_stats_28_02$type)
-
-# NAs zu 0 machen
-
-zaehlung_lvs_check_27_02[is.na(zaehlung_lvs_check_27_02)] <- 0
-zaehlung_lvs_check_28_02[is.na(zaehlung_lvs_check_28_02)] <- 0
-
-# Zählungen zu numerischen Vektoren machen
-
-zaehlung_lvs_check_27_02[, 2:5] <- as.numeric(unlist(zaehlung_lvs_check_27_02[, 2:5]))
-zaehlung_lvs_check_28_02[, 2:5] <- as.numeric(unlist(zaehlung_lvs_check_28_02[, 2:5]))
-
-# restliche NAs entfernen
-
-zaehlung_lvs_check_27_02 <- na.omit(zaehlung_lvs_check_27_02)
-zaehlung_lvs_check_28_02 <- na.omit(zaehlung_lvs_check_28_02)
-
-# Hilfstabellen mit kürzerem Namen
-
-z_27 <- mutate(zaehlung_lvs_check_27_02, erfasst = Erfasst_SG + Erfasst_aK, 
-               nicht_erfasst = Nicht_erfasst_SG + Nicht_erfasst_aK,
-               SG_gesamt = Erfasst_SG + Nicht_erfasst_SG,
-               aK_gesamt = Erfasst_aK + Nicht_erfasst_aK,
-               gesamt = erfasst + nicht_erfasst)
-z_28 <- mutate(zaehlung_lvs_check_28_02, erfasst = Erfasst_SG + Erfasst_aK, 
-               nicht_erfasst = Nicht_erfasst_SG + Nicht_erfasst_aK,
-               SG_gesamt = Erfasst_SG + Nicht_erfasst_SG,
-               aK_gesamt = Erfasst_aK + Nicht_erfasst_aK,
-               gesamt = erfasst + nicht_erfasst)
+time_limits <- as.POSIXct(strptime(c("1899-12-31 10:00:00","1899-12-31 17:00:00"), 
+                                   format = "%Y-%m-%d %H:%M", tz = "UTC"))
 
 
 
-## Summen der einzelnen Reihen
+## Summen der einzelnen Reihen in der manuellen Zählung: 
+# SG, aK, erfasst, nicht erfasst
 
-summen_27 <- apply(z_27[,-1], 2, sum)
-summen_28 <- apply(z_28[,-1], 2, sum)
+(summen_27 <- apply(zlg_27[,-1], 2, sum))
+(summen_28 <- apply(zlg_28[,-1], 2, sum))
 
-# als separate Tabelle (für den 28.)
+# Summen als separate Tabelle
 
 sums_27 <- data.frame(cbind(names(summen_27), as.numeric(summen_27)))
 names(sums_27) <- c("type", "sum")
@@ -53,30 +26,183 @@ sums_28$sum <- as.numeric(as.character(sums_28$sum))
 # alle Summen geplottet
 
 ggplot(sums_27, aes(x = type, y = sum)) +
-  geom_bar(stat = "identity")
+  geom_bar(stat = "identity") +
+  labs(title = "Anzahl nach Art der Erfassungen am 27.02.",
+       x = "Art der Erfassung",
+       y = "absolute Anzahl")
 
 ggplot(sums_28, aes(x = type, y = sum)) +
-  geom_bar(stat = "identity")
+  geom_bar(stat = "identity") +
+  labs(title = "Anzahl nach Art der Erfassungen am 28.02.",
+       x = "Art der Erfassung",
+       y = "absolute Anzahl")
 
 
 
 ## Erfassungen und Nicht-Erfassungen Gesamt nebeinanderstellen nach Uhrzeit
 
-z_27_Erfassung <- z_27 %>% gather(key = "Erfassung", value = "Anzahl", c(erfasst, nicht_erfasst))
+zlg_27_Erfassung <- zlg_27 %>% gather(key = "Erfassung", value = "Anzahl", c(erfasst, nicht_erfasst))
 
-ggplot(data = z_27_Erfassung, aes(x = time, y = Anzahl, fill = Erfassung)) +
-  geom_bar(stat = "identity", position = "dodge")
+Plot_Erfassung_27 <-   ggplot(data = zlg_27_Erfassung, aes(x = time, y = Anzahl, fill = Erfassung)) +
+                      geom_bar(stat = "identity", position = "dodge") +
+                      theme(legend.title = element_blank())
 
-z_28_Erfassung <- z_28 %>% gather(key = "Erfassung", value = "Anzahl", c(erfasst, nicht_erfasst))
 
-ggplot(data = z_28_Erfassung, aes(x = time, y = Anzahl, fill = Erfassung)) +
-  geom_bar(stat = "identity", position = "dodge")
-  # + scale_x_time(limits = c(as.POSIXct("11:00:00", tz = "UTC"), as.POSIXct("17:30:00", tz = "UTC")))
+zlg_28_Erfassung <- zlg_28 %>% gather(key = "Erfassung", value = "Anzahl", c(erfasst, nicht_erfasst))
+
+Plot_Erfassung_28 <- ggplot(data = zlg_28_Erfassung, aes(x = time, y = Anzahl, fill = Erfassung)) +
+                        geom_bar(stat = "identity", position = "dodge") +
+                        theme(legend.title = element_blank()) +
+                        scale_x_datetime(limits = time_limits)
+
 
 ## Skitourengänger und andere Kontakte Gesamt nach Uhrzeit
 
-ggplot(data = z_27, aes(x = time)) +
-  geom_bar(aes(y = SG_gesamt), stat = "identity", position = "dodge", fill = "blue") +
-  geom_bar(aes(y = aK_gesamt), stat = "identity", fill = "green", position = "dodge")
+Plot_Typ_Person_27 <- ggplot(data = zlg_27, aes(x = time)) +
+                        geom_bar(aes(y = SG_gesamt), stat = "identity", 
+                                 position = "dodge", fill = "blue") +
+                        geom_bar(aes(y = aK_gesamt), stat = "identity", 
+                                 fill = "green", position = "dodge")
+
+
+Plot_Typ_Person_28 <- ggplot(data = zlg_28, aes(x = time)) +
+  geom_bar(aes(y = SG_gesamt), stat = "identity", 
+           position = "dodge", fill = "blue") +
+  geom_bar(aes(y = aK_gesamt), stat = "identity", 
+           fill = "green", position = "dodge")
+
+
+
+
+## Vergleich erfasst vs nicht erfasst
+
+
+
+
+# Plot: zu welchen Uhrzeiten passieren die Nichterfassungen
+
+# Zusammenlegung beider Tage
+
+zlg_beide <- rbind(mutate(zlg_27, date = "27.02."), 
+                   mutate(zlg_28, date = "28.02."))
+
+zlg_beide <- zlg_beide %>% group_by(da)
+
+# erstmal nur für den 28. -> beide Tage zusammenlegen???
+
+# für jede Minute
+
+ggplot(data = zlg_27) +
+  geom_bar(aes(x = time, y = nicht_erfasst), stat = "identity") +
+  scale_x_datetime(limits = time_limits)
+
+ggplot(data = zlg_28) +
+  geom_bar(aes(x = time, y = nicht_erfasst), stat = "identity") +
+  scale_x_datetime(limits = time_limits)
+
+ggplot(data = zlg_beide) +
+  geom_bar(aes(x = time, y = nicht_erfasst, fill = date), 
+           stat = "identity") +
+  scale_x_datetime(limits = time_limits)
+
+# gruppiert in 3-Minuten-Intervalle
+
+zlg_27_breaks_3min <- mutate(zlg_27, breaks = cut(zlg_27$time, breaks = "3 min"))
+zlg_27_grouped_3min <- zlg_27_breaks_3min %>% group_by(breaks) %>% 
+                        summarise(
+                          erfasst = sum(erfasst), nicht_erfasst = sum(nicht_erfasst)
+                        )
+
+zlg_28_breaks_3min <- mutate(zlg_28, breaks = cut(zlg_28$time, breaks = "3 min"))
+zlg_28_grouped_3min <- zlg_28_breaks_3min %>% group_by(breaks) %>% 
+                      summarise(
+                       erfasst = sum(erfasst), nicht_erfasst = sum(nicht_erfasst)
+                      )
+
+zlg_beide_breaks_3min <- mutate(zlg_beide, breaks = cut(zlg_beide$time, breaks = "3 min"))
+zlg_beide_grouped_3min <- zlg_beide_breaks_3min %>% group_by(breaks) %>% 
+  summarise(
+    erfasst = sum(erfasst), nicht_erfasst = sum(nicht_erfasst)
+  )
+
+# Nichterfassungen nach Uhrzeit in 3-Minuten-Intervallen
+
+ggplot(data = zlg_27_grouped_3min) + 
+  geom_bar(aes(x = as.POSIXct(breaks), y = nicht_erfasst), stat = "identity") +
+  labs(title = "Nichterfassungen am 27.02. (in 3-Minuten-Intervallen)",
+       x = "Uhrzeit",
+       y = "Absolute Häufigkeit")
+
+
+ggplot(data = zlg_28_grouped_3min) + 
+  geom_bar(aes(x = as.POSIXct(breaks), y = nicht_erfasst), stat = "identity") +
+  labs(title = "Nichterfassungen am 28.02. (in 3-Minuten-Intervallen)",
+       x = "Uhrzeit",
+       y = "Absolute Häufigkeit")
+
+ggplot(data = zlg_beide_grouped_3min) + 
+  geom_bar(aes(x = as.POSIXct(breaks), y = nicht_erfasst), 
+           stat = "identity") +
+  labs(title = "Nichterfassungen a beiden Tagen (in 3-Minuten-Intervallen)",
+       x = "Uhrzeit",
+       y = "Absolute Häufigkeit")  
+
+# Erfassungen und Nichterfassungen nebeneinanderstellen
+
+ggplot(data = zlg_beide) +
+  geom_bar(aes(x = time, y = erfasst), 
+           color = "blue", stat = "identity", position = "dodge") +
+  geom_bar(aes(x = time, y = nicht_erfasst), 
+           color = "red", stat = "identity", position = "dodge")
+
+
+
+# Wie viele Nichterfassungen gab es insgesamt je Gruppengröße zur gleichen Minute
+
+zlg_28 %>% group_by(erfasst) %>% 
+  summarise(nicht_erfasst = sum(nicht_erfasst))
+
+zlg_28 %>% group_by(Erfasst_SG) %>% 
+  summarise(nicht_erfasst_SG = sum(Nicht_erfasst_SG))
+
+zlg_28 %>% group_by(Erfasst_aK) %>% 
+  summarise(nicht_erfasst_aK = sum(Nicht_erfasst_aK))
+
+
+zlg_gruppenvgl_abs <- zlg_beide %>% group_by(erfasst) %>% 
+                    summarise(nicht_erfasst = sum(nicht_erfasst))
+zlg_gruppenvgl_abs
+
+
+ggplot(data = zlg_gruppenvgl_abs) +
+  geom_bar(aes(x = erfasst, y = nicht_erfasst), stat = "identity")
+
+
+zlg_beide %>% group_by(Erfasst_SG) %>% 
+  summarise(durchschn_nicht_erfasst_SG = sum(Nicht_erfasst_SG))
+
+zlg_beide %>% group_by(Erfasst_aK) %>% 
+  summarise(durchschn_nicht_erfasst_aK = sum(Nicht_erfasst_aK))
+
+
+
+# Wie viele Nichterfassungen gab es durchschn. je Gruppengröße zur gleichen Minute
+
+zlg_gruppenvgl_durchschn <- zlg_beide %>% group_by(erfasst) %>% 
+                              summarise(
+                                durchschn_nicht_erfasst = mean(nicht_erfasst)
+                                )
+zlg_gruppenvgl_durchschn
+
+ggplot(data = zlg_gruppenvgl_durchschn) +
+  geom_bar(aes(x = erfasst, y = durchschn_nicht_erfasst), stat = "identity")
+# n = Anzahl wie oft jeweilige Gruppengröße vorkommt in/über die Balken?
+
+
+
+
+
+
+
 
 

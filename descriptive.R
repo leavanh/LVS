@@ -28,7 +28,7 @@ summary_list <- list(
 
 date_data_plot <- date_data_noNA[,
                             c("date", "count_people",
-                                       "ratio", "snowhight", 
+                                       "ratio", "snowhight", "snow_diff", 
                                        "temperature", "solar_radiation",
                                        "avalanche_report", "day_length")] %>%
                   ggpairs()

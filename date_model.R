@@ -25,7 +25,7 @@ date_model <- gam(
 par(mfrow=c(2,2))
 
 
-summary(date_model)
+summary.gam(date_model, dispersion = date_model$deviance/date_model$df.residual)
 
 gam.check(date_model, type = "deviance")
 

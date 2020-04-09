@@ -79,6 +79,12 @@ date_data[date_data$date >= as.POSIXct("2019-03-31", tz = "UTC"), "sunset"] <-
   date_data[date_data$date >= as.POSIXct("2019-03-31", tz = "UTC"),] %>%
   pull(sunset) - hours(1)
 
+## Neuschnee berechnen
+
+date_data$snow_diff <- date_data$snowhight - lag(date_data$snowhight, 
+                                       default = first(date_data$snowhight),
+                                       by = date_data$date)
+
 ## date_data und all_checkpoint_stats zusammenführen
 
 data <- full_join(all_checkpoint_stats, date_data, by = "date")
@@ -119,6 +125,7 @@ for(i in 1:nrow(data)) {
     data[[i, "day"]] <- date_data[[row_i, "day"]]
     data[[i, "ratio"]] <- date_data[[row_i, "ratio"]]
     data[[i, "snowhight"]] <- date_data[[row_i, "snowhight"]]
+    data[[i, "snow_diff"]] <- date_data[[row_i, "snow_diff"]]
     data[[i, "temperature"]] <- date_data[[row_i, "temperature"]]
     data[[i, "solar_radiation"]] <- date_data[[row_i,
                                                         "solar_radiation"]]
@@ -144,23 +151,26 @@ for(i in 1:nrow(data)) {
 
 ## neue Variablen berechnen
 
+# type Beacon oder Infrared in lvs TRUE oder FALSE umkodieren
+
 # count_beacon und count_infrared wird neu berechnet und heißen ab jetzt
 # lvs_true und lvs_false
 # count_people (absolute Anzahl der Leute an dem Tag) wird hinzugefügt
 
-# Ratio wird neu berechnet
+# Anteil wird neu berechnet
 
 # avalanche_report_down und avalanche_report_top werden zu einem Durchschnitt
 # zusammengefasst
 
 data <- group_by(data, date) %>%
   # neue Variablen hinzufügen
-  mutate(avalanche_report = # Avalanche_report
+  mutate(lvs = as.logical(type == "Beacon"), # type zu lvs
+          avalanche_report = # Avalanche_report
            (avalanche_report_down + avalanche_report_top)/2,
          lvs_true = sum(type == "Beacon"), # Anzahl Beaconmessung
          lvs_false = sum(type == "Infrared"), # Anzahl Infrarotmessungen
          count_people = lvs_true + lvs_false, # Anzahl Leute insg.
-         ratio = lvs_true/(count_people)) %>% # Anteil
+         ratio = lvs_true/(count_people)) %>%  # Anteil
   ungroup()
 
 # # außerdem die Werte für jede Stunde berechnen
@@ -178,15 +188,15 @@ data <- group_by(data, date) %>%
 
 ## nur wichtige Variablen behalten
 
-data <- subset(data, select = c(id, type, position, time, date, day,
+data <- subset(data, select = c(id, lvs, position, time, date, day,
                                 day_weekend, holiday,
-                                snowhight, temperature, solar_radiation,
-                                avalanche_report, sunrise, sunset, day_length,
-                                lvs_true, lvs_false, count_people, ratio))
+                                snowhight, snow_diff, temperature, 
+                                solar_radiation, avalanche_report, sunrise,
+                                sunset, day_length, lvs_true, lvs_false, 
+                                count_people, ratio))
 
 ## factors festlegen
 
-data$type <- factor(data$type)
 data$position <- factor(data$position)
 data$day <- factor(data$day,
                    levels = c("Montag", "Dienstag", "Mittwoch", "Donnerstag",
@@ -195,11 +205,12 @@ data$day <- factor(data$day,
 ## neue date_data erstellen
 
 date_data <- distinct(subset(data, 
-                             select = -c(type, time, position, id))) %>%
-              subset(date >= as.Date("2018-12-25"))
+                             select = -c(lvs, time, position, id))) %>%
+              subset(date >= as.Date("2018-12-25")) # erst am dem 25.
 
 ## als RDS speichern
 
 saveRDS(date_data, file = "Daten/date_data.RDS")
 
 saveRDS(data, file = "Daten/data.RDS")
+

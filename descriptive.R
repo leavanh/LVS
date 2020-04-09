@@ -12,11 +12,11 @@ summary_list <- list(
   summary(date_data),
   
   # Typ und Position
-  addmargins(table(data$type, data$position)),
+  addmargins(table(data$lvs, data$position)),
   # -> mehr Messungen bei S
   
   # Typ und Wochentag
-  addmargins(table(data$type, data$day))
+  addmargins(table(data$lvs, data$day))
   # -> am wenigsten Messungen Montags, am meisten am Wochenende
 )
 
@@ -28,7 +28,7 @@ summary_list <- list(
 
 date_data_plot <- date_data_noNA[,
                             c("date", "count_people",
-                                       "ratio", "snowhight", 
+                                       "ratio", "snowhight", "snow_diff", 
                                        "temperature", "solar_radiation",
                                        "avalanche_report", "day_length")] %>%
                   ggpairs()
@@ -39,7 +39,7 @@ date_data_plot <- date_data_noNA[,
 # Datum und absolute Häufigkeit der Messungen
 # NAs (Tage an denen Messungen nicht möglich waren) werden davor entfernt
 
-date_type <- date_data_noNA %>%
+date_lvs <- date_data_noNA %>%
   ggplot(aes(date)) +
   geom_col(aes(y = count_people, fill = "red")) +
   geom_col(aes(y = lvs_true, fill = "blue")) +
@@ -138,11 +138,11 @@ snowhight_solar_radiation <- ggplot(date_data) +
 ## Uhrzeit
 # NAs (Tage an denen Messungen nicht möglich waren) werden entfernt
 
-time_type <- ggplot() +
+time_lvs <- ggplot() +
   geom_freqpoly(data = data[!is.na(data$time),],
                 aes(time, colour = "red"), binwidth = 15) +
   geom_freqpoly(data = subset(data[!is.na(data$time),],
-                              type == "Beacon"),
+                              lvs == TRUE),
                 aes(time, colour = "blue"), binwidth = 15) +
   scale_color_identity(name = "Messung",
                        breaks = c("red", "blue"),

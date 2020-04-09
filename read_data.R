@@ -144,18 +144,21 @@ for(i in 1:nrow(data)) {
 
 ## neue Variablen berechnen
 
+# type Beacon oder Infrared in lvs TRUE oder FALSE umkodieren
+
 # count_beacon und count_infrared wird neu berechnet und heißen ab jetzt
 # lvs_true und lvs_false
 # count_people (absolute Anzahl der Leute an dem Tag) wird hinzugefügt
 
-# Ratio wird neu berechnet
+# Anteil wird neu berechnet
 
 # avalanche_report_down und avalanche_report_top werden zu einem Durchschnitt
 # zusammengefasst
 
 data <- group_by(data, date) %>%
   # neue Variablen hinzufügen
-  mutate(avalanche_report = # Avalanche_report
+  mutate(lvs = as.logical(type == "Beacon"), # type zu lvs
+          avalanche_report = # Avalanche_report
            (avalanche_report_down + avalanche_report_top)/2,
          lvs_true = sum(type == "Beacon"), # Anzahl Beaconmessung
          lvs_false = sum(type == "Infrared"), # Anzahl Infrarotmessungen
@@ -178,7 +181,7 @@ data <- group_by(data, date) %>%
 
 ## nur wichtige Variablen behalten
 
-data <- subset(data, select = c(id, type, position, time, date, day,
+data <- subset(data, select = c(id, lvs, position, time, date, day,
                                 day_weekend, holiday,
                                 snowhight, temperature, solar_radiation,
                                 avalanche_report, sunrise, sunset, day_length,
@@ -186,7 +189,6 @@ data <- subset(data, select = c(id, type, position, time, date, day,
 
 ## factors festlegen
 
-data$type <- factor(data$type)
 data$position <- factor(data$position)
 data$day <- factor(data$day,
                    levels = c("Montag", "Dienstag", "Mittwoch", "Donnerstag",
@@ -195,8 +197,8 @@ data$day <- factor(data$day,
 ## neue date_data erstellen
 
 date_data <- distinct(subset(data, 
-                             select = -c(type, time, position, id))) %>%
-              subset(date >= as.Date("2018-12-25"))
+                             select = -c(lvs, time, position, id))) %>%
+              subset(date >= as.Date("2018-12-25")) # erst am dem 25.
 
 ## als RDS speichern
 

@@ -9,7 +9,7 @@ data$int_day <- as.integer(data$day)
 ## Modell
 
 day_model <- gam(
-  cbind(lvs_true, lvs_false) ~ s(temperature, bs = "ps", k = 10) +
+  type ~ s(temperature, bs = "ps", k = 10) +
     s(snowhight, bs = "ps", k = 20) + 
     s(solar_radiation, bs = "ps", k = 20) +
     s(int_date, bs = "ps", k = 30) +
@@ -28,4 +28,4 @@ summary(day_model)
 
 gam.check(day_model, type = "deviance")
 
-plot(day_model, pages = 1, residuals = TRUE, pch = 19, cex = .3, scale = 0)
+plot(dayasds_model, pages = 1, residuals = TRUE, pch = 19, cex = .3, scale = 0)

@@ -46,6 +46,7 @@ b <- plot(date_model, allTerms = T) + l_points() + l_fitLine(linetype = 3) + l_f
   l_ciLine(colour = 2) + l_ciBar() + l_fitPoints(size = 1, col = 2) + theme_get() + labs(title = NULL)
 b
 
+
 # Plot b auf page=1 zusammengefügt
 b$empty # Muss FALSE ergeben 
 

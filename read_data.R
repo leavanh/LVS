@@ -79,6 +79,12 @@ date_data[date_data$date >= as.POSIXct("2019-03-31", tz = "UTC"), "sunset"] <-
   date_data[date_data$date >= as.POSIXct("2019-03-31", tz = "UTC"),] %>%
   pull(sunset) - hours(1)
 
+## Neuschnee berechnen
+
+date_data$snow_diff <- date_data$snowhight - lag(date_data$snowhight, 
+                                       default = first(date_data$snowhight),
+                                       by = date_data$date)
+
 ## date_data und all_checkpoint_stats zusammenführen
 
 data <- full_join(all_checkpoint_stats, date_data, by = "date")
@@ -119,6 +125,7 @@ for(i in 1:nrow(data)) {
     data[[i, "day"]] <- date_data[[row_i, "day"]]
     data[[i, "ratio"]] <- date_data[[row_i, "ratio"]]
     data[[i, "snowhight"]] <- date_data[[row_i, "snowhight"]]
+    data[[i, "snow_diff"]] <- date_data[[row_i, "snow_diff"]]
     data[[i, "temperature"]] <- date_data[[row_i, "temperature"]]
     data[[i, "solar_radiation"]] <- date_data[[row_i,
                                                         "solar_radiation"]]
@@ -165,11 +172,6 @@ data <- group_by(data, date) %>%
          count_people = lvs_true + lvs_false, # Anzahl Leute insg.
          ratio = lvs_true/(count_people)) %>%  # Anteil
   ungroup()
-
-# Neuschnee berechnen
-data_grouped <- group_by(data, date)
-data_grouped$snow_diff <- data_grouped$snowhight - lag(data_grouped$snowhight)
-data <- ungroup(data_grouped)
 
 # # außerdem die Werte für jede Stunde berechnen
 # 

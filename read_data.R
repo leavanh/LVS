@@ -163,8 +163,13 @@ data <- group_by(data, date) %>%
          lvs_true = sum(type == "Beacon"), # Anzahl Beaconmessung
          lvs_false = sum(type == "Infrared"), # Anzahl Infrarotmessungen
          count_people = lvs_true + lvs_false, # Anzahl Leute insg.
-         ratio = lvs_true/(count_people)) %>% # Anteil
+         ratio = lvs_true/(count_people)) %>%  # Anteil
   ungroup()
+
+# Neuschnee berechnen
+data_grouped <- group_by(data, date)
+data_grouped$snow_diff <- data_grouped$snowhight - lag(data_grouped$snowhight)
+data <- ungroup(data_grouped)
 
 # # außerdem die Werte für jede Stunde berechnen
 # 
@@ -183,9 +188,10 @@ data <- group_by(data, date) %>%
 
 data <- subset(data, select = c(id, lvs, position, time, date, day,
                                 day_weekend, holiday,
-                                snowhight, temperature, solar_radiation,
-                                avalanche_report, sunrise, sunset, day_length,
-                                lvs_true, lvs_false, count_people, ratio))
+                                snowhight, snow_diff, temperature, 
+                                solar_radiation, avalanche_report, sunrise,
+                                sunset, day_length, lvs_true, lvs_false, 
+                                count_people, ratio))
 
 ## factors festlegen
 
@@ -205,3 +211,4 @@ date_data <- distinct(subset(data,
 saveRDS(date_data, file = "Daten/date_data.RDS")
 
 saveRDS(data, file = "Daten/data.RDS")
+

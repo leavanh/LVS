@@ -41,4 +41,6 @@ time_type
 
 ## Modell fitting
 
-source("model.R", encoding = "UTF-8")
+# Datumsmodell
+
+source("date_model.R", encoding = "UTF-8")

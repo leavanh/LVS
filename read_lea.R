@@ -20,21 +20,23 @@ for(iter in 1:length(sorting_order_x_array))
 {
   current_y_value = ordered_y_array[iter]
   curren_x_value = ordered_x_array[iter]
+  current_index = match(curren_x_value, fitted(date_model))
   #cat("Last value = ", last_y_value, "current value = ", current_y_value ,"\n")
   if (abs(current_y_value - last_y_value) > (abs(last_y_value) * deviation_threshold / 100))
   {
-    cat("Exceeded sample, y value = ", current_y_value, "; x value = ", curren_x_value, "\n")
+    cat("Exceeded sample, y value = ", current_y_value, "; x value = ", curren_x_value, "index = ", current_index, "\n")
   }
   last_y_value = current_y_value
 }
 
-#Ausreisser den du mir heute gezeigt hast: Exceeded sample, y value =  0.1481481 ; x value =  0.2821537  
-
+#Ausreisser den du mir heute gezeigt hast: Exceeded sample, y value =  0.1481481 ; x value =  0.2821537; index=40  
 
 ## Grafiken zu date_model.R geplottet
 #Pakete
 if (!require("mgcViz")) install.packages("mgcViz")
 library("mgcViz")
+if (!require("mgcv")) install.packages("mgcv")
+library("mgcv")
 
 #Effekt-spezifische Plots, Smooth-Effekte mit 95% KI
 date_model <- getViz(date_model)

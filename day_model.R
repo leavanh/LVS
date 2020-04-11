@@ -12,12 +12,12 @@ data$t_since_sunrise <- as.numeric(data$time - data$sunrise)
 ## Modell
 
 day_model <- gam(
-  as.numeric(lvs) ~ s(temperature, bs = "ps", k = 10) +
-    s(snowhight, bs = "ps", k = 20) + 
-    s(solar_radiation, bs = "ps", k = 20) +
+  as.numeric(lvs) ~ s(temperature, bs = "ps") +
+    s(snow_diff, bs = "ps") + 
+    s(solar_radiation, bs = "ps") +
     s(avalanche_report, bs = "ps", k = 5) +
     s(t_since_sunrise, bs = "ps") +
-    s(num_day_length, bs = "ps") +
+    s(int_date, bs = "ps") +
     day_weekend +
     holiday + 
     position,
@@ -30,7 +30,15 @@ par(mfrow=c(2,2))
 
 
 summary(day_model)
+# use plogis() to convert to a probability
 
-gam.check(day_model, type = "deviance")
+gam.check(day_model)
+concurvity(day_model, full = TRUE)
+concurvity(day_model, full = FALSE)
+acf(day_model$residuals)
+pacf(day_model$residuals)
 
-plot(day_model, pages = 1, residuals = TRUE, pch = 19, cex = .3, scale = 0)
+plot(day_model, 
+     pages = 1, residuals = TRUE, pch = 19, cex = .3, scale = 0, 
+     shade = TRUE, seWithMean = TRUE, shift = coef(date_model)[1],
+     trans = plogis)

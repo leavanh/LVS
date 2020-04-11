@@ -11,9 +11,9 @@ date_data$int_day <- as.integer(date_data$day)
 
 date_model <- gam(
   cbind(lvs_true, lvs_false) ~ s(temperature, bs = "ps") +
-    s(snowhight, bs = "ps") + 
+    s(snow_diff, bs = "ps") + 
     s(solar_radiation, bs = "ps") +
-    #s(int_date, bs = "ps") + 
+    s(int_date, bs = "ps") + 
     s(avalanche_report, bs = "ps", k = 5) +
     holiday + day_weekend,
   data = date_data,

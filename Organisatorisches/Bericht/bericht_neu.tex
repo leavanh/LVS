@@ -6,6 +6,8 @@
 \usepackage{hyperref}
 
 %\hypersetup{colorlinks=true, citecolor=red}
+
+
 \usepackage{natbib}
 \usepackage[numbib]{tocbibind}
 \usepackage{float}
@@ -16,8 +18,11 @@
 \usepackage[euler]{textgreek}
 \usepackage{adjustbox}
 \usepackage[margin = 3cm]{geometry}
+
+
 \usepackage{eso-pic} 
 \usepackage{lipsum} 
+
 \usepackage{tabularx} 
 \usepackage{multirow}
 \usepackage{amssymb}
@@ -29,11 +34,18 @@
 \usepackage{bbold}
 
 
+
+
+
 \pagenumbering{roman}
 
 \begin{document}
 
 \pagestyle{myheadings}
+
+
+
+
 
 
 
@@ -519,9 +531,9 @@ L(\beta)=\prod_{i=1}^{n}L_{i}(\beta)=\prod_{i=1}^{n}\pi_{i}^{y_{i}}(1-\pi_{i})^{
 \end{align}
 bestimmt. \\
 Des weiteren muss die Varianzhomogenität, auch Homoskedastizität genannt, nicht unbedingt befriedigt sein. Das hei"st, die Varianz ist in einigen Fällen nicht konstant. Beim Störterm $\epsilon_{i}$ geht man davon aus, dass dieser unabhängig sein muss, jedoch ist $\epsilon_{i}$ nicht normalverteilt. \\
-\textbf{Modell Fit} \\
+\subsection{Modell Fit}
 Das Modell $fitting$ ist eine Optimierungsmethode, mit deren Hilfe das aufgestellte Modell überprüft wird.\\ 
-Ein wichtiger Faktor, der beim $fitten$ des generalisierten additiven Modells beachtet werden sollte, ist die Residuen-Analyse. Dazu gehören die Pearson- und Devianz-Resiuden. Die Pearson-Residuen berechnen Grö"sen indem der Abstand zwischen Beobachtungspunkt ($y$) und dem geschätzten Wert 8$\hat\mu$ gemessen wird und teilen das, dann durch die Standardabweichung des geschätzten Wertes:
+Ein wichtiger Faktor, der beim $fitten$ des generalisierten additiven Modells beachtet werden sollte, ist die Residuen-Analyse. Dazu gehören die Pearson- und Devianz-Resiuden. Die Pearson-Residuen berechnen Größen indem der Abstand zwischen Beobachtungspunkt ($y$) und dem geschätzten Wert 8$\hat\mu$ gemessen wird und teilen das, dann durch die Standardabweichung des geschätzten Wertes:
 \begin{align}
 r_{i}=\frac{y_{i}-\hat\mu_{i}}{\sqrt{\hat V(\hat\mu_{i})}}.
 %=\frac{y_{i}-n_{i}\hat\pi_{i}}{\sqrt{n_{i}\hat\pi_{i}(1-\hat\pi_{i})}}
@@ -531,7 +543,7 @@ Die Devianz-Residuen werden mit dem Term:
 G^2=\sum_{i=1}^N\bigg\{y_{i}\log\bigg(\frac{y_{i}}{\hat\mu_{i}}\bigg)+(n_{i}-y_{i})\log\bigg(\frac{(n_{i}-y_{i})}{(n_{i}-\hat\mu_{i})}\bigg) \bigg\}
 \end{align}
 definiert. \\
-Ein weiterer Aspekt ist die Überdispersion, welche ein wichtiges Konzept bei gruppierten Daten beschreibt. Für gruppierte Daten lässt sich die Varianz innerhalb der Gruppe abschätzen. In Anwendungen ist diese \textit{empirische} Varianz oft deutlich grö"ser als die durch ein binomiales Regressionsmodell vorhergesagte Varianz. Eine mögliche Lösung dafür, wäre die Einführung eines multiplikativen Überdispersionsparameters $\phi > 1$ in die Varianzformel, d.h.
+Ein weiterer Aspekt ist die Überdispersion, welche ein wichtiges Konzept bei gruppierten Daten beschreibt. Für gruppierte Daten lässt sich die Varianz innerhalb der Gruppe abschätzen. In Anwendungen ist diese \textit{empirische} Varianz oft deutlich größer als die durch ein binomiales Regressionsmodell vorhergesagte Varianz. Eine mögliche Lösung dafür, wäre die Einführung eines multiplikativen Überdispersionsparameters $\phi > 1$ in die Varianzformel, d.h.
 \begin{align}
 Var(y_{i}|\textbf{x}_{i})=\phi \frac{\pi_{i}(1-\pi_{i})}{n_{i}}.
 \end{align}

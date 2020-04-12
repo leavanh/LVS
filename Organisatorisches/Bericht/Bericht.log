@@ -1,79 +1,81 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.3.21)  23 MAR 2020 12:41
+This is XeTeX, Version 3.14159265-2.6-0.999992 (MiKTeX 2.9.7300 64-bit) (preloaded format=xelatex 2020.4.3)  11 APR 2020 19:12
 entering extended mode
 **./Bericht.tex
 (Bericht.tex
-LaTeX2e <2020-02-02> patch level 5
-L3 programming layer <2020-03-06>
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\report.cls"
+LaTeX2e <2020-02-02> patch level 2
+L3 programming layer <2020-02-14>
+("C:\Program Files\MiKTeX 2.9\tex/latex/base\report.cls"
 Document Class: report 2019/12/20 v1.4l Standard LaTeX document class
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\size11.clo"
+("C:\Program Files\MiKTeX 2.9\tex/latex/base\size11.clo"
 File: size11.clo 2019/12/20 v1.4l Standard LaTeX file (size option)
 )
-\c@part=\count167
-\c@chapter=\count168
-\c@section=\count169
-\c@subsection=\count170
-\c@subsubsection=\count171
-\c@paragraph=\count172
-\c@subparagraph=\count173
-\c@figure=\count174
-\c@table=\count175
+\c@part=\count163
+\c@chapter=\count164
+\c@section=\count165
+\c@subsection=\count166
+\c@subsubsection=\count167
+\c@paragraph=\count168
+\c@subparagraph=\count169
+\c@figure=\count170
+\c@table=\count171
 \abovecaptionskip=\skip47
 \belowcaptionskip=\skip48
 \bibindent=\dimen134
-) ("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/latex/ucs\ucs.sty"
+)
+("C:\Program Files\MiKTeX 2.9\tex/latex/ucs\ucs.sty"
 Package: ucs 2013/05/11 v2.2 UCS: Unicode input support
 
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/latex/ucs\uni-global.def
-"
+("C:\Program Files\MiKTeX 2.9\tex/latex/ucs\uni-global.def"
 File: uni-global.def 2013/05/13 UCS: Unicode global data
 )
-\uc@secondtry=\count176
-\uc@combtoks=\toks15
-\uc@combtoksb=\toks16
-\uc@temptokena=\toks17
+\uc@secondtry=\count172
+\uc@combtoks=\toks14
+\uc@combtoksb=\toks15
+\uc@temptokena=\toks16
 )
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\inputenc.sty"
+("C:\Program Files\MiKTeX 2.9\tex/latex/base\inputenc.sty"
 Package: inputenc 2018/08/11 v1.3c Input encoding file
-\inpenc@prehook=\toks18
-\inpenc@posthook=\toks19
-) ("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\fontenc.sty
-"
+\inpenc@prehook=\toks17
+\inpenc@posthook=\toks18
+
+
+Package inputenc Warning: inputenc package ignored with utf8 based engines.
+
+) ("C:\Program Files\MiKTeX 2.9\tex/latex/base\fontenc.sty"
 Package: fontenc 2020/02/11 v2.0o Standard LaTeX package
-)
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\amsmath.st
-y"
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 11
+2.
+
+("C:\Program Files\MiKTeX 2.9\tex/latex/lm\t1lmr.fd"
+File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+))
+("C:\Program Files\MiKTeX 2.9\tex/latex/amsmath\amsmath.sty"
 Package: amsmath 2020/01/20 v2.17e AMS math features
 \@mathmargin=\skip49
 
 For additional information on amsmath, use the `?' option.
-
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\amstext.st
-y"
+("C:\Program Files\MiKTeX 2.9\tex/latex/amsmath\amstext.sty"
 Package: amstext 2000/06/29 v2.01 AMS text
 
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\amsgen.sty
-"
+("C:\Program Files\MiKTeX 2.9\tex/latex/amsmath\amsgen.sty"
 File: amsgen.sty 1999/11/30 v2.0 generic functions
-\@emptytoks=\toks20
+\@emptytoks=\toks19
 \ex@=\dimen135
 ))
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\amsbsy.sty
-"
+("C:\Program Files\MiKTeX 2.9\tex/latex/amsmath\amsbsy.sty"
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 \pmbraise@=\dimen136
 )
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\amsopn.sty
-"
+("C:\Program Files\MiKTeX 2.9\tex/latex/amsmath\amsopn.sty"
 Package: amsopn 2016/03/08 v2.02 operator names
 )
-\inf@bad=\count177
+\inf@bad=\count173
 LaTeX Info: Redefining \frac on input line 227.
-\uproot@=\count178
-\leftroot@=\count179
+\uproot@=\count174
+\leftroot@=\count175
 LaTeX Info: Redefining \overline on input line 389.
-\classnum@=\count180
-\DOTSCASE@=\count181
+\classnum@=\count176
+\DOTSCASE@=\count177
 LaTeX Info: Redefining \ldots on input line 486.
 LaTeX Info: Redefining \dots on input line 489.
 LaTeX Info: Redefining \cdots on input line 610.
@@ -82,31 +84,30 @@ LaTeX Info: Redefining \cdots on input line 610.
 \big@size=\dimen137
 LaTeX Font Info:    Redeclaring font encoding OML on input line 733.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 734.
-\macc@depth=\count182
-\c@MaxMatrixCols=\count183
+\macc@depth=\count178
+\c@MaxMatrixCols=\count179
 \dotsspace@=\muskip16
-\c@parentequation=\count184
-\dspbrk@lvl=\count185
-\tag@help=\toks21
-\row@=\count186
-\column@=\count187
-\maxfields@=\count188
-\andhelp@=\toks22
+\c@parentequation=\count180
+\dspbrk@lvl=\count181
+\tag@help=\toks20
+\row@=\count182
+\column@=\count183
+\maxfields@=\count184
+\andhelp@=\toks21
 \eqnshift@=\dimen138
 \alignsep@=\dimen139
 \tagshift@=\dimen140
 \tagwidth@=\dimen141
 \totwidth@=\dimen142
 \lineht@=\dimen143
-\@envbody=\toks23
+\@envbody=\toks22
 \multlinegap=\skip50
 \multlinetaggap=\skip51
-\mathdisplay@stack=\toks24
+\mathdisplay@stack=\toks23
 LaTeX Info: Redefining \[ on input line 2859.
 LaTeX Info: Redefining \] on input line 2860.
 )
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\amsfonts.
-sty"
+("C:\Program Files\MiKTeX 2.9\tex/latex/amsfonts\amsfonts.sty"
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \symAMSa=\mathgroup4
 \symAMSb=\mathgroup5
@@ -114,145 +115,121 @@ LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 )
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\amssymb.s
-ty"
+("C:\Program Files\MiKTeX 2.9\tex/latex/amsfonts\amssymb.sty"
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
 )
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\graphicx.
-sty"
+("C:\Program Files\MiKTeX 2.9\tex/latex/graphics\graphicx.sty"
 Package: graphicx 2019/11/30 v1.2a Enhanced LaTeX Graphics (DPC,SPQR)
 
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\keyval.st
-y"
+("C:\Program Files\MiKTeX 2.9\tex/latex/graphics\keyval.sty"
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
-\KV@toks@=\toks25
+\KV@toks@=\toks24
 )
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\graphics.
-sty"
+("C:\Program Files\MiKTeX 2.9\tex/latex/graphics\graphics.sty"
 Package: graphics 2019/11/30 v1.4a Standard LaTeX Graphics (DPC,SPQR)
 
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\trig.sty"
+("C:\Program Files\MiKTeX 2.9\tex/latex/graphics\trig.sty"
 Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 )
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics-cfg\graph
-ics.cfg"
+("C:\Program Files\MiKTeX 2.9\tex/latex/graphics-cfg\graphics.cfg"
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
-Package graphics Info: Driver file: pdftex.def on input line 105.
+Package graphics Info: Driver file: xetex.def on input line 105.
 
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics-def\pdfte
-x.def"
-File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
+("C:\Program Files\MiKTeX 2.9\tex/latex/graphics-def\xetex.def"
+File: xetex.def 2017/06/24 v5.0h Graphics/color driver for xetex
 ))
 \Gin@req@height=\dimen144
 \Gin@req@width=\dimen145
 )
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/generic/babel\babel.sty"
-Package: babel 2020/02/28 3.41 The Babel package
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/generic/babel\switch.def
-"
-File: switch.def 2020/02/28 3.41 Babel switching mechanism
+("C:\Program Files\MiKTeX 2.9\tex/generic/babel\babel.sty"
+Package: babel 2020/02/14 3.40 The Babel package
+
+("C:\Program Files\MiKTeX 2.9\tex/generic/babel\switch.def"
+File: switch.def 2020/02/14 3.40 Babel switching mechanism
 )
 *************************************
 * Local config file bblopts.cfg used
 *
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/latex/arabi\bblopts.cfg"
+("C:\Program Files\MiKTeX 2.9\tex/latex/arabi\bblopts.cfg"
 File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of
  babel
 )
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/latex/babel-german\ngerm
-an.ldf"
+("C:\Program Files\MiKTeX 2.9\tex/latex/babel-german\ngerman.ldf"
 Language: ngerman 2018/12/08 v2.11 German support for babel (post-1996 orthogra
 phy)
 
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/latex/babel-german\ngerm
-anb.ldf"
+("C:\Program Files\MiKTeX 2.9\tex/latex/babel-german\ngermanb.ldf"
 Language: ngermanb 2018/12/08 v2.11 German support for babel (post-1996 orthogr
 aphy)
 
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/generic/babel\babel.def"
-File: babel.def 2020/02/28 3.41 Babel common definitions
-\babel@savecnt=\count189
+("C:\Program Files\MiKTeX 2.9\tex/generic/babel\babel.def"
+File: babel.def 2020/02/14 3.40 Babel common definitions
+\babel@savecnt=\count185
 \U@D=\dimen146
 
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/generic/babel\txtbabel.d
-ef")
+("C:\Program Files\MiKTeX 2.9\tex/generic/babel\xebabel.def"
+("C:\Program Files\MiKTeX 2.9\tex/generic/babel\txtbabel.def"))
 \bbl@readstream=\read2
-\bbl@dirlevel=\count190
+\bbl@dirlevel=\count186
 )
 Package babel Info: Making " an active character on input line 121.
 )))
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/latex/hyperref\hyperref.
-sty"
+("C:\Program Files\MiKTeX 2.9\tex/latex/hyperref\hyperref.sty"
 Package: hyperref 2020/01/14 v7.00d Hypertext links for LaTeX
 
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/generic/ltxcmds\ltxcmds.
-sty"
+("C:\Program Files\MiKTeX 2.9\tex/generic/ltxcmds\ltxcmds.sty"
 Package: ltxcmds 2019/12/15 v1.24 LaTeX kernel commands for general use (HO)
 )
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/generic/iftex\iftex.sty"
-Package: iftex 2020/03/06 v1.0d TeX engine tests
+("C:\Program Files\MiKTeX 2.9\tex/generic/iftex\iftex.sty"
+Package: iftex 2019/11/07 v1.0c TeX engine tests
 )
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/latex/pdftexcmds\pdftexc
-mds.sty"
+("C:\Program Files\MiKTeX 2.9\tex/latex/pdftexcmds\pdftexcmds.sty"
 Package: pdftexcmds 2019/11/24 v0.31 Utility functions of pdfTeX for LuaTeX (HO
 )
 
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/generic/infwarerr\infwar
-err.sty"
+("C:\Program Files\MiKTeX 2.9\tex/generic/infwarerr\infwarerr.sty"
 Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
 )
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
-Package pdftexcmds Info: \pdfdraftmode found.
+Package pdftexcmds Info: \pdfdraftmode not found.
 )
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/generic/kvsetkeys\kvsetk
-eys.sty"
+("C:\Program Files\MiKTeX 2.9\tex/generic/kvsetkeys\kvsetkeys.sty"
 Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
 )
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/generic/kvdefinekeys\kvd
-efinekeys.sty"
+("C:\Program Files\MiKTeX 2.9\tex/generic/kvdefinekeys\kvdefinekeys.sty"
 Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
 )
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pdfescape\pdfesc
-ape.sty"
+("C:\Program Files\MiKTeX 2.9\tex/generic/pdfescape\pdfescape.sty"
 Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
 )
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/latex/hycolor\hycolor.st
-y"
+("C:\Program Files\MiKTeX 2.9\tex/latex/hycolor\hycolor.sty"
 Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
 )
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/latex/letltxmacro\letltx
-macro.sty"
+("C:\Program Files\MiKTeX 2.9\tex/latex/letltxmacro\letltxmacro.sty"
 Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
 )
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/latex/auxhook\auxhook.st
-y"
+("C:\Program Files\MiKTeX 2.9\tex/latex/auxhook\auxhook.sty"
 Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
 )
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/latex/kvoptions\kvoption
-s.sty"
+("C:\Program Files\MiKTeX 2.9\tex/latex/kvoptions\kvoptions.sty"
 Package: kvoptions 2019/11/29 v3.13 Key value format for package options (HO)
 )
 \@linkdim=\dimen147
-\Hy@linkcounter=\count191
-\Hy@pagecounter=\count192
+\Hy@linkcounter=\count187
+\Hy@pagecounter=\count188
 
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/latex/hyperref\pd1enc.de
-f"
+("C:\Program Files\MiKTeX 2.9\tex/latex/hyperref\pd1enc.def"
 File: pd1enc.def 2020/01/14 v7.00d Hyperref: PDFDocEncoding definition (HO)
-Now handling font encoding PD1 ...
-... no UTF-8 mapping file for font encoding PD1
 )
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/generic/intcalc\intcalc.
-sty"
+("C:\Program Files\MiKTeX 2.9\tex/generic/intcalc\intcalc.sty"
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/generic/etexcmds\etexcmd
-s.sty"
+("C:\Program Files\MiKTeX 2.9\tex/generic/etexcmds\etexcmds.sty"
 Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 )
-\Hy@SavedSpaceFactor=\count193
+\Hy@SavedSpaceFactor=\count189
 Package hyperref Info: Hyper figures OFF on input line 4547.
 Package hyperref Info: Link nesting OFF on input line 4552.
 Package hyperref Info: Hyper index ON on input line 4555.
@@ -260,24 +237,23 @@ Package hyperref Info: Plain pages OFF on input line 4562.
 Package hyperref Info: Backreferencing OFF on input line 4567.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4800.
-\c@Hy@tempcnt=\count194
- ("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/latex/url\url.sty"
+\c@Hy@tempcnt=\count190
+
+("C:\Program Files\MiKTeX 2.9\tex/latex/url\url.sty"
 \Urlmuskip=\muskip17
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 5159.
 \XeTeXLinkMargin=\dimen148
 
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/generic/bitset\bitset.st
-y"
+("C:\Program Files\MiKTeX 2.9\tex/generic/bitset\bitset.sty"
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/generic/bigintcalc\bigin
-tcalc.sty"
+("C:\Program Files\MiKTeX 2.9\tex/generic/bigintcalc\bigintcalc.sty"
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
-\Fld@menulength=\count195
+\Fld@menulength=\count191
 \Field@Width=\dimen149
 \Fld@charsize=\dimen150
 Package hyperref Info: Hyper figures OFF on input line 6430.
@@ -290,34 +266,39 @@ Package hyperref Info: PDF/A mode OFF on input line 6460.
 LaTeX Info: Redefining \ref on input line 6500.
 LaTeX Info: Redefining \pageref on input line 6504.
 
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/generic/atbegshi\atbegsh
-i.sty"
+("C:\Program Files\MiKTeX 2.9\tex/generic/atbegshi\atbegshi.sty"
 Package: atbegshi 2019/12/05 v1.19 At begin shipout hook (HO)
 )
-\Hy@abspage=\count196
-\c@Item=\count197
-\c@Hfootnote=\count198
+\Hy@abspage=\count192
+\c@Item=\count193
+\c@Hfootnote=\count194
 )
-Package hyperref Info: Driver (autodetected): hpdftex.
+Package hyperref Info: Driver (autodetected): hxetex.
 
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/latex/hyperref\hpdftex.d
-ef"
-File: hpdftex.def 2020/01/14 v7.00d Hyperref driver for pdfTeX
+("C:\Program Files\MiKTeX 2.9\tex/latex/hyperref\hxetex.def"
+File: hxetex.def 2020/01/14 v7.00d Hyperref driver for XeTeX
 
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/latex/atveryend\atveryen
-d.sty"
+("C:\Program Files\MiKTeX 2.9\tex/latex/hyperref\puenc.def"
+File: puenc.def 2020/01/14 v7.00d Hyperref: PDF Unicode definition (HO)
+)
+("C:\Program Files\MiKTeX 2.9\tex/generic/stringenc\stringenc.sty"
+Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
+)
+)
+\pdfm@box=\box47
+\c@Hy@AnnotLevel=\count195
+\HyField@AnnotCount=\count196
+\Fld@listcount=\count197
+\c@bookmark@seq@number=\count198
+
+("C:\Program Files\MiKTeX 2.9\tex/latex/rerunfilecheck\rerunfilecheck.sty"
+Package: rerunfilecheck 2019/12/05 v1.9 Rerun checks for auxiliary files (HO)
+
+("C:\Program Files\MiKTeX 2.9\tex/latex/atveryend\atveryend.sty"
 Package: atveryend 2019-12-11 v1.11 Hooks at the very end of document (HO)
 Package atveryend Info: \enddocument detected (standard20110627).
 )
-\Fld@listcount=\count199
-\c@bookmark@seq@number=\count266
-
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/latex/rerunfilecheck\rer
-unfilecheck.sty"
-Package: rerunfilecheck 2019/12/05 v1.9 Rerun checks for auxiliary files (HO)
-
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/generic/uniquecounter\un
-iquecounter.sty"
+("C:\Program Files\MiKTeX 2.9\tex/generic/uniquecounter\uniquecounter.sty"
 Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 )
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
@@ -325,12 +306,14 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip52
 )
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/latex/l3backend\l3backen
-d-pdfmode.def"
-File: l3backend-pdfmode.def 2020-03-12 L3 backend support: PDF mode
-\l__kernel_color_stack_int=\count267
-\l__pdf_internal_box=\box47
-) (Bericht.aux)
+("C:\Program Files\MiKTeX 2.9\tex/latex/l3backend\l3backend-xdvipdfmx.def"
+File: l3backend-xdvipdfmx.def 2020-02-03 L3 backend support: xdvipdfmx
+\g__graphics_track_int=\count199
+\l__pdf_internal_box=\box48
+\g__pdf_backend_object_int=\count266
+\g__pdf_backend_annotation_int=\count267
+)
+(Bericht.aux)
 \openout1 = `Bericht.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 17.
@@ -342,6 +325,13 @@ LaTeX Font Info:    ... okay on input line 17.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 17.
 LaTeX Font Info:    ... okay on input line 17.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 17.
+LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 1
+7.
+ ("C:\Program Files\MiKTeX 2.9\tex/latex/base\ts1cmr.fd"
+File: ts1cmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 17.
 LaTeX Font Info:    ... okay on input line 17.
 LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 17.
 LaTeX Font Info:    ... okay on input line 17.
@@ -349,78 +339,57 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 17.
 LaTeX Font Info:    ... okay on input line 17.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 17.
 LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
 
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/latex/ucs\ucsencs.def"
+("C:\Program Files\MiKTeX 2.9\tex/latex/ucs\ucsencs.def"
 File: ucsencs.def 2011/01/21 Fixes to fontencodings LGR, T3
-)
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/context/base/mkii\supp-p
-df.mkii"
-[Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count268
-\scratchdimen=\dimen151
-\scratchbox=\box48
-\nofMPsegments=\count269
-\nofMParguments=\count270
-\everyMPshowfont=\toks26
-\MPscratchCnt=\count271
-\MPscratchDim=\dimen152
-\MPnumerator=\count272
-\makeMPintoPDFobject=\count273
-\everyMPtoPDFconversion=\toks27
-)
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/latex/epstopdf-pkg\epsto
-pdf-base.sty"
-Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
-Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
-85.
 )
 \AtBeginShipoutBox=\box49
 Package hyperref Info: Link coloring OFF on input line 17.
 
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/latex/hyperref\nameref.s
-ty"
+("C:\Program Files\MiKTeX 2.9\tex/latex/hyperref\nameref.sty"
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
 
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/latex/refcount\refcount.
-sty"
+("C:\Program Files\MiKTeX 2.9\tex/latex/refcount\refcount.sty"
 Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 )
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/generic/gettitlestring\g
-ettitlestring.sty"
+("C:\Program Files\MiKTeX 2.9\tex/generic/gettitlestring\gettitlestring.sty"
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count274
+\c@section@level=\count268
 )
 LaTeX Info: Redefining \ref on input line 17.
 LaTeX Info: Redefining \pageref on input line 17.
 LaTeX Info: Redefining \nameref on input line 17.
- (Bericht.out) (Bericht.out)
+
+(Bericht.out) (Bericht.out)
 \@outlinefile=\write3
 \openout3 = `Bericht.out'.
 
 LaTeX Font Info:    Trying to load font information for U+msa on input line 20.
 
 
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsa.fd"
+("C:\Program Files\MiKTeX 2.9\tex/latex/amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Trying to load font information for U+msb on input line 20.
 
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsb.fd"
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1
 
-{C:/Users/elekt/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-(Bericht.toc)
+("C:\Program Files\MiKTeX 2.9\tex/latex/amsfonts\umsb.fd"
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+("C:\Program Files\MiKTeX 2.9\tex/generic/stringenc\se-ascii-print.def"
+File: se-ascii-print.def 2019/11/29 v1.12 stringenc: Printable ASCII characters
+
+)
+[1
+
+] (Bericht.toc)
 \tf@toc=\write4
 \openout4 = `Bericht.toc'.
 
-pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.23 \listoffigures
-                    [1
+ [1
 
 ] (Bericht.lof)
 \tf@lof=\write5
@@ -436,105 +405,3124 @@ l.23 \listoffigures
 
 ]
 Kapitel 1.
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 4
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 4
 2.
-("C:\Users\elekt\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\t1cmtt.fd"
-File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+("C:\Program Files\MiKTeX 2.9\tex/latex/lm\t1lmtt.fd"
+File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-Overfull \hbox (26.541pt too wide) in paragraph at lines 41--43
-[]\T1/cmr/m/n/10.95 Quelle: []$\T1/cmtt/m/n/10.95 https : / / de . wikipedia . 
-org / wiki / Lawinenversch�ttetensuchger�t$[] 
+Overfull \hbox (32.07079pt too wide) in paragraph at lines 41--43
+[]\T1/lmr/m/n/10.95 Quelle: []$\T1/lmtt/m/n/10.95 https : / / de . wikipedia . 
+org / wiki / Lawinenverschüttetensuchgerät$[] 
  []
 
 [4
 
 ]
 Kapitel 2.
-<Bilder/Checkpoints.png, id=69, 730.4088pt x 424.4658pt>
-File: Bilder/Checkpoints.png Graphic file (type png)
-<use Bilder/Checkpoints.png>
-Package pdftex.def Info: Bilder/Checkpoints.png  used on input line 52.
-(pdftex.def)             Requested size: 365.2035pt x 212.23238pt.
+File: Bilder/Checkpoints.png Graphic file (type bmp)
+<Bilder/Checkpoints.png>
 
-Overfull \hbox (5.2035pt too wide) in paragraph at lines 52--53
+Overfull \hbox (4.99911pt too wide) in paragraph at lines 52--53
  [][] 
  []
 
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 [5
 
- <./Bilder/Checkpoints.png>]
-Underfull \hbox (badness 1189) in paragraph at lines 82--83
-[]\T1/cmr/m/n/10.95 Uhrzeit von 00:00 bis
+]
+
+LaTeX Warning: Reference `tab:var' on page 6 undefined on input line 74.
+
+
+Underfull \hbox (badness 1005) in paragraph at lines 83--84
+[]\T1/lmr/m/n/10.95 Uhrzeit von 00:00 bis
  []
 
 
-Underfull \hbox (badness 1546) in paragraph at lines 84--85
-[]\T1/cmr/m/n/10.95 diskret (2 Aus-pr�-gun-
+Underfull \hbox (badness 1348) in paragraph at lines 85--86
+[]\T1/lmr/m/n/10.95 diskret (2 Aus-prä-gun-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 94--94
-[]\T1/cmr/m/n/10.95 Sonneneinstrahlung in
+Underfull \hbox (badness 10000) in paragraph at lines 89--90
+[]\T1/lmr/m/n/10.95 diskret (7 Aus-pr.):
  []
 
 
-Underfull \hbox (badness 1442) in paragraph at lines 96--97
-[]\T1/cmr/m/n/10.95 diskret (7 Aus-pr.): 1,
+Underfull \hbox (badness 10000) in paragraph at lines 95--95
+[]\T1/lmr/m/n/10.95 Sonneneinstrahlung in
  []
 
 
-Underfull \hbox (badness 1189) in paragraph at lines 100--101
-[]\T1/cmr/m/n/10.95 Uhrzeit von 05:57 bis
+Underfull \hbox (badness 1314) in paragraph at lines 97--98
+[]\T1/lmr/m/n/10.95 diskret (7 Aus-pr.): 1,
  []
 
 
-Underfull \hbox (badness 1189) in paragraph at lines 102--103
-[]\T1/cmr/m/n/10.95 Uhrzeit von 16:22 bis
+! LaTeX Error: Can be used only in preamble.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.101 \documentclass
+                    [12pt]{scrreprt}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! LaTeX Error: Can be used only in preamble.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.102 \usepackage
+                 [utf8]{inputenc}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! LaTeX Error: Can be used only in preamble.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.103 \usepackage
+                 [ngerman]{babel}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! LaTeX Error: Can be used only in preamble.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.104 \usepackage
+                 [utf8]{inputenc}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! LaTeX Error: Can be used only in preamble.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.105 \usepackage
+                 [T1]{fontenc}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! LaTeX Error: Can be used only in preamble.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.106 \usepackage
+                 {hyperref}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 101--108
+[]\T1/lmr/m/n/10.95 [12pt]scrreprt
  []
 
 
-Overfull \hbox (17.43306pt too wide) in paragraph at lines 77--107
+Underfull \hbox (badness 10000) in paragraph at lines 101--108
+\T1/lmr/m/n/10.95 [utf8]inputenc
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 101--108
+\T1/lmr/m/n/10.95 [nger-man]babel
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 101--108
+\T1/lmr/m/n/10.95 [utf8]inputenc
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 101--108
+\T1/lmr/m/n/10.95 [T1]fontenc hy-
+ []
+
+
+! LaTeX Error: Can be used only in preamble.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.109 \usepackage
+                 {natbib}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! LaTeX Error: Can be used only in preamble.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.110 \usepackage
+                 [numbib]{tocbibind}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! LaTeX Error: Can be used only in preamble.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.111 \usepackage
+                 {float}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! LaTeX Error: Can be used only in preamble.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.113 \usepackage
+                 {natbib}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! LaTeX Error: Can be used only in preamble.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.114 \usepackage
+                 {graphicx}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! LaTeX Error: Can be used only in preamble.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.115 \usepackage
+                 {pdfpages}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! LaTeX Error: Can be used only in preamble.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.116 \usepackage
+                 [euler]{textgreek}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! LaTeX Error: Can be used only in preamble.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.117 \usepackage
+                 {adjustbox}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! LaTeX Error: Can be used only in preamble.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.118 \usepackage
+                 [margin = 3cm]{geometry}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 109--119
+[]\T1/lmr/m/n/10.95 natbib [num-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 109--119
+\T1/lmr/m/n/10.95 bib]tocbibind
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 109--119
+\T1/lmr/m/n/10.95 float  na-t-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 109--119
+\T1/lmr/m/n/10.95 bib gra-phicx
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 109--119
+\T1/lmr/m/n/10.95 pdf-pa-ges [eu-
+ []
+
+
+Underfull \hbox (badness 5217) in paragraph at lines 109--119
+\T1/lmr/m/n/10.95 ler]textgreek ad-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 109--119
+\T1/lmr/m/n/10.95 jus-t-box [mar-gin
+ []
+
+
+! LaTeX Error: Can be used only in preamble.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.121 \usepackage
+                 {eso-pic}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! LaTeX Error: Can be used only in preamble.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.122 \usepackage
+                 {lipsum}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! LaTeX Error: Can be used only in preamble.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.124 \usepackage
+                 {tabularx}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! LaTeX Error: Can be used only in preamble.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.125 \usepackage
+                 {multirow}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! LaTeX Error: Can be used only in preamble.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.126 \usepackage
+                 {amssymb}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! LaTeX Error: Can be used only in preamble.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.127 \usepackage
+                 [flushleft]{threeparttable}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! LaTeX Error: Can be used only in preamble.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.128 \usepackage
+                 {booktabs,caption}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 124--129
+[]\T1/lmr/m/n/10.95 tabularx mul-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 124--129
+\T1/lmr/m/n/10.95 ti-row ams-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 124--129
+\T1/lmr/m/n/10.95 symb [flush-
+ []
+
+
+Overfull \hbox (1.39038pt too wide) in paragraph at lines 124--129
+\T1/lmr/m/n/10.95 left]threeparttable
+ []
+
+
+! LaTeX Error: Can be used only in preamble.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.130 \usepackage
+                 {amsmath}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! LaTeX Error: Can be used only in preamble.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.131 \usepackage
+                 {bbm}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! LaTeX Error: Can be used only in preamble.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.132 \usepackage
+                 {bbold}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 130--133
+[]\T1/lmr/m/n/10.95 amsmath bbm
+ []
+
+
+! LaTeX Error: Can be used only in preamble.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.136 \begin{document}
+                      
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+File: bilder/lmu_logo.png Graphic file (type bmp)
+<bilder/lmu_logo.png>
+
+Overfull \hbox (130.64394pt too wide) in paragraph at lines 145--158
+ []$ 
+ []
+
+
+Overfull \hbox (40.64394pt too wide) in paragraph at lines 145--158
+ []$ 
+ []
+
+
+Overfull \hbox (33.85309pt too wide) in paragraph at lines 166--166
+ []\T1/lmr/bx/n/14.4 Abschlussbericht 
+ []
+
+
+Overfull \hbox (0.85738pt too wide) in paragraph at lines 167--167
+ \T1/lmr/bx/n/14.4 Taubenstein 
+ []
+
+! Undefined control sequence.
+l.177 ^^I\newgeometry
+                     {top=1.25in,bottom=1.25in,right=1.25in,left=1.25in}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (161.35136pt too wide) in paragraph at lines 177--178
+[]\T1/lmr/m/n/10.95 top=1.25in,bottom=1.25in,right=1.25in,left=1.25in 
+ []
+
+
+Overfull \hbox (132.23694pt too wide) in paragraph at lines 199--199
+[]\T1/lmr/bx/n/24.88 Inhaltsverzeichnis  
+ []
+
+(Bericht.toc)
+\tf@toc=\write7
+\openout7 = `Bericht.toc'.
+
+
+Overfull \hbox (186.87653pt too wide) in paragraph at lines 201--201
+[]\T1/lmr/bx/n/24.88 Abbildungsverzeichnis  
+ []
+
+(Bericht.lof)
+\tf@lof=\write8
+\openout8 = `Bericht.lof'.
+
+
+Overfull \hbox (150.33922pt too wide) in paragraph at lines 202--202
+[]\T1/lmr/bx/n/24.88 Tabellenverzeichnis  
+ []
+
+(Bericht.lot)
+\tf@lot=\write9
+\openout9 = `Bericht.lot'.
+
+
+Kapitel 3.
+
+Overfull \hbox (40.64023pt too wide) in paragraph at lines 211--211
+[]\T1/lmr/bx/n/24.88 Einleitung  
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 213--214
+\T1/lmr/m/n/10.95 für Tou-ris-ten
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 213--214
+\T1/lmr/m/n/10.95 und Win-ter-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 213--214
+\T1/lmr/m/n/10.95 sport-ler be-steht
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 213--214
+\T1/lmr/m/n/10.95 im Al-pen-ge-biet
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 213--214
+\T1/lmr/m/n/10.95 ei-ne be-son-de-re
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 213--214
+\T1/lmr/m/n/10.95 Kon-flikt-si-tua-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 213--214
+\T1/lmr/m/n/10.95 ti-on zwi-schen
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 213--214
+\T1/lmr/m/n/10.95 Mensch- und
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 213--214
+\T1/lmr/m/n/10.95 für Spa-zier-gän-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 213--214
+\T1/lmr/m/n/10.95 Ski-tou-ren-gän-ger
+ []
+
+
+Underfull \hbox (badness 5504) in paragraph at lines 213--214
+\T1/lmr/m/n/10.95 an Le-bens-räu-me
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 213--214
+\T1/lmr/m/n/10.95 von Wild-tie-ren
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 213--214
+\T1/lmr/m/n/10.95 an und füh-ren
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 213--214
+\T1/lmr/m/n/10.95 das Wild-tier-
+ []
+
+
+Underfull \hbox (badness 8056) in paragraph at lines 213--214
+\T1/lmr/m/n/10.95 reich. Die vom
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 213--214
+\T1/lmr/m/n/10.95 Deut-schen Al-
+ []
+
+
+Underfull \hbox (badness 1275) in paragraph at lines 213--214
+\T1/lmr/m/n/10.95 pen-ver-ein (DAV)
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 213--214
+\T1/lmr/m/n/10.95 in Ko-ope-ra-ti-on
+ []
+
+
+Underfull \hbox (badness 3989) in paragraph at lines 213--214
+\T1/lmr/m/n/10.95 Bay-ern auf den
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 213--214
+\T1/lmr/m/n/10.95 Weg ge-brach-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 213--214
+\T1/lmr/m/n/10.95 te Kam-pa-gne
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 213--214
+\T1/lmr/m/n/10.95 ^^RNa-tür-lich auf
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 213--214
+\T1/lmr/m/n/10.95 Sen-si-bi-li-sie-rung
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 213--214
+\T1/lmr/m/n/10.95 und In-for-ma-ti-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 213--214
+\T1/lmr/m/n/10.95 ons-ge-bung rund
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 213--214
+\T1/lmr/m/n/10.95 um das The-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 213--214
+\T1/lmr/m/n/10.95 ma Na-tur-schutz
+ []
+
+
+Underfull \hbox (badness 3049) in paragraph at lines 215--216
+[]\T1/lmr/m/n/10.95 Neben der Auf-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 215--216
+\T1/lmr/m/n/10.95 klä-rung ist ein
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 215--216
+\T1/lmr/m/n/10.95 Be-su-cher zu
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 215--216
+\T1/lmr/m/n/10.95 ana-ly-sie-ren um
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 215--216
+\T1/lmr/m/n/10.95 in-wie-fern man
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 215--216
+\T1/lmr/m/n/10.95 es wo-mög-lich
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 215--216
+\T1/lmr/m/n/10.95 steu-ern kann.
+ []
+
+
+Underfull \hbox (badness 1789) in paragraph at lines 215--216
+\T1/lmr/m/n/10.95 In die-sem Sin-ne
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 215--216
+\T1/lmr/m/n/10.95 un-ter-such-te der
+ []
+
+
+Underfull \hbox (badness 2261) in paragraph at lines 215--216
+\T1/lmr/m/n/10.95 DAV in Zu-sam-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 215--216
+\T1/lmr/m/n/10.95 men-ar-beit mit
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 215--216
+\T1/lmr/m/n/10.95 für Geo-gra-phie
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 215--216
+\T1/lmr/m/n/10.95 der LMU am
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 215--216
+\T1/lmr/m/n/10.95 im Mangfall-ge-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 215--216
+\T1/lmr/m/n/10.95 bir-ge rund um
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 215--216
+\T1/lmr/m/n/10.95 den Spit-zing-see
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 215--216
+\T1/lmr/m/n/10.95 in der Sai-son
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 215--216
+\T1/lmr/m/n/10.95 den An-teil der
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 215--216
+\T1/lmr/m/n/10.95 Ski-tou-ren-gän-ger
+ []
+
+
+Underfull \hbox (badness 4543) in paragraph at lines 215--216
+\T1/lmr/m/n/10.95 mit so-ge-nann-ten
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 215--216
+\T1/lmr/m/n/10.95 LVS-Geräten.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 215--216
+\T1/lmr/m/n/10.95 Ab-kür-zung für
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 215--216
+\T1/lmr/m/n/10.95 La-wi-nen-ver-schüt-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 215--216
+\T1/lmr/m/n/10.95 te-ten-such-ge-rät,
+ []
+
+
+Underfull \hbox (badness 3250) in paragraph at lines 215--216
+\T1/lmr/m/n/10.95 mit Hil-fe die-ser
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 215--216
+\T1/lmr/m/n/10.95 Ge-rä-te kön-nen
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 215--216
+\T1/lmr/m/n/10.95 von La-wi-nen
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 215--216
+\T1/lmr/m/n/10.95 so-nen schnell
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 215--216
+\T1/lmr/m/n/10.95 ha-ben, kön-nen
+ []
+
+
+Underfull \hbox (badness 5787) in paragraph at lines 215--216
+\T1/lmr/m/n/10.95 mit die-sem an-
+ []
+
+
+Underfull \hbox (badness 3009) in paragraph at lines 215--216
+\T1/lmr/m/n/10.95 de-re LVS-Geräte
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 215--216
+\T1/lmr/m/n/10.95 selbst ge-fun-den
+ []
+
+
+Underfull \hbox (badness 1789) in paragraph at lines 217--220
+[]\T1/lmr/m/n/10.95 Anhand der zur
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 217--220
+\T1/lmr/m/n/10.95 Ver-fü-gung ge-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 217--220
+\T1/lmr/m/n/10.95 der An-teil der
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 217--220
+\T1/lmr/m/n/10.95 Ski-tou-ren-gän-ger
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 217--220
+\T1/lmr/m/n/10.95 (wie z.B. Uhr-
+ []
+
+
+Underfull \hbox (badness 4036) in paragraph at lines 217--220
+\T1/lmr/m/n/10.95 ly-siert . Zu-dem
+ []
+
+
+Underfull \hbox (badness 5787) in paragraph at lines 217--220
+\T1/lmr/m/n/10.95 wird un-ter-sucht,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 217--220
+\T1/lmr/m/n/10.95 fluss-grö-ßen die
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 217--220
+\T1/lmr/m/n/10.95 Mess-feh-ler ab-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 217--220
+\T1/lmr/m/n/10.95 hän-gen, wel-cher
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 217--220
+\T1/lmr/m/n/10.95 Art (Über-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 217--220
+\T1/lmr/m/n/10.95 /Unterschätzung)
+ []
+
+
+Underfull \hbox (badness 1286) in paragraph at lines 217--220
+\T1/lmr/m/n/10.95 sie sind und ob
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 217--220
+\T1/lmr/m/n/10.95 ei-ne Struk-tur
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 217--220
+\T1/lmr/m/n/10.95 (mögl. Ver-tei-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 217--220
+\T1/lmr/m/n/10.95 lung) vor-liegt.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 217--220
+\T1/lmr/m/n/10.95 Un-ter Be-rück-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 217--220
+\T1/lmr/m/n/10.95 sich-ti-gung der
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 217--220
+\T1/lmr/m/n/10.95 Er-kennt-nis-se
+ []
+
+
+Underfull \hbox (badness 7273) in paragraph at lines 217--220
+\T1/lmr/m/n/10.95 über die Mess-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 217--220
+\T1/lmr/m/n/10.95 feh-ler wer-den
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 217--220
+\T1/lmr/m/n/10.95 Hy-po-the-sen
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 217--220
+\T1/lmr/m/n/10.95 auf-ge-stellt, in
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 217--220
+\T1/lmr/m/n/10.95 wel-cher Form
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 217--220
+\T1/lmr/m/n/10.95 die Mess-feh-ler
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 217--220
+\T1/lmr/m/n/10.95 die ge-schätz-ten
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 217--220
+\T1/lmr/m/n/10.95 Ab-hän-gig-kei-ten
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--222
+[]\T1/lmr/m/n/10.95 Noch schrei-ben,
+ []
+
+
+Underfull \hbox (badness 2932) in paragraph at lines 221--222
+\T1/lmr/m/n/10.95 was wir raus-ge-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 223--225
+\T1/lmtt/m/n/10.95 de . wikipedia .
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 223--225
+\T1/lmtt/m/n/10.95 org / wiki /
+ []
+
+
+Overfull \hbox (81.35501pt too wide) in paragraph at lines 223--225
+\T1/lmtt/m/n/10.95 Lawinenverschüttetensuchgerät$[] 
+ []
+
+Kapitel 4.
+
+Overfull \hbox (47.1422pt too wide) in paragraph at lines 226--226
+[]\T1/lmr/bx/n/24.88 Datenbasis  
+ []
+
+
+Overfull \hbox (64.1087pt too wide) in paragraph at lines 227--227
+[]\T1/lmr/bx/n/14.4 Datengrundlage 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 228--229
+\T1/lmr/m/n/10.95 Um auf den
+ []
+
+
+Underfull \hbox (badness 7012) in paragraph at lines 228--229
+\T1/lmr/m/n/10.95 An-teil der Ski-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 228--229
+\T1/lmr/m/n/10.95 ein LVS-Gerät
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 228--229
+\T1/lmr/m/n/10.95 bei sich hat-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 228--229
+\T1/lmr/m/n/10.95 ten, schlie-ßen
+ []
+
+
+Underfull \hbox (badness 5847) in paragraph at lines 228--229
+\T1/lmr/m/n/10.95 zu kön-nen, hat
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 228--229
+\T1/lmr/m/n/10.95 auf-ge-stellt. Für
+ []
+
+
+Underfull \hbox (badness 1389) in paragraph at lines 228--229
+\T1/lmr/m/n/10.95 Tau-ben-stein gibt
+ []
+
+
+Underfull \hbox (badness 2460) in paragraph at lines 228--229
+\T1/lmr/m/n/10.95 es zwei Rou-ten,
+ []
+
+
+Underfull \hbox (badness 4765) in paragraph at lines 228--229
+\T1/lmr/m/n/10.95 ei-ne Nord- und
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 228--229
+\T1/lmr/m/n/10.95 ei-ne Süd-rou-te.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 228--229
+\T1/lmr/m/n/10.95 Die ge-nau-en
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 228--229
+\T1/lmr/m/n/10.95 Ab-bil-dung []2.1[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 228--229
+\T1/lmr/m/n/10.95 ent-neh-men. An
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 228--229
+\T1/lmr/m/n/10.95 bei-den Rou-ten
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 228--229
+\T1/lmr/m/n/10.95 wur-de je-weils
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 228--229
+\T1/lmr/m/n/10.95 ein Check-point
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 228--229
+\T1/lmr/m/n/10.95 auf-ge-stellt, an
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 228--229
+\T1/lmr/m/n/10.95 dem vor-bei-ge-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 228--229
+\T1/lmr/m/n/10.95 hen-de Be-su-cher
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 228--229
+\T1/lmr/m/n/10.95 ge-mes-sen wer-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 228--229
+\T1/lmr/m/n/10.95 den. Durch
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 228--229
+\T1/lmr/m/n/10.95 In-fra-rot-mes-sung
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 228--229
+\T1/lmr/m/n/10.95 wird er-fasst,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 228--229
+\T1/lmr/m/n/10.95 ob ein Mensch
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 228--229
+\T1/lmr/m/n/10.95 am Check-point
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 228--229
+\T1/lmr/m/n/10.95 vor-bei-geht. Au-
+ []
+
+
+Underfull \hbox (badness 4543) in paragraph at lines 228--229
+\T1/lmr/m/n/10.95 ßer-dem wer-den
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 228--229
+\T1/lmr/m/n/10.95 LVS-Geräte, die
+ []
+
+
+Underfull \hbox (badness 2088) in paragraph at lines 228--229
+\T1/lmr/m/n/10.95 auf Sen-de-be-trieb
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 228--229
+\T1/lmr/m/n/10.95 ge-schal-tet sind,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 228--229
+\T1/lmr/m/n/10.95 ein-zel-ne Check-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 228--229
+\T1/lmr/m/n/10.95 point-mes-sung
+ []
+
+
+Underfull \hbox (badness 5787) in paragraph at lines 228--229
+\T1/lmr/m/n/10.95 liegt das je-wei-
+ []
+
+
+Underfull \hbox (badness 3460) in paragraph at lines 228--229
+\T1/lmr/m/n/10.95 li-ge Da-tum mit
+ []
+
+
+Underfull \hbox (badness 1472) in paragraph at lines 228--229
+\T1/lmr/m/n/10.95 Uhr-zeit vor und
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 228--229
+\T1/lmr/m/n/10.95 an wel-cher der
+ []
+
+
+Underfull \hbox (badness 2293) in paragraph at lines 228--229
+\T1/lmr/m/n/10.95 zwei Rou-ten (N
+ []
+
+
+! LaTeX Error: Not in outer par mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.230 ^^I\begin{figure}[H]
+                          
+You've lost some text.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+File: bilder/checkpoints.png Graphic file (type bmp)
+<bilder/checkpoints.png>
+
+Underfull \hbox (badness 10000) in paragraph at lines 237--238
+\T1/lmr/m/n/10.95 Für die ers-te
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 237--238
+\T1/lmr/m/n/10.95 Un-ter-su-chung
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 237--238
+\T1/lmr/m/n/10.95 be-nut-zen wir
+ []
+
+
+Underfull \hbox (badness 2951) in paragraph at lines 237--238
+\T1/lmr/m/n/10.95 vor-erst nur die-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 237--238
+\T1/lmr/m/n/10.95 se au-to-ma-tisch
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 237--238
+\T1/lmr/m/n/10.95 er-fass-ten Da-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 237--238
+\T1/lmr/m/n/10.95 ten zur Sai-son
+ []
+
+
+Underfull \hbox (badness 2903) in paragraph at lines 237--238
+\T1/lmr/m/n/10.95 18/19. Der um-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 237--238
+\T1/lmr/m/n/10.95 fass-te Zeit-raum
+ []
+
+
+Underfull \hbox (badness 2005) in paragraph at lines 237--238
+\T1/lmr/m/n/10.95 läuft da-bei vom
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 237--238
+\T1/lmr/m/n/10.95 21.12.2018 bis
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 237--238
+\T1/lmr/m/n/10.95 zum 13.04.2019.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 237--238
+\T1/lmr/m/n/10.95 An-zu-mer-ken ist
+ []
+
+
+Underfull \hbox (badness 6078) in paragraph at lines 237--238
+\T1/lmr/m/n/10.95 da-bei, dass am
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 237--238
+\T1/lmr/m/n/10.95 kei-ne Mes-sun-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 237--238
+\T1/lmr/m/n/10.95 gen vor-lie-gen,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 237--238
+\T1/lmr/m/n/10.95 zu-dem wer-den
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 237--238
+\T1/lmr/m/n/10.95 Mes-sun-gen vom
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 237--238
+\T1/lmr/m/n/10.95 07.01. bis zum
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 237--238
+\T1/lmr/m/n/10.95 15.01. au-ßer
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 237--238
+\T1/lmr/m/n/10.95 Acht ge-las-sen,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 237--238
+\T1/lmr/m/n/10.95 da auf-grund
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 237--238
+\T1/lmr/m/n/10.95 von star-kem
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 237--238
+\T1/lmr/m/n/10.95 Schnee-fall die
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 237--238
+\T1/lmr/m/n/10.95 Check-points
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 239--240
+[]\T1/lmr/m/n/10.95 Zusätzlich zu
+ []
+
+
+Underfull \hbox (badness 2894) in paragraph at lines 239--240
+\T1/lmr/m/n/10.95 die-sen au-to-ma-ti-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 239--240
+\T1/lmr/m/n/10.95 wur-den ma-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 239--240
+\T1/lmr/m/n/10.95 nu-ell Grup-pen
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 239--240
+\T1/lmr/m/n/10.95 von (?)Stu-den-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 239--240
+\T1/lmr/m/n/10.95 ten/Mitarbeitern
+ []
+
+
+Underfull \hbox (badness 1762) in paragraph at lines 239--240
+\T1/lmr/m/n/10.95 des De-part-ments
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 239--240
+\T1/lmr/m/n/10.95 an be-stimm-ten
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 239--240
+\T1/lmr/m/n/10.95 Ta-gen vor Ort
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 239--240
+\T1/lmr/m/n/10.95 ein-ge-setzt, um
+ []
+
+
+Underfull \hbox (badness 7168) in paragraph at lines 239--240
+\T1/lmr/m/n/10.95 durch Be-fra-gun-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 239--240
+\T1/lmr/m/n/10.95 gen ma-nu-el-le
+ []
+
+
+Underfull \hbox (badness 7047) in paragraph at lines 239--240
+\T1/lmr/m/n/10.95 fest-ge-stellt, dass
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 239--240
+\T1/lmr/m/n/10.95 bei den durch
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 239--240
+\T1/lmr/m/n/10.95 die Check-points
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 239--240
+\T1/lmr/m/n/10.95 er-ho-be-nen Da-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 239--240
+\T1/lmr/m/n/10.95 ten Mess-feh-ler
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 241--243
+[]\T1/lmr/m/n/10.95 Quelle: Fo-li-en
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--245
+[]\T1/lmr/m/n/10.95 Neben der Er-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 fas-sung von
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 Per-so-nen und
+ []
+
+
+Underfull \hbox (badness 2181) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 LVS-Geräten lie-
+ []
+
+
+Underfull \hbox (badness 3333) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 gen ver-schie-de-ne
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 wei-te-re Da-ten
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 Wet-ter-be-din-gun-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 mög-li-chen Ein-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 fluss-va-ria-blen.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 ^^Rsnowhight^^P be-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 hö-he in cm.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 die Tem-pe-ra-tur
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 des Ta-ges um
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 12:00 mit-tags.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 ^^Rso-lar_radiation^^P
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 zeigt die Son-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 nen-ein-strah-lung
+ []
+
+
+Underfull \hbox (badness 4492) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 in $\OML/cmm/m/it/10.95 W=cm[]$\T1/lmr/m/n/10.95 . Au-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 ßer-dem sind
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 die La-wi-nen-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 warn-stu-fen des
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 je-wei-li-gen Ta-ges
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 an-ge-ge-ben. Es
+ []
+
+
+Underfull \hbox (badness 3029) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 im Tal, des-halb
+ []
+
+
+Underfull \hbox (badness 4569) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 ria-blen: ^^Ravalan-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 che_report_top^^P
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 und ^^Ravalan-
+ []
+
+
+Overfull \hbox (8.07893pt too wide) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 che_report_down^^P.
+ []
+
+
+Underfull \hbox (badness 2680) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 Die-se ge-ben die
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 La-wi-nen-warn-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 stu-fe an der
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 Spit-ze und am
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 an. Ob-wohl es
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 Stu-fen von 1
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 (nied-rig) bis 5
+ []
+
+
+Underfull \hbox (badness 1616) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 war die in dem
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 be-ob-ach-te-ten
+ []
+
+
+Underfull \hbox (badness 1824) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 Ta-gen an de-nen
+ []
+
+
+Underfull \hbox (badness 7504) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 schied-lich wa-ren
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 wur-de au-ßer-
+ []
+
+
+Underfull \hbox (badness 1831) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 dem in ^^Ravalan-
+ []
+
+
+Overfull \hbox (12.7026pt too wide) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 che_report_border^^P
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 der Hö-hen-me-ter
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 an-ge-ge-ben, ab
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 dem sich die
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 La-wi-nen-ge-fahr
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 un-ter-schei-det.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 In ^^Ravalan-
+ []
+
+
+Overfull \hbox (24.80794pt too wide) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 che_report_comment^^P
+ []
+
+
+Underfull \hbox (badness 1442) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 ist ver-merkt, ob
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 es sich da-bei
+ []
+
+
+Underfull \hbox (badness 7504) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 um ei-ne Wald-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 gren-ze han-delt.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 ^^Rday^^P gibt an,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 der Wo-che es
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 ^^Rday_weekday^^P,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 ^^Rday_weekend^^P
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 und ^^Rho-li-day^^P
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 ge-ben je-weils
+ []
+
+
+Underfull \hbox (badness 2080) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 an, ob der Tag
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 ein Tag un-ter
+ []
+
+
+Underfull \hbox (badness 2158) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 der Wo-che oder
+ []
+
+
+Underfull \hbox (badness 6910) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 am Wo-chen-en-de
+ []
+
+
+Underfull \hbox (badness 3590) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 war und ob er
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 sich in-ner-halb
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--245
+\T1/lmr/m/n/10.95 ei-ner Fe-ri-en-zeit
+ []
+
+
+Overfull \hbox (84.10066pt too wide) in paragraph at lines 246--246
+[]\T1/lmr/bx/n/14.4 Datenaufbereitung 
+ []
+
+
+LaTeX Warning: Reference `tab:var' on page 1 undefined on input line 253.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 247--254
+\T1/lmr/m/n/10.95 be-steht dar-in,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 247--254
+\T1/lmr/m/n/10.95 die ge-ge-be-nen
+ []
+
+
+Underfull \hbox (badness 8056) in paragraph at lines 247--254
+\T1/lmr/m/n/10.95 Be-ar-bei-tung der
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 247--254
+\T1/lmr/m/n/10.95 Da-ten durch
+ []
+
+
+Underfull \hbox (badness 5008) in paragraph at lines 247--254
+\T1/lmr/m/n/10.95 schrei-ben) sunn-
+ []
+
+
+Underfull \hbox (badness 4899) in paragraph at lines 247--254
+\T1/lmr/m/n/10.95 ri-se und sun-set
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 247--254
+\T1/lmr/m/n/10.95 ^^Rcount_beacon^^P
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 247--254
+\T1/lmr/m/n/10.95 und
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 247--254
+\T1/lmr/m/n/10.95 ^^Rcount_infrared^^P
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 247--254
+\T1/lmr/m/n/10.95 nen LVS-Geräte
+ []
+
+
+Underfull \hbox (badness 1178) in paragraph at lines 247--254
+\T1/lmr/m/n/10.95 sun-gen pro Tag.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 247--254
+\T1/lmr/m/n/10.95 Mes-sun-gen zu
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 247--254
+\T1/lmr/m/n/10.95 Per-so-nen-da-ten.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 247--254
+\T1/lmr/m/n/10.95 Um-stel-lung des
+ []
+
+
+Underfull \hbox (badness 1472) in paragraph at lines 247--254
+\T1/lmr/m/n/10.95 Ta-ges von 04:00
+ []
+
+
+Underfull \hbox (badness 7133) in paragraph at lines 247--254
+\T1/lmr/m/n/10.95 bis 04:00. Ei-ne
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 247--254
+\T1/lmr/m/n/10.95 Über-sicht über
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 247--254
+\T1/lmr/m/n/10.95 ver-wen-det wur-
+ []
+
+
+! LaTeX Error: Not in outer par mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.257 ^^I^^I\centering
+                      
+You've lost some text.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: Environment adjustbox undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.259 ^^I^^I\begin{adjustbox}
+                             {max width=\textwidth}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   }
+l.259 ...^I\begin{adjustbox}{max width=\textwidth}
+                                                  
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   }
+l.259 ...^I\begin{adjustbox}{max width=\textwidth}
+                                                  
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+
+! LaTeX Error: \begin{table} on input line 256 ended by \end{adjustbox}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.291 ^^I^^I\end{adjustbox}
+                           
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Overfull \hbox (286.82599pt too wide) in paragraph at lines 259--293
+ [] 
+ []
+
+Kapitel 5.
+
+Overfull \hbox (54.86328pt too wide) in paragraph at lines 295--295
+[]\T1/lmr/bx/n/24.88 Deskriptive 
+ []
+
+
+Underfull \hbox (badness 5077) in paragraph at lines 296--297
+\T1/lmr/m/n/10.95 Insgesamt 37593
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 298--299
+[]\T1/lmr/m/n/10.95 8468 Be-acons,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 298--299
+\T1/lmr/m/n/10.95 29125 In-fra-reds
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 298--299
+\T1/lmr/m/n/10.95 (vor Um-ko-die-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 300--301
+[]\T1/lmr/m/n/10.95 nach Um-ko-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 300--301
+\T1/lmr/m/n/10.95 die-rung: 31574
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 302--305
+[]\T1/lmr/m/n/10.95 8468 mit LVS-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 302--305
+\T1/lmr/m/n/10.95 Gerät, 23106
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 302--305
+\T1/lmr/m/n/10.95 oh-ne LVS-Gerät
+ []
+
+
+Underfull \hbox (badness 6725) in paragraph at lines 302--305
+\T1/lmr/m/n/10.95 pr Die meis-ten
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 302--305
+\T1/lmr/m/n/10.95 Leu-te zwi-schen
+ []
+
+
+Underfull \hbox (badness 2005) in paragraph at lines 302--305
+\T1/lmr/m/n/10.95 09:00 und 18:00
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 308--309
+[]\T1/lmr/m/n/10.95 Schneehöhe
+ []
+
+
+Underfull \hbox (badness 2213) in paragraph at lines 308--309
+\T1/lmr/m/n/10.95 Ja-nu-ar stark zu
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 310--311
+[]\T1/lmr/m/n/10.95 Temperatur
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 310--311
+\T1/lmr/m/n/10.95 ab und steigt
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 312--313
+[]\T1/lmr/m/n/10.95 Sonnenstrahlung
+ []
+
+
+Underfull \hbox (badness 5302) in paragraph at lines 312--313
+\T1/lmr/m/n/10.95 steigt bis März
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 318--319
+[]\T1/lmr/m/n/10.95 Anteil schwankt
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 318--319
+\T1/lmr/m/n/10.95 in den ers-ten
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 320--321
+[]\T1/lmr/m/n/10.95 generell vie-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 320--321
+\T1/lmr/m/n/10.95 le Aus-rei-ßer,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 320--321
+\T1/lmr/m/n/10.95 Ver-än-de-rung
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 320--321
+\T1/lmr/m/n/10.95 bei Schnee-hö-he,
+ []
+
+
+Underfull \hbox (badness 5217) in paragraph at lines 320--321
+\T1/lmr/m/n/10.95 Tem-pe-ra-tur und
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 320--321
+\T1/lmr/m/n/10.95 Son-nen-ein-strah-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 324--325
+[]\T1/lmr/m/n/10.95 mit stei-gen-der
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 324--325
+\T1/lmr/m/n/10.95 La-wi-nen-ge-fahr
+ []
+
+Kapitel 6.
+
+Overfull \hbox (33.26955pt too wide) in paragraph at lines 326--326
+[]\T1/lmr/bx/n/24.88 Methodik  
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 327--330
+\T1/lmr/m/n/10.95 In fol-gen-dem
+ []
+
+
+Underfull \hbox (badness 3281) in paragraph at lines 327--330
+\T1/lmr/m/n/10.95 Ka-pi-tel soll an-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 327--330
+\T1/lmr/m/n/10.95 hand der zur
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 327--330
+\T1/lmr/m/n/10.95 Ver-fü-gung ge-
+ []
+
+
+Underfull \hbox (badness 2790) in paragraph at lines 327--330
+\T1/lmr/m/n/10.95 Sai-son 18/19 in
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 327--330
+\T1/lmr/m/n/10.95 Zu-sam-men-hang
+ []
+
+
+Underfull \hbox (badness 6016) in paragraph at lines 327--330
+\T1/lmr/m/n/10.95 ei-ner be-ob-ach-te-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 327--330
+\T1/lmr/m/n/10.95 ten ab-hän-gi-gen
+ []
+
+
+Underfull \hbox (badness 2376) in paragraph at lines 327--330
+\T1/lmr/m/n/10.95 Va-ria-ble, in un-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 327--330
+\T1/lmr/m/n/10.95 se-rem Fall die
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 327--330
+\T1/lmr/m/n/10.95 Ski-tou-ren-gän-ger
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 327--330
+\T1/lmr/m/n/10.95 mit LVS-Gerät,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 327--330
+\T1/lmr/m/n/10.95 durch meh-re-re
+ []
+
+
+Underfull \hbox (badness 2126) in paragraph at lines 327--330
+\T1/lmr/m/n/10.95 un-ab-hän-gi-ge Va-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 327--330
+\T1/lmr/m/n/10.95 ria-blen er-klärt
+ []
+
+
+Underfull \hbox (badness 5908) in paragraph at lines 327--330
+\T1/lmr/m/n/10.95 wer-den. Mit-hil-fe
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 327--330
+\T1/lmr/m/n/10.95 der ge-ne-ra-li-sier-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 327--330
+\T1/lmr/m/n/10.95 ten ad-di-ti-ven
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 327--330
+\T1/lmr/m/n/10.95 Re-gres-si-on lässt
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 327--330
+\T1/lmr/m/n/10.95 sich die-se Fra-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 327--330
+\T1/lmr/m/n/10.95 ge-stel-lung auf
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 327--330
+\T1/lmr/m/n/10.95 struk-tu-rier-te
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 327--330
+\T1/lmr/m/n/10.95 Mo-del-lie-rung
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 327--330
+\T1/lmr/m/n/10.95 wird mit-tels
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 327--330
+\T1/lmr/m/n/10.95 nichpa-ra-me-tri-
+ []
+
+
+Underfull \hbox (badness 5147) in paragraph at lines 327--330
+\T1/lmr/m/n/10.95 scher Re-gres-si-on
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 327--330
+\T1/lmr/m/n/10.95 durch-ge-führt.
+ []
+
+
+Underfull \hbox (badness 6775) in paragraph at lines 327--330
+\T1/lmr/m/n/10.95 Da-bei wird für
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 327--330
+\T1/lmr/m/n/10.95 die Er-klä-rung
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 327--330
+\T1/lmr/m/n/10.95 schritt-wei-se von
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 327--330
+\T1/lmr/m/n/10.95 den B-Splines,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 327--330
+\T1/lmr/m/n/10.95 und letzt-end-lich
+ []
+
+
+Underfull \hbox (badness 2846) in paragraph at lines 327--330
+\T1/lmr/m/n/10.95 sier-ten ad-di-ti-ven
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 327--330
+\T1/lmr/m/n/10.95 Re-gres-si-ons-mo-
+ []
+
+
+Overfull \hbox (89.515pt too wide) in paragraph at lines 331--331
+[]\T1/lmr/bx/n/14.4 Nichtparametrische
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 331--331
+\T1/lmr/bx/n/14.4 Re-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 331--331
+\T1/lmr/bx/n/14.4 gres-si-
+ []
+
+
+Underfull \hbox (badness 1152) in paragraph at lines 332--334
+\T1/lmr/m/n/10.95 Bei ei-nem li-nea-
+ []
+
+
+Underfull \hbox (badness 7504) in paragraph at lines 332--334
+\T1/lmr/m/n/10.95 ren Re-gres-si-ons-
+ []
+
+
+Underfull \hbox (badness 1789) in paragraph at lines 332--334
+\T1/lmr/m/n/10.95 mo-dell wird der
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 332--334
+\T1/lmr/m/n/10.95 Er-war-tungs-wert
+ []
+
+
+Underfull \hbox (badness 2529) in paragraph at lines 332--334
+\T1/lmr/m/n/10.95 kom-bi-na-ti-on von
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 332--334
+\T1/lmr/m/n/10.95 Ein-fluss-gröÿen,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 332--334
+\T1/lmr/m/n/10.95 auch Ko-va-ria-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 332--334
+\T1/lmr/m/n/10.95 blen ge-nannt,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 332--334
+\T1/lmr/m/n/10.95 be-schrie-ben. In
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 332--334
+\T1/lmr/m/n/10.95 prak-ti-schen An-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 332--334
+\T1/lmr/m/n/10.95 wen-dun-gen ist
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 332--334
+\T1/lmr/m/n/10.95 den li-nea-ren
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 332--334
+\T1/lmr/m/n/10.95 Ein-flüs-sen auch
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 332--334
+\T1/lmr/m/n/10.95 nicht-lineare,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 332--334
+\T1/lmr/m/n/10.95 fle-xi-ble Ein-flüs-
+ []
+
+
+Underfull \hbox (badness 6477) in paragraph at lines 332--334
+\T1/lmr/m/n/10.95 se von ste-ti-gen
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 332--334
+\T1/lmr/m/n/10.95 Ko-va-ria-blen auf
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 332--334
+\T1/lmr/m/n/10.95 die ab-hän-gi-ge
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 332--334
+\T1/lmr/m/n/10.95 Va-ria-ble wir-ken
+ []
+
+
+Underfull \hbox (badness 3312) in paragraph at lines 332--334
+\T1/lmr/m/n/10.95 va-ria-te Glät-tung
+ []
+
+
+Underfull \hbox (badness 4403) in paragraph at lines 332--334
+\T1/lmr/m/n/10.95 ren dar, wel-che
+ []
+
+
+Underfull \hbox (badness 1502) in paragraph at lines 332--334
+\T1/lmr/m/n/10.95 ei-ne fe-xi-ble Mo-
+ []
+
+
+Underfull \hbox (badness 5288) in paragraph at lines 332--334
+\T1/lmr/m/n/10.95 del-lie-rung ge-nau
+ []
+
+
+Underfull \hbox (badness 5787) in paragraph at lines 332--334
+\T1/lmr/m/n/10.95 ei-ner me-tri-schen
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 332--334
+\T1/lmr/m/n/10.95 un-ab-hän-gi-gen
+ []
+
+
+Underfull \hbox (badness 1360) in paragraph at lines 332--334
+\T1/lmr/m/n/10.95 me-tri-sche Ziel-va-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 332--334
+\T1/lmr/m/n/10.95 Es wird da-von
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 332--334
+\T1/lmr/m/n/10.95 aus-ge-gan-gen,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 332--334
+\T1/lmr/m/n/10.95 dass die Mes-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 332--334
+\T1/lmr/m/n/10.95 sun-gen $\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 y[]; z[]\OT1
+/cmr/m/n/10.95 )$
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 332--334
+\T1/lmr/m/n/10.95 ge-ge-ben sind,
+ []
+
+
+Underfull \hbox (badness 4001) in paragraph at lines 332--334
+\T1/lmr/m/n/10.95 ob-ach-tun-gen der
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 332--334
+\T1/lmr/m/n/10.95 Ziel-va-ria-ble und
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 332--334
+\T1/lmr/m/n/10.95 ria-ble ab-bil-den.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 332--334
+\T1/lmr/m/n/10.95 Die Ziel-va-ria-ble
+ []
+
+
+Underfull \hbox (badness 3148) in paragraph at lines 332--334
+\T1/lmr/m/n/10.95 lässt sich durch
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 332--334
+\T1/lmr/m/n/10.95 die Funk-ti-on
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 332--334
+\T1/lmr/m/n/10.95 der Ko-va-ria-ble
+ []
+
+
+Underfull \hbox (badness 2401) in paragraph at lines 332--334
+\T1/lmr/m/n/10.95 und ei-nen ad-di-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 332--334
+\T1/lmr/m/n/10.95 ti-ven Stör-term
+ []
+
+
+Overfull \hbox (210.5641pt too wide) detected at line 336
+[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 338--339
+[]\T1/lmr/m/n/10.95 Daraus er-gibt
+ []
+
+
+Overfull \hbox (127.99574pt too wide) detected at line 342
+[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 342--344
+\T1/lmr/m/n/10.95 was be-deu-tet,
+ []
+
+
+Underfull \hbox (badness 1442) in paragraph at lines 342--344
+\T1/lmr/m/n/10.95 dass die Schätz-
+ []
+
+
+Underfull \hbox (badness 6047) in paragraph at lines 342--344
+\T1/lmr/m/n/10.95 funk-ti-on $\OML/cmm/m/it/10.95 f$ \T1/lmr/m/n/10.95 den
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 342--344
+\T1/lmr/m/n/10.95 Er-war-tungs-wert
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 342--344
+\T1/lmr/m/n/10.95 der ab-hän-gi-gen
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 342--344
+\T1/lmr/m/n/10.95 Im nächs-ten
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 342--344
+\T1/lmr/m/n/10.95 Schritt, wer-den
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 342--344
+\T1/lmr/m/n/10.95 un-ter-schied-li-che
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 342--344
+\T1/lmr/m/n/10.95 Glätt-ver-fah-ren,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 342--344
+\T1/lmr/m/n/10.95 die es er-mög-li-
+ []
+
+
+Overfull \hbox (12.36374pt too wide) in paragraph at lines 345--345
+[]\T1/lmr/bx/n/12 Polynom-
+ []
+
+
+Underfull \hbox (badness 6236) in paragraph at lines 346--347
+\T1/lmr/m/n/10.95 die Funk-ti-on $\OML/cmm/m/it/10.95 f$
+ []
+
+
+Underfull \hbox (badness 6725) in paragraph at lines 346--347
+\T1/lmr/m/n/10.95 ab-zu-bil-den, sind
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 346--347
+\T1/lmr/m/n/10.95 Po-ly-no-me mo-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 346--347
+\T1/lmr/m/n/10.95 del-liert wer-den.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 346--347
+\T1/lmr/m/n/10.95 Da-bei wer-den
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 346--347
+\T1/lmr/m/n/10.95 die so-ge-nann-ten
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 346--347
+\T1/lmr/m/n/10.95 Polynom-Splines
+ []
+
+
+Underfull \hbox (badness 5105) in paragraph at lines 346--347
+\T1/lmr/m/n/10.95 wei-se auf Ba-sis
+ []
+
+
+Underfull \hbox (badness 6825) in paragraph at lines 346--347
+\T1/lmr/m/n/10.95 der Kno-ten-men-
+ []
+
+
+Underfull \hbox (badness 5133) in paragraph at lines 346--347
+\T1/lmr/m/n/10.95 gen $\OML/cmm/m/it/10.95 k[]$ \T1/lmr/m/n/10.95 bis $\OML/cmm
+/m/it/10.95 k[]$
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 346--347
+\T1/lmr/m/n/10.95 die Glatt-heit
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 346--347
+\T1/lmr/m/n/10.95 des Po-ly-noms
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 346--347
+\T1/lmr/m/n/10.95 ge-währ-leis-tet
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 346--347
+\T1/lmr/m/n/10.95 wer-den kann,
+ []
+
+
+Underfull \hbox (badness 1540) in paragraph at lines 346--347
+\T1/lmr/m/n/10.95 on $\OML/cmm/m/it/10.95 f\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10
+.95 z\OT1/cmr/m/n/10.95 )$ \T1/lmr/m/n/10.95 an den
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 346--347
+\T1/lmr/m/n/10.95 In-ter-vall-gren-zen
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 346--347
+\T1/lmr/m/n/10.95 dif-fe-ren-zier-bar
+ []
+
+
+Underfull \hbox (badness 6526) in paragraph at lines 346--347
+\T1/lmr/m/n/10.95 sein. Der Grad
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 346--347
+\T1/lmr/m/n/10.95 ten be-stim-men
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 346--347
+\T1/lmr/m/n/10.95 die Glatt-heit
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 346--347
+\T1/lmr/m/n/10.95 an Kno-ten ist,
+ []
+
+
+Underfull \hbox (badness 5388) in paragraph at lines 346--347
+\T1/lmr/m/n/10.95 des-to $\OML/cmm/m/it/10.95 rauer$ \T1/lmr/m/n/10.95 ist
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 348--348
+[]\T1/lmr/bx/n/12 Basis
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 348--348
+\T1/lmr/bx/n/12 Spli-nes
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 348--348
+\T1/lmr/bx/n/12 (B-
+ []
+
+
+Overfull \hbox (2.62671pt too wide) in paragraph at lines 348--348
+\T1/lmr/bx/n/12 Splines) 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 349--350
+\T1/lmr/m/n/10.95 Eine wei-te-re
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 349--350
+\T1/lmr/m/n/10.95 Mög-lich-keit, die
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 349--350
+\T1/lmr/m/n/10.95 Schätz-funk-ti-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 349--350
+\T1/lmr/m/n/10.95 on fle-xi-bel zu
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 349--350
+\T1/lmr/m/n/10.95 mo-del-lie-ren ist
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 349--350
+\T1/lmr/m/n/10.95 die Dar-stel-lung
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 349--350
+\T1/lmr/m/n/10.95 von Polynom-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 349--350
+\T1/lmr/m/n/10.95 Splines mit-tels
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 349--350
+\T1/lmr/m/n/10.95 der Spline-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 349--350
+\T1/lmr/m/n/10.95 Basisfunktionen.
+ []
+
+
+Underfull \hbox (badness 3108) in paragraph at lines 349--350
+\T1/lmr/m/n/10.95 wird in $\OML/cmm/m/it/10.95 m \OMS/cmsy/m/n/10.95 ^^@ \OT1/c
+mr/m/n/10.95 1$
+ []
+
+
+Underfull \hbox (badness 1142) in paragraph at lines 349--350
+\T1/lmr/m/n/10.95 In-ter-val-le ge-teilt,
+ []
+
+
+Underfull \hbox (badness 5288) in paragraph at lines 349--350
+\T1/lmr/m/n/10.95 Kno-ten de-fi-niert
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 349--350
+\T1/lmr/m/n/10.95 wer-den (GLM
+ []
+
+
+Underfull \hbox (badness 1205) in paragraph at lines 349--350
+\T1/lmr/m/n/10.95 Nach der Schät-
+ []
+
+
+Underfull \hbox (badness 2401) in paragraph at lines 349--350
+\T1/lmr/m/n/10.95 zung von ei-nem
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 349--350
+\T1/lmr/m/n/10.95 Po-ly-nom vom
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 349--350
+\T1/lmr/m/n/10.95 In-ter-vall wer-den
+ []
+
+
+Underfull \hbox (badness 2990) in paragraph at lines 349--350
+\T1/lmr/m/n/10.95 Kno-ten ge-bil-det,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 349--350
+\T1/lmr/m/n/10.95 der ein-zel-nen
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 349--350
+\T1/lmr/m/n/10.95 men-zu-füh-ren,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 349--350
+\T1/lmr/m/n/10.95 oh-ne, dass es
+ []
+
+
+Underfull \hbox (badness 2401) in paragraph at lines 349--350
+\T1/lmr/m/n/10.95 an den Knoten-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 349--350
+\T1/lmr/m/n/10.95 Punkten zu
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 349--350
+\T1/lmr/m/n/10.95 An-schlieÿend
+ []
+
+
+Underfull \hbox (badness 1496) in paragraph at lines 349--350
+\T1/lmr/m/n/10.95 wird $\OML/cmm/m/it/10.95 f\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/
+10.95 z\OT1/cmr/m/n/10.95 )$ \T1/lmr/m/n/10.95 durch
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 349--350
+\T1/lmr/m/n/10.95 da-mit fol-gen-de
+ []
+
+
+Overfull \hbox (4.37604pt too wide) detected at line 353
+[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 353--355
+\T1/lmr/m/n/10.95 mit Pa-ra-me-ter-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 353--355
+\T1/lmr/m/n/10.95 vek-tor $\OML/cmm/m/it/10.95 ^^M$\T1/lmr/m/n/10.95 , der
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 353--355
+\T1/lmr/m/n/10.95 die Ba-sis-funk-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 353--355
+\T1/lmr/m/n/10.95 ti-on ska-liert,
+ []
+
+! Extra }, or forgotten \endgroup.
+\@endpbox ...finalstrut \@arstrutbox \par \egroup 
+                                                  \hfil 
+l.355 ^^IF
+          ür B-Splines vom Grad 0 folgt:
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+! Missing \endgroup inserted.
+<inserted text> 
+                \endgroup 
+l.355 ^^IF
+          ür B-Splines vom Grad 0 folgt:
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Missing } inserted.
+<inserted text> 
+                }
+l.355 ^^IF
+          ür B-Splines vom Grad 0 folgt:
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 355--356
+[]\T1/lmr/m/n/10.95 Für B-Splines
+ []
+
+Runaway argument?
+ B_{j}^0(z)= \mathbb {1}_{[k_{j},k_{j+1}]}(z)= \begin {cases} 1 \@endpbox \ETC.
+! Forbidden control sequence found while scanning use of \align.
+<inserted text> 
+                \par 
+l.360 ^^I1 &
+             k_{j} \leq z<k_{j+1};\enspace mit\enspace j=1,...,d-1; \\
+I suspect you have forgotten a `}', causing me
+to read past where you wanted me to stop.
+I'll try to recover; but if the error is serious,
+you'd better type `E' or `X' now and fix your file.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.360 ^^I1 &
+             k_{j} \leq z<k_{j+1};\enspace mit\enspace j=1,...,d-1; \\
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing \endgroup inserted.
+<inserted text> 
+                \endgroup 
+l.360 ^^I1 &
+             k_{j} \leq z<k_{j+1};\enspace mit\enspace j=1,...,d-1; \\
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Display math should end with $$.
+<to be read again> 
+                   \endtemplate 
+l.360 ^^I1 &
+             k_{j} \leq z<k_{j+1};\enspace mit\enspace j=1,...,d-1; \\
+The `$' that I just saw supposedly matches a previous `$$'.
+So I shall assume that you typed `$$' both times.
+
+! Missing \endgroup inserted.
+<inserted text> 
+                \endgroup 
+l.360 ^^I1 &
+             k_{j} \leq z<k_{j+1};\enspace mit\enspace j=1,...,d-1; \\
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Missing } inserted.
+<inserted text> 
+                }
+l.360 ^^I1 &
+             k_{j} \leq z<k_{j+1};\enspace mit\enspace j=1,...,d-1; \\
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.360 ^^I1 & k_
+               {j} \leq z<k_{j+1};\enspace mit\enspace j=1,...,d-1; \\
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.361 ^^I0
+           & \text{sonst.} \\
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Extra \right.
+\endcases ->\endarray \right .
+                              
+l.362 ^^I\end{cases}
+                    
+I'm ignoring a \right that had no matching \left.
+
+
+! LaTeX Error: \begin{tabular} on input line 78 ended by \end{cases}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.362 ^^I\end{cases}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.362 ^^I\end{cases}
+                    
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Missing } inserted.
+<inserted text> 
+                }
+l.362 ^^I\end{cases}
+                    
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Misplaced \cr.
+\math@cr@@@ ->\cr 
+                  
+l.363 ^^I\end{align}
+                    
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Misplaced \noalign.
+\math@cr@@ ... \iffalse }\fi \math@cr@@@ \noalign 
+                                                  {\vskip #1\relax }
+l.363 ^^I\end{align}
+                    
+I expect to see \noalign only after the \cr of
+an alignment. Proceed, and I'll ignore this case.
+
+
+Overfull \hbox (17.43306pt too wide) in paragraph at lines 78--363
 [][] 
  []
 
-[6] [7] [8]
-Kapitel 3.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 152.
-[9
+! Misplaced \noalign.
+\black@ #1->\noalign 
+                     {\ifdim #1>\displaywidth \dimen@ \prevdepth \nointerlin...
+l.363 ^^I\end{align}
+                    
+I expect to see \noalign only after the \cr of
+an alignment. Proceed, and I'll ignore this case.
 
-]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 152.
+
+Overfull \hbox (89.7343pt too wide) detected at line 363
+[]
+ []
+
+
+! LaTeX Error: \begin{table} on input line 76 ended by \end{align}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.363 ^^I\end{align}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.363 ^^I\end{align}
+                    
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Display math should end with $$.
+<to be read again> 
+                   \endgroup 
+l.363 ^^I\end{align}
+                    
+The `$' that I just saw supposedly matches a previous `$$'.
+So I shall assume that you typed `$$' both times.
+
+[1] [2]
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.374 ^^I\begin{figure}[H]
+                          
+Option `H' ignored and `p' used.
+
+
+! LaTeX Error: File `bilder/b_spline_basis' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.376 ...idth=.9\textwidth]{bilder/b_spline_basis}
+                                                  
+I could not locate the file with any of these extensions:
+.pdf,.PDF,.ai,.AI,.png,.PNG,.jpg,.JPG,.jpeg,.JPEG,.jp2,.JP2,.jpf,.JPF,.bmp,.BMP
+,.ps,.PS,.eps,.EPS,.mps,.MPS,.pz,.eps.Z,.ps.Z,.ps.gz,.eps.gz
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 383--385
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 391--393
+
+ []
+
+[3]
+Missing character: There is no ﬂ in font ec-lmr10!
+
+Underfull \hbox (badness 10000) in paragraph at lines 409--410
+
+ []
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 426.
+[4] [5]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 426.
  (Bericht.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 152.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 152.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 426.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 426.
 Package rerunfilecheck Info: File `Bericht.out' has not changed.
-(rerunfilecheck)             Checksum: 4181E51F9C584E2905305ADFB5B4415D;361.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 152.
+(rerunfilecheck)             Checksum: 4DBB375CE8BBD1A16A2EBFE24E766612;463.
+
+
+LaTeX Warning: There were undefined references.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 426.
  ) 
 Here is how much of TeX's memory you used:
- 7470 strings out of 480934
- 112670 string characters out of 2899917
- 390210 words of memory out of 3000000
- 23154 multiletter control sequences out of 15000+200000
- 546909 words of font info for 60 fonts, out of 3000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 34i,10n,30p,1381b,353s stack positions out of 5000i,500n,10000p,200000b,50000s
- <C:\Users\elekt\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\
-tcrm1095.pk> <C:\Users\elekt\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/
-ec/dpi600\ecbx1440.pk> <C:\Users\elekt\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour
-/jknappen/ec/dpi600\ectt1095.pk> <C:\Users\elekt\AppData\Local\MiKTeX\2.9\fonts
-/pk/ljfour/jknappen/ec/dpi600\ecbx2074.pk> <C:\Users\elekt\AppData\Local\MiKTeX
-\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1095.pk> <C:\Users\elekt\AppData\Lo
-cal\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1095.pk> <C:\Users\elekt\
-AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk> <C:\Us
-ers\elekt\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.
-pk> <C:\Users\elekt\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600
-\ecrm1728.pk><C:/Users/elekt/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publ
-ic/amsfonts/cm/cmmi10.pfb><C:/Users/elekt/AppData/Local/Programs/MiKTeX 2.9/fon
-ts/type1/public/amsfonts/cm/cmr8.pfb>
-Output written on Bericht.pdf (10 pages, 2874360 bytes).
-PDF statistics:
- 385 PDF objects out of 1000 (max. 8388607)
- 21 named destinations out of 1000 (max. 500000)
- 54 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 10504 strings out of 414613
+ 145768 string characters out of 2911252
+ 444776 words of memory out of 3000000
+ 27437 multiletter control sequences out of 15000+200000
+ 578218 words of font info for 64 fonts, out of 3000000 for 9000
+ 1348 hyphenation exceptions out of 8191
+ 34i,17n,45p,1373b,590s stack positions out of 5000i,500n,10000p,200000b,50000s
 
+Output written on Bericht.pdf (11 pages).

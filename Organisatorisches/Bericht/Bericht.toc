@@ -2,6 +2,7 @@
 \contentsline {chapter}{\numberline {1}Einleitung}{4}{chapter.1}%
 \contentsline {chapter}{\numberline {2}Datenbasis}{5}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Datengrundlage}{5}{section.2.1}%
-\contentsline {section}{\numberline {2.2}Datenaufbereitung}{6}{section.2.2}%
-\contentsline {section}{\numberline {2.3}Deskriptive Analyse}{6}{section.2.3}%
-\contentsline {chapter}{\numberline {3}Theorie und Beschreibung der verwendeten Modelle}{9}{chapter.3}%
+\contentsline {section}{\numberline {2.2}Datenaufbereitung}{1}{section.2.2}%
+\contentsline {subsection}{\numberline {6.1.3}Penalisierte Splines (P-Splines)}{3}{subsection.6.1.3}%
+\contentsline {section}{\numberline {6.2}Additives Modell}{4}{section.6.2}%
+\contentsline {subsection}{\numberline {6.2.1}Generalizierte additive Modell}{4}{subsection.6.2.1}%

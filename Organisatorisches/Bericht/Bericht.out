@@ -2,5 +2,6 @@
 \BOOKMARK [0][-]{chapter.2}{Datenbasis}{}% 2
 \BOOKMARK [1][-]{section.2.1}{Datengrundlage}{chapter.2}% 3
 \BOOKMARK [1][-]{section.2.2}{Datenaufbereitung}{chapter.2}% 4
-\BOOKMARK [1][-]{section.2.3}{Deskriptive Analyse}{chapter.2}% 5
-\BOOKMARK [0][-]{chapter.3}{Theorie und Beschreibung der verwendeten Modelle}{}% 6
+\BOOKMARK [2][-]{subsection.6.1.3}{Penalisierte\040Splines\040\(P-Splines\)}{section.6.1}% 14
+\BOOKMARK [1][-]{section.6.2}{Additives\040Modell}{chapter.6}% 15
+\BOOKMARK [2][-]{subsection.6.2.1}{Generalizierte\040additive\040Modell}{section.6.2}% 16

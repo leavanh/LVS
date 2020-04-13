@@ -56,27 +56,11 @@ zlg_ckpt_beide_bereinigt[98, -c(1,3)] <- 0
 
 ## Über gesamten Zeitraum, bereinigter Datensatz: 
 
-## Studentenmessungen vs Checkpointmessungen
-
-messungvergleich <- data.frame(type = c("Studenten", "Checkpoint"),
-                               sum =as.numeric(
-                                      c(sum(zlg_beide_bereinigt$gesamt),
-                                        sum(zlg_ckpt_beide_bereinigt$erfasst))))
-messungvergleich
-
-ggplot(data = messungvergleich) +
-  geom_bar(aes(x = type, y = sum), stat = "identity") +
-  labs(title = "Vergleich der Checkpoint- und Studentendaten",
-       x = "Art der Messung", y = "Anzahl")
-
-
-## Anteil anderer Kontakte an Gesamtmessungen der Studenten
-
 # Passenden Dataframe mit Summen für Plot erstellen
 
 zlg_beide_bereinigt_summen <- data.frame(type = colnames(zlg_beide_bereinigt)[-c(1,11)], 
-                                        sum = apply(zlg_beide_bereinigt[,-c(1,11)], 2, sum), 
-                                        row.names = NULL)
+                                         sum = apply(zlg_beide_bereinigt[,-c(1,11)], 2, sum), 
+                                         row.names = NULL)
 zlg_beide_bereinigt_summen$type <- as.character(zlg_beide_bereinigt_summen$type)
 
 zlg_beide_bereinigt_summen <- rbind(zlg_beide_bereinigt_summen, 
@@ -87,17 +71,36 @@ zlg_beide_bereinigt_summen$sum <- as.numeric(zlg_beide_bereinigt_summen$sum)
 
 zlg_beide_bereinigt_summen
 
+## Studentenmessungen vs Checkpointmessungen
+
+ggplot(data = filter(zlg_beide_bereinigt_summen, type %in% c("checkpoint", "gesamt"))) +
+  geom_bar(aes(x = type, y = sum), stat = "identity") +
+  labs(title = "Vergleich der Checkpoint- und Studentendaten",
+       x = "Art der Messung", y = "Anzahl")
+
+# als Anteil in Prozent
+
+zlg_beide_bereinigt_summen$sum[zlg_beide_bereinigt_summen$type == "checkpoint"] / 
+  zlg_beide_bereinigt_summen$sum[zlg_beide_bereinigt_summen$type == "gesamt"]
+
+
+
 # Anteil anderer Kontakte an Gesamtmessungen
 
 ggplot(data = filter(zlg_beide_bereinigt_summen, type %in% c("aK_gesamt", "gesamt"))) +
   geom_bar(aes(x = type, y = sum), stat = "identity")
 
+# als Anteil in Prozent
+
+zlg_beide_bereinigt_summen$sum[zlg_beide_bereinigt_summen$type == "aK_gesamt"] / 
+  zlg_beide_bereinigt_summen$sum[zlg_beide_bereinigt_summen$type == "gesamt"]
 
 
 
-## Anteil Erfassungen vs Nichterfassungen zu allen Daten
 
-# Dataframe mit Summen erstellen
+
+
+# Dataframe mit Summen für alle Daten erstellen
 
 zlg_beide_summen <- data.frame(type = colnames(zlg_beide)[-c(1,11)], 
                                sum = apply(zlg_beide[,-c(1,11)], 2, sum), 
@@ -112,10 +115,16 @@ zlg_beide_summen$sum <- as.numeric(zlg_beide_summen$sum)
 
 zlg_beide_summen
 
-# Plot
 
-ggplot(data = filter(zlg_beide_summen, type %in% c("gesamt", "checkpoint"))) +
+# Erfassungen vs Nichterfassungen zu allen Daten
+
+ggplot(data = filter(zlg_beide_summen, type %in% c("nicht_erfasst", "erfasst"))) +
   geom_bar(aes(x = type, y = sum), stat = "identity")
+
+# als Anteil in Prozent
+
+zlg_beide_summen$sum[zlg_beide_summen$type == "nicht_erfasst"] / 
+  zlg_beide_summen$sum[zlg_beide_summen$type == "erfasst"]
 
 
 
@@ -137,7 +146,7 @@ nicht_erfasst_je_gruppe <- zlg_beide %>% group_by(gesamt) %>%
 erfassung_je_gruppe <- rbind(erfasst_je_gruppe, nicht_erfasst_je_gruppe) %>%
                         rename(grösse = gesamt)
 
-
+erfassung_je_gruppe
 
 # Plot Anzahl der (Nicht-)Erfassungen nach Gruppengröße
 

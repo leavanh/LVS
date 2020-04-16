@@ -4,6 +4,7 @@ resid <- residuals(date_model, type = type)
 linpred <- napredict(date_model$na.action, date_model$linear.predictors)
 observed.y <- napredict(date_model$na.action, date_model$y)
 
+
 # Grafik extrahieren
 plot(fitted(date_model), observed.y, xlab = "Fitted Values", 
      ylab = "Response", main = "Response vs. Fitted Values")

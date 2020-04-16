@@ -418,7 +418,7 @@ f(z)=\gamma_{0}+\gamma_{1}z+...+\gamma_{l}z^l,
 \end{align}
 wobei das Polynom vom Grad $l$ durch den Einfluss von $z$ auf $y$ modelliert wird und $\gamma_{j}$ die Regressionskoeffizienten darstellen. Um eine flexible Schätzfunktion gewährleisten zu können, wird der Definitionsbereich von $z$ in Intervalle geteilt und Polynome werden für das jeweilige Intervall geschätzt. Die Zerlegung von $z$ erfolgt stückweise auf Basis von sogenannten Knotenmengen $k_{1}$ bis $k_{m}$.  Ein Problem, welches dabei entstehen könnte ist, dass an den Intervallgrenzen keine $glatte$ Funktion entstehen. Der Graph einer $glatten$ Funktion hat an den Intervallgrenzen keine \glqq{Ecken\grqq}. Deshalb muss für die \glqq{mathematische}\grqq ~Glattheit die zusätzliche Bedingung, dass die Funktion $f(z)$ an den Intervallgrenzen $(l-1)$-mal stetig differenzierbar ist, eingeführt werden. Der Grad des Splines und die Anzahl der Knoten können somit im hohen Ma"se die Funktion beeinflussen, je höher die Anzahl an Knoten ist, desto $rauer$ ist die Funktion $f(z)$. Um Polynom-Splines in der Praxis anwenden zu können, bedarf es einer Darstellung der Menge der Polynom-Splines. Eine mögliche Darstellung eines Polynom-Splines stellt die B-Spline-Basisfunktion dar.
 
-\subsection{Basis Splines (B-Splines)}
+\subsection{Basis Splines}
 Der B-Spline dient als Basisfunktion für Polynom-Splines. Jedoch wird sich auch der Penalisierungs-Spline, welcher im darauffolgenen Kapitel vorgestellt wird, die B-Spline-Basisfunktion zu Nutzen machen. Das Ziel bei der Konstruktion der B-Spline-Basisfunktion ist es die Polynomstücke des gewünschten Grades an den Knoten ausreichend $glatt$ zusammenzusetzen. Die Basisfunktion besteht dabei aus $(l+1)$ Polynomstücken vom Grad $l$, welche stetig an den Knoten zusammengesetzt werden. Die Funktion $f(z)$ lässt sich durch die Linearkombination der Basisfunktionen:
 \begin{align}
 f(z)=\sum_{j=1}^d\gamma_{j}B_{j}(z)
@@ -491,7 +491,7 @@ Der Erwartungswert $\mu$ der Zielvariable $y$ wird mit dem additiven Prädiktor:
 \end{align}
 durch eine Responsefunktion $h$ bzw. eine Linkfunktion $g=h^{-1}$ zu:
 \begin{align}
-\mu=h(\eta) ~bzw. \eta=g(\mu)
+\mu=h(\eta) ~bzw. ~\eta=g(\mu)
 \end{align}
 verknüpft.
 Dabei ist der Prädiktor ein wichtiges Hilfsmittel bei der effizienten Codierung von additiven Modellen. Wie schon im vorherigen Kapitel (4.1) beschrieben, sind $f_{1}(z_{i1}),...,f_{q}(z_{iq})$ $glatte$ Funktionen, die grundsätzlich nicht durch eine starre parametrische Form festgelegt werden, sondern durch nicht-parametrische Methoden geschätzt werden. Die Parameter $\beta_{0},...,\beta_{k}$ werden mittels der Maximum-Likelihood-Methode:
@@ -510,15 +510,47 @@ Dies lässt sich mit dem Logit-Link zu
 trasformieren. \\
 Des weiteren muss die Varianzhomogenität, auch Homoskedastizität genannt, nicht unbedingt befriedigt sein. Das hei"st, die Varianz ist in einigen Fällen nicht konstant und hat die Form:
 \begin{align}
-Var(y_{i})=\frac{\pi_{i}(1-\pi_{i})}{w}.
+Var(y_{i})=\frac{\pi_{i}(1-\pi_{i})}{w_{i}}.
 \end{align}
-Der Gewichtungsfaktor $w$ wurde eingeführt um den Fall von Individual- und gruppierten-Daten gleich zu behandeln. Für Individualdaten gilt $w=1$, für gruppierte Daten nimmt $w$ den Umfang der Gruppe an. Auf die Bedeutung von gruppierten Daten, wird im nächsten Kapitel näher eingegangen. 
+Der Gewichtungsfaktor $w_{i}$ wurde eingeführt um den Fall von Individual- und gruppierten-Daten gleich zu behandeln. Für Individualdaten gilt $w=1$, für gruppierte Daten nimmt $w_{i}$ den jeweiligen Umfang der Gruppe an. Auf die Bedeutung von gruppierten Daten, wird im nächsten Kapitel näher eingegangen. 
 Beim Störterm $\epsilon_{i}$ geht man davon aus, dass dieser unabhängig sein muss, jedoch ist $\epsilon_{i}$ im binären Fall nicht normalverteilt. \\
 (Quelle von Störterm: https:\//online.stat.psu.edu\/stat504\/node\/220\/)
 \section{Gruppierte Daten}
-\section{Dispersion}
-\textbf{Überdispersion} \\
-Die Überdispersion beschreibt ein wichtiges Konzept. Für gruppierte Daten lässt sich die Varianz innerhalb der Gruppe abschätzen. In Anwendungen ist diese \textit{empirische} Varianz oft deutlich größer als die durch ein binomiales Regressionsmodell vorhergesagte Varianz. Eine mögliche Lösung dafür, wäre die Einführung eines multiplikativen Überdispersionsparameters $\phi > 1$ in die Varianzformel, d.h.
+Im bisherigen Szenario sind wir davon ausgegangen, dass Individualdaten vorliegen. Für jedes Individuum $i$ aus der Stichprobe $n$ liegt eine Beobachtung $(y_{i},x_{i})$ vor.  Das hei"st jeder binäre Wert der Zielvariable gehört zu genau einer Beobachtung $i=1,...,n$. Eine weitere Möglichkeit, welche Speicherplatz und Rechenzeit spart, wäre die Daten nach identischen Zeilen in der Datematrix zu gruppieren. Man erhält, dann eine Matrix mit unterschiedlichen Kovariablenvektoren $x_{i}$. In unserer Arbeit werden die Daten nach der Kovariable $Datum$ gruppiert. Die Datenmatrix nimmt, dann folgende Gestalt an:
+\begin{equation}
+ \begin{matrix}
+ Gruppe ~1 \\
+ \vdots \\
+ Gruppe ~i \\
+ \vdots \\
+ Gruppe ~G
+ \end{matrix}
+ \begin{bmatrix}
+ n_{1} \\
+ \vdots \\
+ n_{i} \\
+ \vdots \\
+ n_{G}
+ \end{bmatrix}
+  \begin{bmatrix}
+ \bar y_{1} \\
+ \vdots \\
+ \bar y_{i} \\
+ \vdots \\
+ \bar y_{G}
+ \end{bmatrix}
+ \begin{bmatrix}
+ x_{11} & \cdots & x_{1k} \\
+ \vdots & \vdots & \vdots \\
+ x_{i1} & \cdots & x_{ik} \\
+ \vdots & \vdots & \vdots \\
+ x_{G1} & \cdots & x_{Gk}.
+ \end{bmatrix}
+\end{equation}
+Dabei ist $\bar y_{i}$ die relative Häufigkeit, kann jedoch auch als absolute Häufigkeit durch $n_{i}\bar y_{i}$ dargestellt werden. Die Zahl an verschiedenen Kovariablenvektoren $G$ ist im binären Modell deutlich kleiner als der Stichprobenumfang $n$. 
+
+\section{Überdispersion}
+Die Varianz ist ein wichtiges Instrument für die Charakterisierung einer Verteilung. Sie gilt als Streuungsma"s und beschreibt die Konzentration der Verteilung um den Erwartungswert. Für gruppierte Daten lässt sich die Varianz innerhalb der Gruppe abschätzen. In der Praxis ist diese \textit{empirische} Varianz oft bedeutend höher als durch ein Binäres Modell geschätzt wurde. Diese Unterschätzung der Varianz wird als Überdispersion bezeichnet. Gründe dafür können die unbeobachtete Heterogenität und postive Korrelation zwischen binären Beobachtungen, die zum gleichen $cluster$ gehören, sein. Eine mögliche Lösung dafür, wäre die Einführung eines multiplikativen Überdispersionsparameters $\phi > 1$ in die Varianzformel, d.h.
 \begin{align}
 Var(y_{i}|\textbf{x}_{i})=\phi \frac{\pi_{i}(1-\pi_{i})}{n_{i}}.
 \end{align}

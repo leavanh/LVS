@@ -12,6 +12,12 @@ library("GGally")
 if (!require("mgcv")) install.packages("mgcv")
 library("mgcv")
 
+if (!require("mgcViz")) install.packages("mgcViz")
+library("mgcViz")
+
+if (!require("pROC")) install.packages("pROC")
+library("pROC")
+
 ## Daten laden
 
 data <- readRDS(file = "Daten/data.RDS")

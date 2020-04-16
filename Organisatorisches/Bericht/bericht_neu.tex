@@ -391,17 +391,13 @@ mit steigender Lawinengefahr steigt die Anzahl
 
 
 \chapter{Methodik}
-
-In folgendem Kapitel soll anhand der zur Verfügung gestellten Daten zur Saison 18/19 in einem Modell der Zusammenhang einer beobachteten abhängigen Variable, in unserem Fall die Skitourengänger mit LVS-Gerät, durch mehrere unabhängige Variablen erklärt werden.
+In folgendem Kapitel soll in einem Modell der Zusammenhang einer beobachteten abhängigen Variable, in unserem Fall, der Anteil der Skitourengänger mit LVS-Gerät, durch mehrere unabhängige Variablen erklärt werden.
 Mithilfe der generalisierten additiven Regression lässt sich diese Fragestellung auf eine flexible und strukturierte Weise lösen. Die Modellierung wird mittels nichparametrischer Regression durchgeführt.
-Dabei wird für die Erklärung schrittweise von den B-Splines, hin zu P-Splines und letztendlich zu dem generalisierten additiven Regressionsmodell vorgegangen.
-
-
+Dabei wird im ersten Schritt eine einfache nichtparametrische Regression mit normalverteilter Zielvariable und einer einzigen Kovariable angenommen. Die Modellierung dient zu Veranschaulichung der Polynom- und Penalisierungs-Splines, sowie deren Basisfunktion. Im letzten Schritt wird die Modellierung der Splines mit dem generalisierten additiven Modell verknüpft und durch ein Modell mit mehreren Kovariablen erweitert. Die mathematischen Formeln und Konzepte aus diesem Kapitel basieren, wenn nicht anders vermerkt, aus dem Buch \glqq{Regression-Modelle, Methoden und Anwendungen}\grqq ~von Ludwig Fahrmeir. 
 
 \section{Nichtparametrische Regression}
-
 Bei einem linearen Regressionsmodell wird der Erwartungswert einer Zielvariable durch die Linearkombination von Einflussgrö"sen, auch Kovariablen genannt, beschrieben. In praktischen Anwendungen ist dies oft unzureichend, da neben den linearen Einflüssen auch nicht-lineare, flexible Einflüsse von stetigen Kovariablen auf die abhängige Variable wirken können.
-Die univariate Glättung stellt ein Verfahren dar, welche eine fexible Modellierung genau einer metrischen unabhängigen Variable auf eine metrische Zielvariable ermöglicht. Es wird davon ausgegangen, dass die Messungen $(y_{i},z_{i})$ mit $i=1,...,n$ gegeben sind, wobei $y_{i}$ die Beobachtungen der Zielvariable und $z_{i}$ die Werte eine metrischen Kovariable abbilden. Die Zielvariable lässt sich durch die Funktion der Kovariable und einen additiven Störterm erklären:
+Die univariate Glättung stellt ein Verfahren dar, welche eine fexible Modellierung genau einer metrischen unabhängigen Variable auf eine metrische Zielvariable ermöglicht. Es wird davon ausgegangen, dass die Messungen $(y_{i},z_{i})$ mit $i=1,...,n$ gegeben sind, wobei $y_{i}$ die Beobachtungen der Zielvariable und $z_{i}$ die Werte eine metrischen Kovariable abbilden. Die Zielvariable soll nun durch eine Funktion der Kovariable und einen additiven Störterm ($\epsilon_{i}$) erklärt werden:
 
 \begin{align}
 y_{i}=f(z_{i})+\epsilon_{i};\enspace E(\epsilon_{i})=0 \enspace und \enspace Var(\epsilon_{i})=\sigma^2 \enspace mit \enspace i=1,...,n.
@@ -412,32 +408,23 @@ Daraus ergibt sich:
 \begin{align}
 E(y_{i})=f(z_{i}) \enspace Var(y_{i})=\sigma^2 \enspace mit \enspace i=1,...,n,
 \end{align}
-was bedeutet, dass die Schätzfunktion $f$ den Erwartungswert der abhängigen Variable darstellt. Im nächsten Schritt, werden unterschiedliche Glättverfahren, die es ermöglichen die Funktion $f$ zu modellieren, vorgestellt.
-
-
+was bedeutet, dass die Schätzfunktion $f$ den Erwartungswert der abhängigen Variable darstellt.
 
 \subsection{Polynom-Splines}
 
-Eine Möglichkeit, die Funktion $f$ abzubilden, sind Splines, die über Polynome modelliert werden. Dabei werden die sogenannten Polynom-Splines vom Grad $l$ stückweise auf Basis der Knotenmengen $k_{1}$ bis $k_{m}$ modelliert. Damit die Glattheit des Polynoms gewährleistet werden kann, muss die Funktion $f(z)$ an den Intervallgrenzen $(l-1)$-mal stetig differenzierbar sein. Der Grad des Splines $l$ und die Zahl der Knoten bestimmen die Glattheit der Funktion. Je höher die Anzahl an Knoten ist, desto $rauer$ ist die Funktion.
-
-
+Eine Möglichkeit, die Funktion $f$ abzubilden, sind Splines, die über Polynome modelliert werden und Polynom-Splines, oder auch Regressions-Splines, genannt werden. Das polynomiale Modell hat die Form: 
+\begin{align}
+f(z)=\gamma_{0}+\gamma_{1}z+...+\gamma_{l}z^l,
+\end{align}
+wobei das Polynom vom Grad $l$ durch den Einfluss von $z$ auf $y$ modelliert wird und $\gamma_{j}$ die Regressionskoeffizienten darstellen. Um eine flexible Schätzfunktion gewährleisten zu können, wird der Definitionsbereich von $z$ in Intervalle geteilt und Polynome werden für das jeweilige Intervall geschätzt. Die Zerlegung von $z$ erfolgt stückweise auf Basis von sogenannten Knotenmengen $k_{1}$ bis $k_{m}$.  Ein Problem, welches dabei entstehen könnte ist, dass an den Intervallgrenzen keine $glatte$ Funktion entstehen. Der Graph einer $glatten$ Funktion hat an den Intervallgrenzen keine \glqq{Ecken\grqq}. Deshalb muss für die \glqq{mathematische}\grqq ~Glattheit die zusätzliche Bedingung, dass die Funktion $f(z)$ an den Intervallgrenzen $(l-1)$-mal stetig differenzierbar ist, eingeführt werden. Der Grad des Splines und die Anzahl der Knoten können somit im hohen Ma"se die Funktion beeinflussen, je höher die Anzahl an Knoten ist, desto $rauer$ ist die Funktion $f(z)$. Um Polynom-Splines in der Praxis anwenden zu können, bedarf es einer Darstellung der Menge der Polynom-Splines. Eine mögliche Darstellung eines Polynom-Splines stellt die B-Spline-Basisfunktion dar.
 
 \subsection{Basis Splines (B-Splines)}
-
-Eine weitere Möglichkeit, die Schätzfunktion flexibel zu modellieren ist die Darstellung von Polynom-Splines mittels der Spline-Basisfunktionen. Der Wertebereich wird in $m-1$ Intervalle geteilt, zwischen denen m Knoten definiert werden (GLM Vorlesung F.194). Nach der Schätzung von einem Polynom vom Grad l auf jedem Intervall werden die Polynomfunktionen vom Grad $l$ nun über $l + 2$ Knoten gebildet, um die Polynome der einzelnen Intervalle zusammenzuführen, ohne, dass es an den Knoten-Punkten zu Sprüngen kommt. Anschlie"send wird $f(z)$ durch $d = m+l-1$ Basisfunktionen und damit folgende Funktion :
-
-
-
+Der B-Spline dient als Basisfunktion für Polynom-Splines. Jedoch wird sich auch der Penalisierungs-Spline, welcher im darauffolgenen Kapitel vorgestellt wird, die B-Spline-Basisfunktion zu Nutzen machen. Das Ziel bei der Konstruktion der B-Spline-Basisfunktion ist es die Polynomstücke des gewünschten Grades an den Knoten ausreichend $glatt$ zusammenzusetzen. Die Basisfunktion besteht dabei aus $(l+1)$ Polynomstücken vom Grad $l$, welche stetig an den Knoten zusammengesetzt werden. Die Funktion $f(z)$ lässt sich durch die Linearkombination der Basisfunktionen:
 \begin{align}
 f(z)=\sum_{j=1}^d\gamma_{j}B_{j}(z)
 \end{align}
-
-mit Parametervektor $\gamma$, der die Basisfunktion skaliert, dargestellt. \\
-
+darstellen. Die Koeffizienten  $\gamma_{j}$ werden mit Hilfe der KQ-Methode geschätzt und dienen zur Skalierung der Basisfunktionen. Die Anzahl der erforderlichen Basisfunktionen $d = m+l-1$, setzt sich aus der Zahl der Knoten $m$ und den Polynomstücken des gewünschten Grades $l$, welche $(l-1)$-mal stetig differenzierbar an den Knoten aneinandergefügt werden, zusammen.  \\
 Für B-Splines vom Grad 0 folgt:
-
-
-
 \begin{align}
 B_{j}^0(z)= \mathbb{1}_{[k_{j},k_{j+1}]}(z)= 
 \begin{cases}
@@ -445,21 +432,12 @@ B_{j}^0(z)= \mathbb{1}_{[k_{j},k_{j+1}]}(z)=
 0 & \text{sonst.} \\
 \end{cases}
 \end{align}
-
-
-
-\newpage
-
-\noindent Für B-Splines höheren Grades gilt:
-
-
-
+Für B-Splines höheren Grades gilt:
 \begin{align}
 B_{j}^l(z)= \frac{z-k_{j}}{k_{j+l}-k_{j}}B_{j}^{l-1}(z)+
 \frac{k_{j+l+1}-z}{k_{j+l+1}-k_j+1}B_{j+1}^{l-1}(z).
 \end{align}
-Die Abbildung \ref{pic:b_spline} ist die Schätzung eines B-Splines anhand eines simulierten Datenbeispiels schematisch dargestellt. Abbildung (a) demonstriert eine B-Spline Basis vom dritten Grad. In Abbildung (b) wird die Basisfunktion mit dem Kleinste-Quadrate-Schätzer $\hat\gamma$ skaliert. Die Abbildung (c), zeigt die erhaltene Schätzung, wenn die skalierten Basisfunktionen addiert werden.
-
+Die Abbildung \ref{pic:b_spline} visualisiert die Schätzung eines B-Splines anhand eines fiktiven Datenbeispiels schematisch. Abbildung (a) demonstriert eine B-Spline Basis vom dritten Grad. In Abbildung (b) wird die Basisfunktion mit dem Kleinste-Quadrate-Schätzer $\hat\gamma_{j}$ skaliert. Die Abbildung (c), zeigt die erhaltene Schätzung, wenn die skalierten Basisfunktionen addiert werden.
 \begin{figure}[H]
 \centering
 \includegraphics[width=.9\textwidth]{b_spline}
@@ -471,16 +449,9 @@ Die Abbildung \ref{pic:b_spline} ist die Schätzung eines B-Splines anhand eines
 
 
 
-\subsection{Penalisierte Splines (P-Splines)} 
-
-Die Idee von P-Splines ist es die zu schätzdenen Funktionen $f(z)$ durch einen Polynom-Spline (vgl. Kapitel 4.1.1) zu approximieren und eine hohen Anzahl an Knoten, in der Regel zwischen 20 und 40, festzulegen. Die Anzahl der Knoten bestimmt in hohem Ma"se die Glattheit der Funktion. Eine gro"se Zahl an Knoten führt zu einer rauen Schätzung, welche für Flexibilität,auch bei stark variierenden Funktionen sorgt. \\
-Eine weitere Idee ist es einen Strafterm für zu hohe Variabiltiät der Schätzung einzuführen. \\
-
-
-
-\noindent\textbf{P-Splines basierend auf B-Splines} \\
-P-Splines kombinieren eine B-Spline-Basis (vgl. Kapitel 4.1.2) verbunden mit einem Strafterm. Um einen Strafterm für B-Splines zu entwickeln bietet es sich an, quadrierte Ableitungen zu verwenden. Diese werden als Ma"s der Variabiltät angesehen und sind daher in der Lage die Glattheit einer Funktion einzuschätzen.
-Der Strafterm 
+\subsection{Penalisierte Splines basierend auf B-Splines} 
+Im vorherigen Kapitel, haben wir die Wichtigkeit der Knotenmenge kennengelernt. Die Glattheit und Flexibilität der Schätzfunktion $f(z)$ hängt stark von der Anzahl der Knoten ab. Das Ziel ist es die Funktion $f(z)$ auf Basis einer B-Spline Funktion, mit einer großen Zahl an Knoten, zu approximieren um so die Flexibilität der Schätzfunktion sicherzustellen und andererseits zu hohe Variabilität in Form eines Strafterms zu sanktionieren. Der Penalisierte-Spline, gekürzt P-Spline, kombiniert somit eine B-Spline-Basis verbunden mit einem Strafterm. Der Strafterm für B-Splines wird häufig durch die quadrierte zweite Ableitung der Schätzfunktion $f(z)$ modelliert, da diese Form im R-Paket $mgcv$ von Simon Woods implementiert wird. Die zweite Ableitung stellt ein Maß für die Krümmung der Funktion dar und ist daher in der Lage die Glattheit einer Funktion einzuschätzen.
+Der Strafterm: 
 \begin{align}
 \lambda\int(f''(z))^2dz
 \end{align}
@@ -489,30 +460,46 @@ beruht auf der quadrierten zweiten Ableitung der Schätz-Funktion, welche nach $
 
 
 \noindent\textbf{Zyklische P-Splines} \\
-Eine Glättungsfunktion hei"st $zyklisch$, wenn die Funktion dieselben Werte und ersten Ableitungen an ihrer oberen und unteren Grenze aufweist. Beispielsweise kann man die Funktion für die Variable Woche mit Hilfe von zyklische P-Splines modellieren. So könnte man sicher stellen, dass die Werte am Ende einer Woche zusammenhängend zu den Werten am Anfang der Woche sind. Der Penalisierungsansatz für zyklische P-Splines ist simultan zu der Penalisierung von P-Splines basierend auf B-Splines (siehe 4.6) \\
+Eine Glättungsfunktion hei"st $zyklisch$, wenn die Funktion dieselben Werte und ersten Ableitungen an ihrer oberen und unteren Grenze aufweist. Beispielsweise kann man die Funktion für die Variable Woche mit Hilfe von zyklische P-Splines modellieren. So könnte man sicher stellen, dass die Werte am Ende einer Woche zusammenhängend zu den Werten am Anfang der Woche sind. Beispielsweise könnte der Fall eintreten, dass Werte von Sonntag den Wert von Montag beeinflussen und andersherum. Der Penalisierungsansatz für zyklische P-Splines ist simultan zu der Penalisierung von P-Splines basierend auf B-Splines (siehe 4.6) \\
 
 (\textbf{Simon Woods Buch in Bib leihen und Zyklische Splines weiter ausführen})
 
 
 \section{Additives Modell}
-
-Das additive Modell stellt in der Statistik ein nicht-parametrisches Regressionsmodell dar. Neben den linearen Einﬂüssen können hier also auch nicht-lineare, flexible Einflüsse von stetigen Kovariablen auf die abhängige Variable modelliert werden. \\
-Das Standardmodeel der additiven Regression (ohne Interaktionen) hat die Form:
+In diesem Kapitel, werden wir vom einfachen Modell mit normalverteilter Zielvariable und genau einer Kovariable, auf ein additives Modell mit mehreren Kovariablen übergehen. Das additive Modell stellt in der Statistik ein nicht-parametrisches Regressionsmodell dar. Neben mehreren nicht-linearen flexiblen Einﬂüssen können hier auch lineare Einflüsse von Kovariablen auf die abhängige Variable modelliert werden. \\
+Das Standardmodell der additiven Regression (ohne Interaktionen) hat die Form:
 \begin{align} 
 y_{i}=\underbrace{f_{1}(z_{i1})+...+f_{q}(z_{iq})}_{\text{nicht-parametrische Effekte}}+\underbrace{\beta_{0}+\beta_{1}x_{i1}+...+\beta_{k}x_{ik}}_{\text{parametrische Effekte}}+\epsilon_{i}
 \end{align}
-Die Funktionen $f_{1}(z_{1}),...,f_{q}(z_{q})$ werden mit nichtparametrischen Effekten, die wir bereits im vorherigen Kapitel (4.1) erläutert haben, geschätzt. Das Model (4.7) kann durch Interaktionseffekte erweitert werden um Wechselwirkungen zwischen den Kovariablen zu integrieren.\\
-
-\subsection{Generalizierte additive Modell}
-Nichtlineare Effekte von metrischen Kovariablen treten auch bei Regressionsmodellen auf, die keine normalverteilte Zielvariable haben. Die abhängige Variable nimmt, aber typischerweise eine Verteilung aus einer Exponentialfamilie (z.B. Binomial, Poisson, Multinomial, Normal,...) an.  In unserem Fall, handelt es sich um eine binär verteilte Zielvariable, die sich folgenderma"sen darstellen lässt:\\
+Die Funktionen $f_{1}(z_{1}),...,f_{q}(z_{q})$ werden mit nichtparametrischen Effekten, die wir bereits im vorherigen Kapitel (4.1) erläutert haben, geschätzt. Der Störterm besitzt die gleichen Annahmen, wie das einfache Modell mit nur einer Kovariable. Das Modell (4.8) kann durch Interaktionseffekte erweitert werden um Wechselwirkungen zwischen den Kovariablen zu integrieren. Seien $z_{1}$ und $z_{2}$ metrische Variablen, dann ergibt sich durch das additive Einbeziehen der Prädiktor:
+\begin{align}
+\eta_{i}=f_{1}(z_{i1})+f_{2}(z_{i2})+f_{1,2}(z_{i1},z_{i2})+...,
+\end{align}
+welcher durch die zweidimensionale Funktion $f_{1,2}(z_{1},z_{2})$ erweitert wurde. Die Schätzung der Funktion $f_{1,2}(z_{1},z_{2})$ erfolgt über eine nichtparametrische bivariate Methode. 
+\subsection{Generalisierte additive Modell}
+Nichtlineare Effekte von metrischen Kovariablen treten auch bei Regressionsmodellen auf, die keine normalverteilte Zielvariable haben. Die abhängige Variable nimmt aber typischerweise eine Verteilung aus einer Exponentialfamilie (z.B. Binomial, Poisson, Multinomial, Normal,...) an.  In unserem Fall, handelt es sich um eine binär verteilte Zielvariable, die sich folgenderma"sen darstellen lässt:
 \begin{align}
 y_{i}=\begin{cases}
 1 & \text{,wenn Person mit LVS-Gerät identifiziert wird } \\
-0 & \text{,sonst.} \\
+0 & \text{,wenn Person ohne Lvs-Gerät identifiziert wird.} \\
 \end{cases}
 \end{align}
-Allgemein gelten für das generalizierte additive Modell mit binär verteilter Zielvariable,\enspace $y_{i}|x_{i}\sim B(1,\pi_{i})$, die ab (4.9) aufgeführten Annahmen.
-Für den Erwartungswert der abhängigen Variable gilt:
+Allgemein sieht das generalisierte additive Modell mit binär verteilter Zielvariable,\enspace $y_{i}|x_{i}\sim B(1,\pi_{i})$, folgenderma"sen aus.
+Der Erwartungswert $\mu$ der Zielvariable $y$ wird mit dem additiven Prädiktor:
+\begin{align}
+\eta_{i}= f_{1}(z_{i1})+...+f_{q}(z_{iq})+\beta_{0}+\beta_{1}x_{i1}+...+\beta_{k}x_{ik},
+\end{align}
+durch eine Responsefunktion $h$ bzw. eine Linkfunktion $g=h^{-1}$ zu:
+\begin{align}
+\mu=h(\eta) ~bzw. \eta=g(\mu)
+\end{align}
+verknüpft.
+Dabei ist der Prädiktor ein wichtiges Hilfsmittel bei der effizienten Codierung von additiven Modellen. Wie schon im vorherigen Kapitel (4.1) beschrieben, sind $f_{1}(z_{i1}),...,f_{q}(z_{iq})$ $glatte$ Funktionen, die grundsätzlich nicht durch eine starre parametrische Form festgelegt werden, sondern durch nicht-parametrische Methoden geschätzt werden. Die Parameter $\beta_{0},...,\beta_{k}$ werden mittels der Maximum-Likelihood-Methode:
+\begin{align}
+L(\beta)=\prod_{i=1}^{n}L_{i}(\beta)=\prod_{i=1}^{n}\pi_{i}^{y_{i}}(1-\pi_{i})^{1-y_{i}}
+\end{align}
+bestimmt. \\
+Für den Erwartungswert der Zielvariable gilt:
 \begin{align}
 E(y_{i})=\pi_{i}=\frac{exp(\eta_{i})}{1+exp(\eta_{i})}.
 \end{align}
@@ -520,40 +507,23 @@ Dies lässt sich mit dem Logit-Link zu
 \begin{align}
 \log(\pi_{i})=\log(\frac{\pi_{i}}{1-\pi_{i}})
 \end{align}
-trasformieren.
-Mit dem additiven Prädiktor
+trasformieren. \\
+Des weiteren muss die Varianzhomogenität, auch Homoskedastizität genannt, nicht unbedingt befriedigt sein. Das hei"st, die Varianz ist in einigen Fällen nicht konstant und hat die Form:
 \begin{align}
-\eta_{i}= f_{1}(z_{i1})+...+f_{q}(z_{iq})+\beta_{0}+\beta_{1}x_{i1}+...+\beta_{k}x_{ik}
+Var(y_{i})=\frac{\pi_{i}(1-\pi_{i})}{w}.
 \end{align}
-, welches ein wichtiges Hilfsmittel bei der effizienten Codierung  von additiven Modellen darstellt. Wie schon im vorherigen Kapitel (4.2) beschrieben, sind $f_{1}(z_{i1}),...,f_{q}(z_{iq})$ $glatte$ Funktionen, die grundsätzlich nicht durch eine starre parametrische Form festgelegt werden, sondern durch nicht-parametrische Methoden, wie in Kapitel (4.1), geschätzt werden. Die Parameter $\beta_{0},...,\beta_{k}$ werden mittels der Maximum-Likelihood-Methode:
-\begin{align}
-L(\beta)=\prod_{i=1}^{n}L_{i}(\beta)=\prod_{i=1}^{n}\pi_{i}^{y_{i}}(1-\pi_{i})^{1-y_{i}}
-\end{align}
-bestimmt. \\
-Des weiteren muss die Varianzhomogenität, auch Homoskedastizität genannt, nicht unbedingt befriedigt sein. Das hei"st, die Varianz ist in einigen Fällen nicht konstant. Beim Störterm $\epsilon_{i}$ geht man davon aus, dass dieser unabhängig sein muss, jedoch ist $\epsilon_{i}$ nicht normalverteilt. \\
-\subsection{Modell Fit}
-Das Modell $fitting$ ist eine Optimierungsmethode, mit deren Hilfe das aufgestellte Modell überprüft wird.\\ 
-Ein wichtiger Faktor, der beim $fitten$ des generalisierten additiven Modells beachtet werden sollte, ist die Residuen-Analyse. Dazu gehören die Pearson- und Devianz-Resiuden. Die Pearson-Residuen berechnen Größen indem der Abstand zwischen Beobachtungspunkt ($y$) und dem geschätzten Wert 8$\hat\mu$ gemessen wird und teilen das, dann durch die Standardabweichung des geschätzten Wertes:
-\begin{align}
-r_{i}=\frac{y_{i}-\hat\mu_{i}}{\sqrt{\hat V(\hat\mu_{i})}}.
-%=\frac{y_{i}-n_{i}\hat\pi_{i}}{\sqrt{n_{i}\hat\pi_{i}(1-\hat\pi_{i})}}
-\end{align}
-Die Devianz-Residuen werden mit dem Term:
-\begin{align}
-G^2=\sum_{i=1}^N\bigg\{y_{i}\log\bigg(\frac{y_{i}}{\hat\mu_{i}}\bigg)+(n_{i}-y_{i})\log\bigg(\frac{(n_{i}-y_{i})}{(n_{i}-\hat\mu_{i})}\bigg) \bigg\}
-\end{align}
-definiert. \\
-Ein weiterer Aspekt ist die Überdispersion, welche ein wichtiges Konzept bei gruppierten Daten beschreibt. Für gruppierte Daten lässt sich die Varianz innerhalb der Gruppe abschätzen. In Anwendungen ist diese \textit{empirische} Varianz oft deutlich größer als die durch ein binomiales Regressionsmodell vorhergesagte Varianz. Eine mögliche Lösung dafür, wäre die Einführung eines multiplikativen Überdispersionsparameters $\phi > 1$ in die Varianzformel, d.h.
+Der Gewichtungsfaktor $w$ wurde eingeführt um den Fall von Individual- und gruppierten-Daten gleich zu behandeln. Für Individualdaten gilt $w=1$, für gruppierte Daten nimmt $w$ den Umfang der Gruppe an. Auf die Bedeutung von gruppierten Daten, wird im nächsten Kapitel näher eingegangen. 
+Beim Störterm $\epsilon_{i}$ geht man davon aus, dass dieser unabhängig sein muss, jedoch ist $\epsilon_{i}$ im binären Fall nicht normalverteilt. \\
+(Quelle von Störterm: https:\//online.stat.psu.edu\/stat504\/node\/220\/)
+\section{Gruppierte Daten}
+\section{Dispersion}
+\textbf{Überdispersion} \\
+Die Überdispersion beschreibt ein wichtiges Konzept. Für gruppierte Daten lässt sich die Varianz innerhalb der Gruppe abschätzen. In Anwendungen ist diese \textit{empirische} Varianz oft deutlich größer als die durch ein binomiales Regressionsmodell vorhergesagte Varianz. Eine mögliche Lösung dafür, wäre die Einführung eines multiplikativen Überdispersionsparameters $\phi > 1$ in die Varianzformel, d.h.
 \begin{align}
 Var(y_{i}|\textbf{x}_{i})=\phi \frac{\pi_{i}(1-\pi_{i})}{n_{i}}.
 \end{align}
 (Quelle von Modell-Fit: https:\//online.stat.psu.edu\/stat504\/node\/220\/) \\
 (Quelle von Überdispersion: Fahrmeir Regression)
-
-
-
-
-
 
 
 \end{document}

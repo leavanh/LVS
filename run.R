@@ -20,6 +20,7 @@ date_data <- readRDS(file = "Daten/date_data.RDS")
 # NAs rauswerfen
 
 date_data_noNA <- date_data[!is.na(date_data$count_people),]
+data_noNA <- data[!is.na(data$lvs),]
 
 ## Deskriptive Auswertung
 

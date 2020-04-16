@@ -5,10 +5,6 @@ data$num_time <- as.numeric(data$time)
 data$int_day <- as.integer(data$day)
 data$num_day_length <- as.numeric(data$day_length)
 
-# Zeit als Zeit seit Sonnenaufgang und bis Sonnenuntergang
-
-data$t_since_sunrise <- as.numeric(data$time - data$sunrise)
-
 ## Modell
 
 day_model <- gam(
@@ -16,29 +12,37 @@ day_model <- gam(
     s(snow_diff, bs = "ps") + 
     s(solar_radiation, bs = "ps") +
     s(avalanche_report, bs = "ps", k = 5) +
-    s(t_since_sunrise, bs = "ps") +
-    s(int_date, bs = "ps") +
+    te(int_date, num_time, bs = c("ps", "ps")) +
     day_weekend +
     holiday + 
     position,
   data = data,
   family = binomial(link = "logit"))
 
+## Untersuchen
+
+# als gamViz speichern
+
+day_Viz <- getViz(day_model)
+
 #anschauen
-
-par(mfrow=c(2,2))
-
 
 summary(day_model)
 # use plogis() to convert to a probability
 
 gam.check(day_model)
+
 concurvity(day_model, full = TRUE)
 concurvity(day_model, full = FALSE)
 acf(day_model$residuals)
 pacf(day_model$residuals)
 
+# ROC Kurve
+plot.roc(data_noNA$lvs, day_model$fitted.values)
+
 plot(day_model, 
      pages = 1, residuals = TRUE, pch = 19, cex = .3, scale = 0, 
-     shade = TRUE, seWithMean = TRUE, shift = coef(date_model)[1],
+     shade = TRUE, seWithMean = TRUE, shift = coef(day_model)[1],
      trans = plogis)
+plot(sm(day_Viz, 5), trans = plogis)
++ l_fitRaster() + l_fitContour() + l_points()

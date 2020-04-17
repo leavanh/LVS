@@ -11,11 +11,10 @@ day_model <- gam(
   as.numeric(lvs) ~ s(temperature, bs = "ps") +
     s(snow_diff, bs = "ps") + 
     s(solar_radiation, bs = "ps") +
+    s(int_day, bs = "cp", k = 7) +
     s(avalanche_report, bs = "ps", k = 5) +
-    te(int_date, num_time, bs = c("ps", "ps")) +
-    day_weekend +
-    holiday + 
-    position,
+    #te(int_date, num_time, bs = "ps") +
+    s(int_date, num_time),
   data = data,
   family = binomial(link = "logit"))
 
@@ -30,19 +29,19 @@ day_Viz <- getViz(day_model)
 summary(day_model)
 # use plogis() to convert to a probability
 
-gam.check(day_model)
-
-concurvity(day_model, full = TRUE)
-concurvity(day_model, full = FALSE)
-acf(day_model$residuals)
-pacf(day_model$residuals)
+#concurvity(day_model, full = TRUE)
+#concurvity(day_model, full = FALSE)
+#acf(day_model$residuals)
+#pacf(day_model$residuals)
 
 # ROC Kurve
 plot.roc(data_noNA$lvs, day_model$fitted.values)
 
+AIC(day_model)
+
 plot(day_model, 
-     pages = 1, residuals = TRUE, pch = 19, cex = .3, scale = 0, 
+     pages = 1, residuals = FALSE, pch = 19, cex = .3, scale = 0, 
      shade = TRUE, seWithMean = TRUE, shift = coef(day_model)[1],
      trans = plogis)
-plot(sm(day_Viz, 5), trans = plogis)
-+ l_fitRaster() + l_fitContour() + l_points()
+plot(sm(day_Viz, 6), trans = plogis) +
+  l_fitRaster() + l_fitContour() + l_points()

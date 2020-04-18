@@ -39,9 +39,13 @@ plot.roc(data_noNA$lvs, day_model$fitted.values)
 
 AIC(day_model)
 
-plot(day_model, 
-     pages = 1, residuals = FALSE, pch = 19, cex = .3, scale = 0, 
-     shade = TRUE, seWithMean = TRUE, shift = coef(day_model)[1],
-     trans = plogis)
-plot(sm(day_Viz, 6), trans = plogis) +
-  l_fitRaster() + l_fitContour() + l_points()
+print(plot(day_Viz, shade = TRUE, seWithMean = TRUE,
+           shift = coef(day_model)[1], trans = plogis) + ylim(0,1), pages = 1)
+plot(sm(day_Viz, select = 6), trans = plogis) + l_fitRaster() + l_rug()
+
+# plot(day_model, 
+#      pages = 1, residuals = FALSE, pch = 19, cex = .3, scale = 0, 
+#      shade = TRUE, seWithMean = TRUE, shift = coef(day_model)[1],
+#      trans = plogis)
+# plot(sm(day_Viz, 6), trans = plogis) +
+#   l_fitRaster() + l_fitContour() + l_points()

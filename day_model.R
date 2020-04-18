@@ -14,7 +14,8 @@ day_model <- gam(
     s(int_day, bs = "cp", k = 7) +
     s(avalanche_report, bs = "ps", k = 5) +
     #te(int_date, num_time, bs = "ps") +
-    s(int_date, num_time),
+    s(int_date, num_time) +
+    holiday,
   data = data,
   family = binomial(link = "logit"))
 

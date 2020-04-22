@@ -205,23 +205,18 @@ data$day <- factor(data$day,
 ## Temperature und Solar_radiation umkodieren und als Integer deklarieren
 
 # Temperature in 6 Kategorien
-data$temperature2<-cut(data$temperature, seq(-8,10,3),
-                            right=FALSE, labels=c(1:6))
+data$int_temperature <- as.integer(cut(data$temperature, seq(-8,10,3),
+                            right = FALSE, labels = c(1:6)))
 
-
-data$int_temperature <- as.integer(data$temperature2)
 
 # Solar_radiation in 4 Kategorien
-data$solar_radiation2<-cut(data$solar_radiation, seq(0,800,200),
-                                right=FALSE, labels=c(1:4))
-
-data$int_solar_radiation <- as.integer(data$solar_radiation2)
-
+data$int_solar_radiation<- as.integer(cut(data$solar_radiation, seq(0,800,200),
+                                right = FALSE, labels = c(1:4)))
 ## neue date_data erstellen
 
 date_data <- distinct(subset(data, 
                              select = -c(lvs, time, position, id))) %>%
-              subset(date >= as.Date("2018-12-25")) # erst am dem 25.
+              subset(date >= as.Date("2018-12-25")) # erst ab dem 25.
 
 ## als RDS speichern
 

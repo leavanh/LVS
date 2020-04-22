@@ -35,6 +35,11 @@ summary(day_model)
 #acf(day_model$residuals)
 #pacf(day_model$residuals)
 
+# check for unmodeled pattern in the residuals
+rsd_date_model <- residuals(date_model,type = "deviance")
+gam(rsd_date_model ~ s(int_date, k = ,bs = "cs"), gamma = 1.4,
+    data = date_data_noNA, select = TRUE)
+
 # ROC Kurve
 plot.roc(data_noNA$lvs, day_model$fitted.values)
 

@@ -1,10 +1,13 @@
 # date wird umcodiert als Zahl
 
 date_data$int_date <- as.integer(as.Date(date_data$date, format = "%d/%m/%Y"))
+date_data_noNA$int_date <- as.integer(as.Date(
+  date_data_noNA$date, format = "%d/%m/%Y"))
 
 # day wird umcodiert als Zahl
 
 date_data$int_day <- as.integer(date_data$day)
+date_data_noNA$int_day <- as.integer(date_data_noNA$day)
 
 ## Modell
 
@@ -30,7 +33,6 @@ summary.gam(date_model, dispersion = date_model$deviance/date_model$df.residual)
 # use plogis() to convert to a probability
 
 gam.check(date_model, type = "deviance")
-plot(fitted(date_model), residuals(date_model))
 concurvity(date_model, full = TRUE)
 concurvity(date_model, full = FALSE)
 # -> date und snowhight
@@ -39,14 +41,8 @@ pacf(date_model$residuals)
 
 # check for unmodeled pattern in the residuals
 rsd_date_model <- residuals(date_model,type = "deviance")
-gam(rsd_date_model ~ -1 +
-      s(temperature, bs = "ps") +
-      s(snow_diff, bs = "ps") + 
-      s(solar_radiation, bs = "ps") +
-      s(int_date, bs = "ps") + 
-      s(avalanche_report, bs = "ps", k = 5) +
-      holiday + day_weekend,
-      data = date_data, select = TRUE)
+gam(rsd_date_model ~ s(int_date, k = 40,bs = "cs"), gamma = 1.4,
+      data = date_data_noNA, select = TRUE)
 
 
 plot(date_model, 

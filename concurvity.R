@@ -40,7 +40,7 @@ q1 <- ggplot(date_data, aes(solar_radiation)) +
   geom_bar() +
   xlab("Sonnenstrahlung in W/m^2") +
   ylab("Absolute Häufigkeit") +
-  title("")
+  title("test")
 
 #Variable solar_radiation transformieren in 4 Kategorien
 

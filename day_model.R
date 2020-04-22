@@ -8,7 +8,7 @@ data$num_day_length <- as.numeric(data$day_length)
 ## Modell
 
 day_model <- gam(
-  as.numeric(lvs) ~ s(int_date, num_time) + # k ändern
+  as.numeric(lvs) ~ s(int_date, num_time, bs = "tp", k = 40) +
     s(snow_diff, bs = "ps", k = 20) +
     s(int_day, bs = "cp", k = 7) +
     s(avalanche_report, bs = "ps", k = 5) +

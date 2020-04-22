@@ -8,14 +8,11 @@ data$num_day_length <- as.numeric(data$day_length)
 ## Modell
 
 day_model <- gam(
-  as.numeric(lvs) ~ s(temperature, bs = "ps") +
-    s(snow_diff, bs = "ps") + 
-    s(solar_radiation, bs = "ps") +
+  as.numeric(lvs) ~ s(snow_diff, bs = "ps", k = 10) +
     s(int_day, bs = "cp", k = 7) +
     s(avalanche_report, bs = "ps", k = 5) +
-    #te(int_date, num_time, bs = "ps") +
     s(int_date, num_time) +
-    holiday,
+    holiday + int_solar_radiation + int_temperature,
   data = data,
   family = binomial(link = "logit"))
 

@@ -202,6 +202,21 @@ data$day <- factor(data$day,
                    levels = c("Montag", "Dienstag", "Mittwoch", "Donnerstag",
                               "Freitag", "Samstag", "Sonntag"))
 
+## Temperature und Solar_radiation umkodieren und als Integer deklarieren
+
+# Temperature in 6 Kategorien
+data$temperature2<-cut(data$temperature, seq(-8,10,3),
+                            right=FALSE, labels=c(1:6))
+
+
+data$int_temperature <- as.integer(data$temperature2)
+
+# Solar_radiation in 4 Kategorien
+data$solar_radiation2<-cut(data$solar_radiation, seq(0,800,200),
+                                right=FALSE, labels=c(1:4))
+
+data$int_solar_radiation <- as.integer(data$solar_radiation2)
+
 ## neue date_data erstellen
 
 date_data <- distinct(subset(data, 

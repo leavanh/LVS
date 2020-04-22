@@ -1,30 +1,25 @@
 # date wird umcodiert als Zahl
 
 date_data$int_date <- as.integer(as.Date(date_data$date, format = "%d/%m/%Y"))
-date_data_noNA$int_date <- as.integer(as.Date(
-  date_data_noNA$date, format = "%d/%m/%Y"))
 
 # day wird umcodiert als Zahl
 
 date_data$int_day <- as.integer(date_data$day)
-date_data_noNA$int_day <- as.integer(date_data_noNA$day)
 
 ## Modell
 
 
 date_model <- gam(
-  cbind(lvs_true, lvs_false) ~ s(temperature, bs = "ps") +
-    s(snow_diff, bs = "ps") + 
-    s(solar_radiation, bs = "ps") +
-    s(int_date, bs = "ps") + 
+  cbind(lvs_true, lvs_false) ~ s(snow_diff, bs = "ps", k = 10) +
+    s(int_date, bs = "ps", k = 25) + 
     s(avalanche_report, bs = "ps", k = 5) +
-    s(int_day, bs = "cp", k = 7)
-    holiday + day_weekend,
+    s(int_day, bs = "cp", k = 7) +
+    holiday + int_solar_radiation + int_temperature,
   data = date_data,
   method = "REML",
   family = binomial(link = "logit"))
 
-#anschauen
+# anschauen
 
 par(mfrow=c(2,2))
 
@@ -39,11 +34,7 @@ concurvity(date_model, full = FALSE)
 acf(date_model$residuals)
 pacf(date_model$residuals)
 
-# check for unmodeled pattern in the residuals
-rsd_date_model <- residuals(date_model,type = "deviance")
-gam(rsd_date_model ~ s(int_date, k = 40,bs = "cs"), gamma = 1.4,
-      data = date_data_noNA, select = TRUE)
-
+# plotten
 
 plot(date_model, 
      pages = 1, residuals = TRUE, pch = 19, cex = .3, scale = 0, 

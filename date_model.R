@@ -23,7 +23,7 @@ date_model <- gam(
 
 par(mfrow=c(2,2))
 
-
+date_model
 summary.gam(date_model, dispersion = date_model$deviance/date_model$df.residual)
 # use plogis() to convert to a probability
 

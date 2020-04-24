@@ -7,6 +7,18 @@ data$num_day_length <- as.numeric(data$day_length)
 
 ## Modell
 
+# Residuen von temperature, solar_radiation und snowhight
+
+temp_gam <- gam(temperature ~ s(int_date, bs = "ps", k = 20),
+                data = date_data, method = "REML")
+solar_rad_gam <- gam(log(solar_radiation) ~ s(int_date, bs = "ps", k = 20),
+                     data = date_data, method = "REML") # log not strong enough
+snow_gam <- gam(snowhight ~ s(int_date, bs = "ps", k = 20),
+             data = date_data, method = "REML")
+
+
+# day-model fitten (ohne autocorrelation)
+
 day_model <- gam(
   as.numeric(lvs) ~ s(int_date, num_time, bs = "tp", k = 40) +
     s(snow_diff, bs = "ps", k = 15) +
@@ -14,6 +26,19 @@ day_model <- gam(
     s(avalanche_report, bs = "ps", k = 5) +
     holiday + int_solar_radiation + int_temperature,
   data = data,
+  method = "REML",
+  family = binomial(link = "logit"))
+
+# day_model2 (mit autocorrelation)
+
+day_model2 <- gamm(
+  as.numeric(lvs) ~ s(int_date, num_time, bs = "tp", k = 40) +
+    s(snow_diff, bs = "ps", k = 15) +
+    s(int_day, bs = "cp", k = 7) +
+    s(avalanche_report, bs = "ps", k = 5) +
+    holiday + int_solar_radiation + int_temperature,
+  data = data,
+  correlation = corAR1(form = ~ int_date*num_time),
   method = "REML",
   family = binomial(link = "logit"))
 

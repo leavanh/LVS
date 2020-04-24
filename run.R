@@ -1,21 +1,10 @@
 ## Pakete laden
 
-if (!require("tidyverse")) install.packages("tidyverse")
 library("tidyverse")
-
-if (!require("patchwork")) install.packages("patchwork")
 library("patchwork")
-
-if (!require("GGally")) install.packages("GGally")
 library("GGally")
-
-if (!require("mgcv")) install.packages("mgcv")
 library("mgcv")
-
-if (!require("mgcViz")) install.packages("mgcViz")
 library("mgcViz")
-
-if (!require("pROC")) install.packages("pROC")
 library("pROC")
 
 ## Daten laden

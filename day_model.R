@@ -9,7 +9,7 @@ data$num_day_length <- as.numeric(data$day_length)
 
 day_model <- gam(
   as.numeric(lvs) ~ s(int_date, num_time, bs = "tp", k = 40) +
-    s(snow_diff, bs = "ps", k = 20) +
+    s(snow_diff, bs = "ps", k = 15) +
     s(int_day, bs = "cp", k = 7) +
     s(avalanche_report, bs = "ps", k = 5) +
     holiday + int_solar_radiation + int_temperature,

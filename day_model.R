@@ -1,19 +1,33 @@
-# date, time, day, day_length wird umcodiert als Zahl
+# time wird als Zahl umcodiert
 
-data$int_date <- as.integer(as.Date(data$date, format = "%d/%m/%Y"))
 data$num_time <- as.numeric(data$time)
-data$int_day <- as.integer(data$day)
-data$num_day_length <- as.numeric(data$day_length)
 
 ## Modell
 
+# day-model fitten (ohne autocorrelation)
+
 day_model <- gam(
   as.numeric(lvs) ~ s(int_date, num_time, bs = "tp", k = 40) +
-    s(snow_diff, bs = "ps", k = 20) +
+    s(int_day, bs = "cp", k = 7) +
+    s(avalanche_report, bs = "ps", k = 5) +
+    s(res_temperature, bs = "ps", k = 15) +
+    s(res_solar_radiation, bs = "ps", k = 15) +
+    s(res_snowhight, bs = "ps", k = 15) +
+    holiday,
+  data = data,
+  method = "REML",
+  family = binomial(link = "logit"))
+
+# day_model2 (mit autocorrelation)
+
+day_model2 <- gamm(
+  as.numeric(lvs) ~ s(int_date, num_time, bs = "tp", k = 40) +
+    s(snow_diff, bs = "ps", k = 15) +
     s(int_day, bs = "cp", k = 7) +
     s(avalanche_report, bs = "ps", k = 5) +
     holiday + int_solar_radiation + int_temperature,
   data = data,
+  correlation = corAR1(form = ~ int_date*num_time),
   method = "REML",
   family = binomial(link = "logit"))
 

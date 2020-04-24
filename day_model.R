@@ -1,21 +1,8 @@
-# date, time, day, day_length wird umcodiert als Zahl
+# time wird als Zahl umcodiert
 
-data$int_date <- as.integer(as.Date(data$date, format = "%d/%m/%Y"))
 data$num_time <- as.numeric(data$time)
-data$int_day <- as.integer(data$day)
-data$num_day_length <- as.numeric(data$day_length)
 
 ## Modell
-
-# Residuen von temperature, solar_radiation und snowhight
-
-temp_gam <- gam(temperature ~ s(int_date, bs = "ps", k = 20),
-                data = date_data, method = "REML")
-solar_rad_gam <- gam(log(solar_radiation) ~ s(int_date, bs = "ps", k = 20),
-                     data = date_data, method = "REML") # log not strong enough
-snow_gam <- gam(snowhight ~ s(int_date, bs = "ps", k = 20),
-             data = date_data, method = "REML")
-
 
 # day-model fitten (ohne autocorrelation)
 

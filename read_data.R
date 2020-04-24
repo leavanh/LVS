@@ -4,14 +4,10 @@
 
 ## Pakete laden
 
-if (!require("readxl")) install.packages("readxl")
 library("readxl")
-
-if (!require("lubridate")) install.packages("lubridate")
 library("lubridate")
-
-if (!require("tidyverse")) install.packages("tidyverse")
 library("tidyverse")
+library("mgcv")
 
 ## Exceltabellen einlesen
 
@@ -79,11 +75,38 @@ date_data[date_data$date >= as.POSIXct("2019-03-31", tz = "UTC"), "sunset"] <-
   date_data[date_data$date >= as.POSIXct("2019-03-31", tz = "UTC"),] %>%
   pull(sunset) - hours(1)
 
-## Neuschnee berechnen
+## Neue Variablen berechnen
+
+# Neuschnee
 
 date_data$snow_diff <- date_data$snowhight - lag(date_data$snowhight, 
                                        default = first(date_data$snowhight),
                                        by = date_data$date)
+
+# temperature in 6 Kategorien
+
+date_data$int_temperature <- as.integer(cut(date_data$temperature, seq(-8,10,3),
+                                       right = FALSE, labels = c(1:6)))
+
+# int_ Variablen
+
+date_data$int_date <- as.integer(as.Date(date_data$date, format = "%d/%m/%Y"))
+date_data$int_day <- as.integer(factor(date_data$day,
+                      levels = c("Montag", "Dienstag", "Mittwoch", "Donnerstag",
+                                    "Freitag", "Samstag", "Sonntag")))
+
+# Residuen
+
+temp_gam <- gam(temperature ~ s(int_date, bs = "ps", k = 20),
+                data = date_data, method = "REML")
+solar_rad_gam <- gam(log(solar_radiation) ~ s(int_date, bs = "ps", k = 20),
+                     data = date_data, method = "REML") # log not strong enough
+snow_gam <- gam(snowhight ~ s(int_date, bs = "ps", k = 20),
+                data = date_data, method = "REML")
+
+date_data$res_temperature <- residuals.gam(temp_gam)
+date_data$res_solar_radiation <- residuals.gam(solar_rad_gam)
+date_data$res_snowhight <- residuals.gam(snow_gam)
 
 ## date_data und all_checkpoint_stats zusammenführen
 
@@ -143,7 +166,13 @@ for(i in 1:nrow(data)) {
     data[[i, "holiday"]] <- date_data[[row_i, "holiday"]]
     data[[i, "sunrise"]] <- date_data[[row_i, "sunrise"]]
     data[[i, "sunset"]] <- date_data[[row_i, "sunset"]]
-    data[[i, "day_length"]] <- date_data[[row_i, "day_length"]]
+    data[[i, "int_temperature"]] <- date_data[[row_i, "int_temperature"]]
+    data[[i, "int_date"]] <- date_data[[row_i, "int_date"]]
+    data[[i, "int_day"]] <- date_data[[row_i, "int_day"]]
+    data[[i, "res_temperature"]] <- date_data[[row_i, "res_temperature"]]
+    data[[i, "res_snowhight"]] <- date_data[[row_i, "res_snowhight"]]
+    data[[i, "res_solar_radiation"]] <- date_data[[row_i,
+                                                   "res_solar_radiation"]]
   }}
   # mit der nächsten Messung weitermachen
   i <- i + 1
@@ -188,30 +217,19 @@ data <- group_by(data, date) %>%
 
 ## nur wichtige Variablen behalten
 
-data <- subset(data, select = c(id, lvs, position, time, date, day,
-                                day_weekend, holiday,
-                                snowhight, snow_diff, temperature, 
-                                solar_radiation, avalanche_report, sunrise,
-                                sunset, day_length, lvs_true, lvs_false, 
+data <- subset(data, select = c(id, lvs, position, time, date, int_date, day,
+                                int_day, day_weekend, holiday,
+                                snowhight, snow_diff, res_snowhight,
+                                temperature, int_temperature, res_temperature,
+                                solar_radiation, res_solar_radiation, 
+                                avalanche_report, sunrise, sunset, day_length,
+                                lvs_true, lvs_false, 
                                 count_people, ratio))
 
-## factors festlegen
+## factors für position festlegen
 
 data$position <- factor(data$position)
-data$day <- factor(data$day,
-                   levels = c("Montag", "Dienstag", "Mittwoch", "Donnerstag",
-                              "Freitag", "Samstag", "Sonntag"))
 
-## Temperature und Solar_radiation umkodieren und als Integer deklarieren
-
-# Temperature in 6 Kategorien
-data$int_temperature <- as.integer(cut(data$temperature, seq(-8,10,3),
-                            right = FALSE, labels = c(1:6)))
-
-
-# Solar_radiation in 4 Kategorien
-data$int_solar_radiation<- as.integer(cut(data$solar_radiation, seq(0,800,200),
-                                right = FALSE, labels = c(1:4)))
 ## neue date_data erstellen
 
 date_data <- distinct(subset(data, 

@@ -1,11 +1,3 @@
-# date wird umcodiert als Zahl
-
-date_data$int_date <- as.integer(as.Date(date_data$date, format = "%d/%m/%Y"))
-
-# day wird umcodiert als Zahl
-
-date_data$int_day <- as.integer(date_data$day)
-
 ## Modell
 
 

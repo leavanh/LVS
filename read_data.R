@@ -222,7 +222,7 @@ data <- subset(data, select = c(id, lvs, position, time, date, int_date, day,
                                 snowhight, snow_diff, res_snowhight,
                                 temperature, int_temperature, res_temperature,
                                 solar_radiation, res_solar_radiation, 
-                                avalanche_report, sunrise, sunset, day_length,
+                                avalanche_report, sunrise, sunset,
                                 lvs_true, lvs_false, 
                                 count_people, ratio))
 

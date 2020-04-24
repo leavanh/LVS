@@ -30,7 +30,7 @@ date_data_plot <- date_data_noNA[,
                             c("date", "count_people",
                                        "ratio", "snowhight", "snow_diff", 
                                        "temperature", "solar_radiation",
-                                       "avalanche_report", "day_length")] %>%
+                                       "avalanche_report", "sunrise")] %>%
                   ggpairs()
 # -> day_length hängt vollkommen von date ab (Achtung beim Modell!)
 

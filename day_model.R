@@ -8,10 +8,12 @@ data$num_time <- as.numeric(data$time)
 
 day_model <- gam(
   as.numeric(lvs) ~ s(int_date, num_time, bs = "tp", k = 40) +
-    s(snow_diff, bs = "ps", k = 15) +
     s(int_day, bs = "cp", k = 7) +
     s(avalanche_report, bs = "ps", k = 5) +
-    holiday + int_solar_radiation + int_temperature,
+    s(res_temperature, bs = "ps", k = 15) +
+    s(res_solar_radiation, bs = "ps", k = 15) +
+    s(res_snowhight, bs = "ps", k = 15) +
+    holiday,
   data = data,
   method = "REML",
   family = binomial(link = "logit"))

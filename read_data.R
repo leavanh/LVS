@@ -204,7 +204,7 @@ data <- group_by(data, date) %>%
 
 # außerdem die Werte für jede Minute berechnen
 
-data <- group_by(data, date, time) %>%
+data <- group_by(data, date, min(time)) %>%
   # neu berechnen
   mutate(lvs_true_min = sum(type == "Beacon"), # Anzahl mit LVS
          lvs_false_min = sum(type == "Infrared"), # Anzahl ohne LVS

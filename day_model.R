@@ -32,7 +32,7 @@ day_model2 <- gamm(
     s(res_snowhight, bs = "ps", k = 15) +
     holiday,
   data = min_data_noNA_sample,
-  correlation = corCAR1(form = ~ int_date*num_time),
+  correlation = corCAR1(0.138, form = ~ int_date*num_time),
   method = "REML",
   family = binomial(link = "logit"))
 
@@ -43,7 +43,6 @@ par(mfrow=c(2,2))
 #anschauen
 
 day_model
-day_model2$gam
 
 summary.gam(day_model, dispersion = day_model$deviance/day_model$df.residual)
 summary.gam(day_model2$gam)
@@ -51,6 +50,7 @@ summary.gam(day_model2$gam)
 
 gam.check(day_model)
 gam.check(day_model2$gam)
+# plot(day_model2$gam$linear.predictors, day_model2$lme$residuals[, "fixed"])
 
 #concurvity(day_model, full = TRUE)
 #concurvity(day_model, full = FALSE)

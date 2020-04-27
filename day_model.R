@@ -1,20 +1,20 @@
 # time wird als Zahl umcodiert
 
-data$num_time <- as.numeric(data$time)
+min_data$num_time <- as.numeric(min_data$time)
 
 ## Modell
 
 # day-model fitten (ohne autocorrelation)
 
 day_model <- gam(
-  as.numeric(lvs) ~ s(int_date, num_time, bs = "tp", k = 40) +
+  cbind(lvs_true_min, lvs_false_min) ~ s(int_date, num_time, bs = "tp", k = 40) +
     s(int_day, bs = "cp", k = 7) +
     s(avalanche_report, bs = "ps", k = 5) +
     s(res_temperature, bs = "ps", k = 15) +
     s(res_solar_radiation, bs = "ps", k = 15) +
     s(res_snowhight, bs = "ps", k = 15) +
     holiday,
-  data = data,
+  data = min_data,
   method = "REML",
   family = binomial(link = "logit"))
 
@@ -38,7 +38,8 @@ day_model2 <- gamm(
 #anschauen
 
 day_model
-summary(day_model)
+summary.gam(day_model)
+summary.gam(day_model3, dispersion = day_model3$deviance/day_model3$df.residual)
 # use plogis() to convert to a probability
 
 gam.check(day_model)

@@ -17,7 +17,7 @@ min_data <- readRDS(file = "Daten/min_data.RDS")
 
 date_data_noNA <- date_data[!is.na(date_data$count_people),]
 data_noNA <- data[!is.na(data$lvs),]
-min_data_noNA <- data[!is.na(min_data$count_people_min),]
+min_data_noNA <- min_data[!is.na(min_data$count_people_min),]
 
 ## Deskriptive Auswertung
 

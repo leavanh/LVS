@@ -242,7 +242,7 @@ date_data <- distinct(subset(data,
 # min_data
 
 min_data <- distinct(subset(data, 
-                             select = -c(lvs, time, position, id))) %>%
+                             select = -c(lvs, position, id))) %>%
   subset(date >= as.Date("2018-12-25")) # erst ab dem 25.
 
 ## als RDS speichern

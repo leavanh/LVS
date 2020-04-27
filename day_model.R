@@ -21,7 +21,7 @@ day_model <- gam(
 
 # day_model2 (mit autocorrelation)
 
-min_data_noNA_sample <- min_data_noNA[sample(nrow(min_data_noNA), 100), ]
+min_data_noNA_sample <- min_data_noNA[sample(nrow(min_data_noNA), 1000), ]
 
 day_model2 <- gamm(
   cbind(lvs_true_min, lvs_false_min) ~ s(int_date, num_time, bs = "tp", k = 40) +
@@ -31,11 +31,12 @@ day_model2 <- gamm(
     s(res_solar_radiation, bs = "ps", k = 15) +
     s(res_snowhight, bs = "ps", k = 15) +
     holiday,
-  data = min_data_noNA_sample,
+  data = min_data_noNA,
   correlation = corCAR1(0.138, form = ~ int_date*num_time),
   method = "REML",
   family = binomial(link = "logit"))
 
+saveRDS(day_model2, file = "day_model2.RDS")
 ## Untersuchen
 
 par(mfrow=c(2,2))

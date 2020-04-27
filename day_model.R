@@ -21,25 +21,26 @@ day_model <- gam(
 # day_model2 (mit autocorrelation)
 
 day_model2 <- gamm(
-  c(lvs_true_min, lvs_false_min) ~ s(int_date, num_time, bs = "tp", k = 40) +
+  cbind(lvs_true_min, lvs_false_min) ~ s(int_date, num_time, bs = "tp", k = 40) +
     s(int_day, bs = "cp", k = 7) +
     s(avalanche_report, bs = "ps", k = 5) +
     s(res_temperature, bs = "ps", k = 15) +
     s(res_solar_radiation, bs = "ps", k = 15) +
     s(res_snowhight, bs = "ps", k = 15) +
     holiday,
-  data = data,
+  data = min_data_noNA,
   correlation = corAR1(form = ~ int_date*num_time),
   method = "REML",
   family = binomial(link = "logit"))
 
 ## Untersuchen
 
+par(mfrow=c(2,2))
+
 #anschauen
 
 day_model
-summary.gam(day_model)
-summary.gam(day_model3, dispersion = day_model3$deviance/day_model3$df.residual)
+summary.gam(day_model, dispersion = day_model$deviance/day_model$df.residual)
 # use plogis() to convert to a probability
 
 gam.check(day_model)
@@ -50,7 +51,7 @@ gam.check(day_model)
 #pacf(day_model$residuals)
 
 # ROC Kurve
-plot.roc(data_noNA$lvs, day_model$fitted.values) # setting levels?
+#plot.roc(data_noNA$lvs, day_model$fitted.values) # setting levels?
 
 AIC(day_model)
 

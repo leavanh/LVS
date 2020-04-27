@@ -21,11 +21,13 @@ day_model <- gam(
 # day_model2 (mit autocorrelation)
 
 day_model2 <- gamm(
-  as.numeric(lvs) ~ s(int_date, num_time, bs = "tp", k = 40) +
-    s(snow_diff, bs = "ps", k = 15) +
+  c(lvs_true_min, lvs_false_min) ~ s(int_date, num_time, bs = "tp", k = 40) +
     s(int_day, bs = "cp", k = 7) +
     s(avalanche_report, bs = "ps", k = 5) +
-    holiday + int_solar_radiation + int_temperature,
+    s(res_temperature, bs = "ps", k = 15) +
+    s(res_solar_radiation, bs = "ps", k = 15) +
+    s(res_snowhight, bs = "ps", k = 15) +
+    holiday,
   data = data,
   correlation = corAR1(form = ~ int_date*num_time),
   method = "REML",

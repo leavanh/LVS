@@ -1,6 +1,6 @@
 # Diese R Datei lädt alle Datensätze ein und bereitet sie so vor, dass sie
 # danach gut benutzt werden können
-# Sie erstellt die RDS-Dateien data.RDS und date_data.RDS
+# Sie erstellt die RDS-Dateien data.RDS, date_data.RDS und min_data.RDS
 
 ## Pakete laden
 

@@ -1,6 +1,7 @@
 # time wird als Zahl umcodiert
 
 min_data$num_time <- as.numeric(min_data$time)
+min_data_noNA$num_time <- as.numeric(min_data_noNA$time)
 
 ## Modell
 
@@ -20,6 +21,8 @@ day_model <- gam(
 
 # day_model2 (mit autocorrelation)
 
+min_data_noNA_sample <- min_data_noNA[sample(nrow(min_data_noNA), 5000), ]
+
 day_model2 <- gamm(
   cbind(lvs_true_min, lvs_false_min) ~ s(int_date, num_time, bs = "tp", k = 40) +
     s(int_day, bs = "cp", k = 7) +
@@ -28,8 +31,8 @@ day_model2 <- gamm(
     s(res_solar_radiation, bs = "ps", k = 15) +
     s(res_snowhight, bs = "ps", k = 15) +
     holiday,
-  data = min_data_noNA,
-  correlation = corAR1(form = ~ int_date*num_time),
+  data = min_data_noNA_sample,
+  correlation = corCAR1(form = ~ int_date*num_time),
   method = "REML",
   family = binomial(link = "logit"))
 

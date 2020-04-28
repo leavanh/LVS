@@ -79,7 +79,7 @@ plot(sm(day_Viz, select = 1), trans = plogis)  + labs(y="Uhrzeit", x="Datum") + 
                               -2208996000, -2208985200, -2208974460), 
                      labels=c("04:00","07:00","10:00","13:00", "16:00", "19:00",
                               "22:00", "01:00", "03:59")) +
-  ggtitle("Smoothfunktion für Datum und Uhrzeit")
+  ggtitle("Smoothfunktion fÃ¼r Datum und Uhrzeit")
 
 print(plot(day_Viz2, shade = TRUE, seWithMean = TRUE,
            shift = coef(day_model)[1], trans = plogis) + ylim(0,1), pages = 1)

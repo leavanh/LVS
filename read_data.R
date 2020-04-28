@@ -1,6 +1,6 @@
 # Diese R Datei lädt alle Datensätze ein und bereitet sie so vor, dass sie
 # danach gut benutzt werden können
-# Sie erstellt die RDS-Dateien data.RDS und date_data.RDS
+# Sie erstellt die RDS-Dateien data.RDS, date_data.RDS und min_data.RDS
 
 ## Pakete laden
 
@@ -202,18 +202,16 @@ data <- group_by(data, date) %>%
          ratio = lvs_true/(count_people)) %>%  # Anteil
   ungroup()
 
-# # außerdem die Werte für jede Stunde berechnen
-# 
-# # doppelt gruppieren
-# 
-# data <- group_by(data, date, hour(time)) %>%
-#   # neu berechnen
-#   mutate(lvs_true_hourly = sum(type == "Beacon"), # Anzahl mit LVS
-#          lvs_false_hourly = sum(type == "Infrared"), # Anzahl ohne LVS
-#          count_people_hourly = lvs_true_hourly + lvs_false_hourly, # Anzahl
-#          # Leute insg.
-#          ratio_hourly = lvs_true_hourly/(count_people_hourly)) %>% # Ratio
-#   ungroup()
+# außerdem die Werte für jede Minute berechnen
+
+data <- group_by(data, date, min(time)) %>%
+  # neu berechnen
+  mutate(lvs_true_min = sum(type == "Beacon"), # Anzahl mit LVS
+         lvs_false_min = sum(type == "Infrared"), # Anzahl ohne LVS
+         count_people_min = lvs_true_min + lvs_false_min, # Anzahl
+         # Leute insg.
+         ratio_min = lvs_true_min/(count_people_min)) %>% # Ratio
+  ungroup()
 
 ## nur wichtige Variablen behalten
 
@@ -223,22 +221,35 @@ data <- subset(data, select = c(id, lvs, position, time, date, int_date, day,
                                 temperature, int_temperature, res_temperature,
                                 solar_radiation, res_solar_radiation, 
                                 avalanche_report, sunrise, sunset,
-                                lvs_true, lvs_false, 
-                                count_people, ratio))
+                                lvs_true, lvs_false, count_people, ratio,
+                                lvs_true_min, lvs_false_min, count_people_min,
+                                ratio_min))
 
 ## factors für position festlegen
 
 data$position <- factor(data$position)
 
-## neue date_data erstellen
+## neue data erstellen
+
+# date_data
 
 date_data <- distinct(subset(data, 
-                             select = -c(lvs, time, position, id))) %>%
+                             select = -c(lvs, time, position, id, lvs_true_min,
+                                         lvs_false_min, count_people_min,
+                                         ratio_min))) %>%
               subset(date >= as.Date("2018-12-25")) # erst ab dem 25.
+
+# min_data
+
+min_data <- distinct(subset(data, 
+                             select = -c(lvs, position, id))) %>%
+  subset(date >= as.Date("2018-12-25")) # erst ab dem 25.
 
 ## als RDS speichern
 
 saveRDS(date_data, file = "Daten/date_data.RDS")
+
+saveRDS(min_data, file = "Daten/min_data.RDS")
 
 saveRDS(data, file = "Daten/data.RDS")
 

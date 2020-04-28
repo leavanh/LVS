@@ -57,7 +57,14 @@ day_Viz <- getViz(day_model)
 
 print(plot(day_Viz, shade = TRUE, seWithMean = TRUE,
            shift = coef(day_model)[1], trans = plogis) + ylim(0,1), pages = 1)
-plot(sm(day_Viz, select = 1), trans = plogis) + l_fitRaster() + l_rug()
+
+plot(sm(day_Viz, select = 1), trans = plogis)  + labs(y="Uhrzeit", x="Datum") + l_fitRaster() + l_rug() +
+  scale_x_continuous(breaks=c(17910,17940,17970,18000), labels=c("14-01-2019","13-02-2019","15-03-2019","14-04-2019")) +
+  scale_y_continuous(breaks=c(-2209060800,-2209050000,-2209039200,-2209028400, -2209017600, -2209006800,
+                              -2208996000, -2208985200, -2208974460), 
+                     labels=c("04:00","07:00","10:00","13:00", "16:00", "19:00",
+                              "22:00", "01:00", "03:59")) +
+  ggtitle("Smoothfunktion für Datum und Uhrzeit")
 
 # plot(day_model, 
 #      pages = 1, residuals = FALSE, pch = 19, cex = .3, scale = 0, 

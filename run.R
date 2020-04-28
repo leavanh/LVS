@@ -31,9 +31,9 @@ date_data_plot
 # -> day_length hängt vollkommen von date ab (Achtung beim Modell!)
 date_lvs/date_ratio
 date_position
-date_snowhight + date_temperature + date_solar_radiation
-(snowhight_ratio + solar_radiation_ratio) / 
-  (temperature_ratio + avalanche_ratio)
+date_snowhight | date_temperature | date_solar_radiation
+(snowhight_ratio | solar_radiation_ratio) / 
+  (temperature_ratio | avalanche_ratio)
 snowhight_solar_radiation
 time_lvs
 
@@ -42,3 +42,13 @@ time_lvs
 # Datumsmodell
 
 source("date_model.R", encoding = "UTF-8")
+
+# Tagesmodell
+
+#source("day_model.R", encoding = "UTF-8")
+
+## Verschiedene Szenarien vergleichen
+
+# neue Daten laden
+
+source("data2.R", encoding = "UTF-8")

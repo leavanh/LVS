@@ -1,10 +1,6 @@
 ## Diese Datei erzeugt data1
 # Dem Szenario 1 (20% Unterschätzung) folgend werden Messungen generiert
 
-## data1 erzeugen (ohne NAs da wir diese Tage eh nicht brauchen)
-
-data1 <- data_noNA
-
 ## Messungen erzeugen
 
 n_messungen <- 0.25 * nrow(data1) # Anzahl der zu erzeugenden Messungen
@@ -32,19 +28,15 @@ for(i in 1:n_messungen) { # neue Messungen generieren
   i = i + 1
 }
 
-nacht_messungen <- subset(data3, time %within% time_intervall # nachts
-                          & lvs == FALSE) # nur Infrarotmessungen
-delete_rows <- sample(nrow(nacht_messungen),
-                      size = perc * nrow(nacht_messungen)) # rundet immer ab!
-delete_ids <- nacht_messungen[delete_rows,]$id
+neue_messungen <- neue_messungen[-1,] # erste Zeile löschen
 
-data3 <- subset(data3, !(id %in% delete_ids)) # löschen
+## Messungen hinzufügen
 
-
+data1 <- full_join(neue_messungen, date_data_noNA, by = "date")
 
 # neue Summen berechnen
 
-data3 <- data3 %>%
+data1 <- data1 %>%
   group_by(date, min(time)) %>%
   # neu berechnen
   mutate(lvs_true_min = sum(lvs == TRUE), # Anzahl mit LVS
@@ -60,10 +52,10 @@ data3 <- data3 %>%
          ratio = lvs_true/(count_people)) %>%
   ungroup()
 
-date_data3 <- distinct(subset(data3, 
+date_data1 <- distinct(subset(data1, 
                               select = -c(lvs, time, position, id, lvs_true_min,
                                           lvs_false_min, count_people_min,
                                           ratio_min)))
 
-min_data3 <- distinct(subset(data3, 
+min_data1 <- distinct(subset(data1, 
                              select = -c(lvs, position, id)))

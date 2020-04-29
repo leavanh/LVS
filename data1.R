@@ -42,6 +42,8 @@ data1 <- neue_messungen %>%
 
 # neue Summen berechnen
 
+#PROBLEME berechnen und minuten runden
+
 data1 <- data1 %>%
   group_by(date, min(time)) %>%
   # neu berechnen

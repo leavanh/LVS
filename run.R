@@ -54,3 +54,4 @@ set.seed(42)
 # neue Daten laden
 
 source("data2.R", encoding = "UTF-8")
+source("data3.R", encoding = "UTF-8")

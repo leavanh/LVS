@@ -49,6 +49,8 @@ source("date_model.R", encoding = "UTF-8")
 
 ## Verschiedene Szenarien vergleichen
 
+set.seed(42)
+
 # neue Daten laden
 
 source("data2.R", encoding = "UTF-8")

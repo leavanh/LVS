@@ -7,28 +7,45 @@ data3 <- data_noNA
 
 ## Messungen löschen
 
+perc <- 0.1 # Prozent die gelöscht werden sollen
+
 # welche kommen in Frage?
 
 time_intervall <- interval(
   as.POSIXct("1900-01-01 01:00:00", tz = "UTC"),
   as.POSIXct("1900-01-01 03:59:59", tz = "UTC")
 )
+nacht_messungen <- subset(data3, time %within% time_intervall)
+delete_rows <- sample(nrow(nacht_messungen),
+                      size = perc * nrow(nacht_messungen)) # rundet immer ab!
+delete_ids <- nacht_messungen[delete_rows,]$id
+
+data3 <- subset(data3, !(id %in% delete_ids)) # löschen
+
+
 
 # neue Summen berechnen
 
-min_data2 <- min_data2 %>%
-  mutate(
-    lvs_false_min = count_people_min - lvs_true_min, # nur Beacon unterschätzen
-    ratio_min = lvs_true_min/count_people_min)
-
-min_data2 <- min_data2 %>%
+data3 <- data3 %>%
+  group_by(date, min(time)) %>%
+  # neu berechnen
+  mutate(lvs_true_min = sum(type == "Beacon"), # Anzahl mit LVS
+         lvs_false_min = sum(type == "Infrared"), # Anzahl ohne LVS
+         count_people_min = lvs_true_min + lvs_false_min, # Anzahl
+         # Leute insg.
+         ratio_min = lvs_true_min/(count_people_min)) %>% # Ratio
+  ungroup() %>%
   group_by(date) %>%
-  mutate(lvs_true = sum(lvs_true_min),
-         lvs_false = sum(lvs_false_min),
-         count_people = lvs_true + lvs_false,
-         ratio = lvs_true/(count_people))
+  mutate(lvs_true = sum(type == "Beacon"), # Anzahl Beaconmessung
+         lvs_false = sum(type == "Infrared"), # Anzahl Infrarotmessungen
+         count_people = lvs_true + lvs_false, # Anzahl Leute insg.
+         ratio = lvs_true/(count_people)) %>%
+  ungroup()
 
-date_data2 <- distinct(subset(min_data2, 
-                              select = -c(time, lvs_true_min,
-                                          lvs_false_min, count_people_min,
-                                          ratio_min)))
+date_data3 <- distinct(subset(data3, 
+                             select = -c(lvs, time, position, id, lvs_true_min,
+                                         lvs_false_min, count_people_min,
+                                         ratio_min)))
+
+min_data3 <- distinct(subset(data3, 
+                            select = -c(lvs, position, id)))

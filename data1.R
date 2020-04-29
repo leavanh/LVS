@@ -16,9 +16,21 @@ time_intervall <- interval( # alle möglichen Uhrzeiten
 
 all_dates <- date_data_noNA$date # alle möglichen Tage
 
+# neuen data.frame erschaffen (am Ende Erste Zeile löschen)
+
 neue_messungen <- data.frame(id = NA, lvs = FALSE, position = NA,
                      time = as.POSIXct("1899-12-31 00:00:00", tz = "UTC"), 
                      date = as.POSIXct("1899-12-31", tz = "UTC"))
+
+for(i in 1:n_messungen) { # neue Messungen generieren
+  messung_time <- as.POSIXct(sample(time_intervall, 1), tz = "UTC", 
+                             origin = "1899-12-31 04:00:00")
+  messung_date <- sample(all_dates, 1)
+  messung <- data.frame(id = NA, lvs = FALSE, position = NA, time = messung_time,
+               date = messung_date)
+  neue_messungen <- rbind(neue_messungen, messung)
+  i = i + 1
+}
 
 nacht_messungen <- subset(data3, time %within% time_intervall # nachts
                           & lvs == FALSE) # nur Infrarotmessungen

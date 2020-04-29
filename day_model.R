@@ -8,7 +8,7 @@ min_data_noNA$num_time <- as.numeric(min_data_noNA$time)
 # day-model fitten (ohne autocorrelation)
 
 day_model <- gam(
-  cbind(lvs_true_min, lvs_false_min) ~ s(int_date, num_time, bs = "tp", k = 40) +
+  cbind(lvs_true_min, lvs_false_min) ~ s(num_time, int_date, bs = "tp", k = 40) +
     s(int_day, bs = "cp", k = 7) +
     s(avalanche_report, bs = "ps", k = 5) +
     s(res_temperature, bs = "ps", k = 15) +
@@ -23,8 +23,10 @@ day_model <- gam(
 
 min_data_noNA_sample <- min_data_noNA[sample(nrow(min_data_noNA), 1000), ]
 
+start <- print(Sys.time()) # we want to know how long computation takes
+
 day_model2 <- gamm(
-  cbind(lvs_true_min, lvs_false_min) ~ s(int_date, num_time, bs = "tp", k = 40) +
+  cbind(lvs_true_min, lvs_false_min) ~ s(num_time, int_date, bs = "tp", k = 40) +
     s(int_day, bs = "cp", k = 7) +
     s(avalanche_report, bs = "ps", k = 5) +
     s(res_temperature, bs = "ps", k = 15) +
@@ -37,6 +39,11 @@ day_model2 <- gamm(
   family = binomial(link = "logit"))
 
 saveRDS(day_model2, file = "day_model2.RDS")
+
+end <- print(Sys.time())
+print(end - start)
+
+
 ## Untersuchen
 
 par(mfrow=c(2,2))
@@ -72,7 +79,17 @@ day_Viz2 <- getViz(day_model2$gam)
 
 print(plot(day_Viz, shade = TRUE, seWithMean = TRUE,
            shift = coef(day_model)[1], trans = plogis) + ylim(0,1), pages = 1)
-plot(sm(day_Viz, select = 1), trans = plogis) + l_fitRaster() + l_rug()
+
+plot(sm(day_Viz, select = 1), trans = plogis)  + labs(y="Datum", x="Uhrzeit") + 
+  l_fitRaster() + l_rug() +
+  scale_y_continuous(breaks=c(17910,17940,17970,18000), 
+                labels=c("14-01-2019","13-02-2019","15-03-2019","14-04-2019")) +
+  scale_x_continuous(breaks=c(-2209060800,-2209050000,-2209039200,-2209028400,
+                              -2209017600, -2209006800,
+                              -2208996000, -2208985200, -2208974460), 
+                     labels=c("04:00","07:00","10:00","13:00", "16:00", "19:00",
+                              "22:00", "01:00", "03:59")) +
+  ggtitle("Smoothfunktion für Uhrzeit und Datum")
 
 print(plot(day_Viz2, shade = TRUE, seWithMean = TRUE,
            shift = coef(day_model)[1], trans = plogis) + ylim(0,1), pages = 1)

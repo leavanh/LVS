@@ -43,6 +43,8 @@ data3 <- data3 %>%
          ratio = lvs_true/(count_people)) %>%
   ungroup()
 
+data3 <- select(data3, - "min(time)") # unnötige Variable löschen
+
 date_data3 <- distinct(subset(data3, 
                              select = -c(lvs, time, position, id, lvs_true_min,
                                          lvs_false_min, count_people_min,

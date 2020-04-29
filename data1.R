@@ -3,7 +3,7 @@
 
 ## Messungen erzeugen
 
-n_messungen <- 0.25 * nrow(data1) # Anzahl der zu erzeugenden Messungen
+n_messungen <- 0.25 * nrow(data_noNA) # Anzahl der zu erzeugenden Messungen
 
 time_intervall <- interval( # alle möglichen Uhrzeiten
   as.POSIXct("1899-12-31 04:00:00", tz = "UTC"),
@@ -32,7 +32,13 @@ neue_messungen <- neue_messungen[-1,] # erste Zeile löschen
 
 ## Messungen hinzufügen
 
-data1 <- full_join(neue_messungen, date_data_noNA, by = "date")
+data1 <- neue_messungen %>%
+  full_join(date_data_noNA, by = "date") %>%
+  mutate(lvs_true_min = 0,
+         lvs_false_min = 0,
+         count_people_min = 0,
+         ratio_min = 0) %>%
+  rbind(data_noNA)
 
 # neue Summen berechnen
 
@@ -51,6 +57,8 @@ data1 <- data1 %>%
          count_people = lvs_true + lvs_false, # Anzahl Leute insg.
          ratio = lvs_true/(count_people)) %>%
   ungroup()
+
+data1 <- select(data1, - "min(time)") # unnötige Variable löschen
 
 date_data1 <- distinct(subset(data1, 
                               select = -c(lvs, time, position, id, lvs_true_min,

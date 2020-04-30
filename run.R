@@ -63,8 +63,9 @@ plogis(date_model$summary$p.coeff) # parametrische Effekt
 
 start <- print(Sys.time()) # we want to know how long computation takes
 
-day_model <- day_model_function(min_data_noNA)$model
-day_model_gamm <- day_model_function(min_data_noNA)$model_gamm
+day_models <- day_model_function(min_data_noNA)
+day_model <- day_models$model
+day_model_gamm <- day_models$model_gamm
 
 saveRDS(day_model_gamm, file = "day_model_gamm.RDS")
 

@@ -4,11 +4,11 @@
 day_model_function <- function(
   min_data_noNA # Datensatz mit Uhrzeit
 ) {
-
+  
 # time wird als Zahl umcodiert
-
+  
 min_data_noNA$num_time <- as.numeric(min_data_noNA$time)
-
+  
 ## Modell
 
 # day-model fitten (ohne autocorrelation)
@@ -21,7 +21,7 @@ day_model <- gam(
     s(res_solar_radiation, bs = "ps", k = 15) +
     s(res_snowhight, bs = "ps", k = 15) +
     holiday,
-  data = min_data,
+  data = min_data_noNA,
   method = "REML",
   family = binomial(link = "logit"))
 
@@ -35,7 +35,7 @@ day_model2 <- gamm(
     s(res_solar_radiation, bs = "ps", k = 15) +
     s(res_snowhight, bs = "ps", k = 15) +
     holiday,
-  data = min_data,
+  data = min_data_noNA,
   correlation = corCAR1(0.138, form = ~ int_date*num_time),
   method = "REML",
   family = binomial(link = "logit"))

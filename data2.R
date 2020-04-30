@@ -33,7 +33,8 @@ min_data2 <- min_data2 %>%
   mutate(lvs_true = sum(lvs_true_min),
          lvs_false = sum(lvs_false_min),
          count_people = lvs_true + lvs_false,
-         ratio = lvs_true/(count_people))
+         ratio = lvs_true/(count_people)) %>%
+  ungroup()
 
 date_data2 <- distinct(subset(min_data2, 
                              select = -c(time, lvs_true_min,

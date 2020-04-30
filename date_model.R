@@ -1,3 +1,11 @@
+# Funktion die das date_model erstellt
+# date_model: Uhrzeit der Messung wird außer Acht 
+# gelassen (es zählen nur die Tage)
+
+date_model_function <- function(
+  date_data # Datensatz ohne Uhrzeit
+) {
+
 ## Modell
 
 date_model <- gam(
@@ -12,24 +20,20 @@ date_model <- gam(
   method = "REML",
   family = binomial(link = "logit"))
 
-# anschauen
+date_Viz <- getViz(date_model)
 
-par(mfrow=c(2,2))
+## Werte zurückgeben Funktion
 
-date_model
-summary.gam(date_model, dispersion = date_model$deviance/date_model$df.residual)
-# use plogis() to convert to a probability
+date_model_list <- list(
+  
+  model = date_model,
+  
+  summary = summary.gam(date_model,
+                        dispersion = date_model$deviance/date_model$df.residual),
+  # use plogis() to convert to a probability
+  
+  Viz = date_Viz
+)
 
-gam.check(date_model, type = "deviance")
-#concurvity(date_model, full = TRUE)
-#concurvity(date_model, full = FALSE)
-# -> date und snowhight
-#acf(date_model$residuals)
-#pacf(date_model$residuals)
-
-# plotten
-
-plot(date_model, 
-     pages = 1, residuals = TRUE, pch = 19, cex = .3, scale = 0, 
-     shade = TRUE, seWithMean = TRUE, shift = coef(date_model)[1],
-     trans = plogis)
+return(date_model_list)
+}

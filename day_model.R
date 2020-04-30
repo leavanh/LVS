@@ -33,7 +33,7 @@ day_model2 <- gamm(
     s(res_solar_radiation, bs = "ps", k = 15) +
     s(res_snowhight, bs = "ps", k = 15) +
     holiday,
-  data = min_data_noNA,
+  data = min_data_noNA_sample,
   correlation = corCAR1(0.138, form = ~ int_date*num_time),
   method = "REML",
   family = binomial(link = "logit"))

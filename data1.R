@@ -6,8 +6,8 @@
 n_messungen <- 0.25 * nrow(data_noNA) # Anzahl der zu erzeugenden Messungen
 
 time_intervall <- interval( # alle möglichen Uhrzeiten
-  as.POSIXct("1899-12-31 04:00:00", tz = "UTC"),
-  as.POSIXct("1900-01-01 03:59:59", tz = "UTC")
+  as.POSIXct("1899-12-31 04:00:00", tz = "MESZ"),
+  as.POSIXct("1900-01-01 03:59:59", tz = "MESZ")
 )
 
 all_dates <- date_data_noNA$date # alle möglichen Tage
@@ -15,11 +15,11 @@ all_dates <- date_data_noNA$date # alle möglichen Tage
 # neuen data.frame erschaffen (am Ende Erste Zeile löschen)
 
 neue_messungen <- data.frame(id = NA, lvs = FALSE, position = NA,
-                     time = as.POSIXct("1899-12-31 00:00:00", tz = "UTC"), 
-                     date = as.POSIXct("1899-12-31", tz = "UTC"))
+                     time = as.POSIXct("1899-12-31 00:00:00", tz = "MESZ"), 
+                     date = as.POSIXct("1899-12-31", tz = "MESZ"))
 
 for(i in 1:n_messungen) { # neue Messungen generieren
-  messung_time <- as.POSIXct(sample(time_intervall, 1), tz = "UTC", 
+  messung_time <- as.POSIXct(sample(time_intervall, 1), tz = "MESZ", 
                              origin = "1899-12-31 04:00:00") # erzeugen
   messung_time <- as.POSIXct( # alle Sekunden auf 0
     trunc(messung_time, units = "mins"))

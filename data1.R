@@ -20,7 +20,9 @@ neue_messungen <- data.frame(id = NA, lvs = FALSE, position = NA,
 
 for(i in 1:n_messungen) { # neue Messungen generieren
   messung_time <- as.POSIXct(sample(time_intervall, 1), tz = "UTC", 
-                             origin = "1899-12-31 04:00:00")
+                             origin = "1899-12-31 04:00:00") # erzeugen
+  messung_time <- as.POSIXct( # alle Sekunden auf 0
+    trunc(messung_time, units = "mins"))
   messung_date <- sample(all_dates, 1)
   messung <- data.frame(id = NA, lvs = FALSE, position = NA, time = messung_time,
                date = messung_date)
@@ -42,25 +44,24 @@ data1 <- neue_messungen %>%
 
 # neue Summen berechnen
 
-#PROBLEME berechnen und minuten runden
-
 data1 <- data1 %>%
-  group_by(date, min(time)) %>%
+  group_by(date) %>%
+  mutate(lvs_true = sum(lvs == TRUE), # Anzahl Beaconmessung
+         lvs_false = sum(lvs == FALSE), # Anzahl Infrarotmessungen
+         count_people = lvs_true + lvs_false, # Anzahl Leute insg.
+         ratio = lvs_true/(count_people)) %>%
+  ungroup() %>%
+  group_by(date, hour(time), minute(time)) %>%
   # neu berechnen
   mutate(lvs_true_min = sum(lvs == TRUE), # Anzahl mit LVS
          lvs_false_min = sum(lvs == FALSE), # Anzahl ohne LVS
          count_people_min = lvs_true_min + lvs_false_min, # Anzahl
          # Leute insg.
          ratio_min = lvs_true_min/(count_people_min)) %>% # Ratio
-  ungroup() %>%
-  group_by(date) %>%
-  mutate(lvs_true = sum(lvs == TRUE), # Anzahl Beaconmessung
-         lvs_false = sum(lvs == FALSE), # Anzahl Infrarotmessungen
-         count_people = lvs_true + lvs_false, # Anzahl Leute insg.
-         ratio = lvs_true/(count_people)) %>%
   ungroup()
 
-data1 <- select(data1, - "min(time)") # unnötige Variable löschen
+
+data1 <- select(data1, - c("hour(time)", "minute(time)")) # unnötige Variablen
 
 date_data1 <- distinct(subset(data1, 
                               select = -c(lvs, time, position, id, lvs_true_min,

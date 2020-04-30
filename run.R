@@ -72,4 +72,21 @@ source("data3.R", encoding = "UTF-8")
 
 # Modelle fitten
 
-date_model1 <- date_model(date_data1)
+date_model1 <- date_model_function(date_data1)
+date_model1$summary # Übersicht (mit Signifikant)
+print(plot(date_model1$Viz, trans = plogis) + 
+        ylim(0,1), pages = 1) # non-parametrische Plots
+plogis(date_model1$summary$p.coeff) # parametrische Effekt
+
+
+date_model2 <- date_model_function(date_data2)
+date_model2$summary # Übersicht (mit Signifikant)
+print(plot(date_model2$Viz, trans = plogis) + 
+        ylim(0,1), pages = 1) # non-parametrische Plots
+plogis(date_model2$summary$p.coeff) # parametrische Effekt
+
+date_model3 <- date_model_function(date_data3)
+date_model3$summary # Übersicht (mit Signifikant)
+print(plot(date_model3$Viz, trans = plogis) + 
+        ylim(0,1), pages = 1) # non-parametrische Plots
+plogis(date_model3$summary$p.coeff) # parametrische Effekt

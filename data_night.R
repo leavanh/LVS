@@ -12,8 +12,8 @@ perc <- 0.5 # Prozent die gelöscht werden sollen
 # welche kommen in Frage?
 
 time_intervall <- interval(
-  as.POSIXct("1900-01-01 01:00:00", tz = "MESZ"),
-  as.POSIXct("1900-01-01 03:59:59", tz = "MESZ")
+  as.POSIXct("1900-01-01 01:00:00", tz = "MET"),
+  as.POSIXct("1900-01-01 03:59:59", tz = "MET")
 )
 nacht_messungen <- subset(data_night, time %within% time_intervall # nachts
                           & lvs == FALSE) # nur Infrarotmessungen

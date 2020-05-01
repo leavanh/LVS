@@ -14,7 +14,9 @@ group_size <- min_data_noNA$count_people_min
 # Funktion beschreiben
 # wir gehen davon aus, dass keine Gruppen größer als 64 vorkommen
 
-new_person_prob <- 0.20 + 0.0125 * group_size
+# NOCHMAL ANDERS LÖSEN
+
+new_person_prob <- 0.25 + 0.04 * group_size
 new_group_size <- group_size + rbinom(length(group_size), 1, new_person_prob)
 
 ## zu data_group hinzufügen

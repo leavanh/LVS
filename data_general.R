@@ -7,8 +7,8 @@ n_messungen <- 0.25 * nrow(data_noNA) # Anzahl der zu erzeugenden Messungen
 # diese Zahl wird abgerundet (in der Schleife)
 
 time_intervall <- interval( # alle möglichen Uhrzeiten
-  as.POSIXct("1899-12-31 04:00:00", tz = "MESZ"),
-  as.POSIXct("1900-01-01 03:59:59", tz = "MESZ")
+  as.POSIXct("1899-12-31 04:00:00", tz = "MET"),
+  as.POSIXct("1900-01-01 03:59:59", tz = "MET")
 )
 
 all_dates <- date_data_noNA$date # alle möglichen Tage
@@ -16,11 +16,11 @@ all_dates <- date_data_noNA$date # alle möglichen Tage
 # neuen data.frame erschaffen (am Ende Erste Zeile löschen)
 
 neue_messungen <- data.frame(id = NA, lvs = FALSE, position = NA,
-                     time = as.POSIXct("1899-12-31 00:00:00", tz = "MESZ"), 
-                     date = as.POSIXct("1899-12-31", tz = "MESZ"))
+                     time = as.POSIXct("1899-12-31 00:00:00", tz = "MET"), 
+                     date = as.POSIXct("1899-12-31", tz = "MET"))
 
 for(i in 1:n_messungen) { # neue Messungen generieren
-  messung_time <- as.POSIXct(sample(time_intervall, 1), tz = "MESZ", 
+  messung_time <- as.POSIXct(sample(time_intervall, 1), tz = "MET", 
                              origin = "1899-12-31 04:00:00") # erzeugen
   messung_time <- as.POSIXct( # alle Sekunden auf 0
     trunc(messung_time, units = "mins"))

@@ -42,7 +42,7 @@ all_checkpoint_stats <- subset(all_checkpoint_stats,
 
 # date in day_length in POSIXct umwandeln
 
-day_length$date <- as.POSIXct(day_length$date, format = "%d %B %Y", tz = "MESZ")
+day_length$date <- as.POSIXct(day_length$date, format = "%d %B %Y", tz = "MET")
 
 ## day_length und all_date zusammenführen
 
@@ -67,12 +67,12 @@ all_checkpoint_stats <- filter(all_checkpoint_stats,
 # Sonnenauf- und Untergang soll manuell auf Winterzeit umgestellt werden
 # Umstellung am 31.03.19: 2 wurde zu 3 Uhr -> wieder zurück
 
-date_data[date_data$date >= as.POSIXct("2019-03-31", tz = "MESZ"), "sunrise"] <- 
-  date_data[date_data$date >= as.POSIXct("2019-03-31", tz = "MESZ"),] %>%
+date_data[date_data$date >= as.POSIXct("2019-03-31", tz = "MET"), "sunrise"] <- 
+  date_data[date_data$date >= as.POSIXct("2019-03-31", tz = "MET"),] %>%
   pull(sunrise) - hours(1)
 
-date_data[date_data$date >= as.POSIXct("2019-03-31", tz = "MESZ"), "sunset"] <- 
-  date_data[date_data$date >= as.POSIXct("2019-03-31", tz = "MESZ"),] %>%
+date_data[date_data$date >= as.POSIXct("2019-03-31", tz = "MET"), "sunset"] <- 
+  date_data[date_data$date >= as.POSIXct("2019-03-31", tz = "MET"),] %>%
   pull(sunset) - hours(1)
 
 ## Neue Variablen berechnen
@@ -124,8 +124,8 @@ data <- full_join(all_checkpoint_stats, date_data, by = "date")
 # Schleife
 
 time_interval <- interval(
-  as.POSIXct("1899-12-31 00:00:00", tz = "MESZ"),
-  as.POSIXct("1899-12-31 03:59:59", tz = "MESZ")
+  as.POSIXct("1899-12-31 00:00:00", tz = "MET"),
+  as.POSIXct("1899-12-31 03:59:59", tz = "MET")
 )
 
 for(i in 1:nrow(data)) {

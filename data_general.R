@@ -1,27 +1,23 @@
-## Diese Datei erzeugt data_temp
-# Bei niedrigen Temperaturen werden Messungen generiert
+## Diese Datei erzeugt data_general
+# Dem Szenario 1 (20% Unterschätzung) folgend werden Messungen generiert
 
 ## Messungen erzeugen
 
 n_messungen <- 0.25 * nrow(data_noNA) # Anzahl der zu erzeugenden Messungen
+# diese Zahl wird abgerundet (in der Schleife)
 
 time_intervall <- interval( # alle möglichen Uhrzeiten
   as.POSIXct("1899-12-31 04:00:00", tz = "MESZ"),
   as.POSIXct("1900-01-01 03:59:59", tz = "MESZ")
 )
 
-# Funktion die je nach Temperatur die Prozentzahl der hinzuzufügenden
-# Messungen ausrechnet (für jeden Tag)
-# ab 20° werden die Prozente hier negativ (Vorsicht!)
-
-perc_by_date <- 0.25 - 0.012 * date_data_noNA$temperature
-n_by_date <- round(date_data_noNA$count_people * perc_by_date)
+all_dates <- date_data_noNA$date # alle möglichen Tage
 
 # neuen data.frame erschaffen (am Ende Erste Zeile löschen)
 
 neue_messungen <- data.frame(id = NA, lvs = FALSE, position = NA,
-                             time = as.POSIXct("1899-12-31 00:00:00", tz = "MESZ"), 
-                             date = as.POSIXct("1899-12-31", tz = "MESZ"))
+                     time = as.POSIXct("1899-12-31 00:00:00", tz = "MESZ"), 
+                     date = as.POSIXct("1899-12-31", tz = "MESZ"))
 
 for(i in 1:n_messungen) { # neue Messungen generieren
   messung_time <- as.POSIXct(sample(time_intervall, 1), tz = "MESZ", 
@@ -30,7 +26,7 @@ for(i in 1:n_messungen) { # neue Messungen generieren
     trunc(messung_time, units = "mins"))
   messung_date <- sample(all_dates, 1)
   messung <- data.frame(id = NA, lvs = FALSE, position = NA, time = messung_time,
-                        date = messung_date)
+               date = messung_date)
   neue_messungen <- rbind(neue_messungen, messung)
   i = i + 1
 }
@@ -39,7 +35,7 @@ neue_messungen <- neue_messungen[-1,] # erste Zeile löschen
 
 ## Messungen hinzufügen
 
-data1 <- neue_messungen %>%
+data_general <- neue_messungen %>%
   full_join(date_data_noNA, by = "date") %>%
   mutate(lvs_true_min = 0,
          lvs_false_min = 0,
@@ -49,7 +45,7 @@ data1 <- neue_messungen %>%
 
 # neue Summen berechnen
 
-data1 <- data1 %>%
+data_general <- data_general %>%
   group_by(date) %>%
   mutate(lvs_true = sum(lvs == TRUE), # Anzahl Beaconmessung
          lvs_false = sum(lvs == FALSE), # Anzahl Infrarotmessungen
@@ -66,12 +62,12 @@ data1 <- data1 %>%
   ungroup()
 
 
-data1 <- select(data1, - c("hour(time)", "minute(time)")) # unnötige Variablen
+data_general <- select(data_general, - c("hour(time)", "minute(time)")) # unnötige Variablen
 
-date_data1 <- distinct(subset(data1, 
+date_data_general <- distinct(subset(data_general, 
                               select = -c(lvs, time, position, id, lvs_true_min,
                                           lvs_false_min, count_people_min,
                                           ratio_min)))
 
-min_data1 <- distinct(subset(data1, 
+min_data_general <- distinct(subset(data_general, 
                              select = -c(lvs, position, id)))

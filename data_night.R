@@ -1,9 +1,9 @@
-## Diese Datei erzeugt data3
+## Diese Datei erzeugt data_night
 # Dem Szenario 3 (Wildtiere) folgend werden Messungen gelöscht
 
-## data3 erzeugen (ohne NAs da wir diese Tage eh nicht brauchen)
+## data_night erzeugen (ohne NAs da wir diese Tage eh nicht brauchen)
 
-data3 <- data_noNA
+data_night <- data_noNA
 
 ## Messungen löschen
 
@@ -15,19 +15,19 @@ time_intervall <- interval(
   as.POSIXct("1900-01-01 01:00:00", tz = "MESZ"),
   as.POSIXct("1900-01-01 03:59:59", tz = "MESZ")
 )
-nacht_messungen <- subset(data3, time %within% time_intervall # nachts
+nacht_messungen <- subset(data_night, time %within% time_intervall # nachts
                           & lvs == FALSE) # nur Infrarotmessungen
 delete_rows <- sample(nrow(nacht_messungen),
                       size = perc * nrow(nacht_messungen)) # rundet immer ab!
 delete_ids <- nacht_messungen[delete_rows,]$id
 
-data3 <- subset(data3, !(id %in% delete_ids)) # löschen
+data_night <- subset(data_night, !(id %in% delete_ids)) # löschen
 
 
 
 # neue Summen berechnen
 
-data3 <- data3 %>%
+data_night <- data_night %>%
   group_by(date) %>%
   mutate(lvs_true = sum(lvs == TRUE), # Anzahl Beaconmessung
          lvs_false = sum(lvs == FALSE), # Anzahl Infrarotmessungen
@@ -44,12 +44,12 @@ data3 <- data3 %>%
   ungroup()
   
 
-data3 <- select(data3, - c("hour(time)", "minute(time)")) # unnötige Variablen
+data_night <- select(data_night, - c("hour(time)", "minute(time)")) # unnötige Variablen
 
-date_data3 <- distinct(subset(data3, 
+date_data_night <- distinct(subset(data_night, 
                              select = -c(lvs, time, position, id, lvs_true_min,
                                          lvs_false_min, count_people_min,
                                          ratio_min)))
 
-min_data3 <- distinct(subset(data3, 
+min_data_night <- distinct(subset(data_night, 
                             select = -c(lvs, position, id)))

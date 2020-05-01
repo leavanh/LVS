@@ -15,8 +15,8 @@ all_dates <- date_data_noNA$date # alle möglichen Tage
 # neuen data.frame erschaffen (am Ende Erste Zeile löschen)
 
 neue_messungen <- data.frame(id = NA, lvs = FALSE, position = NA,
-                     time = as.POSIXct("1899-12-31 00:00:00", tz = "MESZ"), 
-                     date = as.POSIXct("1899-12-31", tz = "MESZ"))
+                             time = as.POSIXct("1899-12-31 00:00:00", tz = "MESZ"), 
+                             date = as.POSIXct("1899-12-31", tz = "MESZ"))
 
 for(i in 1:n_messungen) { # neue Messungen generieren
   messung_time <- as.POSIXct(sample(time_intervall, 1), tz = "MESZ", 
@@ -25,7 +25,7 @@ for(i in 1:n_messungen) { # neue Messungen generieren
     trunc(messung_time, units = "mins"))
   messung_date <- sample(all_dates, 1)
   messung <- data.frame(id = NA, lvs = FALSE, position = NA, time = messung_time,
-               date = messung_date)
+                        date = messung_date)
   neue_messungen <- rbind(neue_messungen, messung)
   i = i + 1
 }

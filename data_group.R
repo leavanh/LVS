@@ -1,9 +1,9 @@
-## Diese Datei erzeugt data2
+## Diese Datei erzeugt data_group
 # Dem Szenario 2 (Gruppen) folgend werden neue Messungen generiert
 
-## data2 erzeugen (ohne NAs da wir diese Tage eh nicht brauchen)
+## data_group erzeugen (ohne NAs da wir diese Tage eh nicht brauchen)
 
-min_data2 <- min_data_noNA
+min_data_group <- min_data_noNA
 
 ## Neue Personenanzahl erhalten
 # Gruppengrößenvektor erhalten
@@ -17,18 +17,18 @@ group_size <- min_data_noNA$count_people_min
 new_person_prob <- 0.20 + 0.0125 * group_size
 new_group_size <- group_size + rbinom(length(group_size), 1, new_person_prob)
 
-## zu data2 hinzufügen
+## zu data_group hinzufügen
 
-min_data2$count_people_min <- new_group_size
+min_data_group$count_people_min <- new_group_size
 
 # neue Summen berechnen
 
-min_data2 <- min_data2 %>%
+min_data_group <- min_data_group %>%
   mutate(
     lvs_false_min = count_people_min - lvs_true_min, # nur Beacon unterschätzen
     ratio_min = lvs_true_min/count_people_min)
 
-min_data2 <- min_data2 %>%
+min_data_group <- min_data_group %>%
   group_by(date) %>%
   mutate(lvs_true = sum(lvs_true_min),
          lvs_false = sum(lvs_false_min),
@@ -36,7 +36,7 @@ min_data2 <- min_data2 %>%
          ratio = lvs_true/(count_people)) %>%
   ungroup()
 
-date_data2 <- distinct(subset(min_data2, 
+date_data_group <- distinct(subset(min_data_group, 
                              select = -c(time, lvs_true_min,
                                          lvs_false_min, count_people_min,
                                          ratio_min)))

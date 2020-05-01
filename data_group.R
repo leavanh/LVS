@@ -5,19 +5,19 @@
 
 min_data_group <- min_data_noNA
 
-## Neue Personenanzahl erhalten
+## Neue Personenanzahl berechnen
 # Gruppengrößenvektor erhalten
 
 group_size <- min_data_noNA$count_people_min
 
-# Anzahl der hinzugefügten Personen berechnen
-# Funktion beschreiben
-# wir gehen davon aus, dass keine Gruppen größer als 64 vorkommen
+# Anzahl der hinzuzufügenden Personen berechnen
+# new_person_prob gibt die Wahrscheinlichkeit an für jede Person in der 
+# Gruppe eine weitere hinzuzufügen
+# bei Gruppen größer gleich 50 ist die Wahrscheinlichkeit = 1 (Vorsicht!)
 
-# NOCHMAL ANDERS LÖSEN
-
-new_person_prob <- 0.25 + 0.04 * group_size
-new_group_size <- group_size + rbinom(length(group_size), 1, new_person_prob)
+new_person_prob <- 0.20 + 0.016 * group_size
+new_group_size <- group_size + rbinom(length(group_size), 
+                                      group_size, new_person_prob)
 
 ## zu data_group hinzufügen
 

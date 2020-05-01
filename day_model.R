@@ -1,8 +1,14 @@
+# Funktion die das day_model erstellt
+# day_model: Uhrzeit der Messung wird ebenfalls beachtet
+
+day_model_function <- function(
+  min_data_noNA # Datensatz mit Uhrzeit
+) {
+  
 # time wird als Zahl umcodiert
-
-min_data$num_time <- as.numeric(min_data$time)
+  
 min_data_noNA$num_time <- as.numeric(min_data_noNA$time)
-
+  
 ## Modell
 
 # day-model fitten (ohne autocorrelation)
@@ -15,15 +21,11 @@ day_model <- gam(
     s(res_solar_radiation, bs = "ps", k = 15) +
     s(res_snowhight, bs = "ps", k = 15) +
     holiday,
-  data = min_data,
+  data = min_data_noNA,
   method = "REML",
   family = binomial(link = "logit"))
 
 # day_model2 (mit autocorrelation)
-
-min_data_noNA_sample <- min_data_noNA[sample(nrow(min_data_noNA), 1000), ]
-
-start <- print(Sys.time()) # we want to know how long computation takes
 
 day_model2 <- gamm(
   cbind(lvs_true_min, lvs_false_min) ~ s(num_time, int_date, bs = "tp", k = 40) +
@@ -38,66 +40,24 @@ day_model2 <- gamm(
   method = "REML",
   family = binomial(link = "logit"))
 
-saveRDS(day_model2, file = "day_model2.RDS")
-
-end <- print(Sys.time())
-print(end - start)
-
-
-## Untersuchen
-
-par(mfrow=c(2,2))
-
-#anschauen
-
-day_model
-
-summary.gam(day_model, dispersion = day_model$deviance/day_model$df.residual)
-summary.gam(day_model2$gam)
-# use plogis() to convert to a probability
-
-gam.check(day_model)
-gam.check(day_model2$gam)
-# plot(day_model2$gam$linear.predictors, day_model2$lme$residuals[, "fixed"])
-
-#concurvity(day_model, full = TRUE)
-#concurvity(day_model, full = FALSE)
-acf(day_model$residuals)
-pacf(day_model$residuals)
-acf(day_model2$lme$residuals[, "fixed"])
-pacf(day_model2$lme$residuals[, "fixed"])
-
-# ROC Kurve
-#plot.roc(data_noNA$lvs, day_model$fitted.values) # setting levels?
-
-AIC(day_model)
-
-# als gamViz speichern
-
 day_Viz <- getViz(day_model)
-day_Viz2 <- getViz(day_model2$gam)
+day_Viz2 <- getViz(day_model2)
 
-print(plot(day_Viz, shade = TRUE, seWithMean = TRUE,
-           shift = coef(day_model)[1], trans = plogis) + ylim(0,1), pages = 1)
 
-plot(sm(day_Viz, select = 1), trans = plogis)  + labs(y="Datum", x="Uhrzeit") + 
-  l_fitRaster() + l_rug() +
-  scale_y_continuous(breaks=c(17910,17940,17970,18000), 
-                labels=c("14-01-2019","13-02-2019","15-03-2019","14-04-2019")) +
-  scale_x_continuous(breaks=c(-2209060800,-2209050000,-2209039200,-2209028400,
-                              -2209017600, -2209006800,
-                              -2208996000, -2208985200, -2208974460), 
-                     labels=c("04:00","07:00","10:00","13:00", "16:00", "19:00",
-                              "22:00", "01:00", "03:59")) +
-  ggtitle("Smoothfunktion für Uhrzeit und Datum")
+## Werte zurückgeben Funktion
 
-print(plot(day_Viz2, shade = TRUE, seWithMean = TRUE,
-           shift = coef(day_model)[1], trans = plogis) + ylim(0,1), pages = 1)
-plot(sm(day_Viz2, select = 1), trans = plogis) + l_fitRaster() + l_rug()
+day_model_list <- list(
+  
+  model = day_model,
+  model_gamm = day_model2,
+  
+  summary = summary.gam(day_model, 
+                        dispersion = day_model$deviance/day_model$df.residual),
+  summary_gamm = summary.gam(day_model2$gam),
+  
+  Viz = day_Viz,
+  Viz_gamm = day_Viz2
+)
 
-# plot(day_model, 
-#      pages = 1, residuals = FALSE, pch = 19, cex = .3, scale = 0, 
-#      shade = TRUE, seWithMean = TRUE, shift = coef(day_model)[1],
-#      trans = plogis)
-# plot(sm(day_Viz, 6), trans = plogis) +
-#   l_fitRaster() + l_fitContour() + l_points()
+return(day_model_list)
+}

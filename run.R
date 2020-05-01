@@ -42,7 +42,7 @@ time_lvs
 source("date_model.R", encoding = "UTF-8")
 source("day_model.R", encoding = "UTF-8")
 
-# Daten von 18/19
+# Date
 
 date_model <- date_model_function(date_data)
 date_model$summary # Übersicht (mit Signifikant)
@@ -59,6 +59,80 @@ plogis(date_model$summary$p.coeff) # parametrische Effekt
 #acf(date_model$model$residuals)
 #pacf(date_model$model$residuals)
 
+# Day
+
+start <- print(Sys.time()) # we want to know how long computation takes
+
+day_models <- day_model_function(min_data_noNA)
+day_model <- day_models$model
+day_model_gamm <- day_models$model_gamm
+
+saveRDS(day_model_gamm, file = "day_model_gamm.RDS")
+
+end <- print(Sys.time())
+print(end - start)
+
+## folgendes bitte ignorieren ich brauchte nur nen platz das kurz zu speichern
+
+# min_data_noNA_sample <- min_data_noNA[sample(nrow(min_data_noNA), 1000), ]
+
+# ## Untersuchen
+# 
+# par(mfrow=c(2,2))
+# 
+# #anschauen
+# 
+# day_model
+# 
+# summary.gam(day_model, dispersion = day_model$deviance/day_model$df.residual)
+# summary.gam(day_model2$gam)
+# # use plogis() to convert to a probability
+# 
+# gam.check(day_model)
+# gam.check(day_model2$gam)
+# # plot(day_model2$gam$linear.predictors, day_model2$lme$residuals[, "fixed"])
+# 
+# #concurvity(day_model, full = TRUE)
+# #concurvity(day_model, full = FALSE)
+# acf(day_model$residuals)
+# pacf(day_model$residuals)
+# acf(day_model2$lme$residuals[, "fixed"])
+# pacf(day_model2$lme$residuals[, "fixed"])
+# 
+# # ROC Kurve
+# #plot.roc(data_noNA$lvs, day_model$fitted.values) # setting levels?
+# 
+# AIC(day_model)
+# 
+# # als gamViz speichern
+# 
+# day_Viz <- getViz(day_model)
+# day_Viz2 <- getViz(day_model2$gam)
+# 
+# print(plot(day_Viz, shade = TRUE, seWithMean = TRUE,
+#            shift = coef(day_model)[1], trans = plogis) + ylim(0,1), pages = 1)
+# 
+# plot(sm(day_Viz, select = 1), trans = plogis)  + labs(y="Datum", x="Uhrzeit") + 
+#   l_fitRaster() + l_rug() +
+#   scale_y_continuous(breaks=c(17910,17940,17970,18000), 
+#                      labels=c("14-01-2019","13-02-2019","15-03-2019","14-04-2019")) +
+#   scale_x_continuous(breaks=c(-2209060800,-2209050000,-2209039200,-2209028400,
+#                               -2209017600, -2209006800,
+#                               -2208996000, -2208985200, -2208974460), 
+#                      labels=c("04:00","07:00","10:00","13:00", "16:00", "19:00",
+#                               "22:00", "01:00", "03:59")) +
+#   ggtitle("Smoothfunktion für Uhrzeit und Datum")
+# 
+# print(plot(day_Viz2, shade = TRUE, seWithMean = TRUE,
+#            shift = coef(day_model)[1], trans = plogis) + ylim(0,1), pages = 1)
+# plot(sm(day_Viz2, select = 1), trans = plogis) + l_fitRaster() + l_rug()
+# 
+# # plot(day_model, 
+# #      pages = 1, residuals = FALSE, pch = 19, cex = .3, scale = 0, 
+# #      shade = TRUE, seWithMean = TRUE, shift = coef(day_model)[1],
+# #      trans = plogis)
+# # plot(sm(day_Viz, 6), trans = plogis) +
+# #   l_fitRaster() + l_fitContour() + l_points()
 
 ## Verschiedene Szenarien vergleichen
 
@@ -71,22 +145,22 @@ source("data2.R", encoding = "UTF-8")
 source("data3.R", encoding = "UTF-8")
 
 # Modelle fitten
-
-date_model1 <- date_model_function(date_data1)
-date_model1$summary # Übersicht (mit Signifikant)
-print(plot(date_model1$Viz, trans = plogis) + 
-        ylim(0,1), pages = 1) # non-parametrische Plots
-plogis(date_model1$summary$p.coeff) # parametrische Effekt
-
-
-date_model2 <- date_model_function(date_data2)
-date_model2$summary # Übersicht (mit Signifikant)
-print(plot(date_model2$Viz, trans = plogis) + 
-        ylim(0,1), pages = 1) # non-parametrische Plots
-plogis(date_model2$summary$p.coeff) # parametrische Effekt
-
-date_model3 <- date_model_function(date_data3)
-date_model3$summary # Übersicht (mit Signifikant)
-print(plot(date_model3$Viz, trans = plogis) + 
-        ylim(0,1), pages = 1) # non-parametrische Plots
-plogis(date_model3$summary$p.coeff) # parametrische Effekt
+# 
+# date_model1 <- date_model_function(date_data1)
+# date_model1$summary # Übersicht (mit Signifikant)
+# print(plot(date_model1$Viz, trans = plogis) + 
+#         ylim(0,1), pages = 1) # non-parametrische Plots
+# plogis(date_model1$summary$p.coeff) # parametrische Effekt
+# 
+# 
+# date_model2 <- date_model_function(date_data2)
+# date_model2$summary # Übersicht (mit Signifikant)
+# print(plot(date_model2$Viz, trans = plogis) + 
+#         ylim(0,1), pages = 1) # non-parametrische Plots
+# plogis(date_model2$summary$p.coeff) # parametrische Effekt
+# 
+# date_model3 <- date_model_function(date_data3)
+# date_model3$summary # Übersicht (mit Signifikant)
+# print(plot(date_model3$Viz, trans = plogis) + 
+#         ylim(0,1), pages = 1) # non-parametrische Plots
+# plogis(date_model3$summary$p.coeff) # parametrische Effekt

@@ -140,27 +140,27 @@ set.seed(42)
 
 # neue Daten laden
 
-source("data1.R", encoding = "UTF-8")
-source("data2.R", encoding = "UTF-8")
-source("data3.R", encoding = "UTF-8")
+source("data_general.R", encoding = "UTF-8")
+source("data_group.R", encoding = "UTF-8")
+source("data_night.R", encoding = "UTF-8")
 
 # Modelle fitten
 # 
-# date_model1 <- date_model_function(date_data1)
-# date_model1$summary # Übersicht (mit Signifikant)
-# print(plot(date_model1$Viz, trans = plogis) + 
+# date_model_general <- date_model_function(date_data_general)
+# date_model_general$summary # Übersicht (mit Signifikant)
+# print(plot(date_model_general$Viz, trans = plogis) + 
 #         ylim(0,1), pages = 1) # non-parametrische Plots
-# plogis(date_model1$summary$p.coeff) # parametrische Effekt
+# plogis(date_model_general$summary$p.coeff) # parametrische Effekt
 # 
 # 
-# date_model2 <- date_model_function(date_data2)
-# date_model2$summary # Übersicht (mit Signifikant)
-# print(plot(date_model2$Viz, trans = plogis) + 
+# date_model_group <- date_model_function(date_data_group)
+# date_model_group$summary # Übersicht (mit Signifikant)
+# print(plot(date_model_group$Viz, trans = plogis) + 
 #         ylim(0,1), pages = 1) # non-parametrische Plots
-# plogis(date_model2$summary$p.coeff) # parametrische Effekt
+# plogis(date_model_group$summary$p.coeff) # parametrische Effekt
 # 
-# date_model3 <- date_model_function(date_data3)
-# date_model3$summary # Übersicht (mit Signifikant)
-# print(plot(date_model3$Viz, trans = plogis) + 
+# date_model_night <- date_model_function(date_data_night)
+# date_model_night$summary # Übersicht (mit Signifikant)
+# print(plot(date_model_night$Viz, trans = plogis) + 
 #         ylim(0,1), pages = 1) # non-parametrische Plots
-# plogis(date_model3$summary$p.coeff) # parametrische Effekt
+# plogis(date_model_night$summary$p.coeff) # parametrische Effekt

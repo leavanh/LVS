@@ -8,6 +8,7 @@ library("readxl")
 library("lubridate")
 library("tidyverse")
 library("mgcv")
+library("ggformula")
 
 ## Exceltabellen einlesen
 
@@ -212,6 +213,56 @@ data <- group_by(data, date, hour(time), minute(time)) %>%
          # Leute insg.
          ratio_min = lvs_true_min/(count_people_min)) %>% # Ratio
   ungroup()
+
+
+#############################################################################################
+
+## Solar Radiation laufendes Maximum und Quote am Maximum einfügen
+
+# data nach Datum ordnen
+
+data <- data[order(data$date),]
+
+# Hilfsvariable erstellen
+
+solar_radiation_max <- seq(0, nrow(data)-1)
+
+# laufendes Maximum berechnen
+
+for (i in 1:nrow(data)) {
+  solar_radiation_max[i] <- max(data$solar_radiation[1:i])
+}
+
+# laufendes Maximum und Quote am Maximum in data einfügen
+
+data <- data %>% mutate(solar_radiation_max = solar_radiation_max,
+                        solar_radiation_rate = solar_radiation / solar_radiation_max)
+
+# Plot zum Überprüfen
+
+ggplot(data, aes(x = date)) +
+  geom_line(aes(y = solar_radiation)) +
+  geom_line(aes(y = solar_radiation_max), color = "blue") +
+  geom_spline(aes(y = solar_radiation_max))
+
+# geglättete Kurve (simpel)
+
+smoothingSpline = smooth.spline(data$date, data$solar_radiation_max, spar=0.35)
+plot(data$date, data$solar_radiation_max)
+lines(smoothingSpline)
+
+# geglättete Kurve mit ggformula::geom_spline
+
+ggplot(data, aes(x = date)) +
+  geom_line(aes(y = solar_radiation)) +
+  geom_spline(aes(y = solar_radiation_max),
+              color = "red", nknots = 50)
+
+
+
+
+########################################################################################################
+
 
 ## nur wichtige Variablen behalten
 

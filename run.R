@@ -143,24 +143,31 @@ set.seed(42)
 source("data_general.R", encoding = "UTF-8")
 source("data_group.R", encoding = "UTF-8")
 source("data_night.R", encoding = "UTF-8")
+source("data_temp.R", encoding = "UTF-8")
+
 
 # Modelle fitten
-# 
-# date_model_general <- date_model_function(date_data_general)
-# date_model_general$summary # Übersicht (mit Signifikant)
-# print(plot(date_model_general$Viz, trans = plogis) + 
-#         ylim(0,1), pages = 1) # non-parametrische Plots
-# plogis(date_model_general$summary$p.coeff) # parametrische Effekt
-# 
-# 
-# date_model_group <- date_model_function(date_data_group)
-# date_model_group$summary # Übersicht (mit Signifikant)
-# print(plot(date_model_group$Viz, trans = plogis) + 
-#         ylim(0,1), pages = 1) # non-parametrische Plots
-# plogis(date_model_group$summary$p.coeff) # parametrische Effekt
-# 
-# date_model_night <- date_model_function(date_data_night)
-# date_model_night$summary # Übersicht (mit Signifikant)
-# print(plot(date_model_night$Viz, trans = plogis) + 
-#         ylim(0,1), pages = 1) # non-parametrische Plots
-# plogis(date_model_night$summary$p.coeff) # parametrische Effekt
+
+date_model_general <- date_model_function(date_data_general)
+date_model_general$summary # Übersicht (mit Signifikant)
+print(plot(date_model_general$Viz, trans = plogis) +
+        ylim(0,1), pages = 1) # non-parametrische Plots
+plogis(date_model_general$summary$p.coeff) # parametrische Effekt
+
+date_model_group <- date_model_function(date_data_group)
+date_model_group$summary # Übersicht (mit Signifikant)
+print(plot(date_model_group$Viz, trans = plogis) +
+        ylim(0,1), pages = 1) # non-parametrische Plots
+plogis(date_model_group$summary$p.coeff) # parametrische Effekt
+
+date_model_night <- date_model_function(date_data_night)
+date_model_night$summary # Übersicht (mit Signifikant)
+print(plot(date_model_night$Viz, trans = plogis) +
+        ylim(0,1), pages = 1) # non-parametrische Plots
+plogis(date_model_night$summary$p.coeff) # parametrische Effekt
+
+date_model_temp <- date_model_function(date_data_temp)
+date_model_temp$summary # Übersicht (mit Signifikant)
+print(plot(date_model_temp$Viz, trans = plogis) +
+        ylim(0,1), pages = 1) # non-parametrische Plots
+plogis(date_model_temp$summary$p.coeff) # parametrische Effekt

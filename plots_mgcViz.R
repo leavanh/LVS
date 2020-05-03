@@ -10,7 +10,7 @@ date_Viz <- getViz(date_model)
 # Datum
 
 plot(sm(date_Viz, select = 1), trans = plogis) +
-  l_points(shape = 19, size = 1, alpha = 0.4) +   # Residualpunkte
+  #l_points(shape = 19, size = 1, alpha = 0.4) +   # Residualpunkte
   l_ciPoly() + # Konfidenzband
   l_ciLine(colour = "grey", linetype = 1) + # Konfidenzivränder
   l_fitLine(color = "red") + # Fitline
@@ -18,13 +18,10 @@ plot(sm(date_Viz, select = 1), trans = plogis) +
         length = unit(0.02, "npc")) + # Verdichtung an Achsen
   labs(title = "Smooth-Funktion für Datum",
        x = "Datum",
-       y = "") +
+       y = "s(Datum)") +
   theme(plot.title = element_text(hjust = 0.5)) +
-  scale_x_discrete(limits = c(17897, 17928, 17956, 17987), 
-                   labels = c("17897" = "1. Januar",
-                              "17928" = "1. Februar",
-                              "17956" = "1. März",
-                              "17987" = "1. April"))
+  scale_x_continuous(breaks = c(17910,17940,17970,18000), 
+                    labels = c("14-01-2019","13-02-2019","15-03-2019","14-04-2019"))
 
 
 # Lawinengefahr
@@ -32,26 +29,27 @@ plot(sm(date_Viz, select = 1), trans = plogis) +
 plot(sm(date_Viz, select = 2), trans = plogis) +
   l_ciPoly() + # Konfidenzband
   l_ciLine(colour = "grey", linetype = 1) + # Konfidenzivränder
-  l_points(shape = 19, size = 1, alpha = 0.4) + # Residualpunkte
+  #l_points(shape = 19, size = 1, alpha = 0.4) + # Residualpunkte
   l_fitLine(color = "red") + # Fitline
-  l_rug(mapping = aes(x=x), alpha = 0.8) + # Verdichtung an Achsen
-  labs(title = "Smooth-Funktion für Lawinengefahr",
-       x = "Stufe",
-       y = "") +
+  l_rug(mapping = aes(x=x, y=y), alpha = 0.8,
+        length = unit(0.02, "npc")) + # Verdichtung an Achsen
+  labs(title = "Smooth-Funktion für Lawinenwarnstufe",
+       x = "Lawinenwarnstufe",
+       y = "s(Lawinenwarnstufe)") +
   theme(plot.title = element_text(hjust = 0.5)) +
-  scale_x_continuous(breaks = c(1, 1.5, 2, 2.5, 3, 3.5, 4))
+  scale_x_continuous(breaks = c(1,  2,  3,  4))
 
 # Wochentag
 
 plot(sm(date_Viz, select = 3), trans = plogis) +
   l_ciPoly() + # Konfidenzband
   l_ciLine(colour = "grey", linetype = 1) + # Konfidenzivränder
-  l_points(shape = 19, size = 1, alpha = 0.4, color = "blue") + # Residualpunkte
+  #l_points(shape = 19, size = 1, alpha = 0.4, color = "blue") + # Residualpunkte
   l_fitLine(color = "red") + # Fitline
   l_rug(mapping = aes(x=x, y=y), alpha = 0.8) + # Verdichtung an Achsen
   labs(title = "Smooth-Funktion für Wochentag",
-       x = "",
-       y = "") +
+       x = "Wochentag",
+       y = "s(Wochentag)") +
   theme(plot.title = element_text(hjust = 0.5)) +
   scale_x_discrete(limits = c("1", "2", "3", "4", "5", "6", "7"),
                    labels=c("1" = "Montag", "2" = "Dienstag",
@@ -64,15 +62,14 @@ plot(sm(date_Viz, select = 3), trans = plogis) +
 plot(sm(date_Viz, select = 4), trans = plogis) +
   l_ciPoly() + # Konfidenzband
   l_ciLine(colour = "grey", linetype = 1) + # Konfidenzivränder
-  l_points(shape = 19, size = 1, alpha = 0.4) + # Residualpunkte
+  #l_points(shape = 19, size = 1, alpha = 0.4) + # Residualpunkte
   l_fitLine(color = "red") + # Fitline
   l_rug(mapping = aes(x=x, y=y), alpha = 0.8) + # Verdichtung an Achsen
-  labs(title = "Smooth-Funktion für den Abstand der Temperatur
-                vom Mittelwert",
+  labs(title = "Smooth-Funktion für den Abstand \n der Temperatur vom Mittelwert",
        x = "Abweichung vom Mittelwert in Grad Celsius",
-       y = "") +
+       y = "s(Schneehöhe_Residuen)") +
   theme(plot.title = element_text(hjust = 0.5)) +
-  scale_x_discrete(limits = c(-6, -4, -2, 0, 2, 4, 6))
+  scale_x_continuous(breaks = c(-6, -4, -2, 0, 2, 4, 6))
 
 
 # Residuen Sonneneinstrahlung
@@ -80,29 +77,29 @@ plot(sm(date_Viz, select = 4), trans = plogis) +
 plot(sm(date_Viz, select = 5), trans = plogis) +
   l_ciPoly() + # Konfidenzband
   l_ciLine(colour = "grey", linetype = 1) + # Konfidenzivränder
-  l_points(shape = 19, size = 1, alpha = 0.4, color = "blue") + # Residualpunkte
+  #l_points(shape = 19, size = 1, alpha = 0.4, color = "blue") + # Residualpunkte
   l_fitLine(color = "red") + # Fitline
   l_rug(mapping = aes(x=x, y=y), alpha = 0.8) + # Verdichtung an Achsen
   labs(title = "Smooth-Funktion für den Abstand der Sonneneinstrahlung
                 vom Mittelwert",
        x = "Abweichung vom Mittelwert in W/m²",
        y = "") +
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5)) +
+  scale_x_continuous(breaks = c(-4, -3, -2, -1, 0, 1, 2))
 
 # Residuen Schneehöhe
 
 plot(sm(date_Viz, select = 6), trans = plogis) +
   l_ciPoly() + # Konfidenzband
   l_ciLine(colour = "grey", linetype = 1) + # Konfidenzivränder
-  l_points(shape = 19, size = 1, alpha = 0.4) + # Residualpunkte
+  #l_points(shape = 19, size = 1, alpha = 0.4) + # Residualpunkte
   l_fitLine(color = "red") + # Fitline
   l_rug(mapping = aes(x=x, y=y), alpha = 0.8) + # Verdichtung an Achsen
-  labs(title = "Smooth-Funktion für den Abstand der Schneehöhe
-                vom Mittelwert",
+  labs(title = "Smooth-Funktion für den Abstand \n der Schneehöhe vom Mittelwert",
        x = "Abweichung vom Mittelwert in Grad Celsius",
-       y = "") +
+       y = "s(Schneehöhe_Residuen)") +
   theme(plot.title = element_text(hjust = 0.5)) +
-  scale_x_discrete(limits = seq(-16, 14, 2))
+  scale_x_continuous(breaks = c(-18, -15, -12, -9, -6, -3, 0, 3, 6, 9, 12, 15, 18))
 
 
 
@@ -130,17 +127,27 @@ plot(sm(date_Viz, select = 1), trans = plogis,
                      
 day_Viz <- getViz(day_model)
 
+#2-Dimensionale Smooth-Funktion; Date and Time
+plot(sm(day_Viz, select = 1), trans = plogis)  + labs(y="Datum", x="Uhrzeit") + l_fitRaster() + l_rug() +
+  scale_y_continuous(breaks=c(17910,17940,17970,18000), 
+                     labels=c("14-01-2019","13-02-2019","15-03-2019","14-04-2019")) +
+  scale_x_continuous(breaks=c(-2209060800,-2209050000,-2209039200,-2209028400, -2209017600, -2209006800,
+                              -2208996000, -2208985200, -2208974460), 
+                     labels=c("04:00","07:00","10:00","13:00", "16:00", "19:00",
+                              "22:00", "01:00", "03:59")) +
+  ggtitle("Smoothfunktion für Uhrzeit und Datum")
+
 # Lawinengefahr
 
 day_plot_avl <- plot(sm(day_Viz, select = 3), trans = plogis) +
                   l_ciPoly() + # Konfidenzband
                   l_ciLine(colour = "grey", linetype = 1) + # Konfidenzivränder
-                  l_points(shape = 19, size = 1, alpha = 0.2) + # Residualpunkte
-                  l_fitLine(color = "red") + # Fitline
-                  l_rug(mapping = aes(x=x), alpha = 0.6) + # Verdichtung an Achsen
-                  labs(title = "Smooth-Funktion für Lawinengefahr (im day_model)",
-                       x = "Stufe",
-                       y = "") +
+                  #l_points(shape = 19, size = 1, alpha = 0.2) + # Residualpunkte
+                  l_fitLine(color = "black") + # Fitline
+                  l_rug(mapping = aes(x=x, y=y), alpha = 0.8) + # Verdichtung an Achsen
+                  labs(title = "Smooth-Funktion für Lawinenwarnstufe",
+                       x = "Lawinenwarnstufe",
+                       y = "s(Lawinenwarnstufe)") +
                   theme(plot.title = element_text(hjust = 0.5))
                   
 
@@ -149,9 +156,9 @@ day_plot_avl <- plot(sm(day_Viz, select = 3), trans = plogis) +
 day_plot_intday <- plot(sm(day_Viz, select = 2), trans = plogis) +
                     l_ciPoly() + # Konfidenzband
                     l_ciLine(colour = "grey", linetype = 1) + # Konfidenzivränder
-                    l_points(shape = 19, size = 1, alpha = 0.2) + # Residualpunkte
+                    #l_points(shape = 19, size = 1, alpha = 0.2) + # Residualpunkte
                     l_fitLine(color = "red") + # Fitline
-                    l_rug(mapping = aes(x=x), alpha = 0.6) + # Verdichtung an Achsen
+                    l_rug(mapping = aes(x=x, y=y), alpha = 0.6) + # Verdichtung an Achsen
                     labs(title = "Smooth-Funktion für Wochentag (im day_model)",
                          x = "",
                          y = "") +
@@ -161,7 +168,7 @@ day_plot_intday <- plot(sm(day_Viz, select = 2), trans = plogis) +
                                               "3" = "Mittwoch", "4" = "Donnerstag",
                                               "5" = "Freitag", "6" = "Samstag",
                                               "7" = "Sonntag"))
-
+day_plot_intday
 # Residuen für Temperatur
 
 plot(sm(day_Viz, select = 4), trans = plogis) +

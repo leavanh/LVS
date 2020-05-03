@@ -185,4 +185,5 @@ plot(sm(day_Viz, select = 6), trans = plogis) +
   labs(title = "Smooth-Funktion für den Abstand \n der Schneehöhe vom Mittelwert",
        x = "Abweichung vom Mittelwert in Grad Celsius",
        y = "s(Schneehöhe_Residuen)") +
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5)) +
+  scale_x_continuous(breaks = c(-18, -15, -12, -9, -6, -3, 0, 3, 6, 9, 12, 15, 18))

@@ -41,7 +41,7 @@ day_model2 <- gamm(
   family = binomial(link = "logit"))
 
 day_Viz <- getViz(day_model)
-day_Viz2 <- getViz(day_model2)
+day_Viz2 <- getViz(day_model2$gam)
 
 
 ## Werte zurückgeben Funktion

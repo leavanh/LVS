@@ -79,7 +79,7 @@ date_temperature <- ggplot(date_data) +
 date_solar_radiation <- ggplot(date_data) +
   geom_line(aes(date, solar_radiation)) +
   xlab("Datum") +
-  ylab("solar radiation")
+  ylab("Sonneneinstrahlung in W/m²")
 
 # Datum und Position
 
@@ -117,7 +117,7 @@ temperature_ratio <- date_data_noNA %>%
 solar_radiation_ratio <- date_data_noNA %>%
   ggplot() +
   geom_point(aes(solar_radiation, ratio), alpha = 0.5) +
-  xlab("solar radiation") +
+  xlab("Sonneneinstrahlung in W/m²") +
   ylab("Anteil LVS-Geräte")
 
 # Ratio und Lawinenwarnstufe

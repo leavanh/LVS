@@ -152,3 +152,26 @@ time_lvs <- ggplot() +
   labs(title = "Die Messungen nach Uhrzeit",
        x = "Uhrzeit",
        y = "Absolute Häufigkeit")
+
+
+## Solar Radiation Maximum
+
+solar_radiation_max <- ggplot(date_data, aes(x = as.numeric(date))) +
+  geom_line(aes(y = solar_radiation)) +
+  geom_spline(aes(y = solar_radiation_max, 
+                  colour = "geglättetes Maximum"),
+              nknots = 30,
+              spar = 0.1, size = 1.5) +
+  labs(title = "Verlauf der Sonneneinstrahlung 18/19",
+       x = "",
+       y = "Sonneneinstrahlung in W/m²") +
+  theme(plot.title = element_text(hjust = 0.5),
+        text = element_text(size = 12),
+        legend.title = element_blank(),
+        legend.position = c(.2, .9)) +
+  scale_x_discrete(limits = c(1546300800, 1548979200, 
+                              1551398400, 1554163200), 
+                   labels = c("1546300800" = "1. Januar",
+                              "1548979200" = "1. Februar",
+                              "1551398400" = "1. März",
+                              "1554163200" = "1. April"))

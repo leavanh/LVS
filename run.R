@@ -37,6 +37,8 @@ date_snowhight | date_temperature | date_solar_radiation
 snowhight_solar_radiation
 time_lvs
 
+solar_radiation_max
+
 ## Modell fitting
 
 source("date_model.R", encoding = "UTF-8")

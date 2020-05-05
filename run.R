@@ -58,6 +58,8 @@ plogis(date_model$summary$p.coeff) # parametrische Effekt
 
 source("smooth_plots_date_model.R", encoding = "UTF-8")
 
+plots_date_model(date_model)
+
 # Einzelplots
 
 # date_model_date

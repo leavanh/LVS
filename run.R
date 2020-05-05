@@ -43,11 +43,18 @@ solar_radiation_max
 
 ## Modell fitting
 
-source("date_model.R", encoding = "UTF-8")
-source("day_model.R", encoding = "UTF-8")
 
+# Date
 
-# Smooth Plots für das Date Model
+date_model <- date_model_function(date_data)
+date_model$summary # Übersicht (mit Signifikant)
+print(plot(date_model$Viz, trans = plogis) + 
+        ylim(0,1), pages = 1) # non-parametrische Plots
+plogis(date_model$summary$p.coeff) # parametrische Effekt
+
+# Plots zum Date Model
+
+source("smooth_plots_date_model.R", encoding = "UTF-8")
 
 date_model_date
 date_model_day
@@ -57,24 +64,7 @@ date_model_solar_radiation
 date_model_temperature
 date_model_snowhight
 
-# Smooth Plots für das Day Model
 
-day_model_date_time
-day_model_day
-day_model_avalanche
-day_model_solar_radiation
-day_model_solar_radiation
-day_model_temperature
-day_model_snowhight
-
-
-# Date
-
-date_model <- date_model_function(date_data)
-date_model$summary # Übersicht (mit Signifikant)
-print(plot(date_model$Viz, trans = plogis) + 
-        ylim(0,1), pages = 1) # non-parametrische Plots
-plogis(date_model$summary$p.coeff) # parametrische Effekt
 
 # Möglichkeiten das Modell zu "checken"
 # Passen die Basis-Funktionen? Gibt es Autocorrelation? ...
@@ -97,6 +87,20 @@ saveRDS(day_model_gamm, file = "day_model_gamm.RDS")
 
 end <- print(Sys.time())
 print(end - start)
+
+# Plots zum Day Model
+
+source("smooth_plots_day_model.R", encoding = "UTF-8")
+
+
+day_model_date_time
+day_model_day
+day_model_avalanche
+day_model_solar_radiation
+day_model_solar_radiation
+day_model_temperature
+day_model_snowhight
+
 
 ## folgendes bitte ignorieren ich brauchte nur nen platz das kurz zu speichern
 

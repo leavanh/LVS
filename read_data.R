@@ -96,6 +96,48 @@ date_data$int_day <- as.integer(factor(date_data$day,
                       levels = c("Montag", "Dienstag", "Mittwoch", "Donnerstag",
                                     "Freitag", "Samstag", "Sonntag")))
 
+
+
+## Solar Radiation laufendes Maximum und Anteil am Maximum einfügen
+
+# data nach Datum ordnen
+
+date_data <- date_data[order(date_data$date),]
+
+# Hilfsvariable erstellen
+
+solar_radiation_max <- seq(0, nrow(date_data)-1)
+
+# laufendes Maximum berechnen
+
+for (i in 1:nrow(date_data)) {
+  solar_radiation_max[i] <- max(date_data$solar_radiation[1:i])
+}
+
+# laufendes Maximum und Quote am Maximum in data einfügen
+
+date_data <- date_data %>% mutate(solar_radiation_max = solar_radiation_max)
+
+
+# laufendes Maximum glätten durch Splines
+
+srm_build <- ggplot_build(ggplot(date_data, aes(x = as.numeric(date))) +
+                            geom_spline(aes(y = solar_radiation_max), 
+                                        nknots = 30,
+                                        spar = 0.1))
+
+# Werte über 1 auf 1 setzen
+
+date_data$solar_radiation_max <- srm_build$data[[1]]$y
+
+# Anteil (proportion) der Solar-Radiation-Werte am gegl. Maximum einfügen
+
+date_data <- mutate(date_data, 
+              solar_radiation_prop = 
+                pmin(solar_radiation / solar_radiation_max, 1))
+
+
+
 # Residuen
 
 temp_gam <- gam(temperature ~ s(int_date, bs = "ps", k = 20),
@@ -174,6 +216,10 @@ for(i in 1:nrow(data)) {
     data[[i, "res_snowhight"]] <- date_data[[row_i, "res_snowhight"]]
     data[[i, "res_solar_radiation"]] <- date_data[[row_i,
                                                    "res_solar_radiation"]]
+    data[[i, "solar_radiation_max"]] <- date_data[[row_i,
+                                                   "solar_radiation_max"]]
+    data[[i, "solar_radiation_prop"]] <- date_data[[row_i,
+                                                   "solar_radiation_prop"]]
   }}
   # mit der nächsten Messung weitermachen
   i <- i + 1
@@ -215,53 +261,7 @@ data <- group_by(data, date, hour(time), minute(time)) %>%
   ungroup()
 
 
-#############################################################################################
 
-## Solar Radiation laufendes Maximum und Quote am Maximum einfügen
-
-# data nach Datum ordnen
-
-data <- data[order(data$date),]
-
-# Hilfsvariable erstellen
-
-solar_radiation_max <- seq(0, nrow(data)-1)
-
-# laufendes Maximum berechnen
-
-for (i in 1:nrow(data)) {
-  solar_radiation_max[i] <- max(data$solar_radiation[1:i])
-}
-
-# laufendes Maximum und Quote am Maximum in data einfügen
-
-data <- data %>% mutate(solar_radiation_max = solar_radiation_max,
-                        solar_radiation_rate = solar_radiation / solar_radiation_max)
-
-# Plot zum Überprüfen
-
-ggplot(data, aes(x = date)) +
-  geom_line(aes(y = solar_radiation)) +
-  geom_line(aes(y = solar_radiation_max), color = "blue") +
-  geom_spline(aes(y = solar_radiation_max))
-
-# geglättete Kurve (simpel)
-
-smoothingSpline = smooth.spline(data$date, data$solar_radiation_max, spar=0.35)
-plot(data$date, data$solar_radiation_max)
-lines(smoothingSpline)
-
-# geglättete Kurve mit ggformula::geom_spline
-
-ggplot(data, aes(x = date)) +
-  geom_line(aes(y = solar_radiation)) +
-  geom_spline(aes(y = solar_radiation_max),
-              color = "red", nknots = 50)
-
-
-
-
-########################################################################################################
 
 
 ## nur wichtige Variablen behalten
@@ -274,7 +274,8 @@ data <- subset(data, select = c(id, lvs, position, time, date, int_date, day,
                                 avalanche_report, sunrise, sunset,
                                 lvs_true, lvs_false, count_people, ratio,
                                 lvs_true_min, lvs_false_min, count_people_min,
-                                ratio_min))
+                                ratio_min, solar_radiation_max, 
+                                solar_radiation_prop))
 
 ## factors für position festlegen
 

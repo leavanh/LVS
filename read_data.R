@@ -98,19 +98,12 @@ date_data$int_day <- as.integer(factor(date_data$day,
 
 
 
-## Solar Radiation laufendes Maximum und Anteil am Maximum einfügen
+# Solar Radiation laufendes Maximum und Anteil am Maximum einfügen
 
-# data nach Datum ordnen
+date_data <- date_data[order(date_data$date),] # data nach Datum ordnen
+solar_radiation_max <- seq(0, nrow(date_data)-1) # Hilfsvariable erstellen
 
-date_data <- date_data[order(date_data$date),]
-
-# Hilfsvariable erstellen
-
-solar_radiation_max <- seq(0, nrow(date_data)-1)
-
-# laufendes Maximum berechnen
-
-for (i in 1:nrow(date_data)) {
+for (i in 1:nrow(date_data)) { # laufendes Maximum berechnen
   solar_radiation_max[i] <- max(date_data$solar_radiation[1:i])
 }
 
@@ -271,11 +264,11 @@ data <- subset(data, select = c(id, lvs, position, time, date, int_date, day,
                                 snowhight, snow_diff, res_snowhight,
                                 temperature, int_temperature, res_temperature,
                                 solar_radiation, res_solar_radiation, 
+                                solar_radiation_max, solar_radiation_prop, 
                                 avalanche_report, sunrise, sunset,
                                 lvs_true, lvs_false, count_people, ratio,
                                 lvs_true_min, lvs_false_min, count_people_min,
-                                ratio_min, solar_radiation_max, 
-                                solar_radiation_prop))
+                                ratio_min))
 
 ## factors für position festlegen
 

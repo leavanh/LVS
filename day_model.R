@@ -59,5 +59,7 @@ day_model_list <- list(
   Viz_gamm = day_Viz2
 )
 
+source("smooth_plots_day_model.R")
+
 return(day_model_list)
 }

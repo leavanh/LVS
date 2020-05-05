@@ -6,6 +6,7 @@ library("GGally")
 library("mgcv")
 library("mgcViz")
 library("lubridate")
+library("gridExtra")
 
 ## Daten laden
 
@@ -43,6 +44,28 @@ solar_radiation_max
 
 source("date_model.R", encoding = "UTF-8")
 source("day_model.R", encoding = "UTF-8")
+
+
+# Smooth Plots für das Date Model
+
+date_model_date
+date_model_day
+date_model_avalanche
+date_model_solar_radiation
+date_model_solar_radiation
+date_model_temperature
+date_model_snowhight
+
+# Smooth Plots für das Day Model
+
+day_model_date_time
+day_model_day
+day_model_avalanche
+day_model_solar_radiation
+day_model_solar_radiation
+day_model_temperature
+day_model_snowhight
+
 
 # Date
 

@@ -35,5 +35,7 @@ date_model_list <- list(
   Viz = date_Viz
 )
 
+source("smooth_plots_date_model.R")
+
 return(date_model_list)
 }

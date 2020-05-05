@@ -4,8 +4,6 @@
 
 ### Für das Date_Model
 
-date_Viz <- getViz(date_model)
-
 # Datum
 
 date_model_date <- 
@@ -13,15 +11,15 @@ date_model_date <-
   #l_points(shape = 19, size = 1, alpha = 0.4) +   # Residualpunkte
   l_ciPoly() + # Konfidenzband
   l_ciLine(colour = "grey", linetype = 1) + # Konfidenzivränder
-  l_fitLine(color = "red", size = 1.2) + # Fitline
+  l_fitLine(color = "black", size = 1.2) + # Fitline
   l_rug(mapping = aes(x=x, y=y), alpha = 0.8,
         length = unit(0.02, "npc")) + # Verdichtung an Achsen
   labs(title = "Datum",
        x = "", y = "") +
   theme(plot.title = element_text(hjust = 0.5)) +
   scale_x_continuous(breaks = c(17910,17940,17970,18000), 
-                     labels = c("14-01-19","13-02-19",
-                                "15-03-19","14-04-19"))
+                     labels = c("14-01","13-02",
+                                "15-03","14-04"))
 
 
 # Lawinengefahr
@@ -31,7 +29,7 @@ date_model_avalanche <-
   l_ciPoly() + # Konfidenzband
   l_ciLine(colour = "grey", linetype = 1) + # Konfidenzivränder
   #l_points(shape = 19, size = 1, alpha = 0.4) + # Residualpunkte
-  l_fitLine(color = "red", size = 1.2) + # Fitline
+  l_fitLine(color = "black", size = 1.2) + # Fitline
   l_rug(mapping = aes(x=x, y=y), alpha = 0.8,
         length = unit(0.02, "npc")) + # Verdichtung an Achsen
   labs(title = "Lawinenwarnstufe",
@@ -46,7 +44,7 @@ date_model_day <-
   l_ciPoly() + # Konfidenzband
   l_ciLine(colour = "grey", linetype = 1) + # Konfidenzivränder
   #l_points(shape = 19, size = 1, alpha = 0.4, color = "blue") + # Residualpunkte
-  l_fitLine(color = "red", size = 1.2) + # Fitline
+  l_fitLine(color = "black", size = 1.2) + # Fitline
   l_rug(mapping = aes(x=x, y=y), alpha = 0.8) + # Verdichtung an Achsen
   labs(title = "Wochentag",
        x = "", y = "") +
@@ -64,7 +62,7 @@ date_model_temperature <-
   l_ciPoly() + # Konfidenzband
   l_ciLine(colour = "grey", linetype = 1) + # Konfidenzivränder
   #l_points(shape = 19, size = 1, alpha = 0.4) + # Residualpunkte
-  l_fitLine(color = "red", size = 1.2) + # Fitline
+  l_fitLine(color = "black", size = 1.2) + # Fitline
   l_rug(mapping = aes(x=x, y=y), alpha = 0.8) + # Verdichtung an Achsen
   labs(title = "Temperatur",
        x = "",
@@ -81,7 +79,7 @@ date_model_solar_radiation <-
   l_ciPoly() + # Konfidenzband
   l_ciLine(colour = "grey", linetype = 1) + # Konfidenzivränder
   #l_points(shape = 19, size = 1, alpha = 0.4, color = "blue") + # Residualpunkte
-  l_fitLine(color = "red", size = 1.2) + # Fitline
+  l_fitLine(color = "black", size = 1.2) + # Fitline
   l_rug(mapping = aes(x=x, y=y), alpha = 0.8) + # Verdichtung an Achsen
   labs(title = "Sonneneinstrahlung",
        x = "",
@@ -96,7 +94,7 @@ date_model_snowhight <-
   l_ciPoly() + # Konfidenzband
   l_ciLine(colour = "grey", linetype = 1) + # Konfidenzivränder
   #l_points(shape = 19, size = 1, alpha = 0.4) + # Residualpunkte
-  l_fitLine(color = "red", size = 1.2) + # Fitline
+  l_fitLine(color = "black", size = 1.2) + # Fitline
   l_rug(mapping = aes(x=x, y=y), alpha = 0.8) + # Verdichtung an Achsen
   labs(title = "Schneehöhe",
        x = "",
@@ -120,8 +118,6 @@ date_model_grid <-
 
 
 ### Für das Day_Model
-
-day_Viz <- getViz(day_model)
 
 #2-Dimensionale Smooth-Funktion; Date and Time
 
@@ -229,4 +225,3 @@ day_model_grid <-
             day_model_snowhight,
             nrow = 2,
             top = "Smooth-Funktionen im Day Model")
-

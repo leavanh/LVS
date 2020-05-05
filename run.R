@@ -44,7 +44,6 @@ solar_radiation_max
 ### Modell fitting
 
 source("date_model.R", encoding = "UTF-8")
-source("smooth_plots_date_model.R", encoding = "UTF-8")
 source("day_model.R", encoding = "UTF-8")
 
 ## Date_model
@@ -54,6 +53,10 @@ date_model$summary # Übersicht (mit Signifikant)
 print(plot(date_model$Viz, trans = plogis) + 
         ylim(0,1), pages = 1) # non-parametrische Plots
 plogis(date_model$summary$p.coeff) # parametrische Effekt
+
+# Plots
+
+source("smooth_plots_date_model.R", encoding = "UTF-8")
 
 # Einzelplots
 
@@ -74,7 +77,7 @@ plogis(date_model$summary$p.coeff) # parametrische Effekt
 # acf(date_model$model$residuals)
 # pacf(date_model$model$residuals)
 
-# Day
+# Day_model
 
 start <- print(Sys.time()) # we want to know how long computation takes
 
@@ -87,18 +90,20 @@ saveRDS(day_model_gamm, file = "day_model_gamm.RDS")
 end <- print(Sys.time())
 print(end - start)
 
-# Plots zum Day Model
+# Plots
+
 
 source("smooth_plots_day_model.R", encoding = "UTF-8")
 
+# Einzelplots
 
-day_model_date_time
-day_model_day
-day_model_avalanche
-day_model_solar_radiation
-day_model_solar_radiation
-day_model_temperature
-day_model_snowhight
+# day_model_date_time
+# day_model_day
+# day_model_avalanche
+# day_model_solar_radiation
+# day_model_solar_radiation
+# day_model_temperature
+# day_model_snowhight
 
 
 ## folgendes bitte ignorieren ich brauchte nur nen platz das kurz zu speichern

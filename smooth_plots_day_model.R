@@ -2,6 +2,8 @@
 
 day_Viz <- day_model$Viz
 
+theme_set(theme_minimal())
+
 # Plots für den Grid
 
 # Lawinengefahr

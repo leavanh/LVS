@@ -3,6 +3,8 @@
 
 date_Viz <- date_model$Viz
 
+theme_set(theme_minimal())
+
 ## Plots für den Grid
 
 # Datum

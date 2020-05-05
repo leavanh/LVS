@@ -72,7 +72,7 @@ source("smooth_plots_date_model.R", encoding = "UTF-8")
 # Passen die Basis-Funktionen? Gibt es Autocorrelation? ...
 
 # gam.check(date_model$model, type = "deviance")
-# concurvity = concurvity(date_model$model, full = TRUE)
+# concurvity(date_model$model, full = TRUE)
 # concurvity(date_model$model, full = FALSE)
 # acf(date_model$model$residuals)
 # pacf(date_model$model$residuals)

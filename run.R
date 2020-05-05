@@ -7,6 +7,7 @@ library("mgcv")
 library("mgcViz")
 library("lubridate")
 library("gridExtra")
+library("ggformula")
 
 ## Daten laden
 

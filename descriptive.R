@@ -169,7 +169,7 @@ solar_radiation_max <- ggplot(date_data, aes(x = as.numeric(date))) +
         text = element_text(size = 12),
         legend.title = element_blank(),
         legend.position = c(.2, .9)) +
-  scale_x_discrete(limits = c(1546300800, 1548979200, 
+  scale_x_continuous(breaks = c(1546300800, 1548979200, 
                               1551398400, 1554163200), 
                    labels = c("1546300800" = "1. Januar",
                               "1548979200" = "1. Februar",

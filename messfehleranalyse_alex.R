@@ -1,3 +1,4 @@
+
 ggplot(zlg_beide_summen[1:4,], 
        aes(x = factor(kontakt, levels = c("SG", "aK")),
            y = sum, fill = erfassung)) +

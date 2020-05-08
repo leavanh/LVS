@@ -185,6 +185,8 @@ plogis(date_model_general$summary$p.coeff) # parametrische Effekt
 
 day_models_general <- day_model_function(min_data_general)
 day_model_general <- day_models_general$model
+day_models_general$summary # Übersicht (mit Signifikanz)
+plogis(day_models_general$summary$p.coeff) # parametrische Effekt
 
 
 date_model_group <- date_model_function(date_data_group)
@@ -193,6 +195,8 @@ plogis(date_model_group$summary$p.coeff) # parametrische Effekt
 
 day_models_group <- day_model_function(min_data_group)
 day_model_group <- day_models_group$model
+day_models_group$summary # Übersicht (mit Signifikanz)
+plogis(day_models_group$summary$p.coeff) # parametrische Effekt
 
 
 date_model_night <- date_model_function(date_data_night)
@@ -201,7 +205,8 @@ plogis(date_model_night$summary$p.coeff) # parametrische Effekt
 
 day_models_night <- day_model_function(min_data_night)
 day_model_night <- day_models_night$model
-
+day_models_night$summary # Übersicht (mit Signifikanz)
+plogis(day_models_night$summary$p.coeff) # parametrische Effekt
 
 date_model_temp <- date_model_function(date_data_temp)
 date_model_temp$summary # Übersicht (mit Signifikanz)
@@ -209,6 +214,8 @@ plogis(date_model_temp$summary$p.coeff) # parametrische Effekt
 
 day_models_temp <- day_model_function(min_data_temp)
 day_model_temp <- day_models_temp$model
+day_models_temp$summary # Übersicht (mit Signifikanz)
+plogis(day_models_temp$summary$p.coeff) # parametrische Effekt
 
 # Möglichkeiten das Modell zu "checken"
 # Passen die Basis-Funktionen? Gibt es Autocorrelation? ...

@@ -38,9 +38,7 @@ for(i in 1:nrow(date_data_noNA)) {
                           time = messung_time,
                           date = messung_date)
     neue_messungen <- rbind(neue_messungen, messung)
-    j = j + 1
   }
-  i = i + 1
 }
 
 neue_messungen <- neue_messungen[-1,] # erste Zeile löschen

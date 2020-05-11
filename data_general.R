@@ -28,7 +28,6 @@ for(i in 1:n_messungen) { # neue Messungen generieren
   messung <- data.frame(id = NA, lvs = FALSE, position = NA, time = messung_time,
                date = messung_date)
   neue_messungen <- rbind(neue_messungen, messung)
-  i = i + 1
 }
 
 neue_messungen <- neue_messungen[-1,] # erste Zeile löschen

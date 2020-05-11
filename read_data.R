@@ -41,6 +41,10 @@ colnames(all_date) <- c("day", "date", "count_all", "count_selected",
 all_checkpoint_stats <- subset(all_checkpoint_stats,
                                type %in% c("Beacon", "Infrared"))
 
+# Zeitzone ist Mitteleuropäische Zeit
+
+all_checkpoint_stats$time <- force_tz(all_checkpoint_stats$time, "MET")
+
 # date in day_length in POSIXct umwandeln
 
 day_length$date <- as.POSIXct(day_length$date, format = "%d %B %Y", tz = "MET")
@@ -84,10 +88,10 @@ date_data$snow_diff <- date_data$snowhight - lag(date_data$snowhight,
                                        default = first(date_data$snowhight),
                                        by = date_data$date)
 
-# temperature in 6 Kategorien
+# temperature in 2 Kategorien (unter/über 0)
 
-date_data$int_temperature <- as.integer(cut(date_data$temperature, seq(-8,10,3),
-                                       right = FALSE, labels = c(1:6)))
+date_data$int_temperature <- 1
+0 -> date_data[date_data$temperature < 0,]$int_temperature
 
 # int_ Variablen
 
@@ -163,8 +167,8 @@ time_interval <- interval(
   as.POSIXct("1899-12-31 00:00:00", tz = "MET"),
   as.POSIXct("1899-12-31 03:59:59", tz = "MET")
 )
-
-for(i in 1:nrow(data)) {
+nrows <- nrow(data)
+for(i in 1:nrows) {
   # Zeit der Beobachtung 
   time_i <- data[[i, "time"]]
   # Datum der Beobachtung
@@ -214,8 +218,6 @@ for(i in 1:nrow(data)) {
     data[[i, "solar_radiation_prop"]] <- date_data[[row_i,
                                                    "solar_radiation_prop"]]
   }}
-  # mit der nächsten Messung weitermachen
-  i <- i + 1
 }
 
 ## neue Variablen berechnen

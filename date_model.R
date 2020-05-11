@@ -12,10 +12,10 @@ date_model <- gam(
   cbind(lvs_true, lvs_false) ~ s(int_date, bs = "ps", k = 25) + 
     s(avalanche_report, bs = "ps", k = 5) +
     s(int_day, bs = "cp", k = 7) +
-    s(temperature, bs = "ps", k = 15) +
+    # s(temperature, bs = "ps", k = 15) +
     s(solar_radiation_prop, bs = "ps", k = 15) +
     s(snow_diff, bs = "ps", k = 15) +
-    holiday,
+    holiday + int_temperature,
   data = date_data,
   method = "REML",
   family = binomial(link = "logit"))

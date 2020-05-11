@@ -11,11 +11,13 @@ perc <- 0.5 # Prozent die gelöscht werden sollen
 
 # welche kommen in Frage?
 
-time_intervall <- interval(
-  as.POSIXct("1900-01-01 01:00:00", tz = "MET"),
-  as.POSIXct("1900-01-01 03:59:59", tz = "MET")
+time_intervall <- interval( # In diesem Intervall ist nie die sonne zu sehen
+  as.POSIXct("1899-12-31 05:29:00", tz = "MET"),
+  as.POSIXct("1899-12-31 18:58:00", tz = "MET")
 )
-nacht_messungen <- subset(data_night, time %within% time_intervall # nachts
+
+nacht_messungen <- subset(data_night, 
+                          !(time %within% time_intervall) # nachts
                           & lvs == FALSE) # nur Infrarotmessungen
 delete_rows <- sample(nrow(nacht_messungen),
                       size = perc * nrow(nacht_messungen)) # rundet immer ab!

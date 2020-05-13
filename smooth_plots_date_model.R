@@ -1,5 +1,5 @@
 
-### Plots das Date_Model als funktion
+### Plots das Date_Model als Funktion
 ### Nimmt als Argument ein date_model_function(date_data)-Objekt
 
 plots_date_model <- function(
@@ -10,13 +10,13 @@ date_Viz <- date_model$Viz
 
 theme_set(theme_minimal())
 
-## Plots für den Grid
+## Smooth-Plots für nichtparametrische Kovariablen
+## aufgeteilt in Darstellung für den Grid und einzeln
 
 # Datum
 
 date_model_date <- 
   plot(sm(date_Viz, select = 1), trans = plogis) +
-  #l_points(shape = 19, size = 1, alpha = 0.4) +   # Residualpunkte
   l_ciPoly() + # Konfidenzband
   l_ciLine(colour = "grey", linetype = 1) + # Konfidenzivränder
   l_fitLine(color = "black", size = 1.2) + # Fitline
@@ -50,7 +50,6 @@ date_model_avalanche <-
   plot(sm(date_Viz, select = 2), trans = plogis) +
   l_ciPoly() + # Konfidenzband
   l_ciLine(colour = "grey", linetype = 1) + # Konfidenzivränder
-  #l_points(shape = 19, size = 1, alpha = 0.4) + # Residualpunkte
   l_fitLine(color = "black", size = 1.2) + # Fitline
   l_rug(mapping = aes(x=x, y=y), alpha = 0.8,
         length = unit(0.02, "npc")) # Verdichtung an Achsen
@@ -76,7 +75,6 @@ date_model_day <-
   plot(sm(date_Viz, select = 3), trans = plogis) +
   l_ciPoly() + # Konfidenzband
   l_ciLine(colour = "grey", linetype = 1) + # Konfidenzivränder
-  #l_points(shape = 19, size = 1, alpha = 0.4, color = "blue") + # Residualpunkte
   l_fitLine(color = "black", size = 1.2) + # Fitline
   l_rug(mapping = aes(x=x, y=y), alpha = 0.8) # Verdichtung an Achsen
 
@@ -102,13 +100,12 @@ day_smooth <- date_model_day +
                                           "7" = "Sonntag"))
 
 
-# Residuen für Temperatur
+# Temperatur
 
 date_model_temperature <- 
   plot(sm(date_Viz, select = 4), trans = plogis) +
   l_ciPoly() + # Konfidenzband
   l_ciLine(colour = "grey", linetype = 1) + # Konfidenzivränder
-  #l_points(shape = 19, size = 1, alpha = 0.4) + # Residualpunkte
   l_fitLine(color = "black", size = 1.2) + # Fitline
   l_rug(mapping = aes(x=x, y=y), alpha = 0.8) # Verdichtung an Achsen
 
@@ -117,23 +114,22 @@ temperature_grid <- date_model_temperature +
                            x = "",
                            y = "") +
                       theme(plot.title = element_text(hjust = 0.5)) +
-                      scale_x_continuous(breaks = c(-6, -4, -2, 0, 2, 4, 6))
+                      scale_x_continuous(breaks = c(-6, -4, -2, 0, 2, 4, 6, 8))
 
 temperature_smooth <- date_model_temperature +
-                labs(title = "Smooth-Funktion für Residuen \n der Temperatur",
+                labs(title = "Smooth-Funktion für Temperatur",
                      x = "Temperatur in Grad Celsius",
-                     y = "s(Temperatur_Residuen)") +
+                     y = "s(Temperatur)") +
                 theme(plot.title = element_text(hjust = 0.5)) +
-                scale_x_continuous(breaks = c(-6, -4, -2, 0, 2, 4, 6))
+                scale_x_continuous(breaks = c(-6, -4, -2, 0, 2, 4, 6, 8))
 
 
-# Residuen Sonneneinstrahlung
+# Sonneneinstrahlung-Anteil
 
 date_model_solar_radiation <- 
   plot(sm(date_Viz, select = 5), trans = plogis) +
   l_ciPoly() + # Konfidenzband
   l_ciLine(colour = "grey", linetype = 1) + # Konfidenzivränder
-  #l_points(shape = 19, size = 1, alpha = 0.4, color = "blue") + # Residualpunkte
   l_fitLine(color = "black", size = 1.2) + # Fitline
   l_rug(mapping = aes(x=x, y=y), alpha = 0.8) # Verdichtung an Achsen
 
@@ -142,53 +138,53 @@ solar_radiation_grid <- date_model_solar_radiation +
                              x = "",
                              y = "") +
                         theme(plot.title = element_text(hjust = 0.5)) +
-                        scale_x_continuous(breaks = c(-4, -3, -2, -1, 0, 1, 2))
+                        scale_x_continuous(breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1))
 
 solar_radiation_smooth <- date_model_solar_radiation +
-  labs(title = "Smooth-Funktion für Residuen \n der Sonneneinstrahlung",
-       x = "Sonneneinstrahlung in W/m²",
-       y = "s(Sonneneinstrahlung)") +
+  labs(title = "Smooth-Funktion für Anteil \n der Sonneneinstrahlung am Maximum",
+       x = "Anteil an maximaler Sonneneinstrahlung",
+       y = "s(Anteil Sonneneinstrahlung)") +
   theme(plot.title = element_text(hjust = 0.5)) +
-  scale_x_continuous(breaks = c(-4, -3, -2, -1, 0, 1, 2))
+  scale_x_continuous(breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1))
 
-# Residuen Schneehöhe
+# Differenz Schneehöhe
 
 date_model_snowhight <- 
   plot(sm(date_Viz, select = 6), trans = plogis) +
   l_ciPoly() + # Konfidenzband
   l_ciLine(colour = "grey", linetype = 1) + # Konfidenzivränder
-  #l_points(shape = 19, size = 1, alpha = 0.4) + # Residualpunkte
   l_fitLine(color = "black", size = 1.2) + # Fitline
   l_rug(mapping = aes(x=x, y=y), alpha = 0.8) # Verdichtung an Achsen
 
 snowhight_grid <- date_model_snowhight +
-                    labs(title = "Schneehöhe",
+                    labs(title = "Neuschnee",
                          x = "",
                          y = "") +
                     theme(plot.title = element_text(hjust = 0.5)) +
-                    scale_x_continuous(breaks = c(-18, -15, -12, -9, -6, -3, 
-                                                  0, 3, 6, 9, 12, 15, 18))
+                    scale_x_continuous(breaks = c(-12, -4, 4, 12, 20, 28, 36))
 
 snowhight_smooth <- date_model_snowhight +
-                labs(title = "Smooth-Funktion für Residuen \n der Schneehöhe",
-                     x = "Schneehöhe in cm",
-                     y = "s(Schneehöhe_Residuen)") +
+                labs(title = "Smooth-Funktion für Neuschnee",
+                     x = "Neuschnee in cm",
+                     y = "s(Neuschnee)") +
                 theme(plot.title = element_text(hjust = 0.5)) +
-                scale_x_continuous(breaks = c(-18, -15, -12, -9, -6, -3, 
-                                              0, 3, 6, 9, 12, 15, 18))
+                scale_x_continuous(breaks = c(-12, -8, -4, 0, 4, 8, 12, 16, 20,
+                                              24, 28, 32, 36, 40))
 
 
 # Grid für Date Model Plots
 
 date_model_grid <-
-  gridPrint(date_grid,
+  list(date_grid,
             day_grid,
             avalanche_grid,
             solar_radiation_grid,
             temperature_grid,
-            snowhight_grid,
-            nrow = 2,
-            top = "Smooth-Funktionen im Date Model")
+            snowhight_grid)
+
+
+
+# Liste zur Ausgabe
 
 plots_date_model_list <- list(
   date = date_smooth,
@@ -196,10 +192,12 @@ plots_date_model_list <- list(
   avalanche = avalanche_smooth,
   solar_radiation = solar_radiation_smooth,
   temperature = temperature_smooth,
-  snowhight = snowhight_smooth
+  snowhight = snowhight_smooth,
+  grid = date_model_grid
   )
 
 return(plots_date_model_list)
 
 }
+
 

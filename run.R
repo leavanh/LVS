@@ -9,6 +9,9 @@ library("lubridate")
 library("gridExtra")
 library("ggformula")
 
+
+
+
 ## Daten laden
 
 data <- readRDS(file = "Daten/data.RDS")
@@ -20,6 +23,9 @@ min_data <- readRDS(file = "Daten/min_data.RDS")
 date_data_noNA <- date_data[!is.na(date_data$count_people),]
 data_noNA <- data[!is.na(data$lvs),]
 min_data_noNA <- min_data[!is.na(min_data$count_people_min),]
+
+
+
 
 ## Deskriptive Auswertung
 
@@ -39,36 +45,45 @@ date_snowhight | date_temperature | date_solar_radiation
 snowhight_solar_radiation
 time_lvs
 
+# Verlauf der Sonneneinstrahlung
+
 solar_radiation_max
+
+
+
 
 ### Modell fitting
 
 source("date_model.R", encoding = "UTF-8")
 source("day_model.R", encoding = "UTF-8")
 
+source("smooth_plots_date_model.R", encoding = "UTF-8")
+source("smooth_plots_day_model.R", encoding = "UTF-8")
+
+
 ## Date_model
 
 date_model <- date_model_function(date_data)
 date_model$summary # Übersicht (mit Signifikanz)
-print(plot(date_model$Viz, trans = plogis) + 
-        ylim(0,1), pages = 1) # non-parametrische Plots
 plogis(date_model$summary$p.coeff) # parametrische Effekt
 
 # Plots
 
-source("smooth_plots_date_model.R", encoding = "UTF-8")
+date_model_plots <- plots_date_model(date_model)
 
-plots_date_model(date_model)
+# Übersicht non-parametrischer Plots
+
+gridPrint(grobs = date_model_plots$grid,
+          top = "Smooth-Plots im Date-Model")
 
 # Einzelplots
 
-# date_model_date
-# date_model_day
-# date_model_avalanche
-# date_model_solar_radiation
-# date_model_solar_radiation
-# date_model_temperature
-# date_model_snowhight
+date_model_plots$date
+date_model_plots$day
+date_model_plots$avalanche
+date_model_plots$solar_radiation
+date_model_plots$temperature
+date_model_plots$snowhight
 
 # Möglichkeiten das Modell zu "checken"
 # Passen die Basis-Funktionen? Gibt es Autocorrelation? ...
@@ -78,6 +93,7 @@ plots_date_model(date_model)
 # concurvity(date_model$model, full = FALSE)
 # acf(date_model$model$residuals)
 # pacf(date_model$model$residuals)
+
 
 # Day_model
 
@@ -99,18 +115,22 @@ plogis(day_models$summary$p.coeff) # parametrische Effekt
 
 # Plots
 
+day_model_plots <- plots_day_model(day_models)
 
-source("smooth_plots_day_model.R", encoding = "UTF-8")
+# Übersicht nonparametrischer Plots
+
+gridPrint(grobs = day_model_plots$grid,
+          top = "Smooth-Plots im Day-Model")
 
 # Einzelplots
 
-# day_model_date_time
-# day_model_day
-# day_model_avalanche
-# day_model_solar_radiation
-# day_model_solar_radiation
-# day_model_temperature
-# day_model_snowhight
+day_model_plots$date_time
+day_model_plots$day
+day_model_plots$avalanche
+day_model_plots$solar_radiation
+# day_model_plots$temperature
+day_model_plots$snowhight
+
 
 # Möglichkeiten das Modell zu "checken"
 # Passen die Basis-Funktionen? Gibt es Autocorrelation? ...
@@ -131,6 +151,7 @@ source("smooth_plots_day_model.R", encoding = "UTF-8")
 # 
 # acf(day_model2$lme$residuals[, "fixed"])
 # pacf(day_model2$lme$residuals[, "fixed"])
+
 
 
 

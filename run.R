@@ -155,6 +155,14 @@ day_model_plots$snowhight
 
 
 
+##### Messfehleranalyse
+
+
+## Deskriptive Analyse der neuen Daten
+
+
+
+
 ## Verschiedene Szenarien vergleichen
 
 set.seed(42)
@@ -165,6 +173,11 @@ source("data_general.R", encoding = "UTF-8")
 source("data_group.R", encoding = "UTF-8")
 source("data_night.R", encoding = "UTF-8")
 source("data_temp.R", encoding = "UTF-8")
+
+source("get_legend.R", encoding = "UTF-8")
+source("scenarios_plots_date_model.R", encoding = "UTF-8")
+source("scenarios_plots_day_model.R", encoding = "UTF-8")
+
 
 
 # Modelle fitten
@@ -216,3 +229,35 @@ plogis(day_models_temp$summary$p.coeff) # parametrische Effekt
 # concurvity(day_model, full = FALSE)
 # acf(day_model$residuals)
 # pacf(day_model$residuals)
+
+
+# Plots für den Vergleich der Szenarien
+
+# Für das Date Model
+
+# Übersicht
+
+grid.arrange(plots_scenarios_date_model_comparison_grid)
+
+# Einzelplots
+
+plots_scenarios_date_model_comparison$date
+plots_scenarios_date_model_comparison$avalanche
+plots_scenarios_date_model_comparison$temperature
+plots_scenarios_date_model_comparison$day
+plots_scenarios_date_model_comparison$solar_radiation
+plots_scenarios_date_model_comparison$snowhight
+
+# Für das Day Model
+
+# Übersicht
+
+grid.arrange(plots_scenarios_day_model_comparison_grid)
+
+# Einzelplots
+
+plots_scenarios_day_model_comparison$day
+plots_scenarios_day_model_comparison$avalanche
+# plots_scenarios_day_model_comparison$temperature
+plots_scenarios_day_model_comparison$solar_radiation
+plots_scenarios_day_model_comparison$snowhight

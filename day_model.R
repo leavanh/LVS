@@ -14,12 +14,12 @@ min_data_noNA$num_time <- as.numeric(min_data_noNA$time)
 # day-model fitten
 
 day_model <- gam(
-  cbind(lvs_true_min, lvs_false_min) ~ s(num_time, int_date, bs = "tp", k = 40) +
+  cbind(lvs_true_min, lvs_false_min) ~ s(num_time, int_date, bs = "tp", k = 30) +
     s(int_day, bs = "cp", k = 7) +
     s(avalanche_report, bs = "ps", k = 5) +
-    s(temperature, bs = "ps", k = 15) +
-    s(solar_radiation_prop, bs = "ps", k = 15) +
-    s(snow_diff, bs = "ps", k = 15) +
+    s(temperature, bs = "ps", k = 10) +
+    s(solar_radiation_prop, bs = "ps", k = 10) +
+    s(snow_diff, bs = "ps", k = 10) +
     holiday,
   data = min_data_noNA,
   method = "REML",

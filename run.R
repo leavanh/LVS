@@ -103,25 +103,15 @@ date_model_plots$snowhight
 
 # Day_model
 
-start <- print(Sys.time()) # we want to know how long computation takes
 
-# min_data_noNA_sample <- min_data_noNA[sample(nrow(min_data_noNA), 1000), ]
+day_model <- day_model_function(min_data_noNA)
 
-day_models <- day_model_function(min_data_noNA)
-day_model <- day_models$model
-# day_model_gamm <- day_models$model_gamm
-
-# saveRDS(day_model_gamm, file = "day_model_gamm.RDS")
-
-end <- print(Sys.time())
-print(end - start)
-
-day_models$summary # Übersicht (mit Signifikanz)
-plogis(day_models$summary$p.coeff) # parametrische Effekt
+day_model$summary # Übersicht (mit Signifikanz)
+plogis(day_model$summary$p.coeff) # parametrische Effekt
 
 # Plots
 
-day_model_plots <- plots_day_model(day_models)
+day_model_plots <- plots_day_model(day_model)
 
 # Übersicht nonparametrischer Plots
 
@@ -141,24 +131,11 @@ day_model_plots$snowhight
 # Möglichkeiten das Modell zu "checken"
 # Passen die Basis-Funktionen? Gibt es Autocorrelation? ...
 
-# gam.check(day_model, type = "deviance")
-# concurvity(day_model, full = TRUE)
-# concurvity(day_model, full = FALSE)
-# acf(day_model$residuals)
-# pacf(day_model$residuals)
-
-## folgendes bitte ignorieren ich brauchte nur nen platz das kurz zu speichern
-
-
-
-# gam.check(day_model)
-# gam.check(day_model2$gam)
-# # plot(day_model2$gam$linear.predictors, day_model2$lme$residuals[, "fixed"])
-# 
-# acf(day_model2$lme$residuals[, "fixed"])
-# pacf(day_model2$lme$residuals[, "fixed"])
-
-
+# gam.check(day_model$model, type = "deviance")
+# concurvity(day_model$model, full = TRUE)
+# concurvity(day_model$model, full = FALSE)
+# acf(day_model$model$residuals)
+# pacf(day_model$model$residuals)
 
 
 #### Messfehleranalyse
@@ -191,49 +168,45 @@ date_model_general <- date_model_function(date_data_general)
 date_model_general$summary # Übersicht (mit Signifikanz)
 plogis(date_model_general$summary$p.coeff) # parametrische Effekt
 
-day_models_general <- day_model_function(min_data_general)
-day_model_general <- day_models_general$model
-day_models_general$summary # Übersicht (mit Signifikanz)
-plogis(day_models_general$summary$p.coeff) # parametrische Effekt
+day_model_general <- day_model_function(min_data_general)
+day_model_general$summary # Übersicht (mit Signifikanz)
+plogis(day_model_general$summary$p.coeff) # parametrische Effekt
 
 
 date_model_group <- date_model_function(date_data_group)
 date_model_group$summary # Übersicht (mit Signifikanz)
 plogis(date_model_group$summary$p.coeff) # parametrische Effekt
 
-day_models_group <- day_model_function(min_data_group)
-day_model_group <- day_models_group$model
-day_models_group$summary # Übersicht (mit Signifikanz)
-plogis(day_models_group$summary$p.coeff) # parametrische Effekt
+day_model_group <- day_model_function(min_data_group)
+day_model_group$summary # Übersicht (mit Signifikanz)
+plogis(day_model_group$summary$p.coeff) # parametrische Effekt
 
 
 date_model_night <- date_model_function(date_data_night)
 date_model_night$summary # Übersicht (mit Signifikanz)
 plogis(date_model_night$summary$p.coeff) # parametrische Effekt
 
-day_models_night <- day_model_function(min_data_night)
-day_model_night <- day_models_night$model
-day_models_night$summary # Übersicht (mit Signifikanz)
-plogis(day_models_night$summary$p.coeff) # parametrische Effekt
+day_model_night <- day_model_function(min_data_night)
+day_model_night$summary # Übersicht (mit Signifikanz)
+plogis(day_model_night$summary$p.coeff) # parametrische Effekt
 
 date_model_temp <- date_model_function(date_data_temp)
 date_model_temp$summary # Übersicht (mit Signifikanz)
 plogis(date_model_temp$summary$p.coeff) # parametrische Effekt
 
-day_models_temp <- day_model_function(min_data_temp)
-day_model_temp <- day_models_temp$model
-day_models_temp$summary # Übersicht (mit Signifikanz)
-plogis(day_models_temp$summary$p.coeff) # parametrische Effekt
+day_model_temp <- day_model_function(min_data_temp)
+day_model_temp$summary # Übersicht (mit Signifikanz)
+plogis(day_model_temp$summary$p.coeff) # parametrische Effekt
 
 # Möglichkeiten das Modell zu "checken"
 # Passen die Basis-Funktionen? Gibt es Autocorrelation? ...
 # Hier das jeweilige Modell einsetzen
 
-# gam.check(day_model, type = "deviance")
-# concurvity(day_model, full = TRUE)
-# concurvity(day_model, full = FALSE)
-# acf(day_model$residuals)
-# pacf(day_model$residuals)
+# gam.check(day_model$model, type = "deviance")
+# concurvity(day_model$model, full = TRUE)
+# concurvity(day_model$model, full = FALSE)
+# acf(day_model$model$residuals)
+# pacf(day_model$model$residuals)
 
 
 # Plots für den Vergleich der Szenarien

@@ -22,6 +22,9 @@ date_model <- gam(
 
 date_Viz <- getViz(date_model)
 
+# Knoten extrahieren
+# date_model$model$smooth[[n_smooth]]$knots
+
 ## Werte zurückgeben Funktion
 
 date_model_list <- list(

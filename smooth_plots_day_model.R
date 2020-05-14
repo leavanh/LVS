@@ -8,7 +8,6 @@ plots_day_model <- function(
   
   day_Viz <- day_model$Viz
   
-  theme_set(theme_minimal())
   
   ## Smooth-Plots für nichtparametrische Kovariablen
   ## aufgeteilt in Darstellung für den Grid und einzeln

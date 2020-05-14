@@ -1,17 +1,7 @@
 
 
-
-
-theme_set(theme_minimal())
-
-## Datensätze für die Szenarien erstellen
-
-# Funktion zur Speicherung einer ggplot-Legende laden
-
-
-
-# Datensätze zu den Szenarios laden
-
+### In dieser Datei werden die Plots für die Szenarien erstellt und verglichen
+### Für das Date Model
 
 
 scenarios <- list(date_data,
@@ -35,29 +25,42 @@ for (i in 1:length(scenarios)) {
 }
 
 # für jede Kovariable gemeinsame Plots erstellen
+# endet bei length(..)-1, da letztes Objekt in der Liste "grid" ist
 
-for (j in 1:6) {
+for (j in 1:(length(plots_date_model[[1]])-1)) {
   
   plots_scenarios_date_model_comparison[[j]] <- 
     ggplot() +
-    geom_line(plots_scenarios_date_model[[1]][[j]]$data$fit, 
-              mapping = aes(x = x,y = ty, 
-                            color = "Original")) +
     geom_line(plots_scenarios_date_model[[2]][[j]]$data$fit, 
               mapping = aes(x = x,y = ty, 
-                            color = "Generelle Unterschätzung von 20%")) +
+                            color = "Generelle Unterschätzung von 20%"),
+              size = 1.05) +
     geom_line(plots_scenarios_date_model[[3]][[j]]$data$fit, 
               mapping = aes(x = x,y = ty, 
-                            color = "Unterschätzung nach Gruppengröße")) +
+                            color = "Unterschätzung nach Gruppengröße"),
+              size = 1.05) +
     geom_line(plots_scenarios_date_model[[4]][[j]]$data$fit, 
               mapping = aes(x = x,y = ty,
-                            color = "Nächtliche Überschätzung")) +
+                            color = "Nächtliche Überschätzung"),
+              size = 1.05) +
     geom_line(plots_scenarios_date_model[[5]][[j]]$data$fit, 
               mapping = aes(x = x,y = ty,
-                            color = "Unterschätzung bei niedrigen Temperaturen")
-              ) +
+                            color = "Unterschätzung bei niedrigen Temperaturen"),
+              size = 1.05) +
+    geom_line(plots_scenarios_date_model[[1]][[j]]$data$fit, 
+              mapping = aes(x = x,y = ty, 
+                            color = "Original"), 
+              size = 2) +
     scale_y_continuous(limits = c(0,1)) +
-    labs(color = "Szenario")
+    labs(color = "Szenario") +
+    scale_color_brewer(breaks=c("Original",
+                                  "Generelle Unterschätzung von 20%",
+                                  "Unterschätzung nach Gruppengröße",
+                                  "Nächtliche Überschätzung",
+                                  "Nächtliche Überschätzung",
+                                  "Unterschätzung bei niedrigen Temperaturen"),
+                         palette = "Set1")
+
   
 }
 
@@ -116,7 +119,7 @@ plots_scenarios_date_model_comparison[[6]] <-
   theme(plot.title = element_text(hjust = 0.5)) +
   scale_x_continuous(breaks = c(-10, 0, 10, 20, 30, 40))
 
-# Plots in der Liste die richtigen Namen geben
+# Plots in der Liste den richtigen Namen geben
 
 names(plots_scenarios_date_model_comparison) <- 
   c("date", "avalanche", "temperature", "day", "solar_radiation", "snowhight")

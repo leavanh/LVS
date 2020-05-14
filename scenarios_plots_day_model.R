@@ -1,8 +1,7 @@
 
 
-theme_set(theme_minimal())
-
-## Datensätze für die Szenarien erstellen
+### In dieser Datei werden die Plots für die Szenarien erstellt und verglichen
+### Für das Day Model
 
 
 scenarios <- list(data,
@@ -34,24 +33,35 @@ for (j in 2:(length(plots_scenarios_day_model[[1]])-1)) {
   
   plots_scenarios_day_model_comparison[[j-1]] <- 
     ggplot() +
-    geom_line(plots_scenarios_day_model[[1]][[j]]$data$fit, 
-              mapping = aes(x = x,y = ty, 
-                            color = "Original")) +
     geom_line(plots_scenarios_day_model[[2]][[j]]$data$fit, 
               mapping = aes(x = x,y = ty, 
-                            color = "Generelle Unterschätzung von 20%")) +
+                            color = "Generelle Unterschätzung von 20%"),
+              size = 1.05) +
     geom_line(plots_scenarios_day_model[[3]][[j]]$data$fit, 
               mapping = aes(x = x,y = ty, 
-                            color = "Unterschätzung nach Gruppengröße")) +
+                            color = "Unterschätzung nach Gruppengröße"),
+              size = 1.05) +
     geom_line(plots_scenarios_day_model[[4]][[j]]$data$fit, 
               mapping = aes(x = x,y = ty,
-                            color = "Nächtliche Überschätzung")) +
+                            color = "Nächtliche Überschätzung"),
+              size = 1.05) +
     geom_line(plots_scenarios_day_model[[5]][[j]]$data$fit, 
               mapping = aes(x = x,y = ty,
-                            color = "Unterschätzung bei niedrigen Temperaturen")
-    ) +
+                            color = "Unterschätzung bei niedrigen Temperaturen"),
+              size = 1.05) +
+    geom_line(plots_scenarios_day_model[[1]][[j]]$data$fit, 
+              mapping = aes(x = x,y = ty, 
+                            color = "Original"),
+              size = 2) +
     scale_y_continuous(limits = c(0,1)) +
-    labs(color = "Szenario")
+    labs(color = "Szenario") +
+    scale_color_brewer(breaks=c("Original",
+                                "Generelle Unterschätzung von 20%",
+                                "Unterschätzung nach Gruppengröße",
+                                "Nächtliche Überschätzung",
+                                "Nächtliche Überschätzung",
+                                "Unterschätzung bei niedrigen Temperaturen"),
+                       palette = "Set1")
   
 }
 
@@ -101,6 +111,8 @@ plots_scenarios_day_model_comparison[[4]] <-
        y = "") +
   theme(plot.title = element_text(hjust = 0.5)) +
   scale_x_continuous(breaks = c(-10, 0, 10, 20, 30, 40))
+
+# Plots in der Liste den richtigen Namen geben
 
 names(plots_scenarios_day_model_comparison) <- 
   c("day", "avalanche", "solar_radiation", "snowhight")

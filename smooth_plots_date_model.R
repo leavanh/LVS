@@ -8,8 +8,6 @@ plots_date_model <- function(
 
 date_Viz <- date_model$Viz
 
-theme_set(theme_minimal())
-
 ## Smooth-Plots für nichtparametrische Kovariablen
 ## aufgeteilt in Darstellung für den Grid und einzeln
 

@@ -1,3 +1,4 @@
+
 ## Pakete laden
 
 library("tidyverse")
@@ -9,7 +10,9 @@ library("lubridate")
 library("gridExtra")
 library("ggformula")
 
+## Theme (Ästhetik) der Plots festsetzen
 
+theme_set(theme_minimal())
 
 
 ## Daten laden
@@ -155,7 +158,7 @@ day_model_plots$snowhight
 
 
 
-##### Messfehleranalyse
+#### Messfehleranalyse
 
 
 ## Deskriptive Analyse der neuen Daten
@@ -167,7 +170,7 @@ day_model_plots$snowhight
 
 set.seed(42)
 
-# neue Daten laden
+# Datensätze der Szenarien laden
 
 source("data_general.R", encoding = "UTF-8")
 source("data_group.R", encoding = "UTF-8")
@@ -177,7 +180,6 @@ source("data_temp.R", encoding = "UTF-8")
 source("get_legend.R", encoding = "UTF-8")
 source("scenarios_plots_date_model.R", encoding = "UTF-8")
 source("scenarios_plots_day_model.R", encoding = "UTF-8")
-
 
 
 # Modelle fitten

@@ -52,7 +52,7 @@ date_model <- date_model_function(date_data)
 date_model$summary # Übersicht (mit Signifikanz)
 print(plot(date_model$Viz, trans = plogis) + 
         ylim(0,1), pages = 1) # non-parametrische Plots
-plogis(date_model$summary$p.coeff) # parametrische Effekt
+plogis(date_model$summary$p.coeff) # parametrische Effekte
 
 # Plots
 

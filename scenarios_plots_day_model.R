@@ -52,7 +52,7 @@ for (j in 2:(length(plots_scenarios_day_model[[1]])-1)) {
     geom_line(plots_scenarios_day_model[[1]][[j]]$data$fit, 
               mapping = aes(x = x,y = ty, 
                             color = "Original"),
-              size = 2) +
+              size = 1.5) +
     scale_y_continuous(limits = c(0,1)) +
     labs(color = "Szenario") +
     scale_color_brewer(breaks=c("Original",

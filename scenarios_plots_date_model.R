@@ -5,7 +5,7 @@
 
 
 scenarios <- list(date_data,
-                  date_data_general,
+                  data_general_function(0.25)$date_data,
                   date_data_group,
                   date_data_night,
                   date_data_temp)
@@ -50,17 +50,18 @@ for (j in 1:(length(plots_scenarios_date_model[[1]])-1)) {
     geom_line(plots_scenarios_date_model[[1]][[j]]$data$fit, 
               mapping = aes(x = x,y = ty, 
                             color = "Original"), 
-              size = 1.5) +
+              size = 1.05) +
     scale_y_continuous(limits = c(0,1)) +
     labs(color = "Szenario") +
-    scale_color_brewer(breaks=c("Original",
-                                  "Generelle Unterschätzung von 20%",
-                                  "Unterschätzung nach Gruppengröße",
-                                  "Nächtliche Überschätzung",
-                                  "Nächtliche Überschätzung",
-                                  "Unterschätzung bei niedrigen Temperaturen"),
-                         palette = "Set1")
-
+    scale_color_manual(breaks=c("Original",
+                                "Generelle Unterschätzung von 20%",
+                                "Unterschätzung nach Gruppengröße",
+                                "Nächtliche Überschätzung",
+                                "Nächtliche Überschätzung",
+                                "Unterschätzung bei niedrigen Temperaturen"),
+                       values = c("#D55E00", "#CC79A7", "#000000", "#009E73",
+                                  "#56B4E9" ))
+  
   
 }
 
@@ -77,6 +78,10 @@ plots_scenarios_date_model_comparison[[1]] <-
   scale_x_continuous(breaks = c(17897,17928,17956,17987), 
                      labels = c("01. Jan","01. Feb",
                                 "01. Mär","01. Apr"))
+  
+  
+  # Reihenfolge: Generell, Nächtl, Original, Untbei, Untnach
+
 
 plots_scenarios_date_model_comparison[[3]] <- 
   plots_scenarios_date_model_comparison[[3]] +

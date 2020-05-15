@@ -52,16 +52,17 @@ for (j in 2:(length(plots_scenarios_day_model[[1]])-1)) {
     geom_line(plots_scenarios_day_model[[1]][[j]]$data$fit, 
               mapping = aes(x = x,y = ty, 
                             color = "Original"),
-              size = 1.5) +
+              size = 1.05) +
     scale_y_continuous(limits = c(0,1)) +
     labs(color = "Szenario") +
-    scale_color_brewer(breaks=c("Original",
+    scale_color_manual(breaks=c("Original",
                                 "Generelle Unterschätzung von 20%",
                                 "Unterschätzung nach Gruppengröße",
                                 "Nächtliche Überschätzung",
                                 "Nächtliche Überschätzung",
                                 "Unterschätzung bei niedrigen Temperaturen"),
-                       palette = "Set1")
+                       values = c("#D55E00", "#CC79A7", "#000000", "#009E73",
+                                  "#56B4E9" ))
   
 }
 

@@ -36,7 +36,7 @@ plots_day_model <- function(
     l_ciPoly() + # Konfidenzband
     l_ciLine(colour = "grey", linetype = 1) + # Konfidenzivränder
     l_fitLine(color = "black", size = 1.2) + # Fitline
-    l_rug(mapping = aes(x=x, y=y), alpha = 0.2,
+    l_rug(mapping = aes(x=x), alpha = 0.2,
           length = unit(0.02, "npc")) # Verdichtung an Achsen
   
   avalanche_grid <- day_model_avalanche +
@@ -61,7 +61,7 @@ plots_day_model <- function(
     l_ciPoly() + # Konfidenzband
     l_ciLine(colour = "grey", linetype = 1) + # Konfidenzivränder
     l_fitLine(color = "black", size = 1.2) + # Fitline
-    l_rug(mapping = aes(x=x, y=y), alpha = 0.2) # Verdichtung an Achsen
+    l_rug(mapping = aes(x=x), alpha = 0.2) # Verdichtung an Achsen
   
   day_grid <- day_model_day +
     labs(title = "Wochentag",
@@ -92,7 +92,7 @@ plots_day_model <- function(
   #   l_ciPoly() + # Konfidenzband
   #   l_ciLine(colour = "grey", linetype = 1) + # Konfidenzivränder
   #   l_fitLine(color = "black", size = 1.2) + # Fitline
-  #   l_rug(mapping = aes(x=x, y=y), alpha = 0.2) # Verdichtung an Achsen
+  #   l_rug(mapping = aes(x=x), alpha = 0.2) # Verdichtung an Achsen
   # 
   # temperature_grid <- day_model_temperature +
   #   labs(title = "Temperatur",
@@ -116,7 +116,7 @@ plots_day_model <- function(
     l_ciPoly() + # Konfidenzband
     l_ciLine(colour = "grey", linetype = 1) + # Konfidenzivränder
     l_fitLine(color = "black", size = 1.2) + # Fitline
-    l_rug(mapping = aes(x=x, y=y), alpha = 0.2) # Verdichtung an Achsen
+    l_rug(mapping = aes(x=x), alpha = 0.2) # Verdichtung an Achsen
   
   solar_radiation_grid <- day_model_solar_radiation +
     labs(title = "Sonneneinstrahlung",
@@ -140,7 +140,7 @@ plots_day_model <- function(
     l_ciPoly() + # Konfidenzband
     l_ciLine(colour = "grey", linetype = 1) + # Konfidenzivränder
     l_fitLine(color = "black", size = 1.2) + # Fitline
-    l_rug(mapping = aes(x=x, y=y), alpha = 0.2) # Verdichtung an Achsen
+    l_rug(mapping = aes(x=x), alpha = 0.2) # Verdichtung an Achsen
   
   snowhight_grid <- day_model_snowhight +
     labs(title = "Neuschnee",

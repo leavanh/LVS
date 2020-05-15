@@ -1,10 +1,16 @@
 ## Diese Datei erzeugt data_general
 # Dem Szenario 1 (20% Unterschätzung) folgend werden Messungen generiert
 
+
+data_general_function <- function(Anteil_neu_messungen) {
+
 ## Messungen erzeugen
 
-n_messungen <- 0.25 * nrow(data_noNA) # Anzahl der zu erzeugenden Messungen
+# Anzahl der zu erzeugenden Messungen
 # diese Zahl wird abgerundet (in der Schleife)
+  
+n_messungen <- Anteil_neu_messungen * nrow(data_noNA)
+
 
 time_intervall <- interval( # alle möglichen Uhrzeiten
   as.POSIXct("1899-12-31 04:00:00", tz = "MET"),
@@ -70,3 +76,11 @@ date_data_general <- distinct(subset(data_general,
 
 min_data_general <- distinct(subset(data_general, 
                              select = -c(lvs, position, id)))
+
+data_list <- list(date_data = date_data_general,
+                  data = min_data_general
+)
+
+return(data_list)
+
+}

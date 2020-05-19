@@ -4,11 +4,11 @@
 ### Für das Date Model
 
 
-scenarios <- list(date_data,
+scenarios <- list(data_general_function(0.15)$date_data,
+                  data_general_function(0.2)$date_data,
                   data_general_function(0.25)$date_data,
-                  date_data_group,
-                  date_data_night,
-                  date_data_temp)
+                  data_general_function(0.3)$date_data,
+                  data_general_function(0.35)$date_data)
 
 plots_scenarios_date_model <- list()
 plots_scenarios_date_model_comparison <- list()
@@ -19,8 +19,8 @@ plots_scenarios_date_model_comparison <- list()
 for (i in 1:length(scenarios)) {
   
   plots_scenarios_date_model[[i]] <- scenarios[[i]] %>% 
-                                        date_model_function()  %>%
-                                          plots_date_model()
+    date_model_function()  %>%
+    plots_date_model()
   
 }
 
@@ -31,36 +31,32 @@ for (j in 1:(length(plots_scenarios_date_model[[1]])-1)) {
   
   plots_scenarios_date_model_comparison[[j]] <- 
     ggplot() +
+    geom_line(plots_scenarios_date_model[[1]][[j]]$data$fit, 
+              mapping = aes(x = x,y = ty, 
+                            color = "10%"), 
+              size = 1.05) +
     geom_line(plots_scenarios_date_model[[2]][[j]]$data$fit, 
               mapping = aes(x = x,y = ty, 
-                            color = "Generelle Unterschätzung von 20%"),
+                            color = "20%"),
               size = 1.05) +
     geom_line(plots_scenarios_date_model[[3]][[j]]$data$fit, 
               mapping = aes(x = x,y = ty, 
-                            color = "Unterschätzung nach Gruppengröße"),
+                            color = "25%"),
               size = 1.05) +
     geom_line(plots_scenarios_date_model[[4]][[j]]$data$fit, 
               mapping = aes(x = x,y = ty,
-                            color = "Nächtliche Überschätzung"),
+                            color = "30%"),
               size = 1.05) +
     geom_line(plots_scenarios_date_model[[5]][[j]]$data$fit, 
               mapping = aes(x = x,y = ty,
-                            color = "Unterschätzung bei niedrigen Temperaturen"),
+                            color = "40%"),
               size = 1.05) +
-    geom_line(plots_scenarios_date_model[[1]][[j]]$data$fit, 
-              mapping = aes(x = x,y = ty, 
-                            color = "Original"), 
-              size = 1.05) +
+
     scale_y_continuous(limits = c(0,1)) +
     labs(color = "Szenario") +
-    scale_color_manual(breaks=c("Original",
-                                "Generelle Unterschätzung von 20%",
-                                "Unterschätzung nach Gruppengröße",
-                                "Nächtliche Überschätzung",
-                                "Nächtliche Überschätzung",
-                                "Unterschätzung bei niedrigen Temperaturen"),
-                       values = c("#D55E00", "#CC79A7", "#000000", "#009E73",
-                                  "#56B4E9" ))
+    scale_colour_brewer(palette = "Blues")
+  
+  # Reihenfolge: Generell, Nächtl, Original, Unt_temp, Unt_group
   
   
 }
@@ -78,9 +74,6 @@ plots_scenarios_date_model_comparison[[1]] <-
   scale_x_continuous(breaks = c(17897,17928,17956,17987), 
                      labels = c("01. Jan","01. Feb",
                                 "01. Mär","01. Apr"))
-  
-  
-  # Reihenfolge: Generell, Nächtl, Original, Unt_temp, Unt_group
 
 
 plots_scenarios_date_model_comparison[[3]] <- 
@@ -95,10 +88,10 @@ plots_scenarios_date_model_comparison[[2]] <-
        x = "", y = "") +
   theme(plot.title = element_text(hjust = 0.5)) +
   scale_x_continuous(breaks = 1:7,
-                   labels=c("1" = "Mo", "2" = "Di",
-                            "3" = "Mi", "4" = "Do",
-                            "5" = "Fr", "6" = "Sa",
-                            "7" = "So"))
+                     labels=c("1" = "Mo", "2" = "Di",
+                              "3" = "Mi", "4" = "Do",
+                              "5" = "Fr", "6" = "Sa",
+                              "7" = "So"))
 
 plots_scenarios_date_model_comparison[[4]] <- 
   plots_scenarios_date_model_comparison[[4]] +
@@ -156,8 +149,7 @@ plots_scenarios_date_model_comparison_grid <-
               plots_scenarios_date_model_comparison_grid[[4]],
               plots_scenarios_date_model_comparison_grid[[5]],
               plots_scenarios_date_model_comparison_grid[[6]],
-             legend_scenarios_date_model,
-             ncol = 3,
-             layout_matrix = cbind(c(1,2,7), c(3,4,7), c(5,6,7)),
-             top = "Smooth-Plots für jedes Szenario im Vergleich"
-             )
+              ncol = 3,
+              layout_matrix = cbind(c(1,2), c(3,4), c(5,6)),
+              top = "Smooth-Plots für jedes Szenario im Vergleich"
+  )

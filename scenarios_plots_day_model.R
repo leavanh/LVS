@@ -5,7 +5,7 @@
 
 
 scenarios <- list(data,
-                  min_data_general,
+                  data_general_function(0.25)$data,
                   min_data_group,
                   min_data_night,
                   min_data_temp)
@@ -87,15 +87,13 @@ plots_scenarios_day_model_comparison[[2]] <-
        x = "", y = "") +
   theme(plot.title = element_text(hjust = 0.5))
 
-# Temperatur zur Zeit nicht im Day Model
-
-# plots_scenarios_day_model_comparison[[4]] <- 
-#   plots_scenarios_day_model_comparison[[4]] +
-#   labs(title = "Temperatur",
-#        x = "",
-#        y = "") +
-#   theme(plot.title = element_text(hjust = 0.5)) +
-#   scale_x_continuous(breaks = c(-6, -4, -2, 0, 2, 4, 6))
+plots_scenarios_day_model_comparison[[4]] <-
+  plots_scenarios_day_model_comparison[[4]] +
+  labs(title = "Temperatur",
+       x = "",
+       y = "") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  scale_x_continuous(breaks = c(-6, -4, -2, 0, 2, 4, 6))
 
 plots_scenarios_day_model_comparison[[3]] <- 
   plots_scenarios_day_model_comparison[[3]] +

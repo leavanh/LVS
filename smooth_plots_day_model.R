@@ -37,7 +37,8 @@ plots_day_model <- function(
     l_ciLine(colour = "grey", linetype = 1) + # Konfidenzivränder
     l_fitLine(color = "black", size = 1.2) + # Fitline
     l_rug(mapping = aes(x=x), alpha = 0.2,
-          length = unit(0.02, "npc")) # Verdichtung an Achsen
+          length = unit(0.02, "npc")) + # Verdichtung an Achsen
+    scale_y_continuous(limits = c(0,1))
   
   avalanche_grid <- day_model_avalanche +
     labs(title = "Lawinenwarnstufe",
@@ -61,7 +62,8 @@ plots_day_model <- function(
     l_ciPoly() + # Konfidenzband
     l_ciLine(colour = "grey", linetype = 1) + # Konfidenzivränder
     l_fitLine(color = "black", size = 1.2) + # Fitline
-    l_rug(mapping = aes(x=x), alpha = 0.2) # Verdichtung an Achsen
+    l_rug(mapping = aes(x=x), alpha = 0.2) + # Verdichtung an Achsen
+    scale_y_continuous(limits = c(0,1))
   
   day_grid <- day_model_day +
     labs(title = "Wochentag",
@@ -85,38 +87,40 @@ plots_day_model <- function(
                               "7" = "Sonntag"))
   
   
-  # Residuen für Temperatur (im Day Model auskommentiert)
-  
-  # day_model_temperature <- 
-  #   plot(sm(day_Viz, select = 4), trans = plogis) +
-  #   l_ciPoly() + # Konfidenzband
-  #   l_ciLine(colour = "grey", linetype = 1) + # Konfidenzivränder
-  #   l_fitLine(color = "black", size = 1.2) + # Fitline
-  #   l_rug(mapping = aes(x=x), alpha = 0.2) # Verdichtung an Achsen
-  # 
-  # temperature_grid <- day_model_temperature +
-  #   labs(title = "Temperatur",
-  #        x = "",
-  #        y = "") +
-  #   theme(plot.title = element_text(hjust = 0.5)) +
-  #   scale_x_continuous(breaks = c(-6, -4, -2, 0, 2, 4, 6, 8))
-  # 
-  # temperature_smooth <- day_model_temperature +
-  #   labs(title = "Smooth-Funktion für Temperatur",
-  #        x = "Temperatur in Grad Celsius",
-  #        y = "s(Temperatur)") +
-  #   theme(plot.title = element_text(hjust = 0.5)) +
-  #   scale_x_continuous(breaks = c(-6, -4, -2, 0, 2, 4, 6, 8))
+  # Temperatur
+
+  day_model_temperature <-
+    plot(sm(day_Viz, select = 4), trans = plogis) +
+    l_ciPoly() + # Konfidenzband
+    l_ciLine(colour = "grey", linetype = 1) + # Konfidenzivränder
+    l_fitLine(color = "black", size = 1.2) + # Fitline
+    l_rug(mapping = aes(x=x), alpha = 0.2) + # Verdichtung an Achsen
+    scale_y_continuous(limits = c(0,1))
+
+  temperature_grid <- day_model_temperature +
+    labs(title = "Temperatur",
+         x = "",
+         y = "") +
+    theme(plot.title = element_text(hjust = 0.5)) +
+    scale_x_continuous(breaks = c(-6, -4, -2, 0, 2, 4, 6, 8))
+
+  temperature_smooth <- day_model_temperature +
+    labs(title = "Smooth-Funktion für Temperatur",
+         x = "Temperatur in Grad Celsius",
+         y = "s(Temperatur)") +
+    theme(plot.title = element_text(hjust = 0.5)) +
+    scale_x_continuous(breaks = c(-6, -4, -2, 0, 2, 4, 6, 8))
   
   
   # Anteil Sonneneinstrahlung
   
   day_model_solar_radiation <- 
-    plot(sm(day_Viz, select = 4), trans = plogis) +
+    plot(sm(day_Viz, select = 5), trans = plogis) +
     l_ciPoly() + # Konfidenzband
     l_ciLine(colour = "grey", linetype = 1) + # Konfidenzivränder
     l_fitLine(color = "black", size = 1.2) + # Fitline
-    l_rug(mapping = aes(x=x), alpha = 0.2) # Verdichtung an Achsen
+    l_rug(mapping = aes(x=x), alpha = 0.2) + # Verdichtung an Achsen
+    scale_y_continuous(limits = c(0,1))
   
   solar_radiation_grid <- day_model_solar_radiation +
     labs(title = "Sonneneinstrahlung",
@@ -136,11 +140,12 @@ plots_day_model <- function(
   # Neuschnee
   
   day_model_snowhight <- 
-    plot(sm(day_Viz, select = 5), trans = plogis) +
+    plot(sm(day_Viz, select = 6), trans = plogis) +
     l_ciPoly() + # Konfidenzband
     l_ciLine(colour = "grey", linetype = 1) + # Konfidenzivränder
     l_fitLine(color = "black", size = 1.2) + # Fitline
-    l_rug(mapping = aes(x=x), alpha = 0.2) # Verdichtung an Achsen
+    l_rug(mapping = aes(x=x), alpha = 0.2) + # Verdichtung an Achsen
+    scale_y_continuous(limits = c(0,1))
   
   snowhight_grid <- day_model_snowhight +
     labs(title = "Neuschnee",
@@ -164,7 +169,7 @@ plots_day_model <- function(
     list(day_grid,
          avalanche_grid,
          solar_radiation_grid,
-         # temperature_grid, 
+         temperature_grid, 
          snowhight_grid)
   
   # Liste zur Ausgabe
@@ -174,7 +179,7 @@ plots_day_model <- function(
     day = day_smooth,
     avalanche = avalanche_smooth,
     solar_radiation = solar_radiation_smooth,
-    # temperature = temperature_smooth,
+    temperature = temperature_smooth,
     snowhight = snowhight_smooth,
     grid = day_model_grid
   )

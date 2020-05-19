@@ -1,4 +1,6 @@
 
+### Vorbereitung ###############################################################
+
 ## Pakete laden
 
 library("tidyverse")
@@ -9,6 +11,7 @@ library("mgcViz")
 library("lubridate")
 library("gridExtra")
 library("ggformula")
+library("gtools")
 
 ## Theme (Ästhetik) der Plots festsetzen
 
@@ -29,8 +32,8 @@ min_data_noNA <- min_data[!is.na(min_data$count_people_min),]
 
 
 
+### Deskriptive Analyse ########################################################
 
-## Deskriptive Auswertung
 
 source("descriptive.R", encoding = "UTF-8")
 
@@ -55,7 +58,8 @@ solar_radiation_max
 
 
 
-### Modell fitting
+### Modell fitting #############################################################
+
 
 source("date_model.R", encoding = "UTF-8")
 source("day_model.R", encoding = "UTF-8")
@@ -67,20 +71,22 @@ source("smooth_plots_day_model.R", encoding = "UTF-8")
 ## Date_model
 
 date_model <- date_model_function(date_data)
+
 date_model$summary # Übersicht (mit Signifikanz)
-print(plot(date_model$Viz, trans = plogis) + 
-        ylim(0,1), pages = 1) # non-parametrische Plots
 plogis(date_model$summary$p.coeff) # parametrische Effekte
 
-
-# Plots
+# Plots einlesen
 
 date_model_plots <- plots_date_model(date_model)
 
 # Übersicht non-parametrischer Plots
 
+grid <- 
 gridPrint(grobs = date_model_plots$grid,
-          top = "Smooth-Plots im Date-Model")
+          top = "Smooth-Plots im Date-Model",
+          ncol = 3)
+
+ggsave("Plots/date_model_grid.png", grid)
 
 # Einzelplots
 
@@ -101,7 +107,7 @@ date_model_plots$snowhight
 # pacf(date_model$model$residuals)
 
 
-# Day_model
+## Day_model
 
 
 day_model <- day_model_function(min_data_noNA)
@@ -109,14 +115,18 @@ day_model <- day_model_function(min_data_noNA)
 day_model$summary # Übersicht (mit Signifikanz)
 plogis(day_model$summary$p.coeff) # parametrische Effekt
 
-# Plots
+# Plots einlesen
 
 day_model_plots <- plots_day_model(day_model)
 
 # Übersicht nonparametrischer Plots
 
+grid <- 
 gridPrint(grobs = day_model_plots$grid,
-          top = "Smooth-Plots im Day-Model")
+          top = "Smooth-Plots im Day-Model",
+          ncol = 3)
+
+ggsave("Plots/day_model_grid.png", grid, scale = 2)
 
 # Einzelplots
 
@@ -124,7 +134,7 @@ day_model_plots$date_time
 day_model_plots$day
 day_model_plots$avalanche
 day_model_plots$solar_radiation
-# day_model_plots$temperature
+day_model_plots$temperature
 day_model_plots$snowhight
 
 
@@ -138,15 +148,13 @@ day_model_plots$snowhight
 # pacf(day_model$model$residuals)
 
 
-#### Messfehleranalyse
 
-
-## Deskriptive Analyse der neuen Daten
+### Deskriptive Analyse der neuen Daten ########################################
 
 
 
 
-## Verschiedene Szenarien vergleichen
+### Verschiedene Szenarien vergleichen #########################################
 
 set.seed(42)
 
@@ -164,11 +172,28 @@ source("scenarios_plots_day_model.R", encoding = "UTF-8")
 
 # Modelle fitten
 
-date_model_general <- date_model_function(date_data_general)
+data_general <- data_general_function(0.25)
+
+date_model_general <- date_model_function(data_general$date_data)
 date_model_general$summary # Übersicht (mit Signifikanz)
 plogis(date_model_general$summary$p.coeff) # parametrische Effekt
 
-day_model_general <- day_model_function(min_data_general)
+# Plots einlesen
+
+date_model_plots_general <- plots_date_model(date_model_general)
+
+# Übersicht non-parametrischer Plots
+
+grid <- 
+gridPrint(grobs = date_model_plots_general$grid,
+          top = "Smooth-Plots im Date-Model",
+          ncol = 3)
+
+ggsave("Plots/date_model_grid_general.png", grid)
+
+
+
+day_model_general <- day_model_function(data_general$data)
 day_model_general$summary # Übersicht (mit Signifikanz)
 plogis(day_model_general$summary$p.coeff) # parametrische Effekt
 
@@ -215,7 +240,10 @@ plogis(day_model_temp$summary$p.coeff) # parametrische Effekt
 
 # Übersicht
 
+grid <- 
 grid.arrange(plots_scenarios_date_model_comparison_grid)
+
+ggsave("Plots/scenario_grid_general.png", grid, scale = 2)
 
 # Einzelplots
 
@@ -236,6 +264,6 @@ grid.arrange(plots_scenarios_day_model_comparison_grid)
 
 plots_scenarios_day_model_comparison$day
 plots_scenarios_day_model_comparison$avalanche
-# plots_scenarios_day_model_comparison$temperature
+plots_scenarios_day_model_comparison$temperature
 plots_scenarios_day_model_comparison$solar_radiation
 plots_scenarios_day_model_comparison$snowhight

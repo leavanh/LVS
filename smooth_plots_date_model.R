@@ -19,7 +19,8 @@ date_model_date <-
   l_ciLine(colour = "grey", linetype = 1) + # Konfidenzivränder
   l_fitLine(color = "black", size = 1.2) + # Fitline
   l_rug(mapping = aes(x=x), alpha = 0.8,
-        length = unit(0.02, "npc")) # Verdichtung an Achsen
+        length = unit(0.02, "npc")) + # Verdichtung an Achsen
+  scale_y_continuous(limits = c(0,1))
 
   
 
@@ -50,7 +51,8 @@ date_model_avalanche <-
   l_ciLine(colour = "grey", linetype = 1) + # Konfidenzivränder
   l_fitLine(color = "black", size = 1.2) + # Fitline
   l_rug(mapping = aes(x=x), alpha = 0.8,
-        length = unit(0.02, "npc")) # Verdichtung an Achsen
+        length = unit(0.02, "npc")) + # Verdichtung an Achsen
+  scale_y_continuous(limits = c(0,1))
 
 avalanche_grid <- date_model_avalanche +
                     labs(title = "Lawinenwarnstufe",
@@ -74,7 +76,8 @@ date_model_day <-
   l_ciPoly() + # Konfidenzband
   l_ciLine(colour = "grey", linetype = 1) + # Konfidenzivränder
   l_fitLine(color = "black", size = 1.2) + # Fitline
-  l_rug(mapping = aes(x=x), alpha = 0.8) # Verdichtung an Achsen
+  l_rug(mapping = aes(x=x), alpha = 0.8) + # Verdichtung an Achsen
+  scale_y_continuous(limits = c(0,1))
 
 day_grid <- date_model_day +
               labs(title = "Wochentag",
@@ -105,7 +108,8 @@ date_model_temperature <-
   l_ciPoly() + # Konfidenzband
   l_ciLine(colour = "grey", linetype = 1) + # Konfidenzivränder
   l_fitLine(color = "black", size = 1.2) + # Fitline
-  l_rug(mapping = aes(x=x), alpha = 0.8) # Verdichtung an Achsen
+  l_rug(mapping = aes(x=x), alpha = 0.8) + # Verdichtung an Achsen
+  scale_y_continuous(limits = c(0,1))
 
 temperature_grid <- date_model_temperature +
                       labs(title = "Temperatur",
@@ -129,7 +133,8 @@ date_model_solar_radiation <-
   l_ciPoly() + # Konfidenzband
   l_ciLine(colour = "grey", linetype = 1) + # Konfidenzivränder
   l_fitLine(color = "black", size = 1.2) + # Fitline
-  l_rug(mapping = aes(x=x), alpha = 0.8) # Verdichtung an Achsen
+  l_rug(mapping = aes(x=x), alpha = 0.8) + # Verdichtung an Achsen
+  scale_y_continuous(limits = c(0,1))
 
 solar_radiation_grid <- date_model_solar_radiation +
                         labs(title = "Sonneneinstrahlung",
@@ -152,7 +157,8 @@ date_model_snowhight <-
   l_ciPoly() + # Konfidenzband
   l_ciLine(colour = "grey", linetype = 1) + # Konfidenzivränder
   l_fitLine(color = "black", size = 1.2) + # Fitline
-  l_rug(mapping = aes(x=x), alpha = 0.8) # Verdichtung an Achsen
+  l_rug(mapping = aes(x=x), alpha = 0.8) + # Verdichtung an Achsen
+  scale_y_continuous(limits = c(0,1))
 
 snowhight_grid <- date_model_snowhight +
                     labs(title = "Neuschnee",

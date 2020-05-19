@@ -1,5 +1,8 @@
+
 ## Diese Datei erzeugt data_general
 # Dem Szenario 1 (20% Unterschätzung) folgend werden Messungen generiert
+# Die Funktion nimmt als Argument den Anteil an Checkpoint-Messungen, der neu
+# generiert werden soll
 
 
 data_general_function <- function(Anteil_neu_messungen) {

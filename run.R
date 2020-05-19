@@ -90,12 +90,12 @@ ggsave("Plots/date_model_grid.png", grid)
 
 # Einzelplots
 
-date_model_plots$date
-date_model_plots$day
-date_model_plots$avalanche
-date_model_plots$solar_radiation
-date_model_plots$temperature
-date_model_plots$snowhight
+# date_model_plots$date
+# date_model_plots$day
+# date_model_plots$avalanche
+# date_model_plots$solar_radiation
+# date_model_plots$temperature
+# date_model_plots$snowhight
 
 # Möglichkeiten das Modell zu "checken"
 # Passen die Basis-Funktionen? Gibt es Autocorrelation? ...

@@ -53,6 +53,12 @@ for (j in 2:(length(plots_scenarios_day_model[[1]])-1)) {
               mapping = aes(x = x,y = ty, 
                             color = "Original"),
               size = 1.05) +
+    geom_ribbon(plots_scenarios_date_model[[1]][[j]]$data$fit,
+                mapping = aes(x = x,
+                              ymin = ty - 1.96*se/sqrt(length(x)),
+                              ymax = ty + 1.96*se/sqrt(length(x))),
+                colour = "grey", alpha = 0.2) +
+    scale_y_continuous(limits = c(0,1)) +
     scale_y_continuous(limits = c(0,1)) +
     labs(color = "Szenario") +
     scale_color_manual(breaks=c("Original",
@@ -140,7 +146,6 @@ plots_scenarios_day_model_comparison_grid <-
               plots_scenarios_day_model_comparison_grid[[2]],
               plots_scenarios_day_model_comparison_grid[[3]],
               plots_scenarios_day_model_comparison_grid[[4]],
-             legend_scenarios_day_model,
              ncol = 2,
-             # layout_matrix = cbind(c(1,2,7), c(3,4,7), c(5,6,7)),
+             bottom = legend_scenarios_day_model,
              top = "Smooth-Plots für jedes Szenario im Vergleich")

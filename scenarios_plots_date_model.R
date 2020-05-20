@@ -51,6 +51,11 @@ for (j in 1:(length(plots_scenarios_date_model[[1]])-1)) {
               mapping = aes(x = x,y = ty, 
                             color = "Original"), 
               size = 1.05) +
+    geom_ribbon(plots_scenarios_date_model[[1]][[j]]$data$fit,
+                mapping = aes(x = x,
+                              ymin = ty - 1.96*se/sqrt(length(x)),
+                              ymax = ty + 1.96*se/sqrt(length(x))),
+                colour = "grey", alpha = 0.2) +
     scale_y_continuous(limits = c(0,1)) +
     labs(color = "Szenario") +
     scale_color_manual(breaks=c("Original",
@@ -59,13 +64,12 @@ for (j in 1:(length(plots_scenarios_date_model[[1]])-1)) {
                                 "Nächtliche Überschätzung",
                                 "Nächtliche Überschätzung",
                                 "Unterschätzung bei niedrigen Temperaturen"),
-                       values = c("#D55E00", "#CC79A7", "#000000", "#009E73",
-                                  "#56B4E9" ))
+                       values = c("#56B4E9", "#CC79A7", "#000000", "#009E73",
+                                  "#D55E00" ))
   
+  # Reihenfolge der Farben: Generell, Nächtl, Original, Unt_temp, Unt_group
   
 }
-
-
 
 # Plots richtig beschriften
 
@@ -77,11 +81,8 @@ plots_scenarios_date_model_comparison[[1]] <-
   theme(plot.title = element_text(hjust = 0.5)) +
   scale_x_continuous(breaks = c(17897,17928,17956,17987), 
                      labels = c("01. Jan","01. Feb",
-                                "01. Mär","01. Apr"))
-  
-  
-  # Reihenfolge: Generell, Nächtl, Original, Unt_temp, Unt_group
-
+                                "01. Mär","01. Apr")) +
+  theme(legend.position = "bottom")
 
 plots_scenarios_date_model_comparison[[3]] <- 
   plots_scenarios_date_model_comparison[[3]] +
@@ -124,6 +125,13 @@ plots_scenarios_date_model_comparison[[6]] <-
   theme(plot.title = element_text(hjust = 0.5)) +
   scale_x_continuous(breaks = c(-10, 0, 10, 20, 30, 40))
 
+plots_scenarios_date_model_comparison[[6]] +
+  labs(title = "Neuschnee",
+       x = "",
+       y = "") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  scale_x_continuous(breaks = c(-10, 0, 10, 20, 30, 40))
+
 # Plots in der Liste den richtigen Namen geben
 
 names(plots_scenarios_date_model_comparison) <- 
@@ -156,8 +164,7 @@ plots_scenarios_date_model_comparison_grid <-
               plots_scenarios_date_model_comparison_grid[[4]],
               plots_scenarios_date_model_comparison_grid[[5]],
               plots_scenarios_date_model_comparison_grid[[6]],
-             legend_scenarios_date_model,
-             ncol = 3,
-             layout_matrix = cbind(c(1,2,7), c(3,4,7), c(5,6,7)),
-             top = "Smooth-Plots für jedes Szenario im Vergleich"
-             )
+              ncol = 3,
+              bottom = legend_scenarios_date_model,
+              top = "Smooth-Plots für jedes Szenario im Vergleich")
+

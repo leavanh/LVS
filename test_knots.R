@@ -1,6 +1,6 @@
 cat(date_model$smooth[[1]]$knots, sep= ", ")
 table(date_data$int_date[is.na(date_data$ratio)])
-cat(quantile(date_data_noNA$int_date, seq(0,1, 0.1)), sep=", ")
+cat(quantile(date_data_noNA$int_date, seq(0,1, 0.067)), sep=", ")
 
 # knots_1 (19)
 # c(17877, 178884, 17891, 17898, 17915, 17922, 17929, 17936, 17943, 17950, 17957, 17964, 17971, 17978, 17985, 17992, 17999, 18006, 18014)

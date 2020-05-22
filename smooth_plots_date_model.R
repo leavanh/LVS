@@ -22,6 +22,51 @@ date_model_date <-
         length = unit(0.02, "npc")) + # Verdichtung an Achsen
   scale_y_continuous(limits = c(0,1))
 
+
+## Struktur der Werte
+
+str(plot(date_model$model, select = 1, trans = plogis,
+     shift = coef(date_model$model)[1],
+     seWithMean = TRUE, se = 1.96)[[1]])
+
+# Nützliche Werte zur Vereinfachung in eigenen DataFrame
+
+wochentag <- data.frame(
+  x = plot(date_model$model, select = 1, trans = plogis,
+           shift = coef(date_model$model)[1], se = 1.96,
+           seWithMean = TRUE)[[1]]$x,
+  fit = plot(date_model$model, select = 1, trans = plogis,
+             shift = coef(date_model$model)[1], se = 1.96,
+             seWithMean = TRUE)[[1]]$fit,
+  se = plot(date_model$model, select = 1, trans = plogis,
+            shift = coef(date_model$model)[1], se = 1.96,
+            seWithMean = TRUE)[[1]]$se, 
+  intercept = coef(date_model$model)[1]
+)
+
+# tatsächliche x-Werte der Daten müssen in eigenen DataFrame für den Rug später
+
+raw <- data.frame(
+  raw = plot(date_model$model, select = 1, trans = plogis,
+             shift = coef(date_model$model)[1], se = 1.96,
+             seWithMean = TRUE)[[1]]$raw
+)
+
+# nachgebauter Plot
+
+ggplot(data = wochentag, aes(x = x)) +
+  # Fitline
+  geom_line(aes(y = plogis(fit + intercept))) +
+  # Konfidenzintervall
+  geom_ribbon(aes(ymin = plogis(fit + intercept - se),
+                  ymax = plogis(fit + intercept + se)),
+              color = "grey", alpha = 0.2) +
+  # Rug
+  geom_rug(data = raw, 
+           aes(x = raw))
+
+  
+
 date_grid <- date_model_date +
                 labs(title = "Datum",
                      x = "", y = "") +

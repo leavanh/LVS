@@ -14,13 +14,13 @@ plots_scenarios_day_model <- list()
 plots_scenarios_day_model_comparison <- list()
 
 
-# für jedes der 5 Szenarien Smooth-Plots-erstellen
+# für jedes der 5 Szenarien Smooth-Plots erstellen
 
 for (i in 1:length(scenarios)) {
   
   plots_scenarios_day_model[[i]] <- scenarios[[i]] %>% 
-    day_model_function()  %>%
-    plots_day_model()
+                                      day_model_function()  %>%
+                                        plots_day_model()
   
 }
 
@@ -54,7 +54,7 @@ for (j in 2:(length(plots_scenarios_day_model[[1]])-1)) {
                             color = "Original"),
               size = 1.05) +
     # Konfidenzintervall für originales Szenario
-    geom_ribbon(plots_scenarios_date_model[[1]][[j]]$data$fit,
+    geom_ribbon(plots_scenarios_day_model[[1]][[j]]$data$fit,
                 mapping = aes(x = x,
                               ymin = plogis(y - 1.96*se),
                               ymax = plogis(y + 1.96*se)),
@@ -94,14 +94,6 @@ plots_scenarios_day_model_comparison[[2]] <-
        x = "", y = "") +
   theme(plot.title = element_text(hjust = 0.5))
 
-plots_scenarios_day_model_comparison[[4]] <-
-  plots_scenarios_day_model_comparison[[4]] +
-  labs(title = "Temperatur",
-       x = "",
-       y = "") +
-  theme(plot.title = element_text(hjust = 0.5)) +
-  scale_x_continuous(breaks = c(-6, -4, -2, 0, 2, 4, 6))
-
 plots_scenarios_day_model_comparison[[3]] <- 
   plots_scenarios_day_model_comparison[[3]] +
   labs(title = "Sonneneinstrahlung",
@@ -110,8 +102,16 @@ plots_scenarios_day_model_comparison[[3]] <-
   theme(plot.title = element_text(hjust = 0.5)) +
   scale_x_continuous(breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1))
 
-plots_scenarios_day_model_comparison[[4]] <- 
+plots_scenarios_day_model_comparison[[4]] <-
   plots_scenarios_day_model_comparison[[4]] +
+  labs(title = "Temperatur",
+       x = "",
+       y = "") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  scale_x_continuous(breaks = c(-6, -4, -2, 0, 2, 4, 6))
+
+plots_scenarios_day_model_comparison[[5]] <- 
+  plots_scenarios_day_model_comparison[[5]] +
   labs(title = "Neuschnee",
        x = "",
        y = "") +
@@ -136,7 +136,7 @@ legend_scenarios_day_model <-
 
 # Legende der einzelnen Plots löschen
 
-for (j in 1:(length(plots_scenarios_day_model[[1]])-2)) {
+for (j in 1:(length(plots_scenarios_day_model[[1]])-1)) {
   plots_scenarios_day_model_comparison_grid[[j]] <- 
     plots_scenarios_day_model_comparison_grid[[j]] + 
     theme(legend.position = "none")
@@ -147,6 +147,7 @@ plots_scenarios_day_model_comparison_grid <-
               plots_scenarios_day_model_comparison_grid[[2]],
               plots_scenarios_day_model_comparison_grid[[3]],
               plots_scenarios_day_model_comparison_grid[[4]],
-             ncol = 2,
-             bottom = legend_scenarios_day_model,
-             top = "Smooth-Plots für jedes Szenario im Vergleich")
+              plots_scenarios_day_model_comparison_grid[[5]],
+              ncol = 2,
+              bottom = legend_scenarios_day_model,
+              top = "Smooth-Plots für jedes Szenario im Vergleich")

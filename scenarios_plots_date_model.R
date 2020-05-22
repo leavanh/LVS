@@ -126,13 +126,6 @@ plots_scenarios_date_model_comparison[[6]] <-
   theme(plot.title = element_text(hjust = 0.5)) +
   scale_x_continuous(breaks = c(-10, 0, 10, 20, 30, 40))
 
-plots_scenarios_date_model_comparison[[6]] +
-  labs(title = "Neuschnee",
-       x = "",
-       y = "") +
-  theme(plot.title = element_text(hjust = 0.5)) +
-  scale_x_continuous(breaks = c(-10, 0, 10, 20, 30, 40))
-
 # Plots in der Liste den richtigen Namen geben
 
 names(plots_scenarios_date_model_comparison) <- 

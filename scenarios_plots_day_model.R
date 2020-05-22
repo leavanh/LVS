@@ -148,6 +148,6 @@ plots_scenarios_day_model_comparison_grid <-
               plots_scenarios_day_model_comparison_grid[[3]],
               plots_scenarios_day_model_comparison_grid[[4]],
               plots_scenarios_day_model_comparison_grid[[5]],
-              ncol = 2,
+              ncol = 3,
               bottom = legend_scenarios_day_model,
               top = "Smooth-Plots für jedes Szenario im Vergleich")

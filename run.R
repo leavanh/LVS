@@ -11,7 +11,8 @@ library("mgcViz")
 library("lubridate")
 library("gridExtra")
 library("ggformula")
-library("gtools")
+library("gtools") # für p-wert-format
+library("cowplot") # für get_legend
 
 ## Theme (Ästhetik) der Plots festsetzen
 
@@ -159,7 +160,6 @@ source("data_group.R", encoding = "UTF-8")
 source("data_night.R", encoding = "UTF-8")
 source("data_temp.R", encoding = "UTF-8")
 
-source("get_legend.R", encoding = "UTF-8")
 source("scenarios_plots_date_model.R", encoding = "UTF-8")
 source("scenarios_plots_day_model.R", encoding = "UTF-8")
 

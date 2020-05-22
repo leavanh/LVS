@@ -59,7 +59,9 @@ for (j in 2:(length(plots_scenarios_day_model[[1]])-1)) {
                               ymin = plogis(y - 1.96*se),
                               ymax = plogis(y + 1.96*se)),
                 colour = "grey", alpha = 0.2) +
-    scale_y_continuous(limits = c(0,1)) +
+    # Rugs an der x-Achse
+    geom_rug(data = plots_scenarios_date_model[[1]][[j]]$data$res,
+             mapping = aes(x = x), alpha = 0.2) +
     scale_y_continuous(limits = c(0,1)) +
     labs(color = "Szenario") +
     scale_color_manual(breaks=c("Original",
@@ -136,7 +138,7 @@ legend_scenarios_day_model <-
 
 # Legende der einzelnen Plots löschen
 
-for (j in 1:(length(plots_scenarios_day_model[[1]])-1)) {
+for (j in 1:(length(plots_scenarios_day_model[[1]])-2)) {
   plots_scenarios_day_model_comparison_grid[[j]] <- 
     plots_scenarios_day_model_comparison_grid[[j]] + 
     theme(legend.position = "none")
@@ -148,6 +150,6 @@ plots_scenarios_day_model_comparison_grid <-
               plots_scenarios_day_model_comparison_grid[[3]],
               plots_scenarios_day_model_comparison_grid[[4]],
               plots_scenarios_day_model_comparison_grid[[5]],
+              legend_scenarios_day_model,
               ncol = 3,
-              bottom = legend_scenarios_day_model,
               top = "Smooth-Plots für jedes Szenario im Vergleich")

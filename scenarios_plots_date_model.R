@@ -57,6 +57,9 @@ for (j in 1:(length(plots_scenarios_date_model[[1]])-1)) {
                               ymin = plogis(y - 1.96*se),
                               ymax = plogis(y + 1.96*se)),
                 colour = "grey", alpha = 0.2) +
+    # Rugs an der x-Achse
+    geom_rug(data = plots_scenarios_date_model[[1]][[j]]$data$res,
+             mapping = aes(x = x)) +
     scale_y_continuous(limits = c(0,1)) +
     labs(color = "Szenario") +
     scale_color_manual(breaks=c("Original",
@@ -85,12 +88,6 @@ plots_scenarios_date_model_comparison[[1]] <-
                                 "01. Mär","01. Apr")) +
   theme(legend.position = "bottom")
 
-plots_scenarios_date_model_comparison[[3]] <- 
-  plots_scenarios_date_model_comparison[[3]] +
-  labs(title = "Lawinenwarnstufe",
-       x = "", y = "") +
-  theme(plot.title = element_text(hjust = 0.5))
-
 plots_scenarios_date_model_comparison[[2]] <- 
   plots_scenarios_date_model_comparison[[2]] +
   labs(title = "Wochentag",
@@ -101,6 +98,12 @@ plots_scenarios_date_model_comparison[[2]] <-
                             "3" = "Mi", "4" = "Do",
                             "5" = "Fr", "6" = "Sa",
                             "7" = "So"))
+
+plots_scenarios_date_model_comparison[[3]] <- 
+  plots_scenarios_date_model_comparison[[3]] +
+  labs(title = "Lawinenwarnstufe",
+       x = "", y = "") +
+  theme(plot.title = element_text(hjust = 0.5))
 
 plots_scenarios_date_model_comparison[[4]] <- 
   plots_scenarios_date_model_comparison[[4]] +

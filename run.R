@@ -130,12 +130,12 @@ ggsave("Plots/day_model_grid.png", grid, scale = 2)
 
 # Einzelplots
 
-day_model_plots$date_time
-day_model_plots$day
-day_model_plots$avalanche
-day_model_plots$solar_radiation
-day_model_plots$temperature
-day_model_plots$snowhight
+ day_model_plots$date_time
+# day_model_plots$day
+# day_model_plots$avalanche
+# day_model_plots$solar_radiation
+# day_model_plots$temperature
+# day_model_plots$snowhight
 
 
 # Möglichkeiten das Modell zu "checken"

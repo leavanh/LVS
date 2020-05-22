@@ -51,10 +51,11 @@ for (j in 1:(length(plots_scenarios_date_model[[1]])-1)) {
               mapping = aes(x = x,y = ty, 
                             color = "Original"), 
               size = 1.05) +
+    # Konfidenzintervall für originales Szenario
     geom_ribbon(plots_scenarios_date_model[[1]][[j]]$data$fit,
                 mapping = aes(x = x,
-                              ymin = ty - 1.96*se/sqrt(length(x)),
-                              ymax = ty + 1.96*se/sqrt(length(x))),
+                              ymin = plogis(y - 1.96*se),
+                              ymax = plogis(y + 1.96*se)),
                 colour = "grey", alpha = 0.2) +
     scale_y_continuous(limits = c(0,1)) +
     labs(color = "Szenario") +

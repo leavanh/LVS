@@ -53,10 +53,11 @@ for (j in 2:(length(plots_scenarios_day_model[[1]])-1)) {
               mapping = aes(x = x,y = ty, 
                             color = "Original"),
               size = 1.05) +
+    # Konfidenzintervall für originales Szenario
     geom_ribbon(plots_scenarios_date_model[[1]][[j]]$data$fit,
                 mapping = aes(x = x,
-                              ymin = ty - 1.96*se/sqrt(length(x)),
-                              ymax = ty + 1.96*se/sqrt(length(x))),
+                              ymin = plogis(y - 1.96*se),
+                              ymax = plogis(y + 1.96*se)),
                 colour = "grey", alpha = 0.2) +
     scale_y_continuous(limits = c(0,1)) +
     scale_y_continuous(limits = c(0,1)) +
@@ -120,7 +121,7 @@ plots_scenarios_day_model_comparison[[4]] <-
 # Plots in der Liste den richtigen Namen geben
 
 names(plots_scenarios_day_model_comparison) <- 
-  c("day", "avalanche", "solar_radiation", "snowhight")
+  c("day", "avalanche", "solar_radiation", "temperature", "snowhight")
 
 
 ## Grid erstellen

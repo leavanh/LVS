@@ -33,8 +33,8 @@ plots_day_model <- function(
   
   day_model_avalanche <- 
     plot(sm(day_Viz, select = 3), trans = plogis) +
-    l_ciPoly() + # Konfidenzband
-    l_ciLine(colour = "grey", linetype = 1) + # Konfidenzivränder
+    l_ciPoly(level = 0.95) + # Konfidenzintervallband
+    l_ciLine(level = 0.95, colour = "grey", linetype = 1) + # KI-Ränder
     l_fitLine(color = "black", size = 1.2) + # Fitline
     l_rug(mapping = aes(x=x), alpha = 0.2,
           length = unit(0.02, "npc")) + # Verdichtung an Achsen
@@ -59,8 +59,8 @@ plots_day_model <- function(
   
   day_model_day <- 
     plot(sm(day_Viz, select = 2), trans = plogis) +
-    l_ciPoly() + # Konfidenzband
-    l_ciLine(colour = "grey", linetype = 1) + # Konfidenzivränder
+    l_ciPoly(level = 0.95) + # Konfidenzintervallband
+    l_ciLine(level = 0.95, colour = "grey", linetype = 1) + # KI-Ränder
     l_fitLine(color = "black", size = 1.2) + # Fitline
     l_rug(mapping = aes(x=x), alpha = 0.2) + # Verdichtung an Achsen
     scale_y_continuous(limits = c(0,1))
@@ -91,8 +91,8 @@ plots_day_model <- function(
 
   day_model_temperature <-
     plot(sm(day_Viz, select = 4), trans = plogis) +
-    l_ciPoly() + # Konfidenzband
-    l_ciLine(colour = "grey", linetype = 1) + # Konfidenzivränder
+    l_ciPoly(level = 0.95) + # Konfidenzintervallband
+    l_ciLine(level = 0.95, colour = "grey", linetype = 1) + # KI-Ränder
     l_fitLine(color = "black", size = 1.2) + # Fitline
     l_rug(mapping = aes(x=x), alpha = 0.2) + # Verdichtung an Achsen
     scale_y_continuous(limits = c(0,1))
@@ -116,8 +116,8 @@ plots_day_model <- function(
   
   day_model_solar_radiation <- 
     plot(sm(day_Viz, select = 5), trans = plogis) +
-    l_ciPoly() + # Konfidenzband
-    l_ciLine(colour = "grey", linetype = 1) + # Konfidenzivränder
+    l_ciPoly(level = 0.95) + # Konfidenzintervallband
+    l_ciLine(level = 0.95, colour = "grey", linetype = 1) + # KI-Ränder
     l_fitLine(color = "black", size = 1.2) + # Fitline
     l_rug(mapping = aes(x=x), alpha = 0.2) + # Verdichtung an Achsen
     scale_y_continuous(limits = c(0,1))
@@ -141,8 +141,8 @@ plots_day_model <- function(
   
   day_model_snowhight <- 
     plot(sm(day_Viz, select = 6), trans = plogis) +
-    l_ciPoly() + # Konfidenzband
-    l_ciLine(colour = "grey", linetype = 1) + # Konfidenzivränder
+    l_ciPoly(level = 0.95) + # Konfidenzintervallband
+    l_ciLine(level = 0.95, colour = "grey", linetype = 1) + # KI-Ränder
     l_fitLine(color = "black", size = 1.2) + # Fitline
     l_rug(mapping = aes(x=x), alpha = 0.2) + # Verdichtung an Achsen
     scale_y_continuous(limits = c(0,1))

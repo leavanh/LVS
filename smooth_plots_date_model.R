@@ -9,20 +9,18 @@ plots_date_model <- function(
 date_Viz <- date_model$Viz
 
 ## Smooth-Plots für nichtparametrische Kovariablen
-## aufgeteilt in Darstellung für den Grid und einzeln
+## aufgeteilt in Darstellung für den Grid und als Einzelplot
 
 # Datum
 
 date_model_date <- 
   plot(sm(date_Viz, select = 1), trans = plogis) +
-  l_ciPoly() + # Konfidenzband
-  l_ciLine(colour = "grey", linetype = 1) + # Konfidenzivränder
+  l_ciPoly(level = 0.95) + # Konfidenzintervallband
+  l_ciLine(level = 0.95, colour = "grey", linetype = 1) + # KI-Ränder
   l_fitLine(color = "black", size = 1.2) + # Fitline
   l_rug(mapping = aes(x=x), alpha = 0.8,
         length = unit(0.02, "npc")) + # Verdichtung an Achsen
   scale_y_continuous(limits = c(0,1))
-
-  
 
 date_grid <- date_model_date +
                 labs(title = "Datum",
@@ -47,8 +45,8 @@ date_smooth <- date_model_date +
 
 date_model_avalanche <- 
   plot(sm(date_Viz, select = 2), trans = plogis) +
-  l_ciPoly() + # Konfidenzband
-  l_ciLine(colour = "grey", linetype = 1) + # Konfidenzivränder
+  l_ciPoly(level = 0.95) + # Konfidenzintervallband
+  l_ciLine(level = 0.95, colour = "grey", linetype = 1) + # Konfidenzivränder
   l_fitLine(color = "black", size = 1.2) + # Fitline
   l_rug(mapping = aes(x=x), alpha = 0.8,
         length = unit(0.02, "npc")) + # Verdichtung an Achsen
@@ -73,8 +71,8 @@ avalanche_smooth <- date_model_avalanche +
 
 date_model_day <- 
   plot(sm(date_Viz, select = 3), trans = plogis) +
-  l_ciPoly() + # Konfidenzband
-  l_ciLine(colour = "grey", linetype = 1) + # Konfidenzivränder
+  l_ciPoly(level = 0.95) + # Konfidenzintervallband
+  l_ciLine(level = 0.95, colour = "grey", linetype = 1) + # Konfidenzivränder
   l_fitLine(color = "black", size = 1.2) + # Fitline
   l_rug(mapping = aes(x=x), alpha = 0.8) + # Verdichtung an Achsen
   scale_y_continuous(limits = c(0,1))
@@ -105,8 +103,8 @@ day_smooth <- date_model_day +
 
 date_model_temperature <- 
   plot(sm(date_Viz, select = 4), trans = plogis) +
-  l_ciPoly() + # Konfidenzband
-  l_ciLine(colour = "grey", linetype = 1) + # Konfidenzivränder
+  l_ciPoly(level = 0.95) + # Konfidenzintervallband
+  l_ciLine(level = 0.95, colour = "grey", linetype = 1) + # Konfidenzivränder
   l_fitLine(color = "black", size = 1.2) + # Fitline
   l_rug(mapping = aes(x=x), alpha = 0.8) + # Verdichtung an Achsen
   scale_y_continuous(limits = c(0,1))
@@ -130,8 +128,8 @@ temperature_smooth <- date_model_temperature +
 
 date_model_solar_radiation <- 
   plot(sm(date_Viz, select = 5), trans = plogis) +
-  l_ciPoly() + # Konfidenzband
-  l_ciLine(colour = "grey", linetype = 1) + # Konfidenzivränder
+  l_ciPoly(level = 0.95) + # Konfidenzintervallband
+  l_ciLine(level = 0.95, colour = "grey", linetype = 1) + # Konfidenzivränder
   l_fitLine(color = "black", size = 1.2) + # Fitline
   l_rug(mapping = aes(x=x), alpha = 0.8) + # Verdichtung an Achsen
   scale_y_continuous(limits = c(0,1))
@@ -154,8 +152,8 @@ solar_radiation_smooth <- date_model_solar_radiation +
 
 date_model_snowhight <- 
   plot(sm(date_Viz, select = 6), trans = plogis) +
-  l_ciPoly() + # Konfidenzband
-  l_ciLine(colour = "grey", linetype = 1) + # Konfidenzivränder
+  l_ciPoly(level = 0.95) + # Konfidenzintervallband
+  l_ciLine(level = 0.95, colour = "grey", linetype = 1) + # Konfidenzivränder
   l_fitLine(color = "black", size = 1.2) + # Fitline
   l_rug(mapping = aes(x=x), alpha = 0.8) + # Verdichtung an Achsen
   scale_y_continuous(limits = c(0,1))

@@ -81,12 +81,9 @@ date_model_plots <- plots_date_model(date_model)
 
 # Übersicht non-parametrischer Plots
 
-grid <- 
 gridPrint(grobs = date_model_plots$grid,
           top = "Smooth-Plots im Date-Model",
           ncol = 3)
-
-ggsave("Plots/date_model_grid.png", grid)
 
 # Einzelplots
 
@@ -121,12 +118,9 @@ day_model_plots <- plots_day_model(day_model)
 
 # Übersicht nonparametrischer Plots
 
-grid <- 
 gridPrint(grobs = day_model_plots$grid,
           top = "Smooth-Plots im Day-Model",
           ncol = 3)
-
-ggsave("Plots/day_model_grid.png", grid, scale = 2)
 
 # Einzelplots
 
@@ -170,28 +164,13 @@ source("scenarios_plots_date_model.R", encoding = "UTF-8")
 source("scenarios_plots_day_model.R", encoding = "UTF-8")
 
 
-# Modelle fitten
+# Modelle für jedes Szenario fitten
 
 data_general <- data_general_function(0.25)
 
 date_model_general <- date_model_function(data_general$date_data)
 date_model_general$summary # Übersicht (mit Signifikanz)
 plogis(date_model_general$summary$p.coeff) # parametrische Effekt
-
-# Plots einlesen
-
-date_model_plots_general <- plots_date_model(date_model_general)
-
-# Übersicht non-parametrischer Plots
-
-grid <- 
-gridPrint(grobs = date_model_plots_general$grid,
-          top = "Smooth-Plots im Date-Model",
-          ncol = 3)
-
-ggsave("Plots/date_model_grid_general.png", grid)
-
-
 
 day_model_general <- day_model_function(data_general$data)
 day_model_general$summary # Übersicht (mit Signifikanz)
@@ -240,10 +219,7 @@ plogis(day_model_temp$summary$p.coeff) # parametrische Effekt
 
 # Übersicht
 
-grid <- 
 grid.arrange(plots_scenarios_date_model_comparison_grid)
-
-ggsave("Plots/scenario_grid_general.png", grid, scale = 2)
 
 # Einzelplots
 

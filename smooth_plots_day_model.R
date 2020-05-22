@@ -29,6 +29,72 @@ plots_day_model <- function(
     ggtitle("Smoothfunktion für Uhrzeit und Datum")
   
   
+  # Nachbauen aus mgcViz-Plot-Daten
+  
+  str(day_model_date_time)
+  
+  raw <- data.frame(
+    time = plot(day_model$model, select = 1, trans = plogis,
+                shift = coef(date_model$model)[1], se = 1.96,
+                seWithMean = TRUE)[[1]]$raw$x,
+    date = plot(day_model$model, select = 1, trans = plogis,
+                shift = coef(date_model$model)[1], se = 1.96,
+                seWithMean = TRUE)[[1]]$raw$y
+  )
+  
+  ggplot(day_model_date_time$data$fit, aes(x, y)) +
+    geom_raster(aes(fill = plogis(z + coef(day_model$model)[1]))) +
+    scale_fill_distiller(palette = "YlGnBu", direction = -1) +
+    geom_rug(data = raw, aes(x = time, y = date)) +
+    scale_y_continuous(breaks = c(17897,17928,17956,17987), 
+                       labels = c("01. Jan","01. Feb",
+                                  "01. Mär","01. Apr")) +
+    scale_x_continuous(breaks=c(-2209060800,-2209050000,-2209039200,-2209028400, 
+                                -2209017600, -2209006800,
+                                -2208996000, -2208985200, -2208974460), 
+                       labels=c("04:00","07:00","10:00","13:00", "16:00", "19:00",
+                                "22:00", "01:00", "03:59")) +
+    ggtitle("Smoothfunktion für Uhrzeit und Datum") + 
+    labs(y="Datum", x="Uhrzeit", fill = NULL)
+  
+  # Nachbauen aus plot.gam-Daten
+
+    str(plot.gam(day_model$model, select = 1, trans = plogis,
+             shift = coef(date_model$model)[1],
+             seWithMean = TRUE, se = 1)[[1]])
+    
+    datetime <- data.frame(
+      x = plot.gam(day_model$model, select = 1, trans = plogis,
+                   shift = coef(date_model$model)[1],
+                   seWithMean = TRUE, se = 1)[[1]]$x,
+      y = plot.gam(day_model$model, select = 1, trans = plogis,
+                   shift = coef(date_model$model)[1],
+                   seWithMean = TRUE, se = 1)[[1]]$y,
+      z = plot.gam(day_model$model, select = 1, trans = plogis,
+                   shift = coef(date_model$model)[1],
+                   seWithMean = TRUE, se = 1)[[1]]$fit
+    )
+    
+    ggplot(datetime, aes(x, y)) +
+      geom_raster(aes(fill = plogis(z + coef(day_model$model)[1]))) +
+      scale_fill_distiller(palette = "YlGnBu", direction = -1) +
+      geom_rug(data = raw, aes(x = time, y = date)) +
+      scale_y_continuous(breaks = c(17897,17928,17956,17987), 
+                         labels = c("01. Jan","01. Feb",
+                                    "01. Mär","01. Apr")) +
+      scale_x_continuous(breaks=c(-2209060800,-2209050000,-2209039200,-2209028400, 
+                                  -2209017600, -2209006800,
+                                  -2208996000, -2208985200, -2208974460), 
+                         labels=c("04:00","07:00","10:00","13:00", "16:00", "19:00",
+                                  "22:00", "01:00", "03:59")) +
+      ggtitle("Smoothfunktion für Uhrzeit und Datum") + 
+      labs(y="Datum", x="Uhrzeit", fill = NULL)
+    
+    # y-Werte unterscheiden sich
+    
+    datetime$y - day_model_date_time$data$fit$y
+      
+  
   # Lawinengefahr
   
   day_model_avalanche <- 

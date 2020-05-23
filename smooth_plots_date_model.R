@@ -222,12 +222,12 @@ snowhight_smooth <- date_model_snowhight +
 # Grid für Date Model Plots
 
 date_model_grid <-
-  list(date_grid,
-            day_grid,
-            avalanche_grid,
-            solar_radiation_grid,
-            temperature_grid,
-            snowhight_grid)
+  list(day_grid,
+       avalanche_grid,
+       solar_radiation_grid,
+       temperature_grid,
+       snowhight_grid,
+       date_grid)
 
 
 

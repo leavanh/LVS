@@ -74,7 +74,8 @@ source("smooth_plots_day_model.R", encoding = "UTF-8")
 date_model <- date_model_function(date_data)
 
 date_model$summary # Übersicht (mit Signifikanz)
-plogis(date_model$summary$p.coeff) # parametrische Effekte
+plogis(date_model$summary$p.coeff[1]) # nicht Feiertag
+plogis(date_model$summary$p.coeff[1] + date_model$summary$p.coeff[2]) # Feiertag
 
 # Plots einlesen
 
@@ -111,7 +112,9 @@ gridPrint(grobs = date_model_plots$grid,
 day_model <- day_model_function(min_data_noNA)
 
 day_model$summary # Übersicht (mit Signifikanz)
-plogis(day_model$summary$p.coeff) # parametrische Effekt
+plogis(day_model$summary$p.coeff[1]) # nicht Feiertag
+plogis(day_model$summary$p.coeff[1] + day_model$summary$p.coeff[2]) # Feiertag
+
 
 # Plots einlesen
 

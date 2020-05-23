@@ -8,30 +8,51 @@ plots_day_model <- function(
   
   day_Viz <- day_model$Viz
   
+  plot_list <- list()
   
   ## Smooth-Plots für nichtparametrische Kovariablen
-  ## aufgeteilt in Darstellung für den Grid und einzeln
   
+  pdf(file = NULL)
   
-  #2-Dimensionale Smooth-Funktion; Date and Time
+  for (i in 1:5) {
+    
+    # Nützliche Werte zur Vereinfachung in eigenen DataFrame
+    
+    data <- data.frame(
+      x = plot(day_model$model, trans = plogis, se = 1.96,
+               seWithMean = TRUE)[[i+1]]$x,
+      fit = plot(day_model$model, trans = plogis, se = 1.96,
+                 seWithMean = TRUE)[[i+1]]$fit,
+      se = plot(day_model$model, trans = plogis, se = 1.96,
+                seWithMean = TRUE)[[i+1]]$se, 
+      intercept = rep(coef(day_model$model)[1], 100)
+    )
+    
+    # tatsächliche x-Werte der Daten müssen in eigenen DataFrame für den Rug
+    
+    raw <- data.frame(
+      raw = plot(day_model$model, trans = plogis, se = 1.96,
+                 seWithMean = TRUE)[[i+1]]$raw
+    )
+    
+    # nachgebauter Plot
+    
+    plot_list[[i]] <- 
+      ggplot(data = data, aes(x = x)) +
+      # Fitline
+      geom_line(aes(y = plogis(fit + intercept))) +
+      # Konfidenzintervall
+      geom_ribbon(aes(ymin = plogis(fit + intercept - se),
+                      ymax = plogis(fit + intercept + se)),
+                  color = "grey", alpha = 0.2) +
+      # Rug
+      geom_rug(data = raw, aes(x = raw), alpha = 0.2) +
+      scale_y_continuous(limits = c(0,1))
+    
+    
+  }
   
-  day_model_date_time <- 
-    plot(sm(day_Viz, select = 1), trans = plogis)  + labs(y="Datum", x="Uhrzeit") + 
-    l_fitRaster() + l_rug() +
-    scale_y_continuous(breaks = c(17897,17928,17956,17987), 
-                       labels = c("01. Jan","01. Feb",
-                                  "01. Mär","01. Apr")) +
-    scale_x_continuous(breaks=c(-2209060800,-2209050000,-2209039200,-2209028400, 
-                                -2209017600, -2209006800,
-                                -2208996000, -2208985200, -2208974460), 
-                       labels=c("04:00","07:00","10:00","13:00", "16:00", "19:00",
-                                "22:00", "01:00", "03:59")) +
-    ggtitle("Smoothfunktion für Uhrzeit und Datum")
-  
-  
-  # Nachbauen aus mgcViz-Plot-Daten
-  
-  str(day_model_date_time)
+  # Echte x-Werte für den 2D-Plot
   
   raw <- data.frame(
     time = plot(day_model$model, select = 1, trans = plogis,
@@ -42,9 +63,22 @@ plots_day_model <- function(
                 seWithMean = TRUE)[[1]]$raw$y
   )
   
-  ggplot(day_model_date_time$data$fit, aes(x, y)) +
+  
+  # 2-Dimensionale Smooth-Funktion; Date and Time
+  
+  # mgcViz-Plot zum Nachbauen
+  
+  mgcviz_plot <- 
+    plot(sm(day_Viz, select = 1), trans = plogis) +
+    l_fitRaster() + l_rug()
+  
+  dev.off()
+  
+  # Nachbauen aus mgcViz-Plot-Daten
+  
+  day_model_date_time <- 
+  ggplot(mgcviz_plot$data$fit, aes(x, y)) +
     geom_raster(aes(fill = plogis(z + coef(day_model$model)[1]))) +
-    scale_fill_distiller(palette = "YlGnBu", direction = -1) +
     geom_rug(data = raw, aes(x = time, y = date)) +
     scale_y_continuous(breaks = c(17897,17928,17956,17987), 
                        labels = c("01. Jan","01. Feb",
@@ -54,65 +88,22 @@ plots_day_model <- function(
                                 -2208996000, -2208985200, -2208974460), 
                        labels=c("04:00","07:00","10:00","13:00", "16:00", "19:00",
                                 "22:00", "01:00", "03:59")) +
-    ggtitle("Smoothfunktion für Uhrzeit und Datum") + 
-    labs(y="Datum", x="Uhrzeit", fill = NULL)
-  
-  # Nachbauen aus plot.gam-Daten
+    ggtitle("Anteil für Uhrzeit und Datum") + 
+    labs(y="Datum", x="Uhrzeit", fill = NULL) +
+    scale_fill_gradient2(midpoint = 0.5, low = "blue", mid = "white",
+                         high = "green", limits = c(0, 1))
 
-    str(plot.gam(day_model$model, select = 1, trans = plogis,
-             shift = coef(date_model$model)[1],
-             seWithMean = TRUE, se = 1)[[1]])
     
-    datetime <- data.frame(
-      x = plot.gam(day_model$model, select = 1, trans = plogis,
-                   shift = coef(date_model$model)[1],
-                   seWithMean = TRUE, se = 1)[[1]]$x,
-      y = plot.gam(day_model$model, select = 1, trans = plogis,
-                   shift = coef(date_model$model)[1],
-                   seWithMean = TRUE, se = 1)[[1]]$y,
-      z = plot.gam(day_model$model, select = 1, trans = plogis,
-                   shift = coef(date_model$model)[1],
-                   seWithMean = TRUE, se = 1)[[1]]$fit
-    )
-    
-    ggplot(datetime, aes(x, y)) +
-      geom_raster(aes(fill = plogis(z + coef(day_model$model)[1]))) +
-      scale_fill_distiller(palette = "YlGnBu", direction = -1) +
-      geom_rug(data = raw, aes(x = time, y = date)) +
-      scale_y_continuous(breaks = c(17897,17928,17956,17987), 
-                         labels = c("01. Jan","01. Feb",
-                                    "01. Mär","01. Apr")) +
-      scale_x_continuous(breaks=c(-2209060800,-2209050000,-2209039200,-2209028400, 
-                                  -2209017600, -2209006800,
-                                  -2208996000, -2208985200, -2208974460), 
-                         labels=c("04:00","07:00","10:00","13:00", "16:00", "19:00",
-                                  "22:00", "01:00", "03:59")) +
-      ggtitle("Smoothfunktion für Uhrzeit und Datum") + 
-      labs(y="Datum", x="Uhrzeit", fill = NULL)
-    
-    # y-Werte unterscheiden sich
-    
-    datetime$y - day_model_date_time$data$fit$y
-      
   
   # Lawinengefahr
-  
-  day_model_avalanche <- 
-    plot(sm(day_Viz, select = 3), trans = plogis) +
-    l_ciPoly(level = 0.95) + # Konfidenzintervallband
-    l_ciLine(level = 0.95, colour = "grey", linetype = 1) + # KI-Ränder
-    l_fitLine(color = "black", size = 1.2) + # Fitline
-    l_rug(mapping = aes(x=x), alpha = 0.2,
-          length = unit(0.02, "npc")) + # Verdichtung an Achsen
-    scale_y_continuous(limits = c(0,1))
-  
-  avalanche_grid <- day_model_avalanche +
+
+  avalanche_grid <- plot_list[[2]] +
     labs(title = "Lawinenwarnstufe",
          x = "", y = "") +
     theme(plot.title = element_text(hjust = 0.5)) +
     scale_x_continuous(breaks = c(1,  2,  3,  4))
   
-  avalanche_smooth <- day_model_avalanche +
+  avalanche_smooth <- plot_list[[2]] +
     labs(title = "Smooth-Funktion für Lawinenwarnstufe",
          x = "Lawinenwarnstufe",
          y = "s(Lawinenwarnstufe)") +
@@ -123,15 +114,7 @@ plots_day_model <- function(
   
   # Wochentag
   
-  day_model_day <- 
-    plot(sm(day_Viz, select = 2), trans = plogis) +
-    l_ciPoly(level = 0.95) + # Konfidenzintervallband
-    l_ciLine(level = 0.95, colour = "grey", linetype = 1) + # KI-Ränder
-    l_fitLine(color = "black", size = 1.2) + # Fitline
-    l_rug(mapping = aes(x=x), alpha = 0.2) + # Verdichtung an Achsen
-    scale_y_continuous(limits = c(0,1))
-  
-  day_grid <- day_model_day +
+  day_grid <- plot_list[[1]] +
     labs(title = "Wochentag",
          x = "", y = "") +
     theme(plot.title = element_text(hjust = 0.5)) +
@@ -141,7 +124,7 @@ plots_day_model <- function(
                               "5" = "Fr", "6" = "Sa",
                               "7" = "So"))
   
-  day_smooth <- day_model_day +
+  day_smooth <- plot_list[[1]] +
     labs(title = "Smooth-Funktion für Wochentag",
          x = "Wochentag",
          y = "s(Wochentag)") +
@@ -155,22 +138,14 @@ plots_day_model <- function(
   
   # Temperatur
 
-  day_model_temperature <-
-    plot(sm(day_Viz, select = 4), trans = plogis) +
-    l_ciPoly(level = 0.95) + # Konfidenzintervallband
-    l_ciLine(level = 0.95, colour = "grey", linetype = 1) + # KI-Ränder
-    l_fitLine(color = "black", size = 1.2) + # Fitline
-    l_rug(mapping = aes(x=x), alpha = 0.2) + # Verdichtung an Achsen
-    scale_y_continuous(limits = c(0,1))
-
-  temperature_grid <- day_model_temperature +
+  temperature_grid <- plot_list[[3]] +
     labs(title = "Temperatur",
          x = "",
          y = "") +
     theme(plot.title = element_text(hjust = 0.5)) +
     scale_x_continuous(breaks = c(-6, -4, -2, 0, 2, 4, 6, 8))
 
-  temperature_smooth <- day_model_temperature +
+  temperature_smooth <- plot_list[[3]] +
     labs(title = "Smooth-Funktion für Temperatur",
          x = "Temperatur in Grad Celsius",
          y = "s(Temperatur)") +
@@ -180,22 +155,14 @@ plots_day_model <- function(
   
   # Anteil Sonneneinstrahlung
   
-  day_model_solar_radiation <- 
-    plot(sm(day_Viz, select = 5), trans = plogis) +
-    l_ciPoly(level = 0.95) + # Konfidenzintervallband
-    l_ciLine(level = 0.95, colour = "grey", linetype = 1) + # KI-Ränder
-    l_fitLine(color = "black", size = 1.2) + # Fitline
-    l_rug(mapping = aes(x=x), alpha = 0.2) + # Verdichtung an Achsen
-    scale_y_continuous(limits = c(0,1))
-  
-  solar_radiation_grid <- day_model_solar_radiation +
+  solar_radiation_grid <- plot_list[[4]] +
     labs(title = "Sonneneinstrahlung",
          x = "",
          y = "") +
     theme(plot.title = element_text(hjust = 0.5)) +
     scale_x_continuous(breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1))
   
-  solar_radiation_smooth <- day_model_solar_radiation +
+  solar_radiation_smooth <- plot_list[[4]] +
     labs(title = "Smooth-Funktion für Anteil \n der 
                   Sonneneinstrahlung am Maximum",
          x = "Anteil Sonneneinstrahlung",
@@ -205,22 +172,14 @@ plots_day_model <- function(
   
   # Neuschnee
   
-  day_model_snowhight <- 
-    plot(sm(day_Viz, select = 6), trans = plogis) +
-    l_ciPoly(level = 0.95) + # Konfidenzintervallband
-    l_ciLine(level = 0.95, colour = "grey", linetype = 1) + # KI-Ränder
-    l_fitLine(color = "black", size = 1.2) + # Fitline
-    l_rug(mapping = aes(x=x), alpha = 0.2) + # Verdichtung an Achsen
-    scale_y_continuous(limits = c(0,1))
-  
-  snowhight_grid <- day_model_snowhight +
+  snowhight_grid <- plot_list[[5]] +
     labs(title = "Neuschnee",
          x = "",
          y = "") +
     theme(plot.title = element_text(hjust = 0.5)) +
     scale_x_continuous(breaks = c(-12, -4, 4, 12, 20, 28, 36))
   
-  snowhight_smooth <- day_model_snowhight +
+  snowhight_smooth <- plot_list[[5]] +
     labs(title = "Smooth-Funktion für Neuschnee",
          x = "Neuschnee in cm",
          y = "s(Neuschnee)") +

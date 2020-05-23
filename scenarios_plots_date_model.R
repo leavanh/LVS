@@ -155,12 +155,12 @@ for (j in 1:6) {
 
 
 plots_scenarios_date_model_comparison_grid <- 
-  arrangeGrob(plots_scenarios_date_model_comparison_grid[[1]],
-              plots_scenarios_date_model_comparison_grid[[2]],
+  arrangeGrob(plots_scenarios_date_model_comparison_grid[[2]],
               plots_scenarios_date_model_comparison_grid[[3]],
               plots_scenarios_date_model_comparison_grid[[4]],
               plots_scenarios_date_model_comparison_grid[[5]],
               plots_scenarios_date_model_comparison_grid[[6]],
+              plots_scenarios_date_model_comparison_grid[[1]],
               ncol = 3,
               bottom = legend_scenarios_date_model,
               top = "Smooth-Plots für jedes Szenario im Vergleich")

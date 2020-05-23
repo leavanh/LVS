@@ -55,19 +55,22 @@ date_ratio <- ggplot(date_data) +
   geom_line(aes(date, ratio)) +
   labs(title = "Anteil der Personen mit LVS-Gerät in der Wintersaison 18/19",
        x = "Datum",
-       y = "Anteil LVS-Geräte")
+       y = "Anteil LVS-Geräte") +
+  scale_y_continuous(limits = c(0, 1))
 
 # Datum und Schneehöhe
 
 date_snowhight <- ggplot(date_data) +
   geom_line(aes(date, snowhight)) +
   xlab("Datum") +
-  ylab("Schneehöhe (in cm)")
+  ylab("Schneehöhe (in cm)") +
+  scale_y_continuous(limits = c(0, 220))
 
 # Datum und Temperatur
 
 date_temperature <- ggplot(date_data) +
   geom_line(aes(date, temperature)) +
+  geom_hline(yintercept = 0, linetype = 'dotted') +
   xlab("Datum") +
   ylab("Temperatur (in °C)")
 
@@ -135,20 +138,26 @@ snowhight_solar_radiation <- ggplot(date_data) +
 ## Uhrzeit
 # NAs (Tage an denen Messungen nicht möglich waren) werden entfernt
 
+data_time_lvs_plot <- data[!is.na(data$time),] %>%
+  mutate(time = as.POSIXct(
+    strftime(
+      time, format="%H:%M:%S"), 
+    format="%H:%M:%S"))
+
 time_lvs <- ggplot() +
-  geom_freqpoly(data = data[!is.na(data$time),],
+  geom_freqpoly(data = data_time_lvs_plot,
                 aes(time, colour = "red"), binwidth = 15) +
-  geom_freqpoly(data = subset(data[!is.na(data$time),],
-                              lvs == TRUE),
+  geom_freqpoly(data = subset(data_time_lvs_plot, lvs == TRUE),
                 aes(time, colour = "blue"), binwidth = 15) +
   scale_color_identity(name = "Messung",
                        breaks = c("red", "blue"),
                        labels = c("Person", "Lvs-Gerät"),
-                       guide = "legend") + 
+                       guide = "legend") +
   scale_x_datetime(date_breaks = "2 hour", date_labels = "%H:%M") +
   labs(title = "Die Messungen nach Uhrzeit",
        x = "Uhrzeit",
-       y = "Absolute Häufigkeit")
+       y = "Absolute Häufigkeit") + 
+  geom_vline(xintercept = as.POSIXct("2020-05-23 04:00:00"))
 
 
 ## Solar Radiation Maximum

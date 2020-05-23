@@ -56,10 +56,10 @@ plots_day_model <- function(
   
   raw <- data.frame(
     time = plot(day_model$model, select = 1, trans = plogis,
-                shift = coef(date_model$model)[1], se = 1.96,
+                shift = coef(day_model$model)[1], se = 1.96,
                 seWithMean = TRUE)[[1]]$raw$x,
     date = plot(day_model$model, select = 1, trans = plogis,
-                shift = coef(date_model$model)[1], se = 1.96,
+                shift = coef(day_model$model)[1], se = 1.96,
                 seWithMean = TRUE)[[1]]$raw$y
   )
   
@@ -78,7 +78,7 @@ plots_day_model <- function(
   
   day_model_date_time <- 
   ggplot(mgcviz_plot$data$fit, aes(x, y)) +
-    geom_raster(aes(fill = plogis(z + coef(day_model$model)[1]))) +
+    geom_tile(aes(fill = plogis(z + coef(day_model$model)[1]))) +
     geom_rug(data = raw, aes(x = time, y = date)) +
     scale_y_continuous(breaks = c(17897,17928,17956,17987), 
                        labels = c("01. Jan","01. Feb",

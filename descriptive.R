@@ -162,8 +162,9 @@ snowhight_solar_radiation <- ggplot(date_data) +
 data_time_lvs_plot <- data[!is.na(data$time),] %>%
   mutate(time = as.POSIXct(
     strftime(
-      time, format="%H:%M:%S"), 
-    format="%H:%M:%S"))
+      time, format = "%H:%M:%S"), 
+    format = "%H:%M:%S"))
+date(data_time_lvs_plot$time) <- as.POSIXct("1899-12-31", tz = "MET")
 
 time_lvs <- ggplot() +
   geom_freqpoly(data = data_time_lvs_plot,
@@ -180,7 +181,7 @@ time_lvs <- ggplot() +
        x = "Uhrzeit",
        y = "Absolute Häufigkeit") + 
   theme(legend.position="top") +
-  geom_vline(xintercept = as.POSIXct("2020-05-23 04:00:00"))
+  geom_vline(xintercept = as.POSIXct("1899-12-31 04:00:00", tz = "MET"))
 
 
 ## Solar Radiation Maximum

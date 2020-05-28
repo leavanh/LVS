@@ -92,7 +92,9 @@ plots_day_model <- function(
     labs(y="Datum", x="Uhrzeit", fill = NULL) +
     scale_fill_gradient2(midpoint = 0.5, low = "blue", mid = "white",
                          high = "green", limits = c(0, 1)) +
-    theme(text = element_text(size = 15))
+    theme(text = element_text(size = 15)) +
+    geom_line(data=date_data, aes(as.numeric(sunrise), int_date)) +
+    geom_line(data=date_data, aes(as.numeric(sunset), int_date))
 
     
   

@@ -173,16 +173,16 @@ plots_day_model <- function(
   # Neuschnee
   
   snowhight_grid <- plot_list[[5]] +
-    labs(title = "Neuschnee",
+    labs(title = "Schneedifferenz",
          x = "",
          y = "") +
     theme(plot.title = element_text(hjust = 0.5)) +
     scale_x_continuous(breaks = c(-12, -4, 4, 12, 20, 28, 36))
   
   snowhight_smooth <- plot_list[[5]] +
-    labs(title = "Smooth-Funktion für Neuschnee",
-         x = "Neuschnee in cm",
-         y = "s(Neuschnee)") +
+    labs(title = "Smooth-Funktion für Schneedifferenz",
+         x = "Schneedifferenz in cm",
+         y = "s(Schneedifferenz)") +
     theme(plot.title = element_text(hjust = 0.5)) +
     scale_x_continuous(breaks = c(-12, -8, -4, 0, 4, 8, 12, 16, 20,
                                   24, 28, 32, 36, 40))

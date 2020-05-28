@@ -91,7 +91,8 @@ plots_day_model <- function(
     #ggtitle("Anteil für Uhrzeit und Datum") + 
     labs(y="Datum", x="Uhrzeit", fill = NULL) +
     scale_fill_gradient2(midpoint = 0.5, low = "blue", mid = "white",
-                         high = "green", limits = c(0, 1))
+                         high = "green", limits = c(0, 1)) +
+    theme(text = element_text(size = 15), legend.position="top")
 
     
   

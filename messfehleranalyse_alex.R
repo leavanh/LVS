@@ -144,19 +144,17 @@ ggplot(zlg_beide_summen[1:4,],
        aes(x = factor(kontakt, levels = c("SG", "aK")),
            y = sum, fill = erfassung)) +
   geom_bar(stat="identity", position = "dodge") +
-  labs(title = "Manuelle Zählung am 27.02- und 28.02.2019",
-       x = NULL,
-       y = "Absolute Häufigkeit") +
+  labs(#title = "Manuelle Zählung am 27.02- und 28.02.2019",
+    x = NULL,
+    y = "Absolute Häufigkeit") +
   scale_x_discrete(labels=c("SG" = "Skitourengänger", 
                             "aK" = "Andere Kontakte")) +
-  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank(), 
-        axis.line = element_line(colour = "black"),
+  theme(legend.position="top",
         text = element_text(size= 15)) +
   #scale_fill_discrete(name = NULL, labels = c("Erfasst", "Nicht erfasst")) +
   scale_fill_manual(name = NULL, labels = c("Erfasst", "Nicht Erfasst"), 
-                    values = c("cadetblue", "antiquewhite4")) +
-  geom_text(aes(label=sum), position=position_dodge(width=0.9), vjust=-0.25)
+                    values = c("#993300", "antiquewhite4")) 
+#geom_text(aes(label=sum), position=position_dodge(width=0.9), vjust=-0.25)
 
 
 ### Erfassungen in 3 min intervall
@@ -250,14 +248,10 @@ ggplot(data = erfassung_je_gruppe,
 ggplot(data = erfassung_je_gruppe) +
   geom_bar(aes(x = grösse, y = anzahl, fill = type), 
            stat = "identity", position = "fill") +
-  labs(title = "Verhältnis der (Nicht-)Erfassungen \n nach Gruppengröße",
-       x = "Gruppengröße",
-       y = "Anteil") +
+  labs(#title = "Verhältnis der (Nicht-)Erfassungen nach Gruppengröße",
+    x = "Gruppengröße",
+    y = "Anteil") +
   scale_x_continuous(breaks = 1:8) +
-  theme(axis.line = element_line(colour = "black"),
-        panel.grid.major = element_blank(),
-        panel.grid.minor = element_blank(),
-        panel.border = element_blank(),
-        panel.background = element_blank()) +
+  theme(text = element_text(size = 15), legend.position="top") +
   scale_fill_manual(name = NULL, labels = c("Erfasst", "Nicht Erfasst"), 
-                    values = c("cadetblue", "antiquewhite4")) 
+                    values = c("#993300", "antiquewhite4")) 

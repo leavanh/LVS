@@ -32,9 +32,7 @@ for (i in 1:6) {
   # tatsächliche x-Werte der Daten müssen in eigenen DataFrame für den Rug später
   
   raw <- data.frame(
-    raw = plot(date_model$model, trans = plogis,
-               shift = coef(date_model$model)[1], se = 1.96,
-               seWithMean = TRUE)[[i]]$raw
+    raw = date_model$model$model[[i+2]]
   )
   
   # nachgebauter Plot
@@ -188,12 +186,12 @@ date_model_grid <-
 # Liste zur Ausgabe
 
 plots_date_model_list <- list(
-  date = date_smooth,
   day = day_smooth,
   avalanche = avalanche_smooth,
   solar_radiation = solar_radiation_smooth,
   temperature = temperature_smooth,
   snowhight = snowhight_smooth,
+  date = date_smooth,
   grid = date_model_grid
   )
 

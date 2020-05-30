@@ -31,8 +31,7 @@ plots_day_model <- function(
     # tatsächliche x-Werte der Daten müssen in eigenen DataFrame für den Rug
     
     raw <- data.frame(
-      raw = plot(day_model$model, trans = plogis, se = 1.96,
-                 seWithMean = TRUE)[[i+1]]$raw
+      raw = day_model$model$model[[i+4]]
     )
     
     # nachgebauter Plot
@@ -55,12 +54,8 @@ plots_day_model <- function(
   # Echte x-Werte für den 2D-Plot
   
   raw <- data.frame(
-    time = plot(day_model$model, select = 1, trans = plogis,
-                shift = coef(day_model$model)[1], se = 1.96,
-                seWithMean = TRUE)[[1]]$raw$x,
-    date = plot(day_model$model, select = 1, trans = plogis,
-                shift = coef(day_model$model)[1], se = 1.96,
-                seWithMean = TRUE)[[1]]$raw$y
+    time = day_model$model$model[[3]],
+    date = day_model$model$model[[4]]
   )
   
   
@@ -203,12 +198,12 @@ plots_day_model <- function(
   # Liste zur Ausgabe
   
   plots_day_model_list <- list(
-    date_time = day_model_date_time,
     day = day_smooth,
     avalanche = avalanche_smooth,
     solar_radiation = solar_radiation_smooth,
     temperature = temperature_smooth,
     snowhight = snowhight_smooth,
+    date_time = day_model_date_time,
     grid = day_model_grid
   )
   

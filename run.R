@@ -16,7 +16,7 @@ library("cowplot") # für get_legend
 
 ## Theme (Ästhetik) der Plots festsetzen
 
-theme_set(theme_minimal())
+theme_set(theme_classic())
 
 
 ## Daten laden
@@ -84,7 +84,7 @@ date_model_plots <- plots_date_model(date_model)
 # Übersicht non-parametrischer Plots
 
 gridPrint(grobs = date_model_plots$grid,
-          top = "Smooth-Plots im Date-Model",
+          #top = "Smooth-Plots im Date-Model",
           ncol = 3)
 
 # Einzelplots
@@ -123,7 +123,7 @@ day_model_plots <- plots_day_model(day_model)
 # Übersicht nonparametrischer Plots
 
 gridPrint(grobs = day_model_plots$grid,
-          top = "Smooth-Plots im Day-Model",
+          #top = "Smooth-Plots im Day-Model",
           ncol = 3)
 
 # Einzelplots
@@ -142,8 +142,8 @@ gridPrint(grobs = day_model_plots$grid,
 # gam.check(day_model$model, type = "deviance")
 # concurvity(day_model$model, full = TRUE)
 # concurvity(day_model$model, full = FALSE)
-# acf(day_model$model$residuals)
-# pacf(day_model$model$residuals)
+acf(day_model$model$residuals, main="")
+pacf(day_model$model$residuals, main="")
 
 
 

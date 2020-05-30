@@ -1,5 +1,11 @@
 
+### In dieser Datei werden die Plots für die deskriptive Messfehleranalyse 
+### erzeugt
+
+source("prepare_data_1920.R", encoding = "UTF-8")
+
 # Von den Studenten gezählte Personen, sortiert nach Erfassungsart am 27.02
+
 sums_27$type2 <- factor(sums_27$type, as.character(sums_27$type)) 
 ggplot(sums_27, aes(x = type2, y = sum)) +
   geom_bar(aes(x=type2), data=sums_27, stat="identity") +
@@ -17,7 +23,8 @@ ggplot(sums_27, aes(x = type2, y = sum)) +
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
         panel.background = element_blank(), axis.line = element_line(colour = "black")) 
 
-# Von den Studenten gezählte Personen, sortiert nach Erfassungsart am 27.02, ohne Berechnungen
+# Vergleich nach Art des Kontakts am 27.02.
+
 plot_zlg27 <-ggplot(sums_27, aes(x = type2, y = sum)) +
   geom_bar(aes(x=type2), data=sums_27, stat="identity") +
   labs(title = "Personen am 27.02.2019 (Manuelle Messung)",
@@ -38,6 +45,7 @@ plot_zlg27 <-ggplot(sums_27, aes(x = type2, y = sum)) +
 plot_zlg27
 
 # Von den Studenten gezählte Personen, sortiert nach Erfassungsart am 28.02
+
 sums_28$type2 <- factor(sums_28$type, as.character(sums_28$type)) 
 ggplot(sums_28, aes(x = type2, y = sum)) +
   geom_bar(stat = "identity") +
@@ -56,7 +64,8 @@ ggplot(sums_28, aes(x = type2, y = sum)) +
         panel.background = element_blank(), axis.line = element_line(colour = "black"))
 
 
-# Von den Studenten gezählte Personen, sortiert nach Erfassungsart am 27.02, ohne Berechnungen
+# Vergleich nach Art des Kontakts 28.02.
+
 plot_zlg28 <- ggplot(sums_28, aes(x = type2, y = sum)) +
   geom_bar(stat = "identity") +
   labs(title = "Anzahl nach Art der Erfassungen am 28.02.",
@@ -86,7 +95,7 @@ plot_zlg28
 
 
 
-## Studentenmessungen vs Checkpointmessungen
+## Anzahl Studentenmessungen vs Checkpointmessungen
 
 ggplot(data = filter(zlg_beide_bereinigt_summen, type %in% c("checkpoint", "gesamt"))) +
   geom_bar(aes(x = type, y = sum), stat = "identity") +
@@ -100,7 +109,7 @@ zlg_beide_bereinigt_summen$sum[zlg_beide_bereinigt_summen$type == "checkpoint"] 
 
 
 
-# als Anteil in Prozent
+# Anteil "andere Kontakte" an Gesamtzahl der von Studenten gemessenen Personen
 
 zlg_beide_bereinigt_summen$sum[zlg_beide_bereinigt_summen$type == "aK_gesamt"] / 
   zlg_beide_bereinigt_summen$sum[zlg_beide_bereinigt_summen$type == "gesamt"]
@@ -112,7 +121,7 @@ zlg_beide_bereinigt_summen$sum[zlg_beide_bereinigt_summen$type == "aK_gesamt"] /
 
 
 
-## Summen als Plot nebeneinander
+## Tabelle der Erfassungen nach Art
 
 zlg_beide_summen <- 
   mutate(zlg_beide_summen, 
@@ -224,6 +233,7 @@ erf_zeit_28_02_plot <-
 erf_zeit_grid <- 
   grid.arrange(erf_zeit_27_plot, erf_zeit_28_01_plot, erf_zeit_28_02_plot,
                nrow = 3)
+ggsave("Plots/kontakte_je_zeitraum.png", erf_zeit_grid)
 
 # Studentische zählung, erfassung und nicht erfassung von Gruppen
 ggplot(data = erfassung_je_gruppe, 

@@ -88,10 +88,13 @@ plots_day_model <- function(
                                 -2208996000, -2208985200, -2208974460), 
                        labels=c("04:00","07:00","10:00","13:00", "16:00", "19:00",
                                 "22:00", "01:00", "03:59")) +
-    ggtitle("Anteil für Uhrzeit und Datum") + 
+    #ggtitle("Anteil für Uhrzeit und Datum") + 
     labs(y="Datum", x="Uhrzeit", fill = NULL) +
     scale_fill_gradient2(midpoint = 0.5, low = "blue", mid = "white",
-                         high = "green", limits = c(0, 1))
+                         high = "green", limits = c(0, 1)) +
+    theme(text = element_text(size = 15)) +
+    geom_line(data=date_data, aes(as.numeric(sunrise), int_date)) +
+    geom_line(data=date_data, aes(as.numeric(sunset), int_date))
 
     
   
@@ -173,16 +176,16 @@ plots_day_model <- function(
   # Neuschnee
   
   snowhight_grid <- plot_list[[5]] +
-    labs(title = "Neuschnee",
+    labs(title = "Schneedifferenz",
          x = "",
          y = "") +
     theme(plot.title = element_text(hjust = 0.5)) +
     scale_x_continuous(breaks = c(-12, -4, 4, 12, 20, 28, 36))
   
   snowhight_smooth <- plot_list[[5]] +
-    labs(title = "Smooth-Funktion für Neuschnee",
-         x = "Neuschnee in cm",
-         y = "s(Neuschnee)") +
+    labs(title = "Smooth-Funktion für Schneedifferenz",
+         x = "Schneedifferenz in cm",
+         y = "s(Schneedifferenz)") +
     theme(plot.title = element_text(hjust = 0.5)) +
     scale_x_continuous(breaks = c(-12, -8, -4, 0, 4, 8, 12, 16, 20,
                                   24, 28, 32, 36, 40))

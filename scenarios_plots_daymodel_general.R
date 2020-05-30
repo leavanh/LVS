@@ -1,21 +1,28 @@
 
 
-### In dieser Datei werden die Plots für die Szenarien erstellt und verglichen
-### Für das Day Model
+### In dieser Datei werden die Plots für den Vergleich des ersten Szenarios 
+### (generelle Unterschätzung) je nach Anteil an hinzugefügten Messungen
+### erstellt
 
 
 scenarios <- list(min_data_noNA,
+                  data_general_function(0.05)$data,
+                  data_general_function(0.1)$data,
+                  data_general_function(0.15)$data,
+                  data_general_function(0.2)$data,
                   data_general_function(0.25)$data,
-                  min_data_group,
-                  min_data_night,
-                  min_data_temp)
+                  data_general_function(0.3)$data,
+                  data_general_function(0.35)$data,
+                  data_general_function(0.4)$data,
+                  data_general_function(0.45)$data,
+                  data_general_function(0.5)$data)
 
 scenarios_day_model <- list()
 plots_scenarios_day_model <- list()
 plots_scenarios_day_model_comparison <- list()
 
 
-# für jedes der 5 Szenarien Smooth-Plots erstellen
+# für jedes der Szenarien Smooth-Plots-erstellen
 
 for (i in 1:length(scenarios)) {
   
@@ -26,62 +33,80 @@ for (i in 1:length(scenarios)) {
   
 }
 
-day_model_raw <- data.frame(
-  time = scenarios_day_model[[1]]$model$model$num_time,
-  day = scenarios_day_model[[1]]$model$model$int_day,
-  avalanche = scenarios_day_model[[1]]$mode$model$avalanche_report,
-  solar_radiation = scenarios_day_model[[1]]$mode$model$solar_radiation_prop,
-  temperature = scenarios_day_model[[1]]$mode$model$temperature,
-  snow_diff = scenarios_day_model[[1]]$mode$model$snow_diff,
-  date = scenarios_day_model[[1]]$model$model$int_date
+# Farben für die Unterscheidung
+
+colors <- cbind(
+  pct = c("Original", "5%", "10%", "15%", "20%", "25%", "30%", "35%", 
+          "40%", "45%", "50%"),
+  color = c("#040007", "#0e001b", "#17002f", "#210042", "#2b0056", "#350069",
+            "#3f007d", "#490091", "#5300a4", "#5d00b8", "#6700cb")
 )
 
-# für jede Kovariable gemeinsame Plots erstellen
 
-# startet bei 2, da erste Variable date_time keinen Smooth-Plot hat
+# für jede Kovariable gemeinsame Plots erstellen
 # endet bei length(..)-1, da letztes Objekt in der Liste "grid" ist
 
-for (j in 2:(length(plots_scenarios_day_model[[1]])-1)) {
+for (j in 1:(length(plots_scenarios_day_model[[1]])-2)) {
   
-  plots_scenarios_day_model_comparison[[j-1]] <- 
+  plots_scenarios_day_model_comparison[[j]] <- 
     ggplot() +
     # Konfidenzintervall für originales Szenario
-    geom_ribbon(plots_scenarios_day_model[[1]][[j-1]]$data,
+    geom_ribbon(plots_scenarios_day_model[[1]][[j]]$data,
                 mapping = aes(x = x,
                               ymin = plogis(fit + intercept - se),
                               ymax = plogis(fit + intercept + se)),
                 colour = "grey", alpha = 0.2) +
-    geom_line(plots_scenarios_day_model[[2]][[j-1]]$data, 
+    geom_line(plots_scenarios_day_model[[2]][[j]]$data, 
               mapping = aes(x = x, y = plogis(fit + intercept), 
-                            color = "Generelle Unterschätzung von 25%"),
+                            color = "5%"),
               size = 1.05) +
-    geom_line(plots_scenarios_day_model[[3]][[j-1]]$data, 
+    geom_line(plots_scenarios_day_model[[3]][[j]]$data, 
               mapping = aes(x = x, y = plogis(fit + intercept), 
-                            color = "Unterschätzung nach Gruppengröße"),
+                            color = "10%"),
               size = 1.05) +
-    geom_line(plots_scenarios_day_model[[4]][[j-1]]$data, 
-              mapping = aes(x = x, y = plogis(fit + intercept),
-                            color = "Nächtliche Überschätzung"),
+    geom_line(plots_scenarios_day_model[[4]][[j]]$data, 
+              mapping = aes(x = x, y = plogis(fit + intercept), 
+                            color = "15%"),
               size = 1.05) +
-    geom_line(plots_scenarios_day_model[[5]][[j-1]]$data, 
-              mapping = aes(x = x, y = plogis(fit + intercept),
-                            color = "Unterschätzung bei niedrigen Temperaturen"),
+    geom_line(plots_scenarios_day_model[[5]][[j]]$data, 
+              mapping = aes(x = x, y = plogis(fit + intercept), 
+                            color = "20%"),
               size = 1.05) +
-    geom_line(plots_scenarios_day_model[[1]][[j-1]]$data, 
+    geom_line(plots_scenarios_day_model[[6]][[j]]$data, 
+              mapping = aes(x = x, y = plogis(fit + intercept), 
+                            color = "25%"),
+              size = 1.05) +
+    geom_line(plots_scenarios_day_model[[7]][[j]]$data, 
+              mapping = aes(x = x, y = plogis(fit + intercept), 
+                            color = "30%"),
+              size = 1.05) +
+    geom_line(plots_scenarios_day_model[[8]][[j]]$data, 
+              mapping = aes(x = x, y = plogis(fit + intercept), 
+                            color = "35%"),
+              size = 1.05) +
+    geom_line(plots_scenarios_day_model[[9]][[j]]$data, 
+              mapping = aes(x = x, y = plogis(fit + intercept), 
+                            color = "40%"),
+              size = 1.05) +
+    geom_line(plots_scenarios_day_model[[10]][[j]]$data, 
+              mapping = aes(x = x, y = plogis(fit + intercept), 
+                            color = "45%"),
+              size = 1.05) +
+    geom_line(plots_scenarios_day_model[[11]][[j]]$data, 
+              mapping = aes(x = x, y = plogis(fit + intercept), 
+                            color = "50%"),
+              size = 1.05) +
+    geom_line(plots_scenarios_day_model[[1]][[j]]$data, 
               mapping = aes(x = x, y = plogis(fit + intercept), 
                             color = "Original"),
               size = 1.05) +
     scale_y_continuous(limits = c(0,1)) +
-    labs(color = "Szenario") +
-    scale_color_manual(breaks=c("Original",
-                                "Generelle Unterschätzung von 25%",
-                                "Unterschätzung nach Gruppengröße",
-                                "Nächtliche Überschätzung",
-                                "Unterschätzung bei niedrigen Temperaturen"),
-                       values = c("#756bb1", "#CC79A7", "#000000", "#009E73",
-                                  "#E69F00"))
+    labs(color = "Anteil") +
+    scale_color_manual(breaks = colors[,1],
+                       values = colors[order(colors[,1]),2])
   
 }
+
 
 
 
@@ -165,3 +190,8 @@ plots_scenarios_day_model_comparison_grid <-
               plots_scenarios_day_model_comparison_grid[[5]],
               legend_scenarios_day_model,
               ncol = 3)
+
+grid3 <- 
+  grid.arrange(plots_scenarios_day_model_comparison_grid)
+
+ggsave("Plots/Szenario1.png", grid3, scale = 1.2)

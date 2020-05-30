@@ -83,7 +83,7 @@ date_snowhight <- ggplot(date_data) +
                                 "01.Feb",
                                 "01.Mar",
                                 "01.Apr")) +
-  theme(text = element_text(size = 10), legend.position="top")
+  theme(text = element_text(size = 13), legend.position="top")
 
 # Datum und Temperatur
 
@@ -97,7 +97,7 @@ date_temperature <- ggplot(date_data) +
                                 "01.Feb",
                                 "01.Mar",
                                 "01.Apr")) +
-  theme(text = element_text(size = 10), legend.position="top")
+  theme(text = element_text(size = 13), legend.position="top")
 
 # Datum und solar radiation
 
@@ -110,7 +110,7 @@ date_solar_radiation <- ggplot(date_data) +
                                 "01.Feb",
                                 "01.Mar",
                                 "01.Apr")) +
-  theme(text = element_text(size = 10), legend.position="top")
+  theme(text = element_text(size = 13), legend.position="top")
 
 # Datum und Position
 

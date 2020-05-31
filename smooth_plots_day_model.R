@@ -85,11 +85,11 @@ plots_day_model <- function(
                                 "22:00", "01:00", "03:59")) +
     #ggtitle("Anteil für Uhrzeit und Datum") + 
     labs(y="Datum", x="Uhrzeit", fill = NULL) +
-    scale_fill_gradient2(midpoint = 0.5, low = "blue", mid = "white",
+    scale_fill_gradient2(midpoint = 0.5, low = "#CC6666", mid = "white",
                          high = "green", limits = c(0, 1)) +
-    theme(text = element_text(size = 15)) +
-    geom_line(data=date_data, aes(as.numeric(sunrise), int_date)) +
-    geom_line(data=date_data, aes(as.numeric(sunset), int_date))
+    theme(text = element_text(size = 15))
+    #geom_line(data=date_data, aes(as.numeric(sunrise), int_date)) +
+    #geom_line(data=date_data, aes(as.numeric(sunset), int_date))
 
     
   

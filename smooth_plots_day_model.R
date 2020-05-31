@@ -175,15 +175,16 @@ plots_day_model <- function(
          x = "",
          y = "") +
     theme(plot.title = element_text(hjust = 0.5)) +
-    scale_x_continuous(breaks = c(-12, -4, 4, 12, 20, 28, 36))
+    scale_x_continuous(breaks = c(-10, 0, 10, 20, 30, 40)) +
+    geom_vline(xintercept = 0)
   
   snowhight_smooth <- plot_list[[5]] +
     labs(title = "Smooth-Funktion für Schneedifferenz",
          x = "Schneedifferenz in cm",
          y = "s(Schneedifferenz)") +
     theme(plot.title = element_text(hjust = 0.5)) +
-    scale_x_continuous(breaks = c(-12, -8, -4, 0, 4, 8, 12, 16, 20,
-                                  24, 28, 32, 36, 40))
+    scale_x_continuous(breaks = c(-10, 0, 10, 20, 30, 40)) +
+    geom_vline(xintercept = 0)
   
   
   # Grid für Day Model Plots

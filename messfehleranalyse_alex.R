@@ -1,5 +1,11 @@
 
+### In dieser Datei werden die Plots für die deskriptive Messfehleranalyse 
+### erzeugt
+
+source("prepare_data_1920.R", encoding = "UTF-8")
+
 # Von den Studenten gezählte Personen, sortiert nach Erfassungsart am 27.02
+
 sums_27$type2 <- factor(sums_27$type, as.character(sums_27$type)) 
 ggplot(sums_27, aes(x = type2, y = sum)) +
   geom_bar(aes(x=type2), data=sums_27, stat="identity") +
@@ -17,7 +23,8 @@ ggplot(sums_27, aes(x = type2, y = sum)) +
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
         panel.background = element_blank(), axis.line = element_line(colour = "black")) 
 
-# Von den Studenten gezählte Personen, sortiert nach Erfassungsart am 27.02, ohne Berechnungen
+# Vergleich nach Art des Kontakts am 27.02.
+
 plot_zlg27 <-ggplot(sums_27, aes(x = type2, y = sum)) +
   geom_bar(aes(x=type2), data=sums_27, stat="identity") +
   labs(title = "Personen am 27.02.2019 (Manuelle Messung)",
@@ -38,6 +45,7 @@ plot_zlg27 <-ggplot(sums_27, aes(x = type2, y = sum)) +
 plot_zlg27
 
 # Von den Studenten gezählte Personen, sortiert nach Erfassungsart am 28.02
+
 sums_28$type2 <- factor(sums_28$type, as.character(sums_28$type)) 
 ggplot(sums_28, aes(x = type2, y = sum)) +
   geom_bar(stat = "identity") +
@@ -56,7 +64,8 @@ ggplot(sums_28, aes(x = type2, y = sum)) +
         panel.background = element_blank(), axis.line = element_line(colour = "black"))
 
 
-# Von den Studenten gezählte Personen, sortiert nach Erfassungsart am 27.02, ohne Berechnungen
+# Vergleich nach Art des Kontakts 28.02.
+
 plot_zlg28 <- ggplot(sums_28, aes(x = type2, y = sum)) +
   geom_bar(stat = "identity") +
   labs(title = "Anzahl nach Art der Erfassungen am 28.02.",
@@ -86,7 +95,7 @@ plot_zlg28
 
 
 
-## Studentenmessungen vs Checkpointmessungen
+## Anzahl Studentenmessungen vs Checkpointmessungen
 
 ggplot(data = filter(zlg_beide_bereinigt_summen, type %in% c("checkpoint", "gesamt"))) +
   geom_bar(aes(x = type, y = sum), stat = "identity") +
@@ -100,7 +109,7 @@ zlg_beide_bereinigt_summen$sum[zlg_beide_bereinigt_summen$type == "checkpoint"] 
 
 
 
-# als Anteil in Prozent
+# Anteil "andere Kontakte" an Gesamtzahl der von Studenten gemessenen Personen
 
 zlg_beide_bereinigt_summen$sum[zlg_beide_bereinigt_summen$type == "aK_gesamt"] / 
   zlg_beide_bereinigt_summen$sum[zlg_beide_bereinigt_summen$type == "gesamt"]
@@ -112,7 +121,7 @@ zlg_beide_bereinigt_summen$sum[zlg_beide_bereinigt_summen$type == "aK_gesamt"] /
 
 
 
-## Summen als Plot nebeneinander
+## Tabelle der Erfassungen nach Art
 
 zlg_beide_summen <- 
   mutate(zlg_beide_summen, 
@@ -144,19 +153,17 @@ ggplot(zlg_beide_summen[1:4,],
        aes(x = factor(kontakt, levels = c("SG", "aK")),
            y = sum, fill = erfassung)) +
   geom_bar(stat="identity", position = "dodge") +
-  labs(title = "Manuelle Zählung am 27.02- und 28.02.2019",
-       x = NULL,
-       y = "Absolute Häufigkeit") +
+  labs(#title = "Manuelle Zählung am 27.02- und 28.02.2019",
+    x = NULL,
+    y = "Absolute Häufigkeit") +
   scale_x_discrete(labels=c("SG" = "Skitourengänger", 
                             "aK" = "Andere Kontakte")) +
-  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank(), 
-        axis.line = element_line(colour = "black"),
+  theme(legend.position="top",
         text = element_text(size= 15)) +
   #scale_fill_discrete(name = NULL, labels = c("Erfasst", "Nicht erfasst")) +
   scale_fill_manual(name = NULL, labels = c("Erfasst", "Nicht Erfasst"), 
-                    values = c("cadetblue", "antiquewhite4")) +
-  geom_text(aes(label=sum), position=position_dodge(width=0.9), vjust=-0.25)
+                    values = c("#993300", "antiquewhite4")) 
+#geom_text(aes(label=sum), position=position_dodge(width=0.9), vjust=-0.25)
 
 
 ### Erfassungen in 3 min intervall
@@ -224,6 +231,7 @@ erf_zeit_28_02_plot <-
 erf_zeit_grid <- 
   grid.arrange(erf_zeit_27_plot, erf_zeit_28_01_plot, erf_zeit_28_02_plot,
                nrow = 3)
+ggsave("Plots/kontakte_je_zeitraum.png", erf_zeit_grid)
 
 # Studentische zählung, erfassung und nicht erfassung von Gruppen
 ggplot(data = erfassung_je_gruppe, 
@@ -250,14 +258,10 @@ ggplot(data = erfassung_je_gruppe,
 ggplot(data = erfassung_je_gruppe) +
   geom_bar(aes(x = grösse, y = anzahl, fill = type), 
            stat = "identity", position = "fill") +
-  labs(title = "Verhältnis der (Nicht-)Erfassungen \n nach Gruppengröße",
-       x = "Gruppengröße",
-       y = "Anteil") +
+  labs(#title = "Verhältnis der (Nicht-)Erfassungen nach Gruppengröße",
+    x = "Gruppengröße",
+    y = "Anteil") +
   scale_x_continuous(breaks = 1:8) +
-  theme(axis.line = element_line(colour = "black"),
-        panel.grid.major = element_blank(),
-        panel.grid.minor = element_blank(),
-        panel.border = element_blank(),
-        panel.background = element_blank()) +
+  theme(text = element_text(size = 15), legend.position="top") +
   scale_fill_manual(name = NULL, labels = c("Erfasst", "Nicht Erfasst"), 
-                    values = c("cadetblue", "antiquewhite4")) 
+                    values = c("#993300", "antiquewhite4")) 

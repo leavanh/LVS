@@ -85,11 +85,11 @@ plots_day_model <- function(
                                 "22:00", "01:00", "03:59")) +
     #ggtitle("Anteil für Uhrzeit und Datum") + 
     labs(y="Datum", x="Uhrzeit", fill = NULL) +
-    scale_fill_gradient2(midpoint = 0.5, low = "blue", mid = "white",
+    scale_fill_gradient2(midpoint = 0.5, low = "#CC6666", mid = "white",
                          high = "green", limits = c(0, 1)) +
-    theme(text = element_text(size = 15)) +
-    geom_line(data=date_data, aes(as.numeric(sunrise), int_date)) +
-    geom_line(data=date_data, aes(as.numeric(sunset), int_date))
+    theme(text = element_text(size = 15))
+    #geom_line(data=date_data, aes(as.numeric(sunrise), int_date)) +
+    #geom_line(data=date_data, aes(as.numeric(sunset), int_date))
 
     
   
@@ -175,15 +175,16 @@ plots_day_model <- function(
          x = "",
          y = "") +
     theme(plot.title = element_text(hjust = 0.5)) +
-    scale_x_continuous(breaks = c(-12, -4, 4, 12, 20, 28, 36))
+    scale_x_continuous(breaks = c(-10, 0, 10, 20, 30, 40)) +
+    geom_vline(xintercept = 0)
   
   snowhight_smooth <- plot_list[[5]] +
     labs(title = "Smooth-Funktion für Schneedifferenz",
          x = "Schneedifferenz in cm",
          y = "s(Schneedifferenz)") +
     theme(plot.title = element_text(hjust = 0.5)) +
-    scale_x_continuous(breaks = c(-12, -8, -4, 0, 4, 8, 12, 16, 20,
-                                  24, 28, 32, 36, 40))
+    scale_x_continuous(breaks = c(-10, 0, 10, 20, 30, 40)) +
+    geom_vline(xintercept = 0)
   
   
   # Grid für Day Model Plots

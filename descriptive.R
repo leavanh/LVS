@@ -41,33 +41,35 @@ date_lvs <- date_data_noNA %>%
   geom_col(aes(y = count_people, fill = "#F0E442")) +
   geom_col(aes(y = lvs_true, fill = "darkgreen")) +
   scale_x_continuous(breaks = c(17897,17928,17956,17987), 
-                     labels = c("01.Jan.19",
-                                "01.Feb.19",
-                                "01.Mar.19",
-                                "01.Apr.19")) +
+                     labels = c("01.Jan",
+                                "01.Feb",
+                                "01.Mar",
+                                "01.Apr")) +
   scale_fill_identity(name = " ",
                       breaks = c("#F0E442", "darkgreen"),
                       labels = c("Person ohne \n LVS-Gerät", "Person mit \n LVS-Gerät"),
                       guide = "legend") +
-  labs(title = "Checkpointserfassungen in der Wintersaison 18/19 nach Datum",
+  labs(#title = "Checkpointerfassungen in der Wintersaison 18/19 nach Datum",
        x = "Datum",
        y = "Absolute Häufigkeit") +
-  theme(legend.position="top")
+  theme(text = element_text(size = 10), legend.position="top")
+  #theme(text = element_text(size = 20))
 
 # Datum und Ratio
 # NAs (Tage an denen Messungen nicht möglich waren) werden davor entfernt
 
 date_ratio <- ggplot(date_data) +
   geom_line(aes(int_date, ratio)) +
-  labs(title = "Anteil der Personen mit LVS-Gerät in der Wintersaison 18/19",
+  labs(#title = "Anteil der Personen mit LVS-Gerät in der Wintersaison 18/19",
        x = "Datum",
        y = "Anteil LVS-Geräte") +
   scale_x_continuous(breaks = c(17897,17928,17956,17987), 
-                     labels = c("01.Jan.19",
-                                "01.Feb.19",
-                                "01.Mar.19",
-                                "01.Apr.19"))+
-  scale_y_continuous(limits = c(0, 1))
+                     labels = c("01.Jan",
+                                "01.Feb",
+                                "01.Mar",
+                                "01.Apr")) +
+  scale_y_continuous(limits = c(0, 1)) +
+  theme(text = element_text(size = 15), legend.position="top")
 
 # Datum und Schneehöhe
 
@@ -77,10 +79,11 @@ date_snowhight <- ggplot(date_data) +
   ylab("Schneehöhe (in cm)") +
   scale_y_continuous(limits = c(0, 220)) +
   scale_x_continuous(breaks = c(17897,17928,17956,17987), 
-                     labels = c("01.Jan.19",
-                                "01.Feb.19",
-                                "01.Mar.19",
-                                "01.Apr.19"))
+                     labels = c("01.Jan",
+                                "01.Feb",
+                                "01.Mar",
+                                "01.Apr")) +
+  theme(text = element_text(size = 13), legend.position="top")
 
 # Datum und Schneedifferenz
 
@@ -104,22 +107,24 @@ date_temperature <- ggplot(date_data) +
   xlab("Datum") +
   ylab("Temperatur (in °C)") +
   scale_x_continuous(breaks = c(17897,17928,17956,17987), 
-                     labels = c("01.Jan.19",
-                                "01.Feb.19",
-                                "01.Mar.19",
-                                "01.Apr.19"))
+                     labels = c("01.Jan",
+                                "01.Feb",
+                                "01.Mar",
+                                "01.Apr")) +
+  theme(text = element_text(size = 13), legend.position="top")
 
 # Datum und solar radiation
 
 date_solar_radiation <- ggplot(date_data) +
   geom_line(aes(int_date, solar_radiation)) +
   xlab("Datum") +
-  ylab("Sonneneinstrahlung in W/m²") +
+  ylab("Sonneneinstrahlung (in W/m²)") +
   scale_x_continuous(breaks = c(17897,17928,17956,17987), 
-                     labels = c("01.Jan.19",
-                                "01.Feb.19",
-                                "01.Mar.19",
-                                "01.Apr.19"))
+                     labels = c("01.Jan",
+                                "01.Feb",
+                                "01.Mar",
+                                "01.Apr")) +
+  theme(text = element_text(size = 13), legend.position="top")
 
 # Datum und Anteil an der maximalen Sonneneinstrahlung
 
@@ -142,12 +147,17 @@ plot_solar_radiation_prop <- ggplot(date_data) +
 # Datum und Position
 
 date_position <- ggplot(data[!is.na(data$position),]) +
-  geom_bar(aes(date, fill = position), position = "dodge") +
+  geom_bar(aes(int_date, fill = position), position = "dodge") +
   scale_fill_manual(values = c("black", "orange"), 
                     name = "Position",
                     breaks = c("N", "S"),
                     labels = c("Nord", "Süd")) + 
-  labs(title = "Die Messungen nach Position und Datum",
+  scale_x_continuous(breaks = c(17897,17928,17956,17987), 
+                     labels = c("01.Jan",
+                                "01.Feb",
+                                "01.Mar",
+                                "01.Apr"))+
+  labs(#title = "Die Messungen nach Position und Datum",
        x = "Datum",
        y = "Absolute Häufigkeit")
 
@@ -175,7 +185,7 @@ temperature_ratio <- date_data_noNA %>%
 solar_radiation_ratio <- date_data_noNA %>%
   ggplot() +
   geom_point(aes(solar_radiation, ratio), alpha = 0.5) +
-  xlab("Sonneneinstrahlung in W/m²") +
+  xlab("Sonneneinstrahlung (in W/m²)") +
   ylab("Anteil LVS-Geräte")
 
 # Ratio und Lawinenwarnstufe
@@ -211,14 +221,15 @@ time_lvs <- ggplot() +
   scale_color_identity(name = " ",
                        breaks = c("#F0E442", "darkgreen"),
                        labels = c("Person ohne \n LVS-Gerät", 
-                                  "Person mit \n Lvs-Gerät"),
+                                  "Person mit \n LVS-Gerät"),
                        guide = "legend") +
   scale_x_datetime(date_breaks = "2 hour", date_labels = "%H:%M") +
-  labs(title = "Die Messungen nach Uhrzeit",
+  labs(#title = "Die Messungen nach Uhrzeit",
        x = "Uhrzeit",
        y = "Absolute Häufigkeit") + 
   theme(legend.position="top") +
-  geom_vline(xintercept = as.POSIXct("1899-12-31 04:00:00", tz = "MET"))
+  #geom_vline(xintercept = as.POSIXct("1899-12-31 04:00:00", tz = "MET")) +
+  theme(text = element_text(size = 15), legend.position="top")
 
 
 ## Solar Radiation Maximum
@@ -229,8 +240,8 @@ solar_radiation_max <- ggplot(date_data, aes(x = as.numeric(date))) +
                   colour = "geglättetes Maximum"),
               nknots = 30,
               spar = 0.1, size = 1.5) +
-  labs(title = "Verlauf der Sonneneinstrahlung 18/19",
-       x = "",
+  labs(#title = "Verlauf der Sonneneinstrahlung 18/19",
+       x = "Datum",
        y = "Sonneneinstrahlung in W/m²") +
   theme(plot.title = element_text(hjust = 0.5),
         text = element_text(size = 12),
@@ -238,8 +249,8 @@ solar_radiation_max <- ggplot(date_data, aes(x = as.numeric(date))) +
         legend.position = c(.2, .9)) +
   scale_x_continuous(breaks = c(1546300800, 1548979200, 
                               1551398400, 1554163200), 
-                   labels = c("1546300800" = "01.Jan.19",
-                              "1548979200" = "01.Feb.19",
-                              "1551398400" = "01.Mar.19",
-                              "1554163200" = "01.Apr.19")) +
-  theme(text = element_text(size = 20))
+                   labels = c("1546300800" = "01.Jan",
+                              "1548979200" = "01.Feb",
+                              "1551398400" = "01.Mar",
+                              "1554163200" = "01.Apr")) +
+  theme(text = element_text(size = 15))

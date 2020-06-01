@@ -58,10 +58,15 @@ date_lvs <- date_data_noNA %>%
 # NAs (Tage an denen Messungen nicht möglich waren) werden davor entfernt
 
 date_ratio <- ggplot(date_data) +
-  geom_line(aes(date, ratio)) +
+  geom_line(aes(int_date, ratio)) +
   labs(title = "Anteil der Personen mit LVS-Gerät in der Wintersaison 18/19",
        x = "Datum",
        y = "Anteil LVS-Geräte") +
+  scale_x_continuous(breaks = c(17897,17928,17956,17987), 
+                     labels = c("01.Jan.19",
+                                "01.Feb.19",
+                                "01.Mar.19",
+                                "01.Apr.19"))+
   scale_y_continuous(limits = c(0, 1))
 
 # Datum und Schneehöhe
@@ -71,6 +76,20 @@ date_snowhight <- ggplot(date_data) +
   xlab("Datum") +
   ylab("Schneehöhe (in cm)") +
   scale_y_continuous(limits = c(0, 220)) +
+  scale_x_continuous(breaks = c(17897,17928,17956,17987), 
+                     labels = c("01.Jan.19",
+                                "01.Feb.19",
+                                "01.Mar.19",
+                                "01.Apr.19"))
+
+# Datum und Schneedifferenz
+
+date_snowdiff <- ggplot(date_data) +
+  geom_line(aes(int_date, snow_diff)) +
+  geom_hline(yintercept = 0, linetype = 'dotted') +
+  xlab("Datum") +
+  ylab("Schneedifferenz zum Vortag(in cm)") +
+  scale_y_continuous(limits = c(-15, 45)) +
   scale_x_continuous(breaks = c(17897,17928,17956,17987), 
                      labels = c("01.Jan.19",
                                 "01.Feb.19",
@@ -101,6 +120,24 @@ date_solar_radiation <- ggplot(date_data) +
                                 "01.Feb.19",
                                 "01.Mar.19",
                                 "01.Apr.19"))
+
+# Datum und Anteil an der maximalen Sonneneinstrahlung
+
+date_solar_radiation_prop <- ggplot(date_data) +
+  geom_line(aes(int_date, solar_radiation_prop)) +
+  xlab("Datum") +
+  ylab("Anteil an der geglätteten maximalen Sonneneinstrahlung") +
+  scale_x_continuous(breaks = c(17897,17928,17956,17987), 
+                     labels = c("01.Jan.19",
+                                "01.Feb.19",
+                                "01.Mar.19",
+                                "01.Apr.19"))
+
+# Anteil an der maximalen Sonneneinstrahlung
+
+plot_solar_radiation_prop <- ggplot(date_data) +
+  geom_histogram(aes(solar_radiation_prop), bins = 50) +
+  xlab("Anteil an der geglätteten maximalen Sonneneinstrahlung") 
 
 # Datum und Position
 

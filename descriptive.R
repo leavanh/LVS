@@ -85,6 +85,20 @@ date_snowhight <- ggplot(date_data) +
                                 "01.Apr")) +
   theme(text = element_text(size = 13), legend.position="top")
 
+# Datum und Schneedifferenz
+
+date_snowdiff <- ggplot(date_data) +
+  geom_line(aes(int_date, snow_diff)) +
+  geom_hline(yintercept = 0, linetype = 'dotted') +
+  xlab("Datum") +
+  ylab("Schneedifferenz zum Vortag(in cm)") +
+  scale_y_continuous(limits = c(-15, 45)) +
+  scale_x_continuous(breaks = c(17897,17928,17956,17987), 
+                     labels = c("01.Jan.19",
+                                "01.Feb.19",
+                                "01.Mar.19",
+                                "01.Apr.19"))
+
 # Datum und Temperatur
 
 date_temperature <- ggplot(date_data) +
@@ -111,6 +125,24 @@ date_solar_radiation <- ggplot(date_data) +
                                 "01.Mar",
                                 "01.Apr")) +
   theme(text = element_text(size = 13), legend.position="top")
+
+# Datum und Anteil an der maximalen Sonneneinstrahlung
+
+date_solar_radiation_prop <- ggplot(date_data) +
+  geom_line(aes(int_date, solar_radiation_prop)) +
+  xlab("Datum") +
+  ylab("Anteil an der geglätteten maximalen Sonneneinstrahlung") +
+  scale_x_continuous(breaks = c(17897,17928,17956,17987), 
+                     labels = c("01.Jan.19",
+                                "01.Feb.19",
+                                "01.Mar.19",
+                                "01.Apr.19"))
+
+# Anteil an der maximalen Sonneneinstrahlung
+
+plot_solar_radiation_prop <- ggplot(date_data) +
+  geom_histogram(aes(solar_radiation_prop), bins = 50) +
+  xlab("Anteil an der geglätteten maximalen Sonneneinstrahlung") 
 
 # Datum und Position
 

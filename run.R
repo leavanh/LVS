@@ -47,15 +47,11 @@ date_data_plot
 date_lvs/date_ratio
 date_position
 date_snowhight | date_temperature | date_solar_radiation
+date_snowdiff | date_solar_radiation_prop
 (snowhight_ratio | solar_radiation_ratio) / 
   (temperature_ratio | avalanche_ratio)
 snowhight_solar_radiation
 time_lvs
-
-# Verlauf der Sonneneinstrahlung
-
-solar_radiation_max
-
 
 
 
@@ -71,7 +67,7 @@ source("smooth_plots_day_model.R", encoding = "UTF-8")
 
 ## Date_model
 
-date_model <- date_model_function(date_data)
+date_model <- date_model_function(date_data_noNA)
 
 date_model$summary # Übersicht (mit Signifikanz)
 plogis(date_model$summary$p.coeff[1]) # nicht Feiertag

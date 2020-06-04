@@ -54,20 +54,25 @@ cloud_cover <- cloud_cover[, c("datetime", "cloud_cover")]
 # Zeitzone ist Mitteleuropäische Zeit
 
 all_checkpoint_stats$time <- force_tz(all_checkpoint_stats$time, "MET")
-cloud_cover$datetime <- cloud_cover$datetime - hours(1)
+cloud_cover$datetime <- force_tz(cloud_cover$datetime - hours(1), "MET")
 
 # date in day_length in POSIXct umwandeln
 
 day_length$date <- as.POSIXct(day_length$date, format = "%d %B %Y", tz = "MET")
 
 # datetime in cloud cover in date und time teilen
-cloud_cover$date <- as.Date(cloud_cover$datetime)
-cloud_cover$time <- as.POSIXct(cloud_cover$datetime)
 
+cloud_cover$date <- as.POSIXct(date(cloud_cover$datetime)) - hours(1)
+cloud_cover$time <- as.POSIXct(cloud_cover$datetime)
+date(cloud_cover$time) <- as.POSIXct("1899-12-31")
+cloud_cover <- cloud_cover[, c("date", "time", "cloud_cover")]
+cloud_cover$date <- force_tz(cloud_cover$date, "MET")
 
 ## day_length und all_date zusammenführen
+# täglicher Durchschnittswert von cloud_cover hinzufügen ??????????
 
 date_data <- left_join(all_date, day_length, by = "date")
+date_data$date <- force_tz(date_data$date, tzone = "MET")
 
 ## Tagesindikatoren in logical umkodieren
 
@@ -149,24 +154,21 @@ date_data <- mutate(date_data,
               solar_radiation_prop = 
                 pmin(solar_radiation / solar_radiation_max, 1))
 
-
-
-# Residuen
-
-temp_gam <- gam(temperature ~ s(int_date, bs = "ps", k = 20),
-                data = date_data, method = "REML")
-solar_rad_gam <- gam(log(solar_radiation) ~ s(int_date, bs = "ps", k = 20),
-                     data = date_data, method = "REML") # log not strong enough
-snow_gam <- gam(snowhight ~ s(int_date, bs = "ps", k = 20),
-                data = date_data, method = "REML")
-
-date_data$res_temperature <- residuals.gam(temp_gam)
-date_data$res_solar_radiation <- residuals.gam(solar_rad_gam)
-date_data$res_snowhight <- residuals.gam(snow_gam)
-
 ## date_data und all_checkpoint_stats zusammenführen
 
 data <- full_join(all_checkpoint_stats, date_data, by = "date")
+data$date <- force_tz(data$date, tz = "MET")
+
+# cloud_cover hinzufügen
+
+for(i in 1:nrow(data)) {
+  date <- data[[i, "date"]]
+  hour <- hour(data[[i, "time"]])
+  cloud_cover_i <- cloud_cover[cloud_cover$date == date & 
+                                  hour(cloud_cover$time) == hour,][1,] %>%
+                     pull("cloud_cover")
+  data[i, "cloud_cover"] <- cloud_cover_i
+}
 
 ## Uhrzeit umkodieren
 
@@ -225,10 +227,6 @@ for(i in 1:nrows) {
     data[[i, "int_temperature"]] <- date_data[[row_i, "int_temperature"]]
     data[[i, "int_date"]] <- date_data[[row_i, "int_date"]]
     data[[i, "int_day"]] <- date_data[[row_i, "int_day"]]
-    data[[i, "res_temperature"]] <- date_data[[row_i, "res_temperature"]]
-    data[[i, "res_snowhight"]] <- date_data[[row_i, "res_snowhight"]]
-    data[[i, "res_solar_radiation"]] <- date_data[[row_i,
-                                                   "res_solar_radiation"]]
     data[[i, "solar_radiation_max"]] <- date_data[[row_i,
                                                    "solar_radiation_max"]]
     data[[i, "solar_radiation_prop"]] <- date_data[[row_i,
@@ -279,11 +277,10 @@ data <- group_by(data, date, hour(time), minute(time)) %>%
 
 data <- subset(data, select = c(id, lvs, position, time, date, int_date, day,
                                 int_day, day_weekend, holiday,
-                                snowhight, snow_diff, res_snowhight,
-                                temperature, int_temperature, res_temperature,
-                                solar_radiation, res_solar_radiation, 
+                                snowhight, snow_diff, temperature, 
+                                int_temperature, solar_radiation, 
                                 solar_radiation_max, solar_radiation_prop, 
-                                avalanche_report, sunrise, sunset,
+                                cloud_cover,avalanche_report, sunrise, sunset,
                                 lvs_true, lvs_false, count_people, ratio,
                                 lvs_true_min, lvs_false_min, count_people_min,
                                 ratio_min))

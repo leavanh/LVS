@@ -25,6 +25,12 @@ all_checkpoint_stats <- read_excel(
 day_length <- read_excel("Daten/sunhours.xlsx",
                          col_names = c("date", "sunrise", "sunset", "day_length"))
 
+cloud_cover <- read_excel("Daten/Wetterdaten.xlsx",
+                          range = "A11:G3634",
+                          col_names = 
+                            c("datetime", "temperature", "humidity", "pressure",
+                              "precipation", "snowfall", "cloud_cover"))
+
 # Variablen in all_date umbenennen
 
 colnames(all_date) <- c("day", "date", "count_all", "count_selected",
@@ -41,13 +47,23 @@ colnames(all_date) <- c("day", "date", "count_all", "count_selected",
 all_checkpoint_stats <- subset(all_checkpoint_stats,
                                type %in% c("Beacon", "Infrared"))
 
+# nicht benötigte Variablen aus cloud_cover löschen
+
+cloud_cover <- cloud_cover[, c("datetime", "cloud_cover")]
+
 # Zeitzone ist Mitteleuropäische Zeit
 
 all_checkpoint_stats$time <- force_tz(all_checkpoint_stats$time, "MET")
+cloud_cover$datetime <- cloud_cover$datetime - hours(1)
 
 # date in day_length in POSIXct umwandeln
 
 day_length$date <- as.POSIXct(day_length$date, format = "%d %B %Y", tz = "MET")
+
+# datetime in cloud cover in date und time teilen
+cloud_cover$date <- as.Date(cloud_cover$datetime)
+cloud_cover$time <- as.POSIXct(cloud_cover$datetime)
+
 
 ## day_length und all_date zusammenführen
 

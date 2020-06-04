@@ -66,13 +66,11 @@ cloud_cover$date <- as.POSIXct(date(cloud_cover$datetime)) - hours(1)
 cloud_cover$time <- as.POSIXct(cloud_cover$datetime)
 date(cloud_cover$time) <- as.POSIXct("1899-12-31")
 cloud_cover <- cloud_cover[, c("date", "time", "cloud_cover")]
-cloud_cover$date <- force_tz(cloud_cover$date, "MET")
+cloud_cover$date <- force_tz(cloud_cover$date, "UTC")
 
 ## day_length und all_date zusammenführen
-# täglicher Durchschnittswert von cloud_cover hinzufügen ??????????
 
 date_data <- left_join(all_date, day_length, by = "date")
-date_data$date <- force_tz(date_data$date, tzone = "MET")
 
 ## Tagesindikatoren in logical umkodieren
 
@@ -157,7 +155,6 @@ date_data <- mutate(date_data,
 ## date_data und all_checkpoint_stats zusammenführen
 
 data <- full_join(all_checkpoint_stats, date_data, by = "date")
-data$date <- force_tz(data$date, tz = "MET")
 
 # cloud_cover hinzufügen
 
@@ -169,6 +166,17 @@ for(i in 1:nrow(data)) {
                      pull("cloud_cover")
   data[i, "cloud_cover"] <- cloud_cover_i
 }
+
+# cloud_cover Durchschnitt am Tag hinzufügen
+
+data <- data %>%
+  group_by(date) %>%
+  mutate(cloud_cover_daily = mean(cloud_cover)) %>%
+  ungroup()
+
+date_data <- left_join(date_data,
+                       distinct(data[,c("date", "cloud_cover_daily")]), 
+                       by = "date")
 
 ## Uhrzeit umkodieren
 
@@ -231,7 +239,9 @@ for(i in 1:nrows) {
                                                    "solar_radiation_max"]]
     data[[i, "solar_radiation_prop"]] <- date_data[[row_i,
                                                    "solar_radiation_prop"]]
-  }}
+    data[[i, "cloud_cover_daily"]] <- date_data[[row_i,
+                                                    "cloud_cover_daily"]]
+    }}
 }
 
 ## neue Variablen berechnen
@@ -280,7 +290,8 @@ data <- subset(data, select = c(id, lvs, position, time, date, int_date, day,
                                 snowhight, snow_diff, temperature, 
                                 int_temperature, solar_radiation, 
                                 solar_radiation_max, solar_radiation_prop, 
-                                cloud_cover,avalanche_report, sunrise, sunset,
+                                cloud_cover_daily, cloud_cover, 
+                                avalanche_report, sunrise, sunset,
                                 lvs_true, lvs_false, count_people, ratio,
                                 lvs_true_min, lvs_false_min, count_people_min,
                                 ratio_min))
@@ -296,7 +307,7 @@ data$position <- factor(data$position)
 date_data <- distinct(subset(data, 
                              select = -c(lvs, time, position, id, lvs_true_min,
                                          lvs_false_min, count_people_min,
-                                         ratio_min))) %>%
+                                         ratio_min, cloud_cover))) %>%
               subset(date >= as.Date("2018-12-25")) # erst ab dem 25.
 
 # min_data

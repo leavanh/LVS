@@ -151,22 +151,21 @@ plots_day_model <- function(
     scale_x_continuous(breaks = c(-6, -4, -2, 0, 2, 4, 6, 8))
   
   
-  # Anteil Sonneneinstrahlung
+  # Bewölkung
   
-  solar_radiation_grid <- plot_list[[4]] +
-    labs(title = "Sonneneinstrahlung",
+  cloud_cover_grid <- plot_list[[4]] +
+    labs(title = "Bewölkung",
          x = "",
          y = "") +
     theme(plot.title = element_text(hjust = 0.5)) +
-    scale_x_continuous(breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1))
+    scale_x_continuous(breaks = c(0, 20, 40, 60, 80, 100))
   
-  solar_radiation_smooth <- plot_list[[4]] +
-    labs(title = "Smooth-Funktion für Anteil \n der 
-                  Sonneneinstrahlung am Maximum",
-         x = "Anteil Sonneneinstrahlung",
-         y = "s(Anteil Sonneneinstrahlung)") +
+  cloud_cover_smooth <- plot_list[[4]] +
+    labs(title = "Smooth-Funktion für die Bewölkung",
+         x = "Bewölkung",
+         y = "s(Bewölkung)") +
     theme(plot.title = element_text(hjust = 0.5)) +
-    scale_x_continuous(breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1))
+    scale_x_continuous(breaks = c(0, 20, 40, 60, 80, 100))
   
   # Neuschnee
   
@@ -175,24 +174,21 @@ plots_day_model <- function(
          x = "",
          y = "") +
     theme(plot.title = element_text(hjust = 0.5)) +
-    scale_x_continuous(breaks = c(-10, 0, 10, 20, 30, 40)) +
-    geom_vline(xintercept = 0)
+    scale_x_continuous(breaks = c(-10, 0, 10, 20, 30, 40))
   
   snowhight_smooth <- plot_list[[5]] +
     labs(title = "Smooth-Funktion für Schneedifferenz",
          x = "Schneedifferenz in cm",
          y = "s(Schneedifferenz)") +
     theme(plot.title = element_text(hjust = 0.5)) +
-    scale_x_continuous(breaks = c(-10, 0, 10, 20, 30, 40)) +
-    geom_vline(xintercept = 0)
-  
+    scale_x_continuous(breaks = c(-10, 0, 10, 20, 30, 40))
   
   # Grid für Day Model Plots
   
   day_model_grid <-
     list(day_grid,
          avalanche_grid,
-         solar_radiation_grid,
+         cloud_cover_grid,
          temperature_grid, 
          snowhight_grid)
   
@@ -201,7 +197,7 @@ plots_day_model <- function(
   plots_day_model_list <- list(
     day = day_smooth,
     avalanche = avalanche_smooth,
-    solar_radiation = solar_radiation_smooth,
+    cloud_cover = cloud_cover_smooth,
     temperature = temperature_smooth,
     snowhight = snowhight_smooth,
     date_time = day_model_date_time,

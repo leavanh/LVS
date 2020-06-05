@@ -126,7 +126,7 @@ gridPrint(grobs = day_model_plots$grid,
  day_model_plots$date_time
 # day_model_plots$day
 # day_model_plots$avalanche
-# day_model_plots$solar_radiation
+# day_model_plots$cloud_cover
 # day_model_plots$temperature
 # day_model_plots$snowhight
 
@@ -137,8 +137,8 @@ gridPrint(grobs = day_model_plots$grid,
 # gam.check(day_model$model, type = "deviance")
 # concurvity(day_model$model, full = TRUE)
 # concurvity(day_model$model, full = FALSE)
-acf(day_model$model$residuals, main="")
-pacf(day_model$model$residuals, main="")
+# acf(day_model$model$residuals)
+# pacf(day_model$model$residuals)
 
 
 

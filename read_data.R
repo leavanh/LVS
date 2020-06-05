@@ -53,24 +53,54 @@ cloud_cover <- cloud_cover[, c("datetime", "cloud_cover")]
 
 # Zeitzone ist Mitteleuropäische Zeit
 
-all_checkpoint_stats$time <- force_tz(all_checkpoint_stats$time, "MET")
-cloud_cover$datetime <- force_tz(cloud_cover$datetime - hours(1), "MET")
-
-# date in day_length in POSIXct umwandeln
-
-day_length$date <- as.POSIXct(day_length$date, format = "%d %B %Y", tz = "MET")
+all_date$date <- force_tz(all_date$date, "GMT")
+all_checkpoint_stats$date <- force_tz(all_checkpoint_stats$date, "GMT")
+all_checkpoint_stats$time <- force_tz(all_checkpoint_stats$time, "GMT")
+day_length$date <- force_tz(day_length$date, "GMT")
+day_length$sunrise <- force_tz(day_length$sunrise, "GMT")
+day_length$sunset <- force_tz(day_length$sunset, "GMT")
+day_length$day_length <- force_tz(day_length$day_length, "GMT")
+cloud_cover$datetime <- force_tz(cloud_cover$datetime - hours(1), "GMT")
 
 # datetime in cloud cover in date und time teilen
 
-cloud_cover$date <- as.POSIXct(date(cloud_cover$datetime)) - hours(1)
-cloud_cover$time <- as.POSIXct(cloud_cover$datetime)
-date(cloud_cover$time) <- as.POSIXct("1899-12-31")
+cloud_cover$date <- as.POSIXct(date(cloud_cover$datetime), tz = "GMT") - hours(1)
+cloud_cover$time <- as.POSIXct(cloud_cover$datetime, tz = "GMT")
+date(cloud_cover$time) <- as.POSIXct("1899-12-31", tz = "GMT")
 cloud_cover <- cloud_cover[, c("date", "time", "cloud_cover")]
-cloud_cover$date <- force_tz(cloud_cover$date, "UTC")
+cloud_cover$date <- force_tz(cloud_cover$date, "GMT")
+
+## Alles auf Winterzeit kodieren
+# Sonnenauf- und Untergang, sowie cloud_cover müssen manuell auf Winterzeit 
+# umgestellt werden
+# Umstellung am 31.03.19: 2 wurde zu 3 Uhr -> wieder zurück
+
+day_length[day_length$date >= as.POSIXct("2019-03-31", tz = "GMT"), "sunrise"] <-
+  day_length[day_length$date >= as.POSIXct("2019-03-31", tz = "GMT"),] %>%
+  pull(sunrise) - hours(1)
+
+day_length[day_length$date >= as.POSIXct("2019-03-31", tz = "GMT"), "sunset"] <-
+  day_length[day_length$date >= as.POSIXct("2019-03-31", tz = "GMT"),] %>%
+  pull(sunset) - hours(1)
+
+cloud_cover[cloud_cover$date >= as.POSIXct("2019-04-01", tz = "GMT"), "date"] <-
+  cloud_cover[cloud_cover$date >= as.POSIXct("2019-04-01", tz = "GMT"),] %>%
+  pull(date) - hours(1)
 
 ## day_length und all_date zusammenführen
 
 date_data <- left_join(all_date, day_length, by = "date")
+
+# cloud_cover Durchschnitt am Tag hinzufügen
+
+date_data <- date_data %>%
+  left_join(cloud_cover, by = "date") %>%
+  group_by(date) %>%
+  mutate(cloud_cover_daily = mean(cloud_cover)) %>%
+  ungroup() %>%
+  select(-c("time", "cloud_cover")) %>%
+  distinct()
+
 
 ## Tagesindikatoren in logical umkodieren
 
@@ -84,20 +114,12 @@ for (k in c("day_weekend", "holiday")) {
 # die Messungen werden entfernt
 
 all_checkpoint_stats <- filter(all_checkpoint_stats,
-                               !(date %within% interval(ymd("2019-01-07"),
-                                                      ymd("2019-01-15"))))
+                               !(date %within% interval(ymd("2019-01-07",
+                                                            tz = "GMT"),
+                                                      ymd("2019-01-15",
+                                                          tz = "GMT"))))
 
-## Alles auf Winterzeit kodieren
-# Sonnenauf- und Untergang soll manuell auf Winterzeit umgestellt werden
-# Umstellung am 31.03.19: 2 wurde zu 3 Uhr -> wieder zurück
 
-date_data[date_data$date >= as.POSIXct("2019-03-31", tz = "MET"), "sunrise"] <- 
-  date_data[date_data$date >= as.POSIXct("2019-03-31", tz = "MET"),] %>%
-  pull(sunrise) - hours(1)
-
-date_data[date_data$date >= as.POSIXct("2019-03-31", tz = "MET"), "sunset"] <- 
-  date_data[date_data$date >= as.POSIXct("2019-03-31", tz = "MET"),] %>%
-  pull(sunset) - hours(1)
 
 ## Neue Variablen berechnen
 
@@ -110,11 +132,12 @@ date_data$snow_diff <- date_data$snowhight - lag(date_data$snowhight,
 # temperature in 2 Kategorien (unter/über 0)
 
 date_data$int_temperature <- 1
-0 -> date_data[date_data$temperature < 0,]$int_temperature
+date_data[date_data$temperature < 0, "int_temperature"] <- 0
 
 # int_ Variablen
 
-date_data$int_date <- as.integer(as.Date(date_data$date, format = "%d/%m/%Y"))
+date_data$int_date <- as.integer(as.Date(date_data$date, format = "%d/%m/%Y", 
+                                         tz = "GMT"))
 date_data$int_day <- as.integer(factor(date_data$day,
                       levels = c("Montag", "Dienstag", "Mittwoch", "Donnerstag",
                                     "Freitag", "Samstag", "Sonntag")))
@@ -167,17 +190,6 @@ for(i in 1:nrow(data)) {
   data[i, "cloud_cover"] <- cloud_cover_i
 }
 
-# cloud_cover Durchschnitt am Tag hinzufügen
-
-data <- data %>%
-  group_by(date) %>%
-  mutate(cloud_cover_daily = mean(cloud_cover)) %>%
-  ungroup()
-
-date_data <- left_join(date_data,
-                       distinct(data[,c("date", "cloud_cover_daily")]), 
-                       by = "date")
-
 ## Uhrzeit umkodieren
 
 # Messungen zwischen 0 und 4 am Morgen sollen dem vorherigen Tag zugeordnet
@@ -190,11 +202,10 @@ date_data <- left_join(date_data,
 # Schleife
 
 time_interval <- interval(
-  as.POSIXct("1899-12-31 00:00:00", tz = "MET"),
-  as.POSIXct("1899-12-31 03:59:59", tz = "MET")
+  as.POSIXct("1899-12-31 00:00:00", tz = "GMT"),
+  as.POSIXct("1899-12-31 03:59:59", tz = "GMT")
 )
-nrows <- nrow(data)
-for(i in 1:nrows) {
+for(i in 1:nrow(data)) {
   # Zeit der Beobachtung 
   time_i <- data[[i, "time"]]
   # Datum der Beobachtung
@@ -308,13 +319,13 @@ date_data <- distinct(subset(data,
                              select = -c(lvs, time, position, id, lvs_true_min,
                                          lvs_false_min, count_people_min,
                                          ratio_min, cloud_cover))) %>%
-              subset(date >= as.Date("2018-12-25")) # erst ab dem 25.
+              subset(date >= force_tz(as.Date("2018-12-25"), tz = "GMT")) # erst ab dem 25.
 
 # min_data
 
 min_data <- distinct(subset(data, 
                              select = -c(lvs, position, id))) %>%
-  subset(date >= as.Date("2018-12-25")) # erst ab dem 25.
+  subset(date >= force_tz(as.Date("2018-12-25"), tz = "GMT")) # erst ab dem 25.
 
 ## als RDS speichern
 

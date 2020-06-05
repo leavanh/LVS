@@ -3,16 +3,17 @@
 
 ## Pakete laden
 
-library("tidyverse")
-library("patchwork")
+library("tidyverse") # für Datenbearbeitung und Plots
+library("patchwork") 
 library("GGally")
-library("mgcv")
-library("mgcViz")
-library("lubridate")
-library("gridExtra")
+library("mgcv") # für das GAM-Modell
+library("mgcViz") # für die Visualisierung im GAM-Modell
+library("lubridate") # für die Arbeit mit Zeitvariablen
+library("gridExtra") # für die Erstellung von Plotrastern
 library("ggformula")
 library("gtools") # für p-wert-format
 library("cowplot") # für get_legend
+library("readxl") # zum Einlesen von Excel-Dateien
 
 ## Theme (Ästhetik) der Plots festsetzen
 
@@ -143,6 +144,38 @@ gridPrint(grobs = day_model_plots$grid,
 
 
 ### Deskriptive Analyse der neuen Daten ########################################
+
+ source("prepare_data_1920.R", encoding = "UTF-8")
+ source("messfehler_plots.R", encoding = "UTF-8")
+ 
+ 
+# Tabelle mit Gesamtwerten der manuellen Zählung nach Art
+ 
+zlg_beide_sums
+ 
+# Anteil "Skitourengänger" an Gesamtzahl der von Studenten gemessenen Personen:
+# 
+  
+zlg_beide_bereinigt_sums$sum[zlg_beide_bereinigt_sums$type == "SG_gesamt"] / 
+  zlg_beide_bereinigt_sums$sum[zlg_beide_bereinigt_sums$type == "gesamt"]
+
+# Unterschätzung (Anteil an Checkpointmessungen, die man für den wahren Wert
+# hinzufügen müsste):
+# 
+
+(zlg_beide_bereinigt_sums$sum[zlg_beide_sums$type == "gesamt"] /
+  zlg_beide_bereinigt_sums$sum[zlg_beide_sums$type == "checkpoint"]) - 1
+
+
+## Plots
+
+# Erfassung nach Art
+erf_art_plot
+# Erfassung nach Zeit
+plot(erf_zeit_grid)
+#Erfassung nach Gruppengröße (absolut/relativ)
+erf_gruppe_abs_plot
+erf_gruppe_rel_plot
 
 
 

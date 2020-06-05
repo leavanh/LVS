@@ -134,11 +134,11 @@ plots_scenarios_day_model_comparison[[2]] <-
 plots_scenarios_day_model_comparison[[3]] <- 
   plots_scenarios_day_model_comparison[[3]] +
   geom_rug(data = day_model_raw, aes(x = solar_radiation)) +
-  labs(title = "Sonneneinstrahlung",
+  labs(title = "Bewölkung",
        x = "",
        y = "") +
   theme(plot.title = element_text(hjust = 0.5)) +
-  scale_x_continuous(breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1))
+  scale_x_continuous(breaks = c(0, 20, 40, 60, 80, 100))
 
 plots_scenarios_day_model_comparison[[4]] <-
   plots_scenarios_day_model_comparison[[4]] +

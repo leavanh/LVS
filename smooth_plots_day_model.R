@@ -46,7 +46,7 @@ plots_day_model <- function(
                   color = "grey", alpha = 0.2) +
       # Rug
       geom_rug(data = raw, aes(x = raw), alpha = 0.2) +
-      scale_y_continuous(limits = c(0,1))
+      scale_y_continuous(limits = c(0,0.5))
     
     
   }
@@ -102,7 +102,7 @@ plots_day_model <- function(
     scale_x_continuous(breaks = c(1,  2,  3,  4))
   
   avalanche_smooth <- plot_list[[2]] +
-    labs(title = "Smooth-Funktion für Lawinenwarnstufe",
+    labs(title = "glatte Funktion für Lawinenwarnstufe",
          x = "Lawinenwarnstufe",
          y = "s(Lawinenwarnstufe)") +
     theme(plot.title = element_text(hjust = 0.5)) +
@@ -123,7 +123,7 @@ plots_day_model <- function(
                               "7" = "So"))
   
   day_smooth <- plot_list[[1]] +
-    labs(title = "Smooth-Funktion für Wochentag",
+    labs(title = "glatte Funktion für Wochentag",
          x = "Wochentag",
          y = "s(Wochentag)") +
     theme(plot.title = element_text(hjust = 0.5)) +
@@ -144,7 +144,7 @@ plots_day_model <- function(
     scale_x_continuous(breaks = c(-6, -4, -2, 0, 2, 4, 6, 8))
 
   temperature_smooth <- plot_list[[3]] +
-    labs(title = "Smooth-Funktion für Temperatur",
+    labs(title = "glatte Funktion für Temperatur",
          x = "Temperatur in Grad Celsius",
          y = "s(Temperatur)") +
     theme(plot.title = element_text(hjust = 0.5)) +
@@ -161,7 +161,7 @@ plots_day_model <- function(
     scale_x_continuous(breaks = c(0, 20, 40, 60, 80, 100))
   
   cloud_cover_smooth <- plot_list[[4]] +
-    labs(title = "Smooth-Funktion für die Bewölkung",
+    labs(title = "glatte Funktion für Bewölkung",
          x = "Bewölkung",
          y = "s(Bewölkung)") +
     theme(plot.title = element_text(hjust = 0.5)) +
@@ -177,7 +177,7 @@ plots_day_model <- function(
     scale_x_continuous(breaks = c(-10, 0, 10, 20, 30, 40))
   
   snowhight_smooth <- plot_list[[5]] +
-    labs(title = "Smooth-Funktion für Schneedifferenz",
+    labs(title = "glatte Funktion für Schneedifferenz",
          x = "Schneedifferenz in cm",
          y = "s(Schneedifferenz)") +
     theme(plot.title = element_text(hjust = 0.5)) +

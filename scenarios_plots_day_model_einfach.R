@@ -4,6 +4,12 @@ for (j in 2:(length(plots_scenarios_day_model[[1]])-1)) {
   
   plots_scenarios_day_model_comparison[[j-1]] <- 
     ggplot() +
+    # Konfidenzintervall für originales Szenario
+    geom_ribbon(plots_scenarios_day_model[[1]][[j-1]]$data,
+                mapping = aes(x = x,
+                              ymin = plogis(fit + intercept - se),
+                              ymax = plogis(fit + intercept + se)),
+                colour = "grey", alpha = 0.2) +
     geom_line(plots_scenarios_day_model[[2]][[j-1]]$data, 
               mapping = aes(x = x, y = plogis(fit + intercept), 
                             color = "Generelle Unterschätzung von 25%"),
@@ -12,17 +18,11 @@ for (j in 2:(length(plots_scenarios_day_model[[1]])-1)) {
               mapping = aes(x = x, y = plogis(fit + intercept), 
                             color = "Original"),
               size = 1.05) +
-    # Konfidenzintervall für originales Szenario
-    geom_ribbon(plots_scenarios_day_model[[1]][[j-1]]$data,
-                mapping = aes(x = x,
-                              ymin = plogis(fit + intercept - se),
-                              ymax = plogis(fit + intercept + se)),
-                colour = "grey", alpha = 0.2) +
-    scale_y_continuous(limits = c(0,1)) +
+    scale_y_continuous(limits = c(0,0.5)) +
     labs(color = "Szenario") +
     scale_color_manual(breaks=c("Original",
                                 "Generelle Unterschätzung von 25%"),
-                       values = c("#756bb1", "#000000", "#009E73"))
+                       values = c("#2b8cbe", "#000000"))
   
 }
 
@@ -33,7 +33,7 @@ plots_scenarios_day_model_comparison[[1]] <-
   geom_rug(data = day_model_raw, aes(x = day)) +
   labs(title = "Wochentag",
        x = "", y = "") +
-  theme(plot.title = element_text(hjust = 0.5)) +
+  theme(plot.title = element_text(hjust = 0.5), text = element_text(size = 11)) +
   scale_x_continuous(breaks = 1:7,
                      labels=c("1" = "Mo", "2" = "Di",
                               "3" = "Mi", "4" = "Do",
@@ -45,7 +45,7 @@ plots_scenarios_day_model_comparison[[2]] <-
   geom_rug(data = day_model_raw, aes(x = avalanche)) +
   labs(title = "Lawinenwarnstufe",
        x = "", y = "") +
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5), text = element_text(size = 11))
 
 plots_scenarios_day_model_comparison[[3]] <- 
   plots_scenarios_day_model_comparison[[3]] +
@@ -53,17 +53,17 @@ plots_scenarios_day_model_comparison[[3]] <-
   labs(title = "Sonneneinstrahlung",
        x = "",
        y = "") +
-  theme(plot.title = element_text(hjust = 0.5)) +
+  theme(plot.title = element_text(hjust = 0.5), text = element_text(size = 11)) +
   scale_x_continuous(breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1))
 
 plots_scenarios_day_model_comparison[[4]] <-
   plots_scenarios_day_model_comparison[[4]] +
   geom_rug(data = day_model_raw, aes(x = temperature)) +
-  labs(title = "Temperatur",
+  labs(title = "Bewölkung",
        x = "",
        y = "") +
-  theme(plot.title = element_text(hjust = 0.5)) +
-  scale_x_continuous(breaks = c(-6, -4, -2, 0, 2, 4, 6))
+  theme(plot.title = element_text(hjust = 0.5), text = element_text(size = 11)) +
+  scale_x_continuous(breaks = c(0, 20, 40, 60, 80, 100))
 
 plots_scenarios_day_model_comparison[[5]] <- 
   plots_scenarios_day_model_comparison[[5]] +
@@ -71,7 +71,7 @@ plots_scenarios_day_model_comparison[[5]] <-
   labs(title = "Schneedifferenz",
        x = "",
        y = "") +
-  theme(plot.title = element_text(hjust = 0.5)) +
+  theme(plot.title = element_text(hjust = 0.5), text = element_text(size = 11)) +
   scale_x_continuous(breaks = c(-10, 0, 10, 20, 30, 40))
 
 # Plots in der Liste den richtigen Namen geben
@@ -106,7 +106,8 @@ plots_scenarios_day_model_comparison_grid <-
               plots_scenarios_day_model_comparison_grid[[5]],
               legend_scenarios_day_model,
               ncol = 3)
-grid2 <- 
+grid6 <- 
   grid.arrange(plots_scenarios_day_model_comparison_grid)
 
-ggsave("Plots/Szenarienvergleich_einfach.png", grid2, scale = 1.2)
+ggsave("Organisatorisches/Endpräsentation/Plots_Endpräsi/grid6.png", grid6, 
+       dpi = 800, width = 8.75, height = 5.75)

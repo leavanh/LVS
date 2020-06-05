@@ -1,47 +1,5 @@
 
 
-### In dieser Datei werden die Plots für die Szenarien erstellt und verglichen
-### Für das Date Model
-
-
-scenarios <- list(date_data_noNA,
-                  data_general_function(0.25)$date_data,
-                  date_data_group,
-                  date_data_night,
-                  date_data_temp)
-
-scenarios_date_model <- list()
-plots_scenarios_date_model <- list()
-plots_scenarios_date_model_comparison <- list()
-
-
-
-
-# für jedes der 5 Szenarien Smooth-Plots-erstellen
-
-for (i in 1:length(scenarios)) {
-  
-  scenarios_date_model <- scenarios[[i]] %>% date_model_function()
-  
-  plots_scenarios_date_model[[i]] <- scenarios_date_model  %>%
-                                          plots_date_model()
-  
-}
-
-# Werte für den Rug später speichern
-
-date_model_raw <- data.frame(
-  day = scenarios_date_model$model$model$int_day,
-  avalanche = scenarios_date_model$model$model$avalanche_report,
-  solar_radiation = scenarios_date_model$model$model$solar_radiation_prop,
-  temperature = scenarios_date_model$model$model$temperature,
-  snow_diff = scenarios_date_model$model$model$snow_diff,
-  date = scenarios_date_model$model$model$int_date
-)
-
-# für jede Kovariable gemeinsame Plots erstellen
-# endet bei length(..)-1, da letztes Objekt in der Liste "grid" ist
-
 for (j in 1:(length(plots_scenarios_date_model[[1]])-1)) {
   
   raw <- data.frame(
@@ -59,33 +17,16 @@ for (j in 1:(length(plots_scenarios_date_model[[1]])-1)) {
     geom_line(plots_scenarios_date_model[[2]][[j]]$data, 
               mapping = aes(x = x, y = plogis(fit + intercept), 
                             color = "Generelle Unterschätzung von 25%"),
-              size = 1.0) +
-    geom_line(plots_scenarios_date_model[[3]][[j]]$data, 
-              mapping = aes(x = x, y = plogis(fit + intercept), 
-                            color = "Unterschätzung nach Gruppengröße"),
-              size = 1.0) +
-    geom_line(plots_scenarios_date_model[[4]][[j]]$data, 
-              mapping = aes(x = x, y = plogis(fit + intercept),
-                            color = "Nächtliche Überschätzung"),
-              size = 1.0) +
-    geom_line(plots_scenarios_date_model[[5]][[j]]$data, 
-              mapping = aes(x = x, y = plogis(fit + intercept),
-                            color = "Unterschätzung bei niedrigen Temperaturen"),
-              size = 1.0) +
+              size = 1.05) +
     geom_line(plots_scenarios_date_model[[1]][[j]]$data, 
               mapping = aes(x = x, y = plogis(fit + intercept), 
                             color = "Original"), 
-              size = 1.0) +
-    scale_y_continuous(limits = c(0,0.5)) +
+              size = 1.05) +
+    scale_y_continuous(limits = c(0,1)) +
     labs(color = "Szenario") +
     scale_color_manual(breaks=c("Original",
-                                "Generelle Unterschätzung von 25%",
-                                "Unterschätzung nach Gruppengröße",
-                                "Nächtliche Überschätzung",
-                                "Unterschätzung bei niedrigen Temperaturen"),
-                       values = c("#2b8cbe", "#009E73", "#000000", "#CC79A7",
-                                  "#E69F00"))
-  
+                                "Generelle Unterschätzung von 25%"),
+                       values = c("#2b8cbe", "#000000"))
   # Reihenfolge der Farben: Generell, Nächtl, Original, Unt_temp, Unt_group
   
 }
@@ -95,12 +36,12 @@ for (j in 1:(length(plots_scenarios_date_model[[1]])-1)) {
 # Schrift und Legende für alle Plots einstellen
 
 theme <- theme(plot.title = element_text(hjust = 0.5), 
-                 text = element_text(size = 10),
-                 legend.position = "bottom",
-                 legend.title = element_text(size = 12),
-                 legend.text = element_text(size = 10))
+               text = element_text(size = 10),
+               legend.position = "bottom",
+               legend.title = element_text(size = 12),
+               legend.text = element_text(size = 10))
 
-guides <- guides(color = guide_legend(ncol = 3, byrow = TRUE, 
+guides <- guides(color = guide_legend(nrow = 2, byrow = TRUE, 
                                       title.position = "left",
                                       title.hjust = 0.5))
 
@@ -120,10 +61,10 @@ plots_scenarios_date_model_comparison[[1]] <-
   labs(title = "Wochentag",
        x = "", y = "") +
   scale_x_continuous(breaks = 1:7,
-                   labels=c("1" = "Mo", "2" = "Di",
-                            "3" = "Mi", "4" = "Do",
-                            "5" = "Fr", "6" = "Sa",
-                            "7" = "So")) +
+                     labels=c("1" = "Mo", "2" = "Di",
+                              "3" = "Mi", "4" = "Do",
+                              "5" = "Fr", "6" = "Sa",
+                              "7" = "So")) +
   theme + guides
 
 plots_scenarios_date_model_comparison[[2]] <- 
@@ -195,9 +136,9 @@ plots_scenarios_date_model_comparison_grid <-
               ncol = 3,
               bottom = legend_scenarios_date_model)
 
-grid3 <- 
+grid5 <- 
   grid.arrange(plots_scenarios_date_model_comparison_grid)
 
-ggsave("Organisatorisches/Endpräsentation/Plots_Endpräsi/grid3.png", grid3, 
+ggsave("Organisatorisches/Endpräsentation/Plots_Endpräsi/grid5.png", grid5, 
        dpi = 800, width = 8.75, height = 5.75)
 

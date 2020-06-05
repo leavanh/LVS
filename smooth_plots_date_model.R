@@ -47,7 +47,7 @@ for (i in 1:6) {
                     color = "grey", alpha = 0.2) +
         # Rug
         geom_rug(data = raw, aes(x = raw)) +
-        scale_y_continuous(limits = c(0,1))
+        scale_y_continuous(limits = c(0,0.5))
   
   
 }

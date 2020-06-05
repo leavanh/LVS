@@ -87,7 +87,7 @@ gridPrint(grobs = date_model_plots$grid,
 # date_model_plots$date
 # date_model_plots$day
 # date_model_plots$avalanche
-# date_model_plots$solar_radiation
+# date_model_plots$cloud_cover
 # date_model_plots$temperature
 # date_model_plots$snowhight
 

@@ -137,21 +137,21 @@ temperature_smooth <- plot_list[[4]] +
                 scale_x_continuous(breaks = c(-6, -4, -2, 0, 2, 4, 6, 8))
 
 
-# Sonneneinstrahlung
+# Bewölkung
 
-solar_radiation_grid <- plot_list[[5]] +
-                        labs(title = "Sonneneinstrahlung",
+cloud_cover_grid <- plot_list[[5]] +
+                        labs(title = "Bewölkung",
                              x = "",
                              y = "") +
                         theme(plot.title = element_text(hjust = 0.5)) +
-                        scale_x_continuous(breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1))
+                        scale_x_continuous(breaks = c(0, 20, 40, 60, 80, 100))
 
-solar_radiation_smooth <- plot_list[[5]] +
-  labs(title = "glatte Funktion für Anteil \n der Sonneneinstrahlung am Maximum",
-       x = "Anteil an maximaler Sonneneinstrahlung",
-       y = "s(Anteil Sonneneinstrahlung)") +
+cloud_cover_smooth <- plot_list[[5]] +
+  labs(title = "glatte Funktion für die Bewölkung",
+       x = "Bewölkung",
+       y = "s(Bewölkung)") +
   theme(plot.title = element_text(hjust = 0.5)) +
-  scale_x_continuous(breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1))
+  scale_x_continuous(breaks = c(0, 20, 40, 60, 80, 100))
 
 # Schneedifferenz
 
@@ -175,7 +175,7 @@ snowhight_smooth <- plot_list[[6]] +
 date_model_grid <-
   list(day_grid,
        avalanche_grid,
-       solar_radiation_grid,
+       cloud_cover_grid,
        temperature_grid,
        snowhight_grid,
        date_grid)
@@ -187,7 +187,7 @@ date_model_grid <-
 plots_date_model_list <- list(
   day = day_smooth,
   avalanche = avalanche_smooth,
-  solar_radiation = solar_radiation_smooth,
+  cloud_cover = cloud_cover_smooth,
   temperature = temperature_smooth,
   snowhight = snowhight_smooth,
   date = date_smooth,

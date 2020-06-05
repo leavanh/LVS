@@ -25,11 +25,10 @@ summary_list <- list(
 
 date_data_plot <- date_data_noNA[,
                             c("date", "count_people",
-                                       "ratio", "snowhight", "snow_diff", 
+                                       "ratio", "snow_diff", 
                                        "temperature", "solar_radiation",
-                                       "avalanche_report", "sunrise")] %>%
+                                       "avalanche_report", "cloud_cover_daily")] %>%
                   ggpairs()
-# -> day_length hängt vollkommen von date ab (Achtung beim Modell!)
 
 ## Datum
 
@@ -59,7 +58,7 @@ date_lvs <- date_data_noNA %>%
 # NAs (Tage an denen Messungen nicht möglich waren) werden davor entfernt
 
 date_ratio <- ggplot(date_data) +
-  geom_line(aes(int_date, ratio)) +
+  geom_line(aes(int_date, ratio), color  = "darkgreen") +
   labs(#title = "Anteil der Personen mit LVS-Gerät in der Wintersaison 18/19",
        x = "Datum",
        y = "Anteil LVS-Geräte") +
@@ -212,7 +211,7 @@ data_time_lvs_plot <- data[!is.na(data$time),] %>%
     strftime(
       time, format = "%H:%M:%S"), 
     format = "%H:%M:%S"))
-date(data_time_lvs_plot$time) <- as.POSIXct("1899-12-31", tz = "MET")
+date(data_time_lvs_plot$time) <- as.POSIXct("1899-12-31", tz = "GMT")
 
 time_lvs <- ggplot() +
   geom_freqpoly(data = data_time_lvs_plot,
@@ -229,7 +228,7 @@ time_lvs <- ggplot() +
        x = "Uhrzeit",
        y = "Absolute Häufigkeit") + 
   theme(legend.position="top") +
-  #geom_vline(xintercept = as.POSIXct("1899-12-31 04:00:00", tz = "MET")) +
+  #geom_vline(xintercept = as.POSIXct("1899-12-31 04:00:00", tz = "GMT")) +
   theme(text = element_text(size = 15), legend.position="top")
 
 

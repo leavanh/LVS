@@ -43,7 +43,6 @@ summary_list
 # -> mehr Messungen bei S
 # -> am wenigsten Messungen Montags, am meisten am Wochenende
 date_data_plot
-# -> day_length hängt vollkommen von date ab (Achtung beim Modell!)
 date_lvs/date_ratio
 date_position
 date_snowhight | date_temperature | date_solar_radiation
@@ -88,7 +87,7 @@ gridPrint(grobs = date_model_plots$grid,
 # date_model_plots$date
 # date_model_plots$day
 # date_model_plots$avalanche
-# date_model_plots$solar_radiation
+# date_model_plots$cloud_cover
 # date_model_plots$temperature
 # date_model_plots$snowhight
 
@@ -127,7 +126,7 @@ gridPrint(grobs = day_model_plots$grid,
  day_model_plots$date_time
 # day_model_plots$day
 # day_model_plots$avalanche
-# day_model_plots$solar_radiation
+# day_model_plots$cloud_cover
 # day_model_plots$temperature
 # day_model_plots$snowhight
 
@@ -138,8 +137,8 @@ gridPrint(grobs = day_model_plots$grid,
 # gam.check(day_model$model, type = "deviance")
 # concurvity(day_model$model, full = TRUE)
 # concurvity(day_model$model, full = FALSE)
-acf(day_model$model$residuals, main="")
-pacf(day_model$model$residuals, main="")
+# acf(day_model$model$residuals)
+# pacf(day_model$model$residuals)
 
 
 

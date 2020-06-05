@@ -13,7 +13,7 @@ date_model <- gam(
     s(avalanche_report, bs = "ps", k = 5) +
     s(int_day, bs = "cp", k = 7) +
     s(temperature, bs = "ps", k = 10) +
-    s(solar_radiation_prop, bs = "ps", k = 10) +
+    s(cloud_cover_daily, bs = "ps", k = 10) +
     s(snow_diff, bs = "ps", k = 10) +
     holiday,
   knots = list(
@@ -25,8 +25,8 @@ date_model <- gam(
     # temperature
     c(-14.7, -11.3, -7.9, -4.5, -2.8, -1.4, 0.2, 1.7, 2.3, 3.6, 5.2, 8.4, 9.7, 
       10.3, 11.6),
-    # solar_radiation_prop
-    c(),
+    # cloud_cover_daily
+    c(-15, -7, 0, 5, 15, 30, 50, 63, 77, 84, 90, 95, 100, 105, 110),
     # snow_diff
     c(-27, -20, -13, -6, -5, -4, -4, -3, -1, 0, 2, 10, 40, 70, 100)
   ),

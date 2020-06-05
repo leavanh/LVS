@@ -140,18 +140,18 @@ temperature_smooth <- plot_list[[4]] +
 # Sonneneinstrahlung
 
 solar_radiation_grid <- plot_list[[5]] +
-                        labs(title = "Sonneneinstrahlung",
+                        labs(title = "Bewölkung",
                              x = "",
                              y = "") +
                         theme(plot.title = element_text(hjust = 0.5)) +
-                        scale_x_continuous(breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1))
+                        scale_x_continuous(breaks = c(0, 20, 40, 60, 80, 100))
 
 solar_radiation_smooth <- plot_list[[5]] +
   labs(title = "glatte Funktion für Anteil \n der Sonneneinstrahlung am Maximum",
        x = "Anteil an maximaler Sonneneinstrahlung",
        y = "s(Anteil Sonneneinstrahlung)") +
   theme(plot.title = element_text(hjust = 0.5)) +
-  scale_x_continuous(breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1))
+  scale_x_continuous(breaks = c(0, 20, 40, 60, 80, 100))
 
 # Differenz Schneehöhe
 

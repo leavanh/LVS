@@ -74,8 +74,8 @@ date_smooth <- plot_list[[1]] +
                        y = "s(Datum)") +
                   theme(plot.title = element_text(hjust = 0.5)) +
                   scale_x_continuous(breaks = c(17897,17928,17956,17987), 
-                                     labels = c("01. Jan","01. Feb",
-                                                "01. Mär","01. Apr"))
+                                     labels = c("01.Jan","01.Feb",
+                                                "01.Mär","01.Apr"))
   
 
 
@@ -153,22 +153,21 @@ solar_radiation_smooth <- plot_list[[5]] +
   theme(plot.title = element_text(hjust = 0.5)) +
   scale_x_continuous(breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1))
 
-# Differenz Schneehöhe
+# Schneedifferenz
 
 snowhight_grid <- plot_list[[6]] +
                     labs(title = "Schneedifferenz",
                          x = "",
                          y = "") +
                     theme(plot.title = element_text(hjust = 0.5)) +
-                    scale_x_continuous(breaks = c(-12, -4, 4, 12, 20, 28, 36))
+                    scale_x_continuous(breaks = c(-10, 0, 10, 20, 30, 40))
 
 snowhight_smooth <- plot_list[[6]] +
                 labs(title = "glatte Funktion für Schneedifferenz",
                      x = "Schneedifferenz in cm",
                      y = "s(Schneedifferenz)") +
                 theme(plot.title = element_text(hjust = 0.5)) +
-                scale_x_continuous(breaks = c(-12, -8, -4, 0, 4, 8, 12, 16, 20,
-                                              24, 28, 32, 36, 40))
+                scale_x_continuous(breaks = c(-10, 0, 10, 20, 30, 40))
 
 
 # Grid für Date Model Plots

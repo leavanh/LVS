@@ -1,24 +1,3 @@
-
-# Liste erstellen
-
-# addmargins() fügt die Summenspalte bzw -Reihe hinzu
-
-summary_list <- list(
-  
-  # Übersicht
-  summary(date_data),
-  
-  # Typ und Position
-  addmargins(table(data$lvs, data$position)),
-  # -> mehr Messungen bei S
-  
-  # Typ und Wochentag
-  addmargins(table(data$lvs, data$day))
-  # -> am wenigsten Messungen Montags, am meisten am Wochenende
-)
-
-## Plot
-
 # alle Variablen gegeinander geplottet zur Übersicht
 # keine Faktorvariablen und ohne Zeit
 # NAs (Tage an denen Messungen nicht möglich waren) werden davor entfernt
@@ -27,7 +6,8 @@ date_data_plot <- date_data_noNA[,
                             c("date", "count_people",
                                        "ratio", "snow_diff", 
                                        "temperature", "solar_radiation",
-                                       "avalanche_report", "cloud_cover_daily")] %>%
+                                       "avalanche_report",
+                              "cloud_cover_daily")] %>%
                   ggpairs()
 
 ## Datum
@@ -48,18 +28,16 @@ date_lvs <- date_data_noNA %>%
                       breaks = c("#F0E442", "darkgreen"),
                       labels = c("Person ohne \n LVS-Gerät", "Person mit \n LVS-Gerät"),
                       guide = "legend") +
-  labs(#title = "Checkpointerfassungen in der Wintersaison 18/19 nach Datum",
+  labs(title = "Checkpointerfassungen in der Wintersaison 18/19 nach Datum",
        x = "Datum",
-       y = "Absolute Häufigkeit") +
-  theme(text = element_text(size = 10), legend.position="top")
-  #theme(text = element_text(size = 20))
+       y = "Absolute Häufigkeit")
 
 # Datum und Ratio
 # NAs (Tage an denen Messungen nicht möglich waren) werden davor entfernt
 
 date_ratio <- ggplot(date_data) +
   geom_line(aes(int_date, ratio), color  = "darkgreen") +
-  labs(#title = "Anteil der Personen mit LVS-Gerät in der Wintersaison 18/19",
+  labs(title = "Anteil der Personen mit LVS-Gerät in der Wintersaison 18/19",
        x = "Datum",
        y = "Anteil LVS-Geräte") +
   scale_x_continuous(breaks = c(17897,17928,17956,17987), 
@@ -67,8 +45,7 @@ date_ratio <- ggplot(date_data) +
                                 "01.Feb",
                                 "01.Mar",
                                 "01.Apr")) +
-  scale_y_continuous(limits = c(0, 1)) +
-  theme(text = element_text(size = 15), legend.position="top")
+  scale_y_continuous(limits = c(0, 1))
 
 # Datum und Schneehöhe
 
@@ -81,8 +58,7 @@ date_snowhight <- ggplot(date_data) +
                      labels = c("01.Jan",
                                 "01.Feb",
                                 "01.Mar",
-                                "01.Apr")) +
-  theme(text = element_text(size = 13), legend.position="top")
+                                "01.Apr"))
 
 # Datum und Schneedifferenz
 
@@ -109,40 +85,19 @@ date_temperature <- ggplot(date_data) +
                      labels = c("01.Jan",
                                 "01.Feb",
                                 "01.Mar",
-                                "01.Apr")) +
-  theme(text = element_text(size = 13), legend.position="top")
+                                "01.Apr"))
 
-# Datum und solar radiation
-dev.off()
+# Datum und Bewölkung
 
-date_solar_radiation <- ggplot(date_data) +
-  geom_line(aes(int_date, solar_radiation)) +
+date_cloud_cover <- ggplot(date_data) +
+  geom_line(aes(int_date, cloud_cover_daily)) +
   xlab("Datum") +
-  ylab("Sonneneinstrahlung (in W/m²)") +
-  scale_x_continuous(breaks = c(17897,17928,17956,17987), 
-                     labels = c("01.Jan",
-                                "01.Feb",
-                                "01.Mar",
-                                "01.Apr")) +
-  theme(text = element_text(size = 13), legend.position="top")
-
-# Datum und Anteil an der maximalen Sonneneinstrahlung
-
-date_solar_radiation_prop <- ggplot(date_data) +
-  geom_line(aes(int_date, solar_radiation_prop)) +
-  xlab("Datum") +
-  ylab("Anteil an der geglätteten maximalen Sonneneinstrahlung") +
+  ylab("Bewölkung in %") +
   scale_x_continuous(breaks = c(17897,17928,17956,17987), 
                      labels = c("01.Jan",
                                 "01.Feb",
                                 "01.Mar",
                                 "01.Apr"))
-
-# Anteil an der maximalen Sonneneinstrahlung
-
-plot_solar_radiation_prop <- ggplot(date_data) +
-  geom_histogram(aes(solar_radiation_prop), bins = 50) +
-  xlab("Anteil an der geglätteten maximalen Sonneneinstrahlung") 
 
 # Datum und Position
 
@@ -157,7 +112,7 @@ date_position <- ggplot(data[!is.na(data$position),]) +
                                 "01.Feb",
                                 "01.Mar",
                                 "01.Apr"))+
-  labs(#title = "Die Messungen nach Position und Datum",
+  labs(title = "Die Messungen nach Position und Datum",
        x = "Datum",
        y = "Absolute Häufigkeit")
 
@@ -180,12 +135,12 @@ temperature_ratio <- date_data_noNA %>%
   xlab("Temperatur (in °C)") +
   ylab("Anteil LVS-Geräte")
 
-# Ratio und solar radiation
+# Ratio und Bewölkung
 
-solar_radiation_ratio <- date_data_noNA %>%
+cloud_cover_ratio <- date_data_noNA %>%
   ggplot() +
-  geom_point(aes(solar_radiation, ratio), alpha = 0.5) +
-  xlab("Sonneneinstrahlung (in W/m²)") +
+  geom_point(aes(cloud_cover_daily, ratio), alpha = 0.5) +
+  xlab("Bewölkung in %") +
   ylab("Anteil LVS-Geräte")
 
 # Ratio und Lawinenwarnstufe
@@ -196,12 +151,52 @@ avalanche_ratio <- date_data_noNA %>%
   labs(x = "Lawinenwarnstufe",
        y = "Anteil LVS-Geräte")
 
-## Schneehöhe und radiation
+## andere Variablen
 
-snowhight_solar_radiation <- ggplot(date_data) +
-  geom_point(aes(snowhight, solar_radiation), alpha = 0.5) +
-  xlab("Schneehöhe (in cm)") +
-  ylab("solar radiation")
+# Bewölkung
+
+boxplot_cloud_cover <- date_data_noNA %>%
+  ggplot() +
+  geom_boxplot(aes(y = cloud_cover_daily)) +
+  labs(x = "Bewölkung",
+       y = "durchschnittliche Bewölkung pro Tag (in %)") +
+  theme(axis.text.x = element_blank(), # Entfernt unnötige Zahlen auf der x-Achse
+        axis.ticks.x = element_blank())
+
+# Lawinenwarnstufe
+
+boxplot_avalanche_report <- date_data_noNA %>%
+  ggplot() +
+  geom_boxplot(aes(y = avalanche_report)) +
+  labs(x = "Lawinenwarnstufe",
+       y = "Lawinenwarnstufe jedes Tages") +
+  theme(axis.text.x = element_blank(), # Entfernt unnötige Zahlen auf der x-Achse
+        axis.ticks.x = element_blank())
+
+# Feiertag
+
+holiday_plot <- data_noNA %>%
+  ggplot() +
+  geom_bar(aes(x = holiday, fill = lvs))  +
+  scale_fill_manual(name = " ",
+                      values = c("#F0E442", "darkgreen"),
+                      labels = c("Person ohne \n LVS-Gerät", "Person mit \n LVS-Gerät"),
+                      guide = "legend") +
+  labs(x = "Ferientag",
+       y = "Absolute Häufigkeit")
+
+# Wochentag
+
+day_plot <- data_noNA %>%
+  ggplot() +
+  geom_bar(aes(x = day, fill = lvs))  +
+  scale_fill_manual(name = " ",
+                    values = c("#F0E442", "darkgreen"),
+                    labels = c("Person ohne \n LVS-Gerät", "Person mit \n LVS-Gerät"),
+                    guide = "legend") +
+  labs(x = "Wochentag",
+       y = "Absolute Häufigkeit")
+
 
 ## Uhrzeit
 # NAs (Tage an denen Messungen nicht möglich waren) werden entfernt
@@ -210,7 +205,7 @@ data_time_lvs_plot <- data[!is.na(data$time),] %>%
   mutate(time = as.POSIXct(
     strftime(
       time, format = "%H:%M:%S"), 
-    format = "%H:%M:%S"))
+    format = "%H:%M:%S", tz = "GMT"))
 date(data_time_lvs_plot$time) <- as.POSIXct("1899-12-31", tz = "GMT")
 
 time_lvs <- ggplot() +
@@ -224,33 +219,8 @@ time_lvs <- ggplot() +
                                   "Person mit \n LVS-Gerät"),
                        guide = "legend") +
   scale_x_datetime(date_breaks = "2 hour", date_labels = "%H:%M") +
-  labs(#title = "Die Messungen nach Uhrzeit",
+  labs(title = "Die Messungen nach Uhrzeit",
        x = "Uhrzeit",
-       y = "Absolute Häufigkeit") + 
-  theme(legend.position="top") +
-  #geom_vline(xintercept = as.POSIXct("1899-12-31 04:00:00", tz = "GMT")) +
-  theme(text = element_text(size = 15), legend.position="top")
+       y = "Absolute Häufigkeit") +
+  geom_vline(xintercept = as.POSIXct("1899-12-31 04:00:00", tz = "GMT"))
 
-
-## Solar Radiation Maximum
-
-solar_radiation_max <- ggplot(date_data, aes(x = as.numeric(date))) +
-  geom_line(aes(y = solar_radiation)) +
-  geom_spline(aes(y = solar_radiation_max, 
-                  colour = "geglättetes Maximum"),
-              nknots = 30,
-              spar = 0.1, size = 1.5) +
-  labs(#title = "Verlauf der Sonneneinstrahlung 18/19",
-       x = "Datum",
-       y = "Sonneneinstrahlung in W/m²") +
-  theme(plot.title = element_text(hjust = 0.5),
-        text = element_text(size = 12),
-        legend.title = element_blank(),
-        legend.position = c(.2, .9)) +
-  scale_x_continuous(breaks = c(1546300800, 1548979200, 
-                              1551398400, 1554163200), 
-                   labels = c("1546300800" = "01.Jan",
-                              "1548979200" = "01.Feb",
-                              "1551398400" = "01.Mar",
-                              "1554163200" = "01.Apr")) +
-  theme(text = element_text(size = 15))

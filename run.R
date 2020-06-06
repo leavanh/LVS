@@ -17,7 +17,7 @@ library("readxl") # zum Einlesen von Excel-Dateien
 
 ## Theme (Ästhetik) der Plots festsetzen
 
-theme_set(theme_classic())
+theme_set(theme_minimal() + theme(legend.position = "top"))
 
 
 ## Daten laden
@@ -40,17 +40,17 @@ min_data_noNA <- min_data[!is.na(min_data$count_people_min),]
 source("descriptive.R", encoding = "UTF-8")
 
 str(data)
-summary_list
-# -> mehr Messungen bei S
-# -> am wenigsten Messungen Montags, am meisten am Wochenende
+summary(date_data)
 date_data_plot
 date_lvs/date_ratio
 date_position
-date_snowhight | date_temperature | date_solar_radiation
-date_snowdiff | date_solar_radiation_prop
-(snowhight_ratio | solar_radiation_ratio) / 
+date_snowhight|date_snowdiff
+date_temperature
+boxplot_cloud_cover|boxplot_avalanche_report
+holiday_plot
+day_plot
+(snowhight_ratio | cloud_cover_ratio) / 
   (temperature_ratio | avalanche_ratio)
-snowhight_solar_radiation
 time_lvs
 
 

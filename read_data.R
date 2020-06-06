@@ -307,9 +307,17 @@ data <- subset(data, select = c(id, lvs, position, time, date, int_date, day,
                                 lvs_true_min, lvs_false_min, count_people_min,
                                 ratio_min))
 
-## factors für position festlegen
+## factors festlegen
+
+# Position
 
 data$position <- factor(data$position)
+
+# Wochentag
+
+data$day <- factor(data$day, levels = c("Montag", "Dienstag", "Mittwoch",
+                                        "Donnerstag", "Freitag", "Samstag",
+                                        "Sonntag"))
 
 ## neue data erstellen
 

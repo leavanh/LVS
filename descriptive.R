@@ -173,7 +173,7 @@ boxplot_avalanche_report <- date_data_noNA %>%
   theme(axis.text.x = element_blank(), # Entfernt unnötige Zahlen auf der x-Achse
         axis.ticks.x = element_blank())
 
-# Feiertag
+# Ferientag
 
 holiday_plot <- data_noNA %>%
   ggplot() +

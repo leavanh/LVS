@@ -78,16 +78,16 @@ plots_day_model <- function(
     scale_y_continuous(breaks = c(17897,17928,17956,17987), 
                        labels = c("01.Jan","01.Feb",
                                   "01.Mär","01.Apr")) +
-    scale_x_continuous(breaks=c(-2209060800,-2209050000,-2209039200,-2209028400, 
-                                -2209017600, -2209006800,
-                                -2208996000, -2208985200, -2208974460), 
-                       labels=c("04:00","07:00","10:00","13:00", "16:00", "19:00",
+    scale_x_continuous(breaks = c(-2209057200, -2209046400, -2209035600,
+                                  -2209024800, -2209014000, -2209003200,
+                                -2208992400, -2208981600, -2208970860), 
+                       labels = c("04:00","07:00","10:00","13:00", "16:00", "19:00",
                                 "22:00", "01:00", "03:59")) +
     #ggtitle("Anteil für Uhrzeit und Datum") + 
     labs(y="Datum", x="Uhrzeit", fill = NULL) +
     scale_fill_gradient2(midpoint = 0.5, low = "#FF6666", mid = "white",
                          high = "#33FF66", limits = c(0, 1)) +
-    theme(text = element_text(size = 15)) +
+    theme(legend.position = "right") +
     geom_line(data=date_data, aes(as.numeric(sunrise), int_date)) +
     geom_line(data=date_data, aes(as.numeric(sunset), int_date))
 

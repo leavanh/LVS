@@ -1,6 +1,10 @@
 ## Diese Datei erzeugt data_temp
 # Bei niedrigen Temperaturen werden Messungen generiert
 
+# wir brauchen später cloud_cover
+
+cloud_cover <- readRDS(file = "Daten/cloud_cover.RDS")
+
 ## data_temp erzeugen (ohne NAs da wir diese Tage eh nicht brauchen)
 
 data_temp <- data_noNA
@@ -45,13 +49,29 @@ neue_messungen <- neue_messungen[-1,] # erste Zeile löschen
 
 ## Messungen hinzufügen
 
+# Allgemeine Variablen hinzufügen
+
 data_temp <- neue_messungen %>%
-  full_join(date_data_noNA, by = "date") %>%
+  full_join(date_data_noNA, by = c("date")) %>%
   mutate(lvs_true_min = 0,
          lvs_false_min = 0,
          count_people_min = 0,
-         ratio_min = 0) %>%
-  rbind(data_noNA)
+         ratio_min = 0)
+
+# cloud_cover hinzufügen
+
+for(i in 1:nrow(data_temp)) {
+  date <- data_temp[[i, "date"]]
+  hour <- hour(data_temp[[i, "time"]])
+  cloud_cover_i <- cloud_cover[cloud_cover$date == date & 
+                                 hour(cloud_cover$time) == hour,][1,] %>%
+    pull("cloud_cover")
+  data_temp[i, "cloud_cover"] <- cloud_cover_i
+}
+
+# zu den "alten" Daten hinzufügen
+
+data_temp <- rbind(data_temp, data_noNA)
 
 # neue Summen berechnen
 

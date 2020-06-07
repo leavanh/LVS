@@ -8,8 +8,8 @@ data_temp <- data_noNA
 ## Messungen erzeugen
 
 time_intervall <- interval( # alle möglichen Uhrzeiten
-  as.POSIXct("1899-12-31 04:00:00", tz = "MET"),
-  as.POSIXct("1900-01-01 03:59:59", tz = "MET")
+  as.POSIXct("1899-12-31 04:00:00", tz = "GMT"),
+  as.POSIXct("1900-01-01 03:59:59", tz = "GMT")
 )
 
 # Funktion die je nach Temperatur die Prozentzahl der hinzuzufügenden
@@ -24,12 +24,12 @@ n_by_date <- data.frame(
 # neuen data.frame erschaffen (am Ende Erste Zeile löschen)
 
 neue_messungen <- data.frame(id = NA, lvs = FALSE, position = NA,
-                             time = as.POSIXct("1899-12-31 00:00:00", tz = "MET"), 
-                             date = as.POSIXct("1899-12-31", tz = "MET"))
+                             time = as.POSIXct("1899-12-31 00:00:00", tz = "GMT"), 
+                             date = as.POSIXct("1899-12-31", tz = "GMT"))
 
 for(i in 1:nrow(date_data_noNA)) {
   for(j in 1:n_by_date$count_new[i]) { # neue Messungen generieren
-    messung_time <- as.POSIXct(sample(time_intervall, 1), tz = "MET", 
+    messung_time <- as.POSIXct(sample(time_intervall, 1), tz = "GMT", 
                                origin = "1899-12-31 04:00:00") # erzeugen
     messung_time <- as.POSIXct( # alle Sekunden auf 0
       trunc(messung_time, units = "mins"))
@@ -77,7 +77,7 @@ data_temp <- select(data_temp, - c("hour(time)", "minute(time)")) # unnötige Va
 date_data_temp <- distinct(subset(data_temp, 
                               select = -c(lvs, time, position, id, lvs_true_min,
                                           lvs_false_min, count_people_min,
-                                          ratio_min)))
+                                          ratio_min, cloud_cover)))
 
 min_data_temp <- distinct(subset(data_temp, 
                              select = -c(lvs, position, id)))

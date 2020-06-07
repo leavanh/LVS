@@ -12,8 +12,8 @@ perc <- 0.5 # Prozent die gelöscht werden sollen
 # welche kommen in Frage?
 
 time_intervall <- interval( # In diesem Intervall ist nie die sonne zu sehen
-  as.POSIXct("1899-12-31 05:29:00", tz = "MET"),
-  as.POSIXct("1899-12-31 18:58:00", tz = "MET")
+  as.POSIXct("1899-12-31 05:29:00", tz = "GMT"),
+  as.POSIXct("1899-12-31 18:58:00", tz = "GMT")
 )
 
 nacht_messungen <- subset(data_night, 
@@ -51,7 +51,7 @@ data_night <- select(data_night, - c("hour(time)", "minute(time)")) # unnötige 
 date_data_night <- distinct(subset(data_night, 
                              select = -c(lvs, time, position, id, lvs_true_min,
                                          lvs_false_min, count_people_min,
-                                         ratio_min)))
+                                         ratio_min, cloud_cover)))
 
 min_data_night <- distinct(subset(data_night, 
                             select = -c(lvs, position, id)))

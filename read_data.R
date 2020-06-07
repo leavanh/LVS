@@ -129,11 +129,6 @@ date_data$snow_diff <- date_data$snowhight - lag(date_data$snowhight,
                                        default = first(date_data$snowhight),
                                        by = date_data$date)
 
-# temperature in 2 Kategorien (unter/über 0)
-
-date_data$int_temperature <- 1
-date_data[date_data$temperature < 0, "int_temperature"] <- 0
-
 # int_ Variablen
 
 date_data$int_date <- as.integer(as.Date(date_data$date, format = "%d/%m/%Y", 
@@ -141,39 +136,6 @@ date_data$int_date <- as.integer(as.Date(date_data$date, format = "%d/%m/%Y",
 date_data$int_day <- as.integer(factor(date_data$day,
                       levels = c("Montag", "Dienstag", "Mittwoch", "Donnerstag",
                                     "Freitag", "Samstag", "Sonntag")))
-
-
-
-# Solar Radiation laufendes Maximum und Anteil am Maximum einfügen
-
-date_data <- date_data[order(date_data$date),] # data nach Datum ordnen
-solar_radiation_max <- seq(0, nrow(date_data)-1) # Hilfsvariable erstellen
-
-for (i in 1:nrow(date_data)) { # laufendes Maximum berechnen
-  solar_radiation_max[i] <- max(date_data$solar_radiation[1:i])
-}
-
-# laufendes Maximum und Quote am Maximum in data einfügen
-
-date_data <- date_data %>% mutate(solar_radiation_max = solar_radiation_max)
-
-
-# laufendes Maximum glätten durch Splines
-
-srm_build <- ggplot_build(ggplot(date_data, aes(x = as.numeric(date))) +
-                            geom_spline(aes(y = solar_radiation_max), 
-                                        nknots = 30,
-                                        spar = 0.1))
-
-# Werte über 1 auf 1 setzen
-
-date_data$solar_radiation_max <- srm_build$data[[1]]$y
-
-# Anteil (proportion) der Solar-Radiation-Werte am gegl. Maximum einfügen
-
-date_data <- mutate(date_data, 
-              solar_radiation_prop = 
-                pmin(solar_radiation / solar_radiation_max, 1))
 
 ## date_data und all_checkpoint_stats zusammenführen
 
@@ -243,13 +205,8 @@ for(i in 1:nrow(data)) {
     data[[i, "holiday"]] <- date_data[[row_i, "holiday"]]
     data[[i, "sunrise"]] <- date_data[[row_i, "sunrise"]]
     data[[i, "sunset"]] <- date_data[[row_i, "sunset"]]
-    data[[i, "int_temperature"]] <- date_data[[row_i, "int_temperature"]]
     data[[i, "int_date"]] <- date_data[[row_i, "int_date"]]
     data[[i, "int_day"]] <- date_data[[row_i, "int_day"]]
-    data[[i, "solar_radiation_max"]] <- date_data[[row_i,
-                                                   "solar_radiation_max"]]
-    data[[i, "solar_radiation_prop"]] <- date_data[[row_i,
-                                                   "solar_radiation_prop"]]
     data[[i, "cloud_cover_daily"]] <- date_data[[row_i,
                                                     "cloud_cover_daily"]]
     }}
@@ -298,9 +255,8 @@ data <- group_by(data, date, hour(time), minute(time)) %>%
 
 data <- subset(data, select = c(id, lvs, position, time, date, int_date, day,
                                 int_day, day_weekend, holiday,
-                                snowhight, snow_diff, temperature, 
-                                int_temperature, solar_radiation, 
-                                solar_radiation_max, solar_radiation_prop, 
+                                snowhight, snow_diff, temperature,
+                                solar_radiation,
                                 cloud_cover_daily, cloud_cover, 
                                 avalanche_report, sunrise, sunset,
                                 lvs_true, lvs_false, count_people, ratio,
@@ -342,4 +298,8 @@ saveRDS(date_data, file = "Daten/date_data.RDS")
 saveRDS(min_data, file = "Daten/min_data.RDS")
 
 saveRDS(data, file = "Daten/data.RDS")
+
+# cloud_cover wird später noch gebraucht
+
+saveRDS(cloud_cover, file = "Daten/cloud_cover.RDS")
 

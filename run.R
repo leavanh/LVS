@@ -80,7 +80,7 @@ date_model_plots <- plots_date_model(date_model)
 # Übersicht non-parametrischer Plots
 
 gridPrint(grobs = date_model_plots$grid,
-          #top = "Smooth-Plots im Date-Model",
+          top = "Smooth-Plots im Date-Model",
           ncol = 3)
 
 # Einzelplots
@@ -119,7 +119,7 @@ day_model_plots <- plots_day_model(day_model)
 # Übersicht nonparametrischer Plots
 
 gridPrint(grobs = day_model_plots$grid,
-          #top = "Smooth-Plots im Day-Model",
+          top = "Smooth-Plots im Day-Model",
           ncol = 3)
 
 # Einzelplots

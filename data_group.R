@@ -41,5 +41,5 @@ min_data_group <- min_data_group %>%
 date_data_group <- distinct(subset(min_data_group, 
                              select = -c(time, lvs_true_min,
                                          lvs_false_min, count_people_min,
-                                         ratio_min)))
+                                         ratio_min, cloud_cover)))
                                     

@@ -259,12 +259,12 @@ grid.arrange(plots_scenarios_date_model_comparison_grid)
 
 # Einzelplots
 
-plots_scenarios_date_model_comparison$day
-plots_scenarios_date_model_comparison$avalanche
-plots_scenarios_date_model_comparison$cloud_cover
-plots_scenarios_date_model_comparison$temperature
-plots_scenarios_date_model_comparison$snow_diff
-plots_scenarios_date_model_comparison$date
+# plots_scenarios_date_model_comparison$day
+# plots_scenarios_date_model_comparison$avalanche
+# plots_scenarios_date_model_comparison$cloud_cover
+# plots_scenarios_date_model_comparison$temperature
+# plots_scenarios_date_model_comparison$snow_diff
+# plots_scenarios_date_model_comparison$date
 
 # Für das Day Model
 
@@ -274,11 +274,11 @@ grid.arrange(plots_scenarios_day_model_comparison_grid)
 
 # Einzelplots
 
-plots_scenarios_day_model_comparison$day
-plots_scenarios_day_model_comparison$avalanche
-plots_scenarios_day_model_comparison$cloud_cover
-plots_scenarios_day_model_comparison$temperature
-plots_scenarios_day_model_comparison$snow_diff
+# plots_scenarios_day_model_comparison$day
+# plots_scenarios_day_model_comparison$avalanche
+# plots_scenarios_day_model_comparison$cloud_cover
+# plots_scenarios_day_model_comparison$temperature
+# plots_scenarios_day_model_comparison$snow_diff
 
 
 ## Plots für den Vergleich von Szenario 1 mit unterschiedlichen Werten
@@ -291,12 +291,12 @@ grid.arrange(plots_scenario_general_date_model_comparison_grid)
 
 # Einzelplots
 
-plots_scenario_general_date_model_comparison$day
-plots_scenario_general_date_model_comparison$avalanche
-plots_scenario_general_date_model_comparison$cloud_cover
-plots_scenario_general_date_model_comparison$temperature
-plots_scenario_general_date_model_comparison$snow_diff
-plots_scenario_general_date_model_comparison$date
+# plots_scenario_general_date_model_comparison$day
+# plots_scenario_general_date_model_comparison$avalanche
+# plots_scenario_general_date_model_comparison$cloud_cover
+# plots_scenario_general_date_model_comparison$temperature
+# plots_scenario_general_date_model_comparison$snow_diff
+# plots_scenario_general_date_model_comparison$date
 
 # Für das Day Model
 
@@ -306,11 +306,11 @@ grid.arrange(plots_scenario_general_day_model_comparison_grid)
 
 # Einzelplots
 
-plots_scenario_general_day_model_comparison$day
-plots_scenario_general_day_model_comparison$avalanche
-plots_scenario_general_day_model_comparison$cloud_cover
-plots_scenario_general_day_model_comparison$temperature
-plots_scenario_general_day_model_comparison$snow_diff
+# plots_scenario_general_day_model_comparison$day
+# plots_scenario_general_day_model_comparison$avalanche
+# plots_scenario_general_day_model_comparison$cloud_cover
+# plots_scenario_general_day_model_comparison$temperature
+# plots_scenario_general_day_model_comparison$snow_diff
 
 
 

@@ -167,16 +167,16 @@ plots_day_model <- function(
     theme(plot.title = element_text(hjust = 0.5)) +
     scale_x_continuous(breaks = c(0, 20, 40, 60, 80, 100))
   
-  # Neuschnee
+  # Schneedifferenz
   
-  snowhight_grid <- plot_list[[5]] +
+  snow_diff_grid <- plot_list[[5]] +
     labs(title = "Schneedifferenz",
          x = "",
          y = "") +
     theme(plot.title = element_text(hjust = 0.5)) +
     scale_x_continuous(breaks = c(-10, 0, 10, 20, 30, 40))
   
-  snowhight_smooth <- plot_list[[5]] +
+  snow_diff_smooth <- plot_list[[5]] +
     labs(title = "glatte Funktion für Schneedifferenz",
          x = "Schneedifferenz in cm",
          y = "s(Schneedifferenz)") +
@@ -190,7 +190,7 @@ plots_day_model <- function(
          avalanche_grid,
          cloud_cover_grid,
          temperature_grid, 
-         snowhight_grid)
+         snow_diff_grid)
   
   # Liste zur Ausgabe
   
@@ -199,7 +199,7 @@ plots_day_model <- function(
     avalanche = avalanche_smooth,
     cloud_cover = cloud_cover_smooth,
     temperature = temperature_smooth,
-    snowhight = snowhight_smooth,
+    snow_diff = snow_diff_smooth,
     date_time = day_model_date_time,
     grid = day_model_grid
   )

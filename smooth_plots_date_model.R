@@ -155,14 +155,14 @@ cloud_cover_smooth <- plot_list[[5]] +
 
 # Schneedifferenz
 
-snowhight_grid <- plot_list[[6]] +
+snow_diff_grid <- plot_list[[6]] +
                     labs(title = "Schneedifferenz",
                          x = "",
                          y = "") +
                     theme(plot.title = element_text(hjust = 0.5)) +
                     scale_x_continuous(breaks = c(-10, 0, 10, 20, 30, 40))
 
-snowhight_smooth <- plot_list[[6]] +
+snow_diff_smooth <- plot_list[[6]] +
                 labs(title = "glatte Funktion für Schneedifferenz",
                      x = "Schneedifferenz in cm",
                      y = "s(Schneedifferenz)") +
@@ -177,7 +177,7 @@ date_model_grid <-
        avalanche_grid,
        cloud_cover_grid,
        temperature_grid,
-       snowhight_grid,
+       snow_diff_grid,
        date_grid)
 
 
@@ -189,7 +189,7 @@ plots_date_model_list <- list(
   avalanche = avalanche_smooth,
   cloud_cover = cloud_cover_smooth,
   temperature = temperature_smooth,
-  snowhight = snowhight_smooth,
+  snow_diff = snow_diff_smooth,
   date = date_smooth,
   grid = date_model_grid
   )

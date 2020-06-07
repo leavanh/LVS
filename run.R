@@ -90,7 +90,7 @@ gridPrint(grobs = date_model_plots$grid,
 # date_model_plots$avalanche
 # date_model_plots$cloud_cover
 # date_model_plots$temperature
-# date_model_plots$snowhight
+# date_model_plots$snow_diff
 
 # Möglichkeiten das Modell zu "checken"
 # Passen die Basis-Funktionen? Gibt es Autocorrelation? ...
@@ -129,7 +129,7 @@ gridPrint(grobs = day_model_plots$grid,
 # day_model_plots$avalanche
 # day_model_plots$cloud_cover
 # day_model_plots$temperature
-# day_model_plots$snowhight
+# day_model_plots$snow_diff
 
 
 # Möglichkeiten das Modell zu "checken"

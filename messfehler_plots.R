@@ -5,6 +5,7 @@
 
 ## Anzahl Studentenmessungen vs Checkpointmessungen
 
+unterscheatzung_plot <- 
 ggplot(data = filter(zlg_beide_bereinigt_sums, 
                      type %in% c("checkpoint", "gesamt"))) +
   geom_bar(aes(x = type, y = sum), stat = "identity") +
@@ -92,9 +93,13 @@ erf_zeit_28_02_plot <-
                     values = c("#993300", "antiquewhite4")) 
 #scale_fill_discrete(name = NULL, labels = c("erfasst", "nicht erfasst"))
 
+pdf(file = NULL)
+
 erf_zeit_grid <- 
   grid.arrange(erf_zeit_27_plot, erf_zeit_28_01_plot, erf_zeit_28_02_plot,
                nrow = 3)
+
+dev.off()
 
 # Studentische zählung, erfassung und nicht erfassung von Gruppen
 

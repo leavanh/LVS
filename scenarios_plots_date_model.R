@@ -83,8 +83,12 @@ for (j in 1:(length(plots_scenarios_date_model[[1]])-1)) {
                                 "Unterschätzung nach Gruppengröße",
                                 "Nächtliche Überschätzung",
                                 "Unterschätzung bei niedrigen Temperaturen"),
-                       values = c("#2b8cbe", "#009E73", "#000000", "#CC79A7",
-                                  "#E69F00"))
+                       values = c("Generelle Unterschätzung von 25%" = "#2b8cbe", 
+                                  "Nächtliche Überschätzung" = "#009E73", 
+                                  "Original" = "#000000", 
+                                  "Unterschätzung bei niedrigen Temperaturen" = 
+                                    "#CC79A7",
+                                  "Unterschätzung nach Gruppengröße" = "#E69F00"))
   
   # Reihenfolge der Farben: Generell, Nächtl, Original, Unt_temp, Unt_group
   

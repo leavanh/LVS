@@ -14,8 +14,8 @@ scenarios <- list(date_data_noNA,
 
 
 scenarios_date_model <- list()
-plots_scenarios_date_model <- list()
-plots_scenarios_date_model_comparison <- list()
+plots_scenario_general_date_model <- list()
+plots_scenario_general_date_model_comparison <- list()
 
 
 # für jedes der Szenarien Smooth-Plots-erstellen
@@ -24,7 +24,7 @@ for (i in 1:length(scenarios)) {
   
   scenarios_date_model[[i]] <- scenarios[[i]] %>% date_model_function()
   
-  plots_scenarios_date_model[[i]] <- scenarios_date_model[[i]]  %>%
+  plots_scenario_general_date_model[[i]] <- scenarios_date_model[[i]]  %>%
     plots_date_model()
   
 }
@@ -34,7 +34,7 @@ for (i in 1:length(scenarios)) {
 date_model_raw <- data.frame(
   day = scenarios_date_model[[1]]$model$model$int_day,
   avalanche = scenarios_date_model[[1]]$model$model$avalanche_report,
-  solar_radiation = scenarios_date_model[[1]]$model$model$solar_radiation_prop,
+  cloud_cover = scenarios_date_model[[1]]$model$model$cloud_cover_daily,
   temperature = scenarios_date_model[[1]]$model$model$temperature,
   snow_diff = scenarios_date_model[[1]]$model$model$snow_diff,
   date = scenarios_date_model[[1]]$model$model$int_date
@@ -51,40 +51,40 @@ colors <- cbind(
 # für jede Kovariable gemeinsame Plots erstellen
 # endet bei length(..)-1, da letztes Objekt in der Liste "grid" ist
 
-for (j in 1:(length(plots_scenarios_date_model[[1]])-1)) {
+for (j in 1:(length(plots_scenario_general_date_model[[1]])-1)) {
   
-  plots_scenarios_date_model_comparison[[j]] <- 
+  plots_scenario_general_date_model_comparison[[j]] <- 
     ggplot() +
     # Konfidenzintervall für originales Szenario
-    geom_ribbon(plots_scenarios_date_model[[1]][[j]]$data,
+    geom_ribbon(plots_scenario_general_date_model[[1]][[j]]$data,
                 mapping = aes(x = x,
                               ymin = plogis(fit + intercept - se),
                               ymax = plogis(fit + intercept + se)),
                 colour = "grey", alpha = 0.2) +
-    geom_line(plots_scenarios_date_model[[2]][[j]]$data, 
+    geom_line(plots_scenario_general_date_model[[2]][[j]]$data, 
               mapping = aes(x = x, y = plogis(fit + intercept), 
                             color = "10%"),
-              size = 1.05) +
-    geom_line(plots_scenarios_date_model[[3]][[j]]$data, 
+              size = 1.0) +
+    geom_line(plots_scenario_general_date_model[[3]][[j]]$data, 
               mapping = aes(x = x, y = plogis(fit + intercept), 
                             color = "20%"),
-              size = 1.05) +
-    geom_line(plots_scenarios_date_model[[4]][[j]]$data, 
+              size = 1.0) +
+    geom_line(plots_scenario_general_date_model[[4]][[j]]$data, 
               mapping = aes(x = x, y = plogis(fit + intercept), 
                             color = "30%"),
-              size = 1.05) +
-    geom_line(plots_scenarios_date_model[[5]][[j]]$data, 
+              size = 1.0) +
+    geom_line(plots_scenario_general_date_model[[5]][[j]]$data, 
               mapping = aes(x = x, y = plogis(fit + intercept), 
                             color = "40%"),
-              size = 1.05) +
-    geom_line(plots_scenarios_date_model[[6]][[j]]$data, 
+              size = 1.0) +
+    geom_line(plots_scenario_general_date_model[[6]][[j]]$data, 
               mapping = aes(x = x, y = plogis(fit + intercept), 
                             color = "50%"),
-              size = 1.05) +
-    geom_line(plots_scenarios_date_model[[1]][[j]]$data, 
+              size = 1.0) +
+    geom_line(plots_scenario_general_date_model[[1]][[j]]$data, 
               mapping = aes(x = x, y = plogis(fit + intercept), 
                             color = "Original"),
-              size = 1.05) +
+              size = 1.0) +
     scale_y_continuous(limits = c(0,0.5)) +
     labs(color = "Anteil") +
     scale_color_manual(breaks = colors[,1],
@@ -106,8 +106,8 @@ guides <- guides(color = guide_legend(ncol = 3, byrow = TRUE,
                                       title.position = "left",
                                       title.hjust = 0.5))
 
-plots_scenarios_date_model_comparison[[6]] <- 
-  plots_scenarios_date_model_comparison[[6]] +
+plots_scenario_general_date_model_comparison[[6]] <- 
+  plots_scenario_general_date_model_comparison[[6]] +
   geom_rug(data = date_model_raw, aes(x = date)) +
   labs(title = "Datum",
        x = "",
@@ -117,8 +117,8 @@ plots_scenarios_date_model_comparison[[6]] <-
                                 "01. Mär","01. Apr")) +
   theme + guides
 
-plots_scenarios_date_model_comparison[[1]] <- 
-  plots_scenarios_date_model_comparison[[1]] +
+plots_scenario_general_date_model_comparison[[1]] <- 
+  plots_scenario_general_date_model_comparison[[1]] +
   geom_rug(data = date_model_raw, aes(x = day)) +
   labs(title = "Wochentag",
        x = "", y = "") +
@@ -129,24 +129,24 @@ plots_scenarios_date_model_comparison[[1]] <-
                               "7" = "So")) +
   theme + guides
 
-plots_scenarios_date_model_comparison[[2]] <- 
-  plots_scenarios_date_model_comparison[[2]] +
+plots_scenario_general_date_model_comparison[[2]] <- 
+  plots_scenario_general_date_model_comparison[[2]] +
   geom_rug(data = date_model_raw, aes(x = avalanche)) +
   labs(title = "Lawinenwarnstufe",
        x = "", y = "") +
   theme + guides
 
-plots_scenarios_date_model_comparison[[3]] <- 
-  plots_scenarios_date_model_comparison[[3]] +
-  geom_rug(data = date_model_raw, aes(x = solar_radiation)) +
+plots_scenario_general_date_model_comparison[[3]] <- 
+  plots_scenario_general_date_model_comparison[[3]] +
+  geom_rug(data = date_model_raw, aes(x = cloud_cover)) +
   labs(title = "Bewölkung",
        x = "",
        y = "") +
   scale_x_continuous(breaks = c(0, 20, 40, 60, 80, 100)) +
   theme + guides
 
-plots_scenarios_date_model_comparison[[4]] <- 
-  plots_scenarios_date_model_comparison[[4]] +
+plots_scenario_general_date_model_comparison[[4]] <- 
+  plots_scenario_general_date_model_comparison[[4]] +
   geom_rug(data = date_model_raw, aes(x = temperature)) +
   labs(title = "Temperatur",
        x = "",
@@ -154,8 +154,8 @@ plots_scenarios_date_model_comparison[[4]] <-
   scale_x_continuous(breaks = c(-5, 0, 5, 10)) +
   theme + guides
 
-plots_scenarios_date_model_comparison[[5]] <- 
-  plots_scenarios_date_model_comparison[[5]] +
+plots_scenario_general_date_model_comparison[[5]] <- 
+  plots_scenario_general_date_model_comparison[[5]] +
   geom_rug(data = date_model_raw, aes(x = snow_diff)) +
   labs(title = "Schneedifferenz",
        x = "",
@@ -165,42 +165,36 @@ plots_scenarios_date_model_comparison[[5]] <-
 
 # Plots in der Liste den richtigen Namen geben
 
-names(plots_scenarios_date_model_comparison) <- 
-  c("avalanche", "temperature", "day", "solar_radiation", "snowhight", "date")
+names(plots_scenario_general_date_model_comparison) <- 
+  c("day", "avalanche", "cloud_cover", "temperature", "snow_diff", "date")
 
 
 ## Grid erstellen
 
-plots_scenarios_date_model_comparison_grid <- 
-  plots_scenarios_date_model_comparison
+plots_scenario_general_date_model_comparison_grid <- 
+  plots_scenario_general_date_model_comparison
 
 # gemeinsame Legende speichern
 
 legend_scenarios_date_model <- 
-  get_legend(plots_scenarios_date_model_comparison[[1]])
+  get_legend(plots_scenario_general_date_model_comparison[[1]])
 
 # Legende der einzelnen Plot löschen
 
 for (j in 1:6) {
-  plots_scenarios_date_model_comparison_grid[[j]] <- 
-    plots_scenarios_date_model_comparison_grid[[j]] + 
+  plots_scenario_general_date_model_comparison_grid[[j]] <- 
+    plots_scenario_general_date_model_comparison_grid[[j]] + 
     theme(legend.position = "none")
 }
 
 
-plots_scenarios_date_model_comparison_grid <- 
-  arrangeGrob(plots_scenarios_date_model_comparison_grid[[1]],
-              plots_scenarios_date_model_comparison_grid[[2]],
-              plots_scenarios_date_model_comparison_grid[[3]],
-              plots_scenarios_date_model_comparison_grid[[4]],
-              plots_scenarios_date_model_comparison_grid[[5]],
-              plots_scenarios_date_model_comparison_grid[[6]],
+plots_scenario_general_date_model_comparison_grid <- 
+  arrangeGrob(plots_scenario_general_date_model_comparison_grid[[1]],
+              plots_scenario_general_date_model_comparison_grid[[2]],
+              plots_scenario_general_date_model_comparison_grid[[3]],
+              plots_scenario_general_date_model_comparison_grid[[4]],
+              plots_scenario_general_date_model_comparison_grid[[5]],
+              plots_scenario_general_date_model_comparison_grid[[6]],
               ncol = 3,
               bottom = legend_scenarios_date_model)
-
-grid7 <- 
-  grid.arrange(plots_scenarios_date_model_comparison_grid)
-
-ggsave("Organisatorisches/Endpräsentation/Plots_Endpräsi/grid7.png", grid7, 
-       dpi = 800, width = 8.75, height = 5.75)
 

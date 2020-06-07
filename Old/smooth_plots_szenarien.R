@@ -1,6 +1,6 @@
 
 
-library("gridExtra")
+
 
 theme_set(theme_minimal())
 
@@ -25,7 +25,7 @@ scenarios <- list(date_data,
                   date_data_temp)
 
 plots_scenarios_date_model <- list()
-plots_scenarios <- list()
+plots_scenarios_date_model_comparison <- list()
 
 
 # für jedes der 5 Szenarien Smooth-Plots-erstellen
@@ -42,7 +42,7 @@ for (i in 1:length(scenarios)) {
 
 for (j in 1:6) {
   
-  plots_scenarios[[j]] <- 
+  plots_scenarios_date_model_comparison[[j]] <- 
     ggplot() +
     geom_line(plots_scenarios_date_model[[1]][[j]]$data$fit, 
               mapping = aes(x = x,y = ty, 
@@ -70,32 +70,37 @@ for (j in 1:6) {
 
 # gemeinsame Legende speichern
 
-legend_scenarios_date_model <- get_legend(plots_scenarios[[1]])
+legend_scenarios_date_model <- 
+  get_legend(plots_scenarios_date_model_comparison[[1]])
 
 # Legende der einzelnen Plot löschen
 
 for (j in 1:6) {
-  plots_scenarios[[j]] <- plots_scenarios[[j]] + theme(legend.position = "none")
+  plots_scenarios_date_model_comparison[[j]] <- 
+    plots_scenarios_date_model_comparison[[j]] + theme(legend.position = "none")
 }
 
 
 # Plots richtig beschriften
 
-plots_scenarios[[1]] <- plots_scenarios[[1]] +
+plots_scenarios_date_model_comparison[[1]] <- 
+  plots_scenarios_date_model_comparison[[1]] +
   labs(title = "Smooth-Funktion für Datum",
        x = "Datum",
-       y = "s(Datum)") +
+       y = "") +
   theme(plot.title = element_text(hjust = 0.5)) +
   scale_x_continuous(breaks = c(17897,17928,17956,17987), 
                      labels = c("01. Jan","01. Feb",
                                 "01. Mär","01. Apr"))
 
-plots_scenarios[[3]] <- plots_scenarios[[3]] +
+plots_scenarios_date_model_comparison[[3]] <- 
+  plots_scenarios_date_model_comparison[[3]] +
   labs(title = "Lawinenwarnstufe",
        x = "", y = "") +
   theme(plot.title = element_text(hjust = 0.5))
 
-plots_scenarios[[2]] <- plots_scenarios[[2]] +
+plots_scenarios_date_model_comparison[[2]] <- 
+  plots_scenarios_date_model_comparison[[2]] +
   labs(title = "Wochentag",
        x = "", y = "") +
   theme(plot.title = element_text(hjust = 0.5)) +
@@ -105,35 +110,43 @@ plots_scenarios[[2]] <- plots_scenarios[[2]] +
                             "5" = "Fr", "6" = "Sa",
                             "7" = "So"))
 
-plots_scenarios[[4]] <- plots_scenarios[[4]] +
-  labs(title = "Temperatur",
-       x = "",
-       y = "") +
-  theme(plot.title = element_text(hjust = 0.5)) +
-  scale_x_continuous(breaks = c(-6, -4, -2, 0, 2, 4, 6))
-
-plots_scenarios[[5]] <- plots_scenarios[[5]] +
+plots_scenarios_date_model_comparison[[4]] <- 
+  plots_scenarios_date_model_comparison[[4]] +
   labs(title = "Sonneneinstrahlung",
        x = "",
        y = "") +
   theme(plot.title = element_text(hjust = 0.5)) +
-  scale_x_continuous(breaks = c(-4, -3, -2, -1, 0, 1, 2))
+  scale_x_continuous(breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1))
 
-plots_scenarios[[6]] <- plots_scenarios[[6]] +
-  labs(title = "Schneehöhe",
+plots_scenarios_date_model_comparison[[5]] <- 
+  plots_scenarios_date_model_comparison[[5]] +
+  labs(title = "Temperatur",
        x = "",
        y = "") +
   theme(plot.title = element_text(hjust = 0.5)) +
-  scale_x_continuous(breaks = c(-18, -15, -12, -9, -6, -3, 
-                                0, 3, 6, 9, 12, 15, 18))
+  scale_x_continuous(breaks = c(-5, 0, 5, 10))
+
+plots_scenarios_date_model_comparison[[6]] <- 
+  plots_scenarios_date_model_comparison[[6]] +
+  labs(title = "Neuschnee",
+       x = "",
+       y = "") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  scale_x_continuous(breaks = c(-10, 0, 10, 20, 30, 40))
+
+# Plots in der Liste die richtigen Namen geben
+
+names(plots_scenarios_date_model_comparison) <- 
+  c("date", "avalanche", "temperature", "day", "solar_radiation", "snowhight")
 
 
-grid.arrange(plots_scenarios[[1]],
-             plots_scenarios[[2]],
-             plots_scenarios[[3]],
-             plots_scenarios[[4]],
-             plots_scenarios[[5]],
-             plots_scenarios[[6]],
+plots_scenarios_date_model_comparison_grid <- 
+  arrangeGrob(plots_scenarios_date_model_comparison[[1]],
+             plots_scenarios_date_model_comparison[[2]],
+             plots_scenarios_date_model_comparison[[3]],
+             plots_scenarios_date_model_comparison[[4]],
+             plots_scenarios_date_model_comparison[[5]],
+             plots_scenarios_date_model_comparison[[6]],
              legend_scenarios_date_model,
              ncol = 3,
              layout_matrix = cbind(c(1,2,7), c(3,4,7), c(5,6,7)),

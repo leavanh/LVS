@@ -1,14 +1,15 @@
 
 
-### In dieser Datei werden die Plots für die Szenarien erstellt und verglichen
-### Für das Date Model
+### In dieser Datei werden die Plots für den Vergleich des ersten Szenarios 
+### (generelle Unterschätzung) je nach Anteil an hinzugefügten Messungen
+### erstellt
 
 
-scenarios <- list(data_general_function(0.15)$date_data,
+scenarios <- list(data_general_function(0.1)$date_data,
                   data_general_function(0.2)$date_data,
                   data_general_function(0.25)$date_data,
                   data_general_function(0.3)$date_data,
-                  data_general_function(0.35)$date_data)
+                  data_general_function(0.4)$date_data)
 
 plots_scenarios_date_model <- list()
 plots_scenarios_date_model_comparison <- list()
@@ -56,9 +57,6 @@ for (j in 1:(length(plots_scenarios_date_model[[1]])-1)) {
     labs(color = "Szenario") +
     scale_colour_brewer(palette = "Blues")
   
-  # Reihenfolge: Generell, Nächtl, Original, Unt_temp, Unt_group
-  
-  
 }
 
 
@@ -72,8 +70,8 @@ plots_scenarios_date_model_comparison[[1]] <-
        y = "") +
   theme(plot.title = element_text(hjust = 0.5)) +
   scale_x_continuous(breaks = c(17897,17928,17956,17987), 
-                     labels = c("01. Jan","01. Feb",
-                                "01. Mär","01. Apr"))
+                     labels = c("01.Jan","01.Feb",
+                                "01.Mär","01.Apr"))
 
 
 plots_scenarios_date_model_comparison[[3]] <- 
@@ -111,11 +109,12 @@ plots_scenarios_date_model_comparison[[5]] <-
 
 plots_scenarios_date_model_comparison[[6]] <- 
   plots_scenarios_date_model_comparison[[6]] +
-  labs(title = "Neuschnee",
+  labs(title = "Schneedifferenz",
        x = "",
        y = "") +
   theme(plot.title = element_text(hjust = 0.5)) +
-  scale_x_continuous(breaks = c(-10, 0, 10, 20, 30, 40))
+  scale_x_continuous(breaks = c(-10, 0, 10, 20, 30, 40)) +
+  theme(legend.position = "bottom")
 
 # Plots in der Liste den richtigen Namen geben
 
@@ -131,9 +130,9 @@ plots_scenarios_date_model_comparison_grid <-
 # gemeinsame Legende speichern
 
 legend_scenarios_date_model <- 
-  get_legend(plots_scenarios_date_model_comparison[[1]])
+  get_legend(plots_scenarios_date_model_comparison[[6]])
 
-# Legende der einzelnen Plot löschen
+# Legende der einzelnen Plots löschen
 
 for (j in 1:6) {
   plots_scenarios_date_model_comparison_grid[[j]] <- 
@@ -150,6 +149,7 @@ plots_scenarios_date_model_comparison_grid <-
               plots_scenarios_date_model_comparison_grid[[5]],
               plots_scenarios_date_model_comparison_grid[[6]],
               ncol = 3,
-              layout_matrix = cbind(c(1,2), c(3,4), c(5,6)),
-              top = "Smooth-Plots für jedes Szenario im Vergleich"
-  )
+              bottom = legend_scenarios_date_model,
+              top = "Smooth-Plots für allg. Unterschätzung je Anteil an 
+              Checkpoint-Messungen")
+

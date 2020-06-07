@@ -28,6 +28,18 @@ for (i in 1:length(scenarios)) {
   
 }
 
+# Werte für den Rug speichern
+
+day_model_raw <- data.frame(
+  time = scenarios_day_model[[1]]$model$model$num_time,
+  day = scenarios_day_model[[1]]$model$model$int_day,
+  avalanche = scenarios_day_model[[1]]$model$model$avalanche_report,
+  cloud_cover = scenarios_day_model[[1]]$model$model$cloud_cover,
+  temperature = scenarios_day_model[[1]]$model$model$temperature,
+  snow_diff = scenarios_day_model[[1]]$model$model$snow_diff,
+  date = scenarios_day_model[[1]]$model$model$int_date
+)
+
 # Farben für die Unterscheidung
 
 colors <- cbind(
@@ -90,7 +102,7 @@ theme <- theme(plot.title = element_text(hjust = 0.5),
                legend.title = element_text(size = 12),
                legend.text = element_text(size = 8))
 
-guides <- guides(color = guide_legend(ncol = 1, byrow = TRUE, 
+guides <- guides(color = guide_legend(nrow = 2, byrow = TRUE, 
                                       title.position = "top",
                                       title.hjust = 0.5))
 
@@ -115,7 +127,7 @@ plots_scenario_general_day_model_comparison[[2]] <-
 
 plots_scenario_general_day_model_comparison[[3]] <- 
   plots_scenario_general_day_model_comparison[[3]] +
-  geom_rug(data = day_model_raw, aes(x = solar_radiation)) +
+  geom_rug(data = day_model_raw, aes(x = cloud_cover)) +
   labs(title = "Bewölkung",
        x = "",
        y = "") +
@@ -143,7 +155,7 @@ plots_scenario_general_day_model_comparison[[5]] <-
 # Plots in der Liste den richtigen Namen geben
 
 names(plots_scenario_general_day_model_comparison) <- 
-  c("day", "avalanche", "solar_radiation", "temperature", "snow_diff")
+  c("day", "avalanche", "cloud_cover", "temperature", "snow_diff")
 
 
 ## Grid erstellen
@@ -170,5 +182,5 @@ plots_scenario_general_day_model_comparison_grid <-
               plots_scenario_general_day_model_comparison_grid[[3]],
               plots_scenario_general_day_model_comparison_grid[[4]],
               plots_scenario_general_day_model_comparison_grid[[5]],
-              legend_scenarios_day_model,
+              bottom = legend_scenarios_day_model,
               ncol = 3)

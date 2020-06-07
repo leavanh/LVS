@@ -102,7 +102,7 @@ theme <- theme(plot.title = element_text(hjust = 0.5),
                legend.title = element_text(size = 12),
                legend.text = element_text(size = 10))
 
-guides <- guides(color = guide_legend(ncol = 3, byrow = TRUE, 
+guides <- guides(color = guide_legend(nrow = 2, byrow = TRUE, 
                                       title.position = "left",
                                       title.hjust = 0.5))
 

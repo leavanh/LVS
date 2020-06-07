@@ -80,7 +80,7 @@ for (j in 2:(length(plots_scenarios_day_model[[1]])-1)) {
                                 "Unterschätzung nach Gruppengröße",
                                 "Nächtliche Überschätzung",
                                 "Unterschätzung bei niedrigen Temperaturen"),
-                       values = c("#756bb1", "#CC79A7", "#000000", "#009E73",
+                       values = c("#2b8cbe", "#CC79A7", "#000000", "#009E73",
                                   "#E69F00"))
   
 }
@@ -89,24 +89,36 @@ for (j in 2:(length(plots_scenarios_day_model[[1]])-1)) {
 
 # Plots richtig beschriften
 
+# Schrift und Legende für alle Plots einstellen
+
+theme <- theme(plot.title = element_text(hjust = 0.5), 
+               text = element_text(size = 10),
+               legend.position = "bottom",
+               legend.title = element_text(size = 12),
+               legend.text = element_text(size = 10))
+
+guides <- guides(color = guide_legend(ncol = 3, byrow = TRUE, 
+                                      title.position = "left",
+                                      title.hjust = 0.5))
+
 plots_scenarios_day_model_comparison[[1]] <- 
   plots_scenarios_day_model_comparison[[1]] +
   geom_rug(data = day_model_raw, aes(x = day)) +
   labs(title = "Wochentag",
        x = "", y = "") +
-  theme(plot.title = element_text(hjust = 0.5)) +
   scale_x_continuous(breaks = 1:7,
                      labels=c("1" = "Mo", "2" = "Di",
                               "3" = "Mi", "4" = "Do",
                               "5" = "Fr", "6" = "Sa",
-                              "7" = "So"))
+                              "7" = "So")) +
+  theme + guides
 
 plots_scenarios_day_model_comparison[[2]] <- 
   plots_scenarios_day_model_comparison[[2]] +
   geom_rug(data = day_model_raw, aes(x = avalanche)) +
   labs(title = "Lawinenwarnstufe",
-       x = "", y = "") +
-  theme(plot.title = element_text(hjust = 0.5))
+       x = "", y = "")  +
+  theme + guides
 
 plots_scenarios_day_model_comparison[[3]] <- 
   plots_scenarios_day_model_comparison[[3]] +
@@ -114,8 +126,8 @@ plots_scenarios_day_model_comparison[[3]] <-
   labs(title = "Bewölkung",
        x = "",
        y = "") +
-  theme(plot.title = element_text(hjust = 0.5)) +
-  scale_x_continuous(breaks = c(0, 20, 40, 60, 80, 100))
+  scale_x_continuous(breaks = c(0, 20, 40, 60, 80, 100)) +
+  theme + guides
 
 plots_scenarios_day_model_comparison[[4]] <-
   plots_scenarios_day_model_comparison[[4]] +
@@ -123,8 +135,8 @@ plots_scenarios_day_model_comparison[[4]] <-
   labs(title = "Temperatur",
        x = "",
        y = "") +
-  theme(plot.title = element_text(hjust = 0.5)) +
-  scale_x_continuous(breaks = c(-6, -4, -2, 0, 2, 4, 6))
+  scale_x_continuous(breaks = c(-6, -4, -2, 0, 2, 4, 6)) +
+  theme + guides
 
 plots_scenarios_day_model_comparison[[5]] <- 
   plots_scenarios_day_model_comparison[[5]] +
@@ -132,8 +144,8 @@ plots_scenarios_day_model_comparison[[5]] <-
   labs(title = "Schneedifferenz",
        x = "",
        y = "") +
-  theme(plot.title = element_text(hjust = 0.5)) +
-  scale_x_continuous(breaks = c(-10, 0, 10, 20, 30, 40))
+  scale_x_continuous(breaks = c(-10, 0, 10, 20, 30, 40)) +
+  theme + guides
 
 # Plots in der Liste den richtigen Namen geben
 
@@ -165,5 +177,5 @@ plots_scenarios_day_model_comparison_grid <-
               plots_scenarios_day_model_comparison_grid[[3]],
               plots_scenarios_day_model_comparison_grid[[4]],
               plots_scenarios_day_model_comparison_grid[[5]],
-              legend_scenarios_day_model,
+              bottom = legend_scenarios_day_model,
               ncol = 3)

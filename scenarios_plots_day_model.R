@@ -80,8 +80,13 @@ for (j in 2:(length(plots_scenarios_day_model[[1]])-1)) {
                                 "Unterschätzung nach Gruppengröße",
                                 "Nächtliche Überschätzung",
                                 "Unterschätzung bei niedrigen Temperaturen"),
-                       values = c("#2b8cbe", "#CC79A7", "#000000", "#009E73",
-                                  "#E69F00"))
+                       values = c("Generelle Unterschätzung von 25%" = "#2b8cbe", 
+                                  "Nächtliche Überschätzung" = "#009E73", 
+                                  "Original" = "#000000", 
+                                  "Unterschätzung bei niedrigen Temperaturen" = 
+                                    "#CC79A7",
+                                  "Unterschätzung nach Gruppengröße" = 
+                                    "#E69F00"))
   
 }
 

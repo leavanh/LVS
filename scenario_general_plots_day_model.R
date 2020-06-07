@@ -40,13 +40,6 @@ day_model_raw <- data.frame(
   date = scenarios_day_model[[1]]$model$model$int_date
 )
 
-# Farben für die Unterscheidung
-
-colors <- cbind(
-  pct = c("Original", "10%", "20%", "30%", "40%", "50%"),
-  color = c("#000000", "#12394e", "#20698e", "#2b8cbe", "#4da8d7", "#7dbfe2")
-)
-
 
 # für jede Kovariable gemeinsame Plots erstellen
 # endet bei length(..)-1, da letztes Objekt in der Liste "grid" ist
@@ -87,8 +80,13 @@ for (j in 1:(length(plots_scenario_general_day_model[[1]])-2)) {
               size = 1.0) +
     scale_y_continuous(limits = c(0,1)) +
     labs(color = "Anteil") +
-    scale_color_manual(breaks = colors[,1],
-                       values = colors[order(colors[,1]),2])
+    scale_color_manual(breaks = c("Original", "10%", "20%", "30%", "40%", "50%"),
+                       values = c("Original" = "#000000", 
+                                  "10%" = "#12394e", 
+                                  "20%" = "#20698e", 
+                                  "30%" = "#2b8cbe", 
+                                  "40%" = "#4da8d7", 
+                                  "50%" = "#7dbfe2"))
   
 }
 

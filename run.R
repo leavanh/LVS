@@ -166,6 +166,8 @@ zlg_beide_bereinigt_sums$sum[zlg_beide_bereinigt_sums$type == "SG_gesamt"] /
 (zlg_beide_bereinigt_sums$sum[zlg_beide_sums$type == "gesamt"] /
   zlg_beide_bereinigt_sums$sum[zlg_beide_sums$type == "checkpoint"]) - 1
 
+unterschaetzung_plot
+
 
 ## Plots
 

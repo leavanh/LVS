@@ -5,7 +5,7 @@
 
 ## Anzahl Studentenmessungen vs Checkpointmessungen
 
-unterscheatzung_plot <- 
+unterschaetzung_plot <- 
 ggplot(data = filter(zlg_beide_bereinigt_sums, 
                      type %in% c("checkpoint", "gesamt"))) +
   geom_bar(aes(x = type, y = sum), stat = "identity") +

@@ -17,11 +17,11 @@ for (j in 1:(length(plots_scenarios_date_model[[1]])-1)) {
     geom_line(plots_scenarios_date_model[[2]][[j]]$data, 
               mapping = aes(x = x, y = plogis(fit + intercept), 
                             color = "Generelle Unterschätzung von 25%"),
-              size = 1.05) +
+              size = 1.0) +
     geom_line(plots_scenarios_date_model[[1]][[j]]$data, 
               mapping = aes(x = x, y = plogis(fit + intercept), 
                             color = "Original"), 
-              size = 1.05) +
+              size = 1.0) +
     scale_y_continuous(limits = c(0,1)) +
     labs(color = "Szenario") +
     scale_color_manual(breaks=c("Original",

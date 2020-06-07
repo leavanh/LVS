@@ -31,10 +31,10 @@ for (i in 1:length(scenarios)) {
 day_model_raw <- data.frame(
   time = scenarios_day_model[[1]]$model$model$num_time,
   day = scenarios_day_model[[1]]$model$model$int_day,
-  avalanche = scenarios_day_model[[1]]$mode$model$avalanche_report,
-  cloud_cover = scenarios_day_model[[1]]$mode$model$cloud_cover,
-  temperature = scenarios_day_model[[1]]$mode$model$temperature,
-  snow_diff = scenarios_day_model[[1]]$mode$model$snow_diff,
+  avalanche = scenarios_day_model[[1]]$model$model$avalanche_report,
+  cloud_cover = scenarios_day_model[[1]]$model$model$cloud_cover,
+  temperature = scenarios_day_model[[1]]$model$model$temperature,
+  snow_diff = scenarios_day_model[[1]]$model$model$snow_diff,
   date = scenarios_day_model[[1]]$model$model$int_date
 )
 

@@ -1,4 +1,6 @@
 
+# für den Vergleich vom Original mit Szenario 1 (25%)
+# erst alle Szenarien durchlaufen las
 
 for (j in 2:(length(plots_scenarios_day_model[[1]])-1)) {
   
@@ -28,86 +30,105 @@ for (j in 2:(length(plots_scenarios_day_model[[1]])-1)) {
 
 # Plots richtig beschriften
 
-plots_scenarios_day_model_comparison[[1]] <- 
-  plots_scenarios_day_model_comparison[[1]] +
-  geom_rug(data = day_model_raw, aes(x = day)) +
+# Schrift und Legende für alle Plots einstellen
+
+theme <- theme(plot.title = element_text(hjust = 0.5), 
+               text = element_text(size = 10),
+               legend.position = "bottom",
+               legend.title = element_text(size = 12),
+               legend.text = element_text(size = 10))
+
+guides <- guides(color = guide_legend(ncol = 3, byrow = TRUE, 
+                                      title.position = "left",
+                                      title.hjust = 0.5))
+
+plots_scenarios_date_model_comparison[[6]] <- 
+  plots_scenarios_date_model_comparison[[6]] +
+  geom_rug(data = date_model_raw, aes(x = date)) +
+  labs(title = "Datum",
+       x = "", y = "") +
+  scale_x_continuous(breaks = c(17897,17928,17956,17987), 
+                     labels = c("01.Jan","01.Feb",
+                                "01.Mar","01.Apr")) + 
+  theme + guides
+
+plots_scenarios_date_model_comparison[[1]] <- 
+  plots_scenarios_date_model_comparison[[1]] +
+  geom_rug(data = date_model_raw, aes(x = day)) +
   labs(title = "Wochentag",
        x = "", y = "") +
-  theme(plot.title = element_text(hjust = 0.5), text = element_text(size = 11)) +
   scale_x_continuous(breaks = 1:7,
                      labels=c("1" = "Mo", "2" = "Di",
                               "3" = "Mi", "4" = "Do",
                               "5" = "Fr", "6" = "Sa",
-                              "7" = "So"))
+                              "7" = "So")) +
+  theme + guides
 
-plots_scenarios_day_model_comparison[[2]] <- 
-  plots_scenarios_day_model_comparison[[2]] +
-  geom_rug(data = day_model_raw, aes(x = avalanche)) +
+plots_scenarios_date_model_comparison[[2]] <- 
+  plots_scenarios_date_model_comparison[[2]] +
+  geom_rug(data = date_model_raw, aes(x = avalanche)) +
   labs(title = "Lawinenwarnstufe",
        x = "", y = "") +
-  theme(plot.title = element_text(hjust = 0.5), text = element_text(size = 11))
+  theme + guides
 
-plots_scenarios_day_model_comparison[[3]] <- 
-  plots_scenarios_day_model_comparison[[3]] +
-  geom_rug(data = day_model_raw, aes(x = solar_radiation)) +
-  labs(title = "Sonneneinstrahlung",
-       x = "",
-       y = "") +
-  theme(plot.title = element_text(hjust = 0.5), text = element_text(size = 11)) +
-  scale_x_continuous(breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1))
-
-plots_scenarios_day_model_comparison[[4]] <-
-  plots_scenarios_day_model_comparison[[4]] +
-  geom_rug(data = day_model_raw, aes(x = temperature)) +
+plots_scenarios_date_model_comparison[[3]] <- 
+  plots_scenarios_date_model_comparison[[3]] +
+  geom_rug(data = date_model_raw, aes(x = cloud_cover)) +
   labs(title = "Bewölkung",
        x = "",
        y = "") +
-  theme(plot.title = element_text(hjust = 0.5), text = element_text(size = 11)) +
-  scale_x_continuous(breaks = c(0, 20, 40, 60, 80, 100))
+  scale_x_continuous(breaks = c(0, 20, 40, 60, 80, 100)) +
+  theme + guides
 
-plots_scenarios_day_model_comparison[[5]] <- 
-  plots_scenarios_day_model_comparison[[5]] +
-  geom_rug(data = day_model_raw, aes(x = snow_diff)) +
+plots_scenarios_date_model_comparison[[4]] <- 
+  plots_scenarios_date_model_comparison[[4]] +
+  geom_rug(data = date_model_raw, aes(x = temperature)) +
+  labs(title = "Temperatur",
+       x = "",
+       y = "") +
+  scale_x_continuous(breaks = c(-5, 0, 5, 10)) +
+  theme + guides
+
+plots_scenarios_date_model_comparison[[5]] <- 
+  plots_scenarios_date_model_comparison[[5]] +
+  geom_rug(data = date_model_raw, aes(x = snow_diff)) +
   labs(title = "Schneedifferenz",
        x = "",
        y = "") +
-  theme(plot.title = element_text(hjust = 0.5), text = element_text(size = 11)) +
-  scale_x_continuous(breaks = c(-10, 0, 10, 20, 30, 40))
+  scale_x_continuous(breaks = c(-10, 0, 10, 20, 30, 40)) +
+  theme + guides
 
 # Plots in der Liste den richtigen Namen geben
 
-names(plots_scenarios_day_model_comparison) <- 
-  c("day", "avalanche", "solar_radiation", "temperature", "snowhight")
+names(plots_scenarios_date_model_comparison) <- 
+  c("day", "avalanche", "cloud_cover", "temperature", "snow_diff", "date")
 
 
 ## Grid erstellen
 
-plots_scenarios_day_model_comparison_grid <- 
-  plots_scenarios_day_model_comparison
+plots_scenarios_date_model_comparison_grid <- 
+  plots_scenarios_date_model_comparison
 
 # gemeinsame Legende speichern
 
-legend_scenarios_day_model <- 
-  get_legend(plots_scenarios_day_model_comparison[[1]])
+legend_scenarios_date_model <- 
+  get_legend(plots_scenarios_date_model_comparison[[6]])
 
-# Legende der einzelnen Plots löschen
+# Legende der einzelnen Plot löschen
 
-for (j in 1:(length(plots_scenarios_day_model[[1]])-2)) {
-  plots_scenarios_day_model_comparison_grid[[j]] <- 
-    plots_scenarios_day_model_comparison_grid[[j]] + 
+for (j in 1:6) {
+  plots_scenarios_date_model_comparison_grid[[j]] <- 
+    plots_scenarios_date_model_comparison_grid[[j]] + 
     theme(legend.position = "none")
 }
 
-plots_scenarios_day_model_comparison_grid <- 
-  arrangeGrob(plots_scenarios_day_model_comparison_grid[[1]],
-              plots_scenarios_day_model_comparison_grid[[2]],
-              plots_scenarios_day_model_comparison_grid[[3]],
-              plots_scenarios_day_model_comparison_grid[[4]],
-              plots_scenarios_day_model_comparison_grid[[5]],
-              legend_scenarios_day_model,
-              ncol = 3)
-grid6 <- 
-  grid.arrange(plots_scenarios_day_model_comparison_grid)
 
-ggsave("Organisatorisches/Endpräsentation/Plots_Endpräsi/grid6.png", grid6, 
-       dpi = 800, width = 8.75, height = 5.75)
+plots_scenarios_date_model_comparison_grid <- 
+  arrangeGrob(plots_scenarios_date_model_comparison_grid[[1]],
+              plots_scenarios_date_model_comparison_grid[[2]],
+              plots_scenarios_date_model_comparison_grid[[3]],
+              plots_scenarios_date_model_comparison_grid[[4]],
+              plots_scenarios_date_model_comparison_grid[[5]],
+              plots_scenarios_date_model_comparison_grid[[6]],
+              ncol = 3,
+              bottom = legend_scenarios_date_model)

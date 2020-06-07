@@ -23,7 +23,7 @@ for (i in 1:length(scenarios)) {
   
   scenarios_date_model[[i]] <- scenarios[[i]] %>% date_model_function()
   
-  plots_scenarios_date_model[[i]] <- scenarios_date_model  %>%
+  plots_scenarios_date_model[[i]] <- scenarios_date_model[[i]]  %>%
                                           plots_date_model()
   
 }
@@ -36,7 +36,7 @@ date_model_raw <- data.frame(
   cloud_cover = scenarios_date_model[[1]]$model$model$cloud_cover_daily,
   temperature = scenarios_date_model[[1]]$model$model$temperature,
   snow_diff = scenarios_date_model[[1]]$model$model$snow_diff,
-  date = scenarios_date_model$model[[1]]$model$int_date
+  date = scenarios_date_model[[1]]$model$model$int_date
 )
 
 # für jede Kovariable gemeinsame Plots erstellen

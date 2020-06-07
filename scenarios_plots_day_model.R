@@ -26,11 +26,13 @@ for (i in 1:length(scenarios)) {
   
 }
 
+# Werte für den Rug speichern
+
 day_model_raw <- data.frame(
   time = scenarios_day_model[[1]]$model$model$num_time,
   day = scenarios_day_model[[1]]$model$model$int_day,
   avalanche = scenarios_day_model[[1]]$mode$model$avalanche_report,
-  solar_radiation = scenarios_day_model[[1]]$mode$model$solar_radiation_prop,
+  cloud_cover = scenarios_day_model[[1]]$mode$model$cloud_cover,
   temperature = scenarios_day_model[[1]]$mode$model$temperature,
   snow_diff = scenarios_day_model[[1]]$mode$model$snow_diff,
   date = scenarios_day_model[[1]]$model$model$int_date
@@ -54,23 +56,23 @@ for (j in 2:(length(plots_scenarios_day_model[[1]])-1)) {
     geom_line(plots_scenarios_day_model[[2]][[j-1]]$data, 
               mapping = aes(x = x, y = plogis(fit + intercept), 
                             color = "Generelle Unterschätzung von 25%"),
-              size = 1.05) +
+              size = 1.0) +
     geom_line(plots_scenarios_day_model[[3]][[j-1]]$data, 
               mapping = aes(x = x, y = plogis(fit + intercept), 
                             color = "Unterschätzung nach Gruppengröße"),
-              size = 1.05) +
+              size = 1.0) +
     geom_line(plots_scenarios_day_model[[4]][[j-1]]$data, 
               mapping = aes(x = x, y = plogis(fit + intercept),
                             color = "Nächtliche Überschätzung"),
-              size = 1.05) +
+              size = 1.0) +
     geom_line(plots_scenarios_day_model[[5]][[j-1]]$data, 
               mapping = aes(x = x, y = plogis(fit + intercept),
                             color = "Unterschätzung bei niedrigen Temperaturen"),
-              size = 1.05) +
+              size = 1.0) +
     geom_line(plots_scenarios_day_model[[1]][[j-1]]$data, 
               mapping = aes(x = x, y = plogis(fit + intercept), 
                             color = "Original"),
-              size = 1.05) +
+              size = 1.0) +
     scale_y_continuous(limits = c(0,0.5)) +
     labs(color = "Szenario") +
     scale_color_manual(breaks=c("Original",
@@ -108,7 +110,7 @@ plots_scenarios_day_model_comparison[[2]] <-
 
 plots_scenarios_day_model_comparison[[3]] <- 
   plots_scenarios_day_model_comparison[[3]] +
-  geom_rug(data = day_model_raw, aes(x = solar_radiation)) +
+  geom_rug(data = day_model_raw, aes(x = cloud_cover)) +
   labs(title = "Bewölkung",
        x = "",
        y = "") +
@@ -136,7 +138,7 @@ plots_scenarios_day_model_comparison[[5]] <-
 # Plots in der Liste den richtigen Namen geben
 
 names(plots_scenarios_day_model_comparison) <- 
-  c("day", "avalanche", "solar_radiation", "temperature", "snowhight")
+  c("day", "avalanche", "cloud_cover", "temperature", "snow_diff")
 
 
 ## Grid erstellen

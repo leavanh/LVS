@@ -21,22 +21,22 @@ plots_scenarios_date_model_comparison <- list()
 
 for (i in 1:length(scenarios)) {
   
-  scenarios_date_model <- scenarios[[i]] %>% date_model_function()
+  scenarios_date_model[[i]] <- scenarios[[i]] %>% date_model_function()
   
   plots_scenarios_date_model[[i]] <- scenarios_date_model  %>%
                                           plots_date_model()
   
 }
 
-# Werte für den Rug später speichern
+# Werte für den Rug speichern
 
 date_model_raw <- data.frame(
-  day = scenarios_date_model$model$model$int_day,
-  avalanche = scenarios_date_model$model$model$avalanche_report,
-  solar_radiation = scenarios_date_model$model$model$solar_radiation_prop,
-  temperature = scenarios_date_model$model$model$temperature,
-  snow_diff = scenarios_date_model$model$model$snow_diff,
-  date = scenarios_date_model$model$model$int_date
+  day = scenarios_date_model[[1]]$model$model$int_day,
+  avalanche = scenarios_date_model[[1]]$model$model$avalanche_report,
+  cloud_cover = scenarios_date_model[[1]]$model$model$cloud_cover_daily,
+  temperature = scenarios_date_model[[1]]$model$model$temperature,
+  snow_diff = scenarios_date_model[[1]]$model$model$snow_diff,
+  date = scenarios_date_model$model[[1]]$model$int_date
 )
 
 # für jede Kovariable gemeinsame Plots erstellen
@@ -135,7 +135,7 @@ plots_scenarios_date_model_comparison[[2]] <-
 
 plots_scenarios_date_model_comparison[[3]] <- 
   plots_scenarios_date_model_comparison[[3]] +
-  geom_rug(data = date_model_raw, aes(x = solar_radiation)) +
+  geom_rug(data = date_model_raw, aes(x = cloud_cover)) +
   labs(title = "Bewölkung",
        x = "",
        y = "") +
@@ -163,7 +163,7 @@ plots_scenarios_date_model_comparison[[5]] <-
 # Plots in der Liste den richtigen Namen geben
 
 names(plots_scenarios_date_model_comparison) <- 
-  c("date", "avalanche", "temperature", "day", "solar_radiation", "snowhight")
+  c("day", "avalanche", "cloud_cover", "temperature", "snow_diff", "date")
 
 
 ## Grid erstellen
@@ -195,9 +195,4 @@ plots_scenarios_date_model_comparison_grid <-
               ncol = 3,
               bottom = legend_scenarios_date_model)
 
-grid3 <- 
-  grid.arrange(plots_scenarios_date_model_comparison_grid)
-
-ggsave("Organisatorisches/Endpräsentation/Plots_Endpräsi/grid3.png", grid3, 
-       dpi = 800, width = 8.75, height = 5.75)
 

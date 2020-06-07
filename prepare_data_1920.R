@@ -235,55 +235,55 @@ zlg_beide_bereinigt <- zlg_beide
 checkpoint_stats_bereinigt <- checkpoint_stats_grouped
 
 
-# spielende Kinder aus manueller Zählung entfernen
-# Zeilen mit Kinder auswählen und Werte auf Null setzen
-
-zlg_beide_bereinigt[135:140, -c(1,11)] <- 0
-
-checkpoint_stats_bereinigt[c(33,34), -c(1,3)] <- 0
-
-# Hund entfernen
-
-zlg_beide_bereinigt[213, -c(1,11)] <- 0
-
-checkpoint_stats_bereinigt[61, -c(1,3)] <- 0
-
-# "Gerät erkennt erst "LVS erst nicht erkannt, dann doch"
-# -> passt nicht zu den Daten vom Checkpoint
-
-
-# Gerät piepst drei mal bei zwei Personen
-
-zlg_beide_bereinigt[448, -c(1,11)] <- 0
-
-checkpoint_stats_bereinigt[84, -c(1,3)] <- 2
-
-
-# Gerät piepst durchgängig, da eine Person sich Schuhe auszieht
-
-zlg_beide_bereinigt[482:484, -c(1,11)] <- 0
-
-checkpoint_stats_bereinigt[94:97, -c(1,3)] <- 0
-
-# Gerät piepst zwei mal, Person macht vor Gerät Foto
-
-zlg_beide_bereinigt[488, -c(1,11)] <- 0
-
-checkpoint_stats_bereinigt[98, -c(1,3)] <- 0
-
-
-
-## Über gesamten Zeitraum, bereinigter Datensatz: 
+# # spielende Kinder aus manueller Zählung entfernen
+# # Zeilen mit Kinder auswählen und Werte auf Null setzen
+# 
+# zlg_beide_bereinigt[135:140, -c(1,11)] <- 0
+# 
+# checkpoint_stats_bereinigt[c(33,34), -c(1,3)] <- 0
+# 
+# # Hund entfernen
+# 
+# zlg_beide_bereinigt[213, -c(1,11)] <- 0
+# 
+# checkpoint_stats_bereinigt[61, -c(1,3)] <- 0
+# 
+# # "Gerät erkennt erst "LVS erst nicht erkannt, dann doch"
+# # -> passt nicht zu den Daten vom Checkpoint
+# 
+# 
+# # Gerät piepst drei mal bei zwei Personen
+# 
+# zlg_beide_bereinigt[448, -c(1,11)] <- 0
+# 
+# checkpoint_stats_bereinigt[84, -c(1,3)] <- 2
+# 
+# 
+# # Gerät piepst durchgängig, da eine Person sich Schuhe auszieht
+# 
+# zlg_beide_bereinigt[482:484, -c(1,11)] <- 0
+# 
+# checkpoint_stats_bereinigt[94:97, -c(1,3)] <- 0
+# 
+# # Gerät piepst zwei mal, Person macht vor Gerät Foto
+# 
+# zlg_beide_bereinigt[488, -c(1,11)] <- 0
+# 
+# checkpoint_stats_bereinigt[98, -c(1,3)] <- 0
+# 
+# 
+# 
+## Über gesamten Zeitraum, bereinigter Datensatz:
 
 # Passenden Dataframe mit Summen für Plot erstellen
 
-zlg_beide_bereinigt_sums <- 
-  data.frame(type = colnames(zlg_beide_bereinigt)[-c(1,11)], 
-             sum = apply(zlg_beide_bereinigt[,-c(1,11)], 2, sum), 
+zlg_beide_bereinigt_sums <-
+  data.frame(type = colnames(zlg_beide_bereinigt)[-c(1,11)],
+             sum = apply(zlg_beide_bereinigt[,-c(1,11)], 2, sum),
              row.names = NULL)
 zlg_beide_bereinigt_sums$type <- as.character(zlg_beide_bereinigt_sums$type)
 
-zlg_beide_bereinigt_sums <- rbind(zlg_beide_bereinigt_sums, 
+zlg_beide_bereinigt_sums <- rbind(zlg_beide_bereinigt_sums,
           c("checkpoint", as.numeric(sum(checkpoint_stats_bereinigt$erfasst))))
 
 zlg_beide_bereinigt_sums$type <- as.factor(zlg_beide_bereinigt_sums$type)

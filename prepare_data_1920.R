@@ -71,8 +71,8 @@ checkpoint_stats <- rbind(checkpoint_stats_27, checkpoint_stats_28)
 
 # NAs zu 0 machen
 
-zaehlung_lvs_check_27[is.na(zaehlung_lvs_check_27)] <- 0
-zaehlung_lvs_check_28[is.na(zaehlung_lvs_check_28)] <- 0
+zaehlung_lvs_check_27[is.na(zaehlung_lvs_check_27)] <- as.character(0)
+zaehlung_lvs_check_28[is.na(zaehlung_lvs_check_28)] <- as.character(0)
 
 # Zählungen zu numerischen Vektoren machen
 # (Warnmeldung wird im nächsten Schritt gelöst)

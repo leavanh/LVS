@@ -117,7 +117,9 @@ plots_scenarios_date_model_comparison[[6]] <-
   scale_x_continuous(breaks = c(17897,17928,17956,17987), 
                      labels = c("01.Jan","01.Feb",
                                 "01.Mar","01.Apr")) + 
-  theme + guides
+  theme + guides +
+  annotate("rect", xmin = 17903, xmax = 17911, ymin = 0, ymax = 0.5, 
+           fill = "white", alpha = .8)
 
 plots_scenarios_date_model_comparison[[1]] <- 
   plots_scenarios_date_model_comparison[[1]] +

@@ -58,13 +58,14 @@ date_snowhight <- ggplot(date_data) +
                      labels = c("01.Jan",
                                 "01.Feb",
                                 "01.Mar",
-                                "01.Apr"))
+                                "01.Apr")) +
+  annotate("rect", xmin = 17903, xmax = 17911, ymin = 0, ymax = 220, 
+           fill = "white", alpha = .8)
 
 # Datum und Schneedifferenz
 
 date_snowdiff <- ggplot(date_data) +
   geom_line(aes(int_date, snow_diff)) +
-  geom_hline(yintercept = 0, linetype = 'dotted') +
   xlab("Datum") +
   ylab("Schneedifferenz zum Vortag(in cm)") +
   scale_y_continuous(limits = c(-15, 45)) +
@@ -72,20 +73,25 @@ date_snowdiff <- ggplot(date_data) +
                      labels = c("01.Jan",
                                 "01.Feb",
                                 "01.Mar",
-                                "01.Apr"))
+                                "01.Apr")) +
+  annotate("rect", xmin = 17903, xmax = 17911, ymin = -10, ymax = 45, 
+           fill = "white", alpha = .8) +
+  geom_hline(yintercept = 0, linetype = 'dotted')
 
 # Datum und Temperatur
 
 date_temperature <- ggplot(date_data) +
-  geom_line(aes(int_date, temperature)) +
-  geom_hline(yintercept = 0, linetype = 'dotted') +
+  geom_line(aes(int_date, temperature))+
   xlab("Datum") +
   ylab("Temperatur (in °C)") +
   scale_x_continuous(breaks = c(17897,17928,17956,17987), 
                      labels = c("01.Jan",
                                 "01.Feb",
                                 "01.Mar",
-                                "01.Apr"))
+                                "01.Apr")) +
+  annotate("rect", xmin = 17903, xmax = 17911, ymin = -8, ymax = 5, 
+           fill = "white", alpha = .8) +
+  geom_hline(yintercept = 0, linetype = 'dotted') 
 
 # Datum und Bewölkung
 
@@ -97,7 +103,9 @@ date_cloud_cover <- ggplot(date_data) +
                      labels = c("01.Jan",
                                 "01.Feb",
                                 "01.Mar",
-                                "01.Apr"))
+                                "01.Apr")) +
+  annotate("rect", xmin = 17903, xmax = 17911, ymin = 0, ymax = 100, 
+           fill = "white", alpha = .8)
 
 # Datum und Position
 

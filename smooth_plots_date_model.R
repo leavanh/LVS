@@ -66,7 +66,9 @@ date_grid <- plot_list[[1]] +
                 theme(plot.title = element_text(hjust = 0.5)) +
                 scale_x_continuous(breaks = c(17897,17928,17956,17987), 
                                    labels = c("01. Jan","01. Feb",
-                                              "01. Mär","01. Apr"))
+                                              "01. Mär","01. Apr")) +
+  annotate("rect", xmin = 17903, xmax = 17911, ymin = 0, ymax = 0.5, 
+           fill = "white", alpha = .8)
 
 date_smooth <- plot_list[[1]] +
                   labs(title = "glatte Funktion für Datum",
@@ -75,7 +77,9 @@ date_smooth <- plot_list[[1]] +
                   theme(plot.title = element_text(hjust = 0.5)) +
                   scale_x_continuous(breaks = c(17897,17928,17956,17987), 
                                      labels = c("01.Jan","01.Feb",
-                                                "01.Mär","01.Apr"))
+                                                "01.Mär","01.Apr")) +
+  annotate("rect", xmin = 17903, xmax = 17911, ymin = 0, ymax = 0.5, 
+           fill = "white", alpha = .8)
   
 
 

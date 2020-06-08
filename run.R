@@ -17,7 +17,7 @@ library("readxl") # zum Einlesen von Excel-Dateien
 
 ## Theme (Ästhetik) der Plots festsetzen
 
-theme_set(theme_minimal() + theme(legend.position = "top"))
+theme_set(theme_classic() + theme(legend.position = "top"))
 
 
 ## Daten laden

@@ -116,13 +116,7 @@ erf_gruppe_abs_plot <-
     text = element_text(size= 15)) +
   #scale_fill_discrete(name = NULL, labels = c("erfasst", "nicht erfasst"))
   scale_fill_manual(name = NULL, labels = c("Erfasst", "Nicht Erfasst"), 
-                    values = c("#993300", "antiquewhite4")) +
-  theme(axis.line = element_line(colour = "black"),
-        panel.grid.major = element_blank(),
-        panel.grid.minor = element_blank(),
-        panel.border = element_blank(),
-        panel.background = element_blank())
-
+                    values = c("#993300", "antiquewhite4"))
 
 #Verhältnis der Gruppengröße
 

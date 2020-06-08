@@ -77,10 +77,8 @@ zaehlung_lvs_check_28[is.na(zaehlung_lvs_check_28)] <- as.character(0)
 # Zählungen zu numerischen Vektoren machen
 # (Warnmeldung wird im nächsten Schritt gelöst)
 
-zaehlung_lvs_check_27[, 2:5] <- 
-  as.numeric(unlist(zaehlung_lvs_check_27[, 2:5]))
-zaehlung_lvs_check_28[, 2:5] <- 
-  as.numeric(unlist(zaehlung_lvs_check_28[, 2:5]))
+zaehlung_lvs_check_27[,2:5] <- apply(zaehlung_lvs_check_27[,2:5], c(2), as.numeric)
+zaehlung_lvs_check_28[, 2:5] <- apply(zaehlung_lvs_check_28[,2:5], c(2), as.numeric)
 
 # restliche NAs entfernen
 

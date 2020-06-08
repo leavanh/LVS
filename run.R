@@ -206,37 +206,53 @@ data_general <- data_general_function(0.25)
 
 date_model_general <- date_model_function(data_general$date_data)
 date_model_general$summary # Übersicht (mit Signifikanz)
-plogis(date_model_general$summary$p.coeff) # parametrische Effekt
+plogis(date_model_general$summary$p.coeff[1]) # nicht Ferientag
+plogis(date_model_general$summary$p.coeff[1] +
+         date_model_general$summary$p.coeff[2]) # Ferientag
 
 day_model_general <- day_model_function(data_general$data)
 day_model_general$summary # Übersicht (mit Signifikanz)
-plogis(day_model_general$summary$p.coeff) # parametrische Effekt
+plogis(day_model_general$summary$p.coeff[1]) # nicht Ferientag
+plogis(day_model_general$summary$p.coeff[1] +
+         day_model_general$summary$p.coeff[2]) # Ferientag
 
 
 date_model_group <- date_model_function(date_data_group)
 date_model_group$summary # Übersicht (mit Signifikanz)
-plogis(date_model_group$summary$p.coeff) # parametrische Effekt
+plogis(date_model_group$summary$p.coeff[1]) # nicht Ferientag
+plogis(date_model_group$summary$p.coeff[1] +
+         date_model_group$summary$p.coeff[2]) # Ferientag
 
 day_model_group <- day_model_function(min_data_group)
 day_model_group$summary # Übersicht (mit Signifikanz)
-plogis(day_model_group$summary$p.coeff) # parametrische Effekt
+plogis(day_model_group$summary$p.coeff[1]) # nicht Ferientag
+plogis(day_model_group$summary$p.coeff[1] +
+         day_model_group$summary$p.coeff[2]) # Ferientag
 
 
 date_model_night <- date_model_function(date_data_night)
 date_model_night$summary # Übersicht (mit Signifikanz)
-plogis(date_model_night$summary$p.coeff) # parametrische Effekt
+plogis(date_model_night$summary$p.coeff[1]) # nicht Ferientag
+plogis(date_model_night$summary$p.coeff[1] +
+         date_model_night$summary$p.coeff[2]) # Ferientag
 
 day_model_night <- day_model_function(min_data_night)
 day_model_night$summary # Übersicht (mit Signifikanz)
-plogis(day_model_night$summary$p.coeff) # parametrische Effekt
+plogis(day_model_night$summary$p.coeff[1]) # nicht Ferientag
+plogis(day_model_night$summary$p.coeff[1] +
+         day_model_night$summary$p.coeff[2]) # Ferientag
 
 date_model_temp <- date_model_function(date_data_temp)
 date_model_temp$summary # Übersicht (mit Signifikanz)
-plogis(date_model_temp$summary$p.coeff) # parametrische Effekt
+plogis(date_model_temp$summary$p.coeff[1]) # nicht Ferientag
+plogis(date_model_temp$summary$p.coeff[1] +
+         date_model_temp$summary$p.coeff[2]) # Ferientag
 
 day_model_temp <- day_model_function(min_data_temp)
 day_model_temp$summary # Übersicht (mit Signifikanz)
-plogis(day_model_temp$summary$p.coeff) # parametrische Effekt
+plogis(day_model_temp$summary$p.coeff[1]) # nicht Ferientag
+plogis(day_model_temp$summary$p.coeff[1] +
+         day_model_temp$summary$p.coeff[2]) # Ferientag
 
 # Möglichkeiten das Modell zu "checken"
 # Passen die Basis-Funktionen? Gibt es Autocorrelation? ...

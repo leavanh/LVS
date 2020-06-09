@@ -7,8 +7,7 @@ day_model_function <- function(
   
 # time wird als Zahl umcodiert
   
-min_data_noNA$num_time <- as.numeric(min_data_noNA$time + hours(1)) # 1h extra 
-# wegen timezone
+min_data_noNA$num_time <- as.numeric(min_data_noNA$time)
   
 ## Modell
 

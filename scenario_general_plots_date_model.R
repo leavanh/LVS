@@ -5,39 +5,22 @@
 ### erstellt
 
 
-scenarios <- list(date_data_noNA,
-                  data_general_function(0.1)$date_data,
-                  data_general_function(0.2)$date_data,
-                  data_general_function(0.3)$date_data,
-                  data_general_function(0.4)$date_data,
-                  data_general_function(0.5)$date_data)
-
-
-scenarios_date_model <- list()
-plots_scenario_general_date_model <- list()
-plots_scenario_general_date_model_comparison <- list()
-
-
-# für jedes der Szenarien Smooth-Plots-erstellen
-
-for (i in 1:length(scenarios)) {
+date_model_general_comparison_function <- function(
+  plots_scenario_general_date_model
+) 
+{
   
-  scenarios_date_model[[i]] <- scenarios[[i]] %>% date_model_function()
-  
-  plots_scenario_general_date_model[[i]] <- scenarios_date_model[[i]]  %>%
-    plots_date_model()
-  
-}
+  plots_scenario_general_date_model_comparison <- list()
 
 # Werte für den Rug später speichern
 
 date_model_raw <- data.frame(
-  day = scenarios_date_model[[1]]$model$model$int_day,
-  avalanche = scenarios_date_model[[1]]$model$model$avalanche_report,
-  cloud_cover = scenarios_date_model[[1]]$model$model$cloud_cover_daily,
-  temperature = scenarios_date_model[[1]]$model$model$temperature,
-  snow_diff = scenarios_date_model[[1]]$model$model$snow_diff,
-  date = scenarios_date_model[[1]]$model$model$int_date
+  day = date_model$model$model$int_day,
+  avalanche = date_model$model$model$avalanche_report,
+  cloud_cover = date_model$model$model$cloud_cover_daily,
+  temperature = date_model$model$model$temperature,
+  snow_diff = date_model$model$model$snow_diff,
+  date = date_model$model$model$int_date
 )
 
 
@@ -198,3 +181,16 @@ plots_scenario_general_date_model_comparison_grid <-
               ncol = 3,
               bottom = legend_scenarios_date_model)
 
+plots_date_model_comparison_list <- list(
+  day = plots_scenario_general_date_model_comparison[[1]],
+  avalanche = plots_scenario_general_date_model_comparison[[2]],
+  cloud_cover = plots_scenario_general_date_model_comparison[[3]],
+  temperature = plots_scenario_general_date_model_comparison[[4]],
+  snow_diff = plots_scenario_general_date_model_comparison[[5]],
+  date = plots_scenario_general_date_model_comparison[[6]],
+  grid = plots_scenario_general_date_model_comparison_grid
+)
+
+return(plots_date_model_comparison_list)
+
+}

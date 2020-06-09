@@ -3,39 +3,23 @@
 ### In dieser Datei werden die Plots für die Szenarien erstellt und verglichen
 ### Für das Day Model
 
+day_model_comparison_plots_function <- function(
+  plots_scenarios_day_model
+)
+{
 
-scenarios <- list(min_data_noNA,
-                  data_general_function(0.25)$data,
-                  min_data_group,
-                  min_data_night,
-                  min_data_temp)
-
-scenarios_day_model <- list()
-plots_scenarios_day_model <- list()
 plots_scenarios_day_model_comparison <- list()
-
-
-# für jedes der 5 Szenarien Smooth-Plots erstellen
-
-for (i in 1:length(scenarios)) {
-  
-  scenarios_day_model[[i]] <- scenarios[[i]] %>% day_model_function()
-  
-  plots_scenarios_day_model[[i]] <- scenarios_day_model[[i]]  %>%
-    plots_day_model()
-  
-}
 
 # Werte für den Rug speichern
 
 day_model_raw <- data.frame(
-  time = scenarios_day_model[[1]]$model$model$num_time,
-  day = scenarios_day_model[[1]]$model$model$int_day,
-  avalanche = scenarios_day_model[[1]]$model$model$avalanche_report,
-  cloud_cover = scenarios_day_model[[1]]$model$model$cloud_cover,
-  temperature = scenarios_day_model[[1]]$model$model$temperature,
-  snow_diff = scenarios_day_model[[1]]$model$model$snow_diff,
-  date = scenarios_day_model[[1]]$model$model$int_date
+  time = day_model$model$model$num_time,
+  day = day_model$model$model$int_day,
+  avalanche = day_model$model$model$avalanche_report,
+  cloud_cover = day_model$model$model$cloud_cover,
+  temperature = day_model$model$model$temperature,
+  snow_diff = day_model$model$model$snow_diff,
+  date = day_model$model$model$int_date
 )
 
 # für jede Kovariable gemeinsame Plots erstellen
@@ -43,33 +27,33 @@ day_model_raw <- data.frame(
 # startet bei 2, da erste Variable date_time keinen Smooth-Plot hat
 # endet bei length(..)-1, da letztes Objekt in der Liste "grid" ist
 
-for (j in 2:(length(plots_scenarios_day_model[[1]])-1)) {
+for (j in 1:(length(plots_scenarios_day_model[[1]])-2)) {
   
-  plots_scenarios_day_model_comparison[[j-1]] <- 
+  plots_scenarios_day_model_comparison[[j]] <- 
     ggplot() +
     # Konfidenzintervall für originales Szenario
-    geom_ribbon(plots_scenarios_day_model[[1]][[j-1]]$data,
+    geom_ribbon(plots_scenarios_day_model[[1]][[j]]$data,
                 mapping = aes(x = x,
                               ymin = plogis(fit + intercept - se),
                               ymax = plogis(fit + intercept + se)),
                 colour = "grey", alpha = 0.2) +
-    geom_line(plots_scenarios_day_model[[2]][[j-1]]$data, 
+    geom_line(plots_scenarios_day_model[[2]][[j]]$data, 
               mapping = aes(x = x, y = plogis(fit + intercept), 
                             color = "Generelle Unterschätzung von 25%"),
               size = 1.0) +
-    geom_line(plots_scenarios_day_model[[3]][[j-1]]$data, 
+    geom_line(plots_scenarios_day_model[[3]][[j]]$data, 
               mapping = aes(x = x, y = plogis(fit + intercept), 
                             color = "Unterschätzung nach Gruppengröße"),
               size = 1.0) +
-    geom_line(plots_scenarios_day_model[[4]][[j-1]]$data, 
+    geom_line(plots_scenarios_day_model[[4]][[j]]$data, 
               mapping = aes(x = x, y = plogis(fit + intercept),
                             color = "Nächtliche Überschätzung"),
               size = 1.0) +
-    geom_line(plots_scenarios_day_model[[5]][[j-1]]$data, 
+    geom_line(plots_scenarios_day_model[[5]][[j]]$data, 
               mapping = aes(x = x, y = plogis(fit + intercept),
                             color = "Unterschätzung bei niedrigen Temperaturen"),
               size = 1.0) +
-    geom_line(plots_scenarios_day_model[[1]][[j-1]]$data, 
+    geom_line(plots_scenarios_day_model[[1]][[j]]$data, 
               mapping = aes(x = x, y = plogis(fit + intercept), 
                             color = "Original"),
               size = 1.0) +
@@ -102,7 +86,7 @@ theme <- theme(plot.title = element_text(hjust = 0.5),
                legend.title = element_text(size = 12),
                legend.text = element_text(size = 10))
 
-guides <- guides(color = guide_legend(ncol = 3, byrow = TRUE, 
+guides <- guides(color = guide_legend(nrow = 2, byrow = TRUE, 
                                       title.position = "left",
                                       title.hjust = 0.5))
 
@@ -184,3 +168,21 @@ plots_scenarios_day_model_comparison_grid <-
               plots_scenarios_day_model_comparison_grid[[5]],
               bottom = legend_scenarios_day_model,
               ncol = 3)
+
+plots_day_model_comparison_list <- list(
+  day = plots_scenarios_day_model_comparison[[1]],
+  avalanche = plots_scenarios_day_model_comparison[[2]],
+  cloud_cover = plots_scenarios_day_model_comparison[[3]],
+  temperature = plots_scenarios_day_model_comparison[[4]],
+  snow_diff = plots_scenarios_day_model_comparison[[5]],
+  date_time_original = plots_scenarios_day_model[[1]]$date_time,
+  date_time_general = plots_scenarios_day_model[[2]]$date_time,
+  date_time_group = plots_scenarios_day_model[[3]]$date_time,
+  date_time_night = plots_scenarios_day_model[[4]]$date_time,
+  date_time_temp = plots_scenarios_day_model[[5]]$date_time,
+  grid = plots_scenarios_day_model_comparison_grid
+)
+
+return(plots_day_model_comparison_list)
+
+}

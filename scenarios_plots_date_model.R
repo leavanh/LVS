@@ -3,50 +3,29 @@
 ### In dieser Datei werden die Plots für die Szenarien erstellt und verglichen
 ### Für das Date Model
 
-
-scenarios <- list(date_data_noNA,
-                  data_general_function(0.25)$date_data,
-                  date_data_group,
-                  date_data_night,
-                  date_data_temp)
-
-scenarios_date_model <- list()
-plots_scenarios_date_model <- list()
-plots_scenarios_date_model_comparison <- list()
-
-
-
-
-# für jedes der 5 Szenarien Smooth-Plots-erstellen
-
-for (i in 1:length(scenarios)) {
+date_model_comparison_plots_function <- function(
+  plots_scenarios_date_model
+  )
   
-  scenarios_date_model[[i]] <- scenarios[[i]] %>% date_model_function()
+{
   
-  plots_scenarios_date_model[[i]] <- scenarios_date_model[[i]]  %>%
-                                          plots_date_model()
-  
-}
+  plots_scenarios_date_model_comparison <- list()
 
 # Werte für den Rug speichern
 
 date_model_raw <- data.frame(
-  day = scenarios_date_model[[1]]$model$model$int_day,
-  avalanche = scenarios_date_model[[1]]$model$model$avalanche_report,
-  cloud_cover = scenarios_date_model[[1]]$model$model$cloud_cover_daily,
-  temperature = scenarios_date_model[[1]]$model$model$temperature,
-  snow_diff = scenarios_date_model[[1]]$model$model$snow_diff,
-  date = scenarios_date_model[[1]]$model$model$int_date
+  day = date_model$model$model$int_day,
+  avalanche = date_model$model$model$avalanche_report,
+  cloud_cover = date_model$model$model$cloud_cover_daily,
+  temperature = date_model$model$model$temperature,
+  snow_diff = date_model$model$model$snow_diff,
+  date = date_model$model$model$int_date
 )
 
 # für jede Kovariable gemeinsame Plots erstellen
 # endet bei length(..)-1, da letztes Objekt in der Liste "grid" ist
 
 for (j in 1:(length(plots_scenarios_date_model[[1]])-1)) {
-  
-  raw <- data.frame(
-    raw = scenarios_date_model$model$model[[j+2]]
-  )
   
   plots_scenarios_date_model_comparison[[j]] <- 
     ggplot() +
@@ -90,8 +69,6 @@ for (j in 1:(length(plots_scenarios_date_model[[1]])-1)) {
                                     "#CC79A7",
                                   "Unterschätzung nach Gruppengröße" = 
                                     "#E69F00"))
-  
-  # Reihenfolge der Farben: Generell, Nächtl, Original, Unt_temp, Unt_group
   
 }
 
@@ -202,4 +179,16 @@ plots_scenarios_date_model_comparison_grid <-
               ncol = 3,
               bottom = legend_scenarios_date_model)
 
+plots_date_model_comparison_list <- list(
+  day = plots_scenarios_date_model_comparison[[1]],
+  avalanche = plots_scenarios_date_model_comparison[[2]],
+  cloud_cover = plots_scenarios_date_model_comparison[[3]],
+  temperature = plots_scenarios_date_model_comparison[[4]],
+  snow_diff = plots_scenarios_date_model_comparison[[5]],
+  date = plots_scenarios_date_model_comparison[[6]],
+  grid = plots_scenarios_date_model_comparison_grid
+)
 
+return(plots_date_model_comparison_list)
+
+}

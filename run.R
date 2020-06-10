@@ -255,7 +255,7 @@ source("scenario_general_plots_time_model.R", encoding = "UTF-8")
 
 data_general <- data_general_function(0.25) # 25% mehr Daten werden hinzugefügt
 
-# Die Modelle anzuwenden läuft genauso ab, wie auch weiter oben:
+# Die Modelle anzuwenden läuft genauso ab wie auch weiter oben:
 
 day_model_general <- day_model_function(data_general$date_data)
 day_model_general$summary # Übersicht (mit Signifikanz)

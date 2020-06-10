@@ -411,11 +411,11 @@ grid.arrange(day_model_general_comparison_plots$grid)
 
 plots_general_time_model <- 
   list(time_model_plots,
-       plots_time_model(time_model_function(data_general_function(0.1)$data)),
-       plots_time_model(time_model_function(data_general_function(0.2)$data)),
-       plots_time_model(time_model_function(data_general_function(0.3)$data)),
-       plots_time_model(time_model_function(data_general_function(0.4)$data)),
-       plots_time_model(time_model_function(data_general_function(0.5)$data)))
+       plots_time_model(time_model_function(data_general_function(0.1)$min_data)),
+       plots_time_model(time_model_function(data_general_function(0.2)$min_data)),
+       plots_time_model(time_model_function(data_general_function(0.3)$min_data)),
+       plots_time_model(time_model_function(data_general_function(0.4)$min_data)),
+       plots_time_model(time_model_function(data_general_function(0.5)$min_data)))
 
 time_model_general_comparison_plots <- 
   time_model_general_comparison_function(plots_general_time_model)

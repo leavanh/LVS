@@ -51,7 +51,13 @@ all_checkpoint_stats <- subset(all_checkpoint_stats,
 
 cloud_cover <- cloud_cover[, c("datetime", "cloud_cover")]
 
-# Zeitzone ist Mitteleuropäische Zeit
+# Zeitzone ändern
+# an sich ist die Zeitzone Mitteleuropäische Zeit, da dort aber ein 
+# unerwünschter "Bruch" wegen der Zeitumstellung auf Sommerzeit auftritt und
+# R diesen manchmal automatisch durchführt wurde hier GMT verwendet
+# GMT hat diesen "Bruch" nicht automatisch
+# trotzdem haben wir manche Daten mit Zeitumstellung bekommen und rechnen diese
+# weiter unten alle manuell auf Winterzeit
 
 all_date$date <- force_tz(all_date$date, "GMT")
 all_checkpoint_stats$date <- force_tz(all_checkpoint_stats$date, "GMT")
@@ -85,7 +91,8 @@ day_length[day_length$date >= as.POSIXct("2019-03-31", tz = "GMT"), "sunset"] <-
 
 cloud_cover[cloud_cover$date >= as.POSIXct("2019-04-01", tz = "GMT"), "date"] <-
   cloud_cover[cloud_cover$date >= as.POSIXct("2019-04-01", tz = "GMT"),] %>%
-  pull(date) - hours(1)
+  pull(date) - hours(1) # hierbei geht es nur ums Datum, da die Zeitumstellung 
+# nicht um 0 Uhr stattfindet ist hier nicht der 31.3 sondern der 1.4 gewählt
 
 ## day_length und all_date zusammenführen
 
@@ -123,13 +130,14 @@ all_checkpoint_stats <- filter(all_checkpoint_stats,
 
 ## Neue Variablen berechnen
 
-# Neuschnee
+# Schneedifferenz
 
 date_data$snow_diff <- date_data$snowhight - lag(date_data$snowhight, 
                                        default = first(date_data$snowhight),
                                        by = date_data$date)
 
 # int_ Variablen
+# Diese brauchen wir für die Modelle, inhaltlich ändert sich jedoch nichts
 
 date_data$int_date <- as.integer(as.Date(date_data$date, format = "%d/%m/%Y", 
                                          tz = "GMT"))
@@ -142,6 +150,7 @@ date_data$int_day <- as.integer(factor(date_data$day,
 data <- full_join(all_checkpoint_stats, date_data, by = "date")
 
 # cloud_cover hinzufügen
+# jeder Messung wird die Bewölkung der jeweiligen Stunde hinzugefügt
 
 for(i in 1:nrow(data)) {
   date <- data[[i, "date"]]

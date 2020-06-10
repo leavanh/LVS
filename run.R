@@ -263,7 +263,7 @@ plogis(day_model_general$summary$p.coeff[1]) # Intercept
 plogis(day_model_general$summary$p.coeff[1] +
          day_model_general$summary$p.coeff[2]) # Ferientag
 
-time_model_general <- time_model_function(data_general$data)
+time_model_general <- time_model_function(data_general$min_data)
 time_model_general$summary # Übersicht (mit Signifikanz)
 plogis(time_model_general$summary$p.coeff[1]) # Intercept
 plogis(time_model_general$summary$p.coeff[1] +

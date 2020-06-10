@@ -1,6 +1,6 @@
 
 ## Diese Datei erzeugt data_general
-# Dem Szenario 1 (20% Unterschätzung) folgend werden Messungen generiert
+# Dem Szenario 1 (generelle Unterschätzung) folgend werden Messungen generiert
 # Die Funktion nimmt als Argument den Anteil an Checkpoint-Messungen, die neu
 # generiert werden sollen
 
@@ -38,14 +38,15 @@ for(i in 1:n_messungen) { # neue Messungen generieren
   messung_time <- as.POSIXct( # alle Sekunden auf 0
     trunc(messung_time, units = "mins"))
   messung_date <- sample(all_dates, 1)
-  messung <- data.frame(id = NA, lvs = FALSE, position = NA, time = messung_time,
-               date = messung_date)
+  messung <- data.frame(id = NA, lvs = FALSE, # wir fügen nur nicht-LVS hinzu
+                        position = NA, time = messung_time,
+               date = messung_date) # hinzufügen
   neue_messungen <- rbind(neue_messungen, messung)
 }
 
 neue_messungen <- neue_messungen[-1,] # erste Zeile löschen
 
-## Messungen hinzufügen
+## Messungen zum allgemeinen Datensatz hinzufügen
 
 # Allgemeine Variablen hinzufügen
 
@@ -101,7 +102,7 @@ min_data_general <- distinct(subset(data_general,
                              select = -c(lvs, position, id)))
 
 data_list <- list(date_data = date_data_general,
-                  data = min_data_general
+                  min_data = min_data_general
 )
 
 return(data_list)

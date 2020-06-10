@@ -6,14 +6,13 @@
 min_data_group <- min_data_noNA
 
 ## Neue Personenanzahl berechnen
-# Gruppengrößenvektor erhalten
 
-group_size <- min_data_noNA$count_people_min
+group_size <- min_data_noNA$count_people_min # Gruppengrößenvektor erhalten
 
 # Anzahl der hinzuzufügenden Personen berechnen
 # new_person_prob gibt die Wahrscheinlichkeit an für jede Person in der 
 # Gruppe eine weitere hinzuzufügen
-# bei Gruppen größer gleich 50 ist die Wahrscheinlichkeit = 1 (Vorsicht!)
+# bei Gruppen größer gleich 50 ist die Wahrscheinlichkeit >= 1 (Vorsicht!)
 
 new_person_prob <- 0.20 + 0.016 * group_size
 new_group_size <- group_size + rbinom(length(group_size), 
@@ -27,7 +26,7 @@ min_data_group$count_people_min <- new_group_size
 
 min_data_group <- min_data_group %>%
   mutate(
-    lvs_false_min = count_people_min - lvs_true_min, # nur Beacon unterschätzen
+    lvs_false_min = count_people_min - lvs_true_min, # nur nicht-LVS unterschätzen
     ratio_min = lvs_true_min/count_people_min)
 
 min_data_group <- min_data_group %>%

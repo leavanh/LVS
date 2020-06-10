@@ -11,7 +11,7 @@ perc <- 0.5 # Prozent die gelöscht werden sollen
 
 # welche kommen in Frage?
 
-time_intervall <- interval( # In diesem Intervall ist nie die sonne zu sehen
+time_intervall <- interval( # In diesem Intervall ist nie die Sonne zu sehen
   as.POSIXct("1899-12-31 05:29:00", tz = "GMT"),
   as.POSIXct("1899-12-31 18:58:00", tz = "GMT")
 )

@@ -98,7 +98,7 @@ gridPrint(grobs = day_model_plots$grid,
           top = "Smooth-Plots im Tagesmodell",
           ncol = 3)
 
-# Einzelplots
+# Einzelplots (zur Ausgabe den Hashtag in der jeweiligen Zeile entfernen)
 
 # day_model_plots$date
 # day_model_plots$day
@@ -176,11 +176,13 @@ gridPrint(grobs = time_model_plots$grid,
 # Es wurde die Zählung der Studenten mit den vom Messgerät übermittelten Daten
 # verglichen
 # Da die Messgerät-Uhrzeit nicht immer mit der Studenten-Uhrzeit übereinstimmt
-# wurde für Vergleiche bei denen die Uhrzeit eine Rolle spielt (Gruppengröße,
-# Messungen nach Uhrzeit)
- # ALEX BITTE AUSFÜHRLICHER KOMMENTIEREN
+# wurden für Vergleiche, bei denen die Uhrzeit eine Rolle spielt (Gruppengröße,
+# Messungen nach Uhrzeit), nur die Angaben der Studenten zur Erfassung
+# verglichen. Für die Berechnung der Unterschätzung insgesamt wurden jedoch alle
+# Messungen der Studenten zusammengezählt und mit der Anzahl der tatsächlich vom
+# Checkpoint erfassten Messungen verglichen.
 
-source("prepare_data_1920.R", encoding = "UTF-8") # Warnmeldung ignorieren
+source("read_data_messfehler.R", encoding = "UTF-8") # Warnmeldung ignorieren
 source("messfehler_plots.R", encoding = "UTF-8")
  
  
@@ -197,26 +199,29 @@ zlg_beide_bereinigt_sums$sum[zlg_beide_bereinigt_sums$type == "SG_gesamt"] /
   zlg_beide_bereinigt_sums$sum[zlg_beide_bereinigt_sums$type == "gesamt"]
 
 # Unterschätzung (Anteil an Checkpointmessungen, die man für den wahren Wert
-# hinzufügen müsste):
-
+# hinzufügen müsste): 22,4%
 
 (zlg_beide_bereinigt_sums$sum[zlg_beide_sums$type == "gesamt"] /
   zlg_beide_bereinigt_sums$sum[zlg_beide_sums$type == "checkpoint"]) - 1
 
-unterschaetzung_plot
-
-
 ## Plots
 
-# Erfassung nach Art
+# absolute Anzahl der Checkpointmessunge gegenpber alle von Studenten
+# angegebenen Kontakte
+
+unterschaetzung_plot
+
+# Anzahl der von Studenten angegebenen Kontakte, unterteil nacht Art des
+# Kontakts und ob erfasst oder nicht erfasst
 
 erf_art_plot
 
-# Erfassung nach Zeit
+# Anzahl der erfassten/nicht erfasstenKontakte nach Uhrzeit, aufgeteilt für 
+# jeden Zeitraum der manuellen Messungen
 
 plot(erf_zeit_grid)
 
-#Erfassung nach Gruppengröße (absolut/relativ)
+# Anzahl und Anteil der erfassten/nicht erfassten Kontakte nach Gruppengröße
 
 erf_gruppe_abs_plot
 erf_gruppe_rel_plot # Warnung ignorieren
@@ -264,6 +269,8 @@ min_data_temp <- readRDS(file = "Daten/min_data_temp.RDS")
 date_data_temp <- readRDS(file = "Daten/date_data_temp.RDS")
 
 # Die folgenden Dateien erzeugen die Plots
+
+# Funktionen zur Erstellung der Vergleichsplots laden
 
 source("scenarios_plots_day_model.R", encoding = "UTF-8")
 source("scenarios_plots_time_model.R", encoding = "UTF-8")
@@ -340,7 +347,7 @@ plogis(time_model_temp$summary$p.coeff[1] +
 
 # Für das Tagesmodell
 
-# Übersicht
+# Erst werden für die Erzeugung der Plots Listen erstellt
 
 # Liste mit Tagesmodell je Szenario
 
@@ -364,6 +371,8 @@ plots_scenarios_day_model <- list(day_model_plots,
 day_model_comparison_plots <- 
 day_model_comparison_plots_function(plots_scenarios_day_model)
 
+# Hier werden tatsächlich Plots ausgegeben
+
 # Überblick über Vergleichsplots
 
 grid.arrange(day_model_comparison_plots$grid)
@@ -379,7 +388,7 @@ grid.arrange(day_model_comparison_plots$grid)
 
 # Für das Zeitmodell
 
-# Übersicht
+# Erstellung von Listen
 
 # Liste mit Zeitmodell je Szenario
 
@@ -403,6 +412,8 @@ plots_scenarios_time_model <- list(time_model_plots,
 time_model_comparison_plots <- 
   time_model_comparison_plots_function(plots_scenarios_time_model)
 
+# Hier werden die Plots tatssächlich ausgegeben
+
 # Überblick über Vergleichsplots
 
 grid.arrange(time_model_comparison_plots$grid)
@@ -424,9 +435,15 @@ grid.arrange(time_model_comparison_plots$grid)
 
 # Tabellen mit p-Werten für das jeweilige Modell
 
+# Datei, in der die Tabellen erstellt werden, laden
+
 source("p_values_scenarios.R", encoding = "UTF-8")
 
+# Tabelle mit p-Werten je Szenario für das Tagesmodell
+
 p_values_scenarios_day_model
+
+# Tabelle mit p-Werten je Szenario für das Zeitmodell
 
 p_values_scenarios_time_model
 
@@ -435,14 +452,15 @@ p_values_scenarios_time_model
 
 
 
-## Plots für den Vergleich von Szenario 1 mit unterschiedlichen Werten
+## Plots für den Vergleich von Szenario 1 (generelle Unterschätzung) mit 
+# unterschiedlichen Werten
 
-# es werden in 10 % Schritten mehr Daten dem Szenario "generelle Unterschätzung"
+# es werden in 10%-Schritten mehr Daten dem Szenario "generelle Unterschätzung"
 # folgend hinzugefügt
 
 # Für das Tagesmodell
 
-# Übersicht
+# Listen erstellen
 
 # Liste mit Modellen je Anteil
 
@@ -469,7 +487,9 @@ plots_general_day_model <-
 day_model_general_comparison_plots <- 
   day_model_general_comparison_function(plots_general_day_model)
 
-# Überblick über Verlgeichsplots
+# Hier werden tatsächlich Plots ausgegeben
+
+# Überblick über Vergleichsplots
 
 grid.arrange(day_model_general_comparison_plots$grid)
 
@@ -485,6 +505,8 @@ grid.arrange(day_model_general_comparison_plots$grid)
 # Für das Zeitmodell
 
 # Übersicht
+
+# Listen erstellen
 
 # Liste mit Modellen je Anteil
 
@@ -511,6 +533,8 @@ plots_general_time_model <-
 time_model_general_comparison_plots <- 
   time_model_general_comparison_function(plots_general_time_model)
 
+# Hier werden tatsächlich Plots ausgegeben
+
 # Überblick über Vergleichsplots
 
 grid.arrange(time_model_general_comparison_plots$grid)
@@ -533,9 +557,15 @@ grid.arrange(time_model_general_comparison_plots$grid)
 
 # Tabellen mit p-Werten für das jeweilige Modell
 
+# Date, in der die Tabellen erstellt werden, laden
+
 source("p_values_general.R", encoding = "UTF-8")
 
+# Tabelle mit p-Werten je Anteil für das Tagesmodell
+
 p_values_general_day_model
+
+# Tabelle mit p-Werten je Anteil für das Zeitmodell
 
 p_values_general_time_model
 

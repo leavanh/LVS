@@ -13,6 +13,7 @@ library("gridExtra") # für die Erstellung von Plotrastern
 library("ggformula")
 library("gtools") # für p-wert-format
 library("cowplot") # für get_legend
+library("readxl") # zum Einlesen der Messfehlerdaten
 
 ## Theme (Ästhetik) der Plots festsetzen
 

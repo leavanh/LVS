@@ -1,5 +1,7 @@
-Der R-Code besteht aus verschiedenen R-Dateien. 
-Um die Grafiken und Ergebnisse zu erhalten einfach run.R durchlaufen lassen. 
+Der R-Code besteht aus verschiedenen R-Dateien.
+Falls Probleme bei Umlauten entstehen schauen ob "UTF-8" als Encoding eingestellt ist. 
+Um die Grafiken und Ergebnisse zu erhalten einfach run.R durchlaufen lassen.
+(Manchmal ist Code auskommentiert, bei Bedarf einfach # löschen)
 
 In run.R werden durch den source()-Befehl andere R- Dateien aufgerufen (zum Beispiel eine Funktion, die die Modelle
 erzeugt oder eine Datei in der die Grafiken erzeugt werden). Möchte man also etwas an zum Beispiel dem Tagesmodell ändern

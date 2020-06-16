@@ -137,6 +137,8 @@ data_general_30 <- data_general_function(0.3)
 data_general_40 <- data_general_function(0.4)
 data_general_50 <- data_general_function(0.5)
 
+# abspeichern
+
 saveRDS(data_general, file = "Daten/data_general.RDS")
 saveRDS(data_general_10, file = "Daten/data_general_10.RDS")
 saveRDS(data_general_20, file = "Daten/data_general_20.RDS")

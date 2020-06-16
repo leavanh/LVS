@@ -248,9 +248,15 @@ data_general_30 <- readRDS(file = "Daten/data_general_30.RDS")
 data_general_40 <- readRDS(file = "Daten/data_general_40.RDS")
 data_general_50 <- readRDS(file = "Daten/data_general_50.RDS")
 
-source("data_group.R", encoding = "UTF-8")
+# Je mehr Menschen, desto mehr wird unterschätzt
+
+min_data_group <- readRDS(file = "Daten/min_data_group.RDS")
+date_data_group <- readRDS(file = "Daten/date_data_group.RDS")
+
 source("data_night.R", encoding = "UTF-8")
 source("data_temp.R", encoding = "UTF-8")
+
+# Die folgenden Dateien erzeugen die Plots
 
 source("scenarios_plots_day_model.R", encoding = "UTF-8")
 source("scenarios_plots_time_model.R", encoding = "UTF-8")

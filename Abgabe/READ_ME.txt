@@ -4,7 +4,7 @@ Um die Grafiken und Ergebnisse zu erhalten einfach run.R durchlaufen lassen.
 Wichtiges im Vorraus:
 Falls Probleme bei Umlauten entstehen schauen ob "UTF-8" als Encoding eingestellt ist. 
 Als working directory muss der Ort der run-Datei eingestellt sein.
-Manchmal ist Code auskommentiert, bei Bedarf einfach # löschen.
+Manchmal ist Code auskommentiert, bei Bedarf einfach das Symbol "#" davor löschen.
 
 Jetzt zu den einzelnen Dateien:
 

@@ -194,8 +194,8 @@ zlg_beide_sums
  
 # Anteil "Skitourengänger" an Gesamtzahl der von Studenten gemessenen Personen:
   
-zlg_beide_sums$sum[zlg_beide_bereinigt_sums$type == "SG_gesamt"] / 
-  zlg_beide_sums$sum[zlg_beide_bereinigt_sums$type == "gesamt"]
+zlg_beide_sums$sum[zlg_beide_sums$type == "SG_gesamt"] / 
+  zlg_beide_sums$sum[zlg_beide_sums$type == "gesamt"]
 
 # Unterschätzung (Anteil an Checkpointmessungen, die man für den wahren Wert
 # hinzufügen müsste): 22,4%

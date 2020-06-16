@@ -21,7 +21,7 @@ data_general.R, data_group.R, data_night.R, data_temp.R.
 Alle diese Dateien erzeugen DataFrames die im Ordner "Daten" gespeichert werden. Da
 das Erzeugen teilweise etwas Zeit kostet und auch nur einmal anfangs nötig ist
 werden diese Dateien nicht in run.R aufgerufen. Wir haben diese Dateien bereits durch-
-laufen lassen und die richtigen DataFrames in "Daten" gespeichert. Ihr müsst das also
+laufen lassen und die richtigen DataFrames im Ordner "Daten" gespeichert. Ihr müsst das also
 nicht mehr machen (ihr braucht wirklich nur run.R öffnen). Falls ihr jedoch wissen 
 wollt, wie manche Variablen zustande kommen oder was genau die Szenarien sind so könnt 
 ihr in diese Dateien rein schauen.

@@ -1,6 +1,29 @@
 ## Diese Datei erzeugt data_group
 # Dem Szenario 2 (Gruppen) folgend werden neue Messungen generiert
 
+## Pakete laden
+
+library("tidyverse")
+library("lubridate")
+
+## Daten laden
+
+data <- readRDS(file = "Daten/data.RDS")
+date_data <- readRDS(file = "Daten/date_data.RDS")
+min_data <- readRDS(file = "Daten/min_data.RDS")
+
+# NAs (fehlende Werte) rauswerfen
+
+date_data_noNA <- date_data[!is.na(date_data$count_people),]
+data_noNA <- data[!is.na(data$lvs),]
+min_data_noNA <- min_data[!is.na(min_data$count_people_min),]
+
+# Da die Daten zufällig erzeugt werden benutzen wir einen seed
+# so kommt bei jedem Durchlauf das selbe Ergebnis raus
+
+set.seed(42)
+
+
 ## data_group erzeugen (ohne NAs da wir diese Tage eh nicht brauchen)
 
 min_data_group <- min_data_noNA
@@ -41,4 +64,8 @@ date_data_group <- distinct(subset(min_data_group,
                              select = -c(time, lvs_true_min,
                                          lvs_false_min, count_people_min,
                                          ratio_min, cloud_cover)))
-                                    
+
+# abspeichern
+
+saveRDS(min_data_group, file = "Daten/min_data_group.RDS")
+saveRDS(date_data_group, file = "Daten/date_data_group.RDS")                                    

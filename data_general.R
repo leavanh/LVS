@@ -1,13 +1,27 @@
-
 ## Diese Datei erzeugt data_general
 # Dem Szenario 1 (generelle Unterschätzung) folgend werden Messungen generiert
-# Die Funktion nimmt als Argument den Anteil an Checkpoint-Messungen, die neu
-# generiert werden sollen
 
-# wir brauchen später cloud_cover
+## Pakete laden
 
+library("tidyverse")
+library("lubridate")
+
+## Daten laden
+
+data <- readRDS(file = "Daten/data.RDS")
+date_data <- readRDS(file = "Daten/date_data.RDS")
+min_data <- readRDS(file = "Daten/min_data.RDS")
 cloud_cover <- readRDS(file = "Daten/cloud_cover.RDS")
 
+# NAs (fehlende Werte) rauswerfen
+
+date_data_noNA <- date_data[!is.na(date_data$count_people),]
+data_noNA <- data[!is.na(data$lvs),]
+min_data_noNA <- min_data[!is.na(min_data$count_people_min),]
+
+## Funktion die neuen Datensatz je nach gegebenem Anteil erzeugt
+# Die Funktion nimmt als Argument den Anteil an Checkpoint-Messungen, die neu
+# generiert werden sollen
 
 data_general_function <- function(Anteil_neu_messungen) {
 
@@ -108,3 +122,26 @@ data_list <- list(date_data = date_data_general,
 return(data_list)
 
 }
+
+## Verschiedene Datensätze erzeugen
+
+# Da die Daten zufällig erzeugt werden benutzen wir einen seed
+# so kommt bei jedem Durchlauf das selbe Ergebnis raus
+
+set.seed(42)
+
+data_general <- data_general_function(0.22) # 22% mehr Daten werden hinzugefügt
+data_general_10 <- data_general_function(0.1)
+data_general_20 <- data_general_function(0.2)
+data_general_30 <- data_general_function(0.3)
+data_general_40 <- data_general_function(0.4)
+data_general_50 <- data_general_function(0.5)
+
+# abspeichern
+
+saveRDS(data_general, file = "Daten/data_general.RDS")
+saveRDS(data_general_10, file = "Daten/data_general_10.RDS")
+saveRDS(data_general_20, file = "Daten/data_general_20.RDS")
+saveRDS(data_general_30, file = "Daten/data_general_30.RDS")
+saveRDS(data_general_40, file = "Daten/data_general_40.RDS")
+saveRDS(data_general_50, file = "Daten/data_general_50.RDS")

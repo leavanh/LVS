@@ -26,7 +26,7 @@ data <- readRDS(file = "Daten/data.RDS")
 date_data <- readRDS(file = "Daten/date_data.RDS")
 min_data <- readRDS(file = "Daten/min_data.RDS")
 
-# NAs rauswerfen
+# NAs (fehlende Werte) rauswerfen
 
 date_data_noNA <- date_data[!is.na(date_data$count_people),]
 data_noNA <- data[!is.na(data$lvs),]
@@ -238,16 +238,37 @@ erf_gruppe_rel_plot # Warnung ignorieren
 
 
 # Da die Daten zufällig erzeugt werden benutzen wir einen seed
-# so kommt bei jedem Durchlauf das selbe Ergebniss raus
+# so kommt bei jedem Durchlauf das selbe Ergebnis raus
 
 set.seed(42)
 
 # Datensätze der Szenarien laden
 
-source("data_general.R", encoding = "UTF-8")
-source("data_group.R", encoding = "UTF-8")
-source("data_night.R", encoding = "UTF-8")
-source("data_temp.R", encoding = "UTF-8")
+# Generelle Unterschätzung
+
+data_general <- readRDS(file = "Daten/data_general.RDS")
+data_general_10 <- readRDS(file = "Daten/data_general_10.RDS")
+data_general_20 <- readRDS(file = "Daten/data_general_20.RDS")
+data_general_30 <- readRDS(file = "Daten/data_general_30.RDS")
+data_general_40 <- readRDS(file = "Daten/data_general_40.RDS")
+data_general_50 <- readRDS(file = "Daten/data_general_50.RDS")
+
+# Je mehr Menschen, desto mehr wird unterschätzt
+
+min_data_group <- readRDS(file = "Daten/min_data_group.RDS")
+date_data_group <- readRDS(file = "Daten/date_data_group.RDS")
+
+# In der Nacht werden 50% der nicht-LVS-Messungen entfernt
+
+min_data_night <- readRDS(file = "Daten/min_data_night.RDS")
+date_data_night <- readRDS(file = "Daten/date_data_night.RDS")
+
+# Je niedriger die Temperatur desto mehr Messungen werden hinzugefügt
+
+min_data_temp <- readRDS(file = "Daten/min_data_temp.RDS")
+date_data_temp <- readRDS(file = "Daten/date_data_temp.RDS")
+
+# Die folgenden Dateien erzeugen die Plots
 
 # Funktionen zur Erstellung der Vergleichsplots laden
 
@@ -259,9 +280,6 @@ source("scenario_general_plots_time_model.R", encoding = "UTF-8")
 
 
 # Modelle für jedes Szenario fitten
-
-data_general <- data_general_function(0.25) # 25% mehr Daten werden hinzugefügt
-
 # Die Modelle anzuwenden läuft genauso ab wie auch weiter oben:
 
 day_model_general <- day_model_function(data_general$date_data)
@@ -448,11 +466,11 @@ p_values_scenarios_time_model
 
 general_day_model <- 
   list(day_model,
-       day_model_function(data_general_function(0.1)$date_data),
-       day_model_function(data_general_function(0.2)$date_data),
-       day_model_function(data_general_function(0.3)$date_data),
-       day_model_function(data_general_function(0.4)$date_data),
-       day_model_function(data_general_function(0.5)$date_data))
+       day_model_function(data_general_10$date_data),
+       day_model_function(data_general_20$date_data),
+       day_model_function(data_general_30$date_data),
+       day_model_function(data_general_40$date_data),
+       day_model_function(data_general_50$date_data))
 
 # Liste mit Plots je Anteil
 
@@ -494,11 +512,11 @@ grid.arrange(day_model_general_comparison_plots$grid)
 
 general_time_model <- 
   list(time_model,
-       time_model_function(data_general_function(0.1)$min_data),
-       time_model_function(data_general_function(0.2)$min_data),
-       time_model_function(data_general_function(0.3)$min_data),
-       time_model_function(data_general_function(0.4)$min_data),
-       time_model_function(data_general_function(0.5)$min_data))
+       time_model_function(data_general_10$min_data),
+       time_model_function(data_general_20$min_data),
+       time_model_function(data_general_30$min_data),
+       time_model_function(data_general_40$min_data),
+       time_model_function(data_general_50$min_data))
 
 # Liste mit Plots je Anteil
 

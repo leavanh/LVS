@@ -111,7 +111,7 @@ erf_zeit_grid <-
 dev.off() # Erzeugung des vorherigen Plots unterdrücken
 
 
-# Anzahl von Erfassungen zu Nichterfassungen je nac Gruppengröße
+# Anzahl von Erfassungen zu Nichterfassungen je nach Gruppengröße
 
 erf_gruppe_abs_plot <- 
   ggplot(data = erfassung_je_gruppe, 
@@ -128,7 +128,7 @@ erf_gruppe_abs_plot <-
   scale_fill_manual(name = NULL, labels = c("Erfasst", "Nicht Erfasst"), 
                     values = c("#993300", "antiquewhite4"))
 
-# Verhältnis von Erfassungen zu Nichterfassungen je nac Gruppengröße
+# Verhältnis von Erfassungen zu Nichterfassungen je nach Gruppengröße
 
 erf_gruppe_rel_plot <- 
   ggplot(data = erfassung_je_gruppe) +

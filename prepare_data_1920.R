@@ -5,7 +5,7 @@
 # Zuerst die Checkpointmessungen aus den .txt-Dateien in Exceldatei namens 
 # "Date_1920.xlsx" kopiert
 
-# Checkpointmessungen einlesen
+# Checkpointmessungen aus der Exceldatei einlesen
 
 all_checkpoint_stats_1920 <- 
   rbind(read_excel("Daten/Daten_1920.xlsx", sheet = "1920_01", 
@@ -41,7 +41,7 @@ zaehlung_lvs_check_28 <- read_excel("Daten/Zaehlung_LVS-check.xlsx",
                                                      "erfasst_aK", 
                                                      "nicht_erfasst_aK"))
 
-# Checkpointmessungen an den Tagen der manuellen Zählung
+# Checkpointmessungen filtern zu den Tagen der manuellen Zählung
 
 checkpoint_stats_27 <- filter(all_checkpoint_stats_1920, 
                                  date == as.POSIXct("2020-02-27", tz = "GMT"))
@@ -49,7 +49,7 @@ checkpoint_stats_28 <- filter(all_checkpoint_stats_1920,
                                  date == as.POSIXct("2020-02-28", tz = "GMT"))
 
 
-## Checkpointmessungen im Zeitraum der manuellen Messungen
+## Checkpointmessungen filtern zu den Zeiträumen der manuellen Messungen
 
 checkpoint_stats_27 <- subset(checkpoint_stats_27, 
                   time >= as.POSIXct('1899-12-31 10:30', tz = "GMT") &
@@ -83,7 +83,8 @@ zaehlung_lvs_check_28[,2:5] <- apply(zaehlung_lvs_check_28[,2:5], c(2), as.numer
 zaehlung_lvs_check_27 <- na.omit(zaehlung_lvs_check_27)
 zaehlung_lvs_check_28 <- na.omit(zaehlung_lvs_check_28)
 
-# zusätzliche Variablen berechnen
+# zusätzliche Variablen berechnen & Namen der Tabellen zur Vereinfachung 
+# abkürzen
 
 zlg_27 <- mutate(zaehlung_lvs_check_27, erfasst = erfasst_SG + erfasst_aK, 
                nicht_erfasst = nicht_erfasst_SG + nicht_erfasst_aK,
@@ -111,7 +112,7 @@ zlg_beide <- rbind(mutate(zlg_27, date = as.POSIXct("2020-02-27 00:00",
                                                     tz = "GMT")))
 
 
-# Zählungen des Checkpoints nach Minute gruppieren
+# Zählungen des Checkpoints nach Minute gruppieren (für die Gruppenanalyse)
 
 checkpoint_stats_grouped <- checkpoint_stats %>% group_by(time) %>%
                               summarise(erfasst = n())
@@ -124,7 +125,8 @@ time_limits <- as.POSIXct(strptime(c("1899-12-31 10:00:00",
 
 
 
-# Summen der einzelnen Reihen in der manuellen Zählung als eigene Tabelle
+# Die Reihen der Tabelle der manuellen Zählugen aufsummieren und als eigene
+# Ergebnistabelle speichern
 
 zlg_beide_sums <- data.frame(type = colnames(zlg_beide)[-c(1,11)], 
                              sum = apply(zlg_beide[,-c(1,11)], 2, sum), 
@@ -139,7 +141,7 @@ zlg_beide_sums <- rbind(zlg_beide_sums,
 zlg_beide_sums$type <- as.factor(zlg_beide_sums$type)
 zlg_beide_sums$sum <- as.numeric(zlg_beide_sums$sum)
 
-# noch detaillierter
+# Die vorherige Ergebnistabelle noch weiter unterteilen
 
 zlg_beide_sums <- 
   mutate(zlg_beide_sums, 

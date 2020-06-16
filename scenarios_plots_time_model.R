@@ -42,7 +42,7 @@ for (j in 1:(length(plots_scenarios_time_model[[1]])-2)) {
                 colour = "grey", alpha = 0.2) +
     geom_line(plots_scenarios_time_model[[2]][[j]]$data, 
               mapping = aes(x = x, y = plogis(fit + intercept), 
-                            color = "Generelle Unterschätzung von 25%"),
+                            color = "Generelle Unterschätzung von 22%"),
               size = 1.0) +
     geom_line(plots_scenarios_time_model[[3]][[j]]$data, 
               mapping = aes(x = x, y = plogis(fit + intercept), 
@@ -63,11 +63,11 @@ for (j in 1:(length(plots_scenarios_time_model[[1]])-2)) {
     scale_y_continuous(limits = c(0,0.5)) +
     labs(color = "Szenario") +
     scale_color_manual(breaks=c("Original",
-                                "Generelle Unterschätzung von 25%",
+                                "Generelle Unterschätzung von 22%",
                                 "Unterschätzung nach Gruppengröße",
                                 "Nächtliche Überschätzung",
                                 "Unterschätzung bei niedrigen Temperaturen"),
-                       values = c("Generelle Unterschätzung von 25%" = "#2b8cbe", 
+                       values = c("Generelle Unterschätzung von 22%" = "#2b8cbe", 
                                   "Nächtliche Überschätzung" = "#009E73", 
                                   "Original" = "#000000", 
                                   "Unterschätzung bei niedrigen Temperaturen" = 

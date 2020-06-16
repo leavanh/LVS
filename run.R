@@ -253,7 +253,11 @@ data_general_50 <- readRDS(file = "Daten/data_general_50.RDS")
 min_data_group <- readRDS(file = "Daten/min_data_group.RDS")
 date_data_group <- readRDS(file = "Daten/date_data_group.RDS")
 
-source("data_night.R", encoding = "UTF-8")
+# In der Nacht werden 50% der nicht-LVS-Messungen entfernt
+
+min_data_night <- readRDS(file = "Daten/min_data_night.RDS")
+date_data_night <- readRDS(file = "Daten/date_data_night.RDS")
+
 source("data_temp.R", encoding = "UTF-8")
 
 # Die folgenden Dateien erzeugen die Plots

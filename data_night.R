@@ -1,6 +1,29 @@
 ## Diese Datei erzeugt data_night
 # Dem Szenario 3 (Wildtiere) folgend werden Messungen gelöscht
 
+## Pakete laden
+
+library("tidyverse")
+library("lubridate")
+
+## Daten laden
+
+data <- readRDS(file = "Daten/data.RDS")
+date_data <- readRDS(file = "Daten/date_data.RDS")
+min_data <- readRDS(file = "Daten/min_data.RDS")
+
+# NAs (fehlende Werte) rauswerfen
+
+date_data_noNA <- date_data[!is.na(date_data$count_people),]
+data_noNA <- data[!is.na(data$lvs),]
+min_data_noNA <- min_data[!is.na(min_data$count_people_min),]
+
+# Da die Daten zufällig erzeugt werden benutzen wir einen seed
+# so kommt bei jedem Durchlauf das selbe Ergebnis raus
+
+set.seed(42)
+
+
 ## data_night erzeugen (ohne NAs da wir diese Tage eh nicht brauchen)
 
 data_night <- data_noNA
@@ -55,3 +78,9 @@ date_data_night <- distinct(subset(data_night,
 
 min_data_night <- distinct(subset(data_night, 
                             select = -c(lvs, position, id)))
+
+# abspeichern
+
+saveRDS(data_night, file = "Daten/data_night.RDS")
+saveRDS(min_data_night, file = "Daten/min_data_night.RDS")
+saveRDS(date_data_night, file = "Daten/date_data_night.RDS")   

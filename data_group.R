@@ -64,6 +64,7 @@ date_data_group <- distinct(subset(min_data_group,
                              select = -c(time, lvs_true_min,
                                          lvs_false_min, count_people_min,
                                          ratio_min, cloud_cover)))
+
 # abspeichern
 
 saveRDS(min_data_group, file = "Daten/min_data_group.RDS")

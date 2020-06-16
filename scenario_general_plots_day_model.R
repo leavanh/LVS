@@ -1,5 +1,3 @@
-
-
 ### In dieser Funktion werden die Plots für den Vergleich des ersten Szenarios 
 ### (generelle Unterschätzung) je nach Anteil an hinzugefügten Messungen
 ### erstellt - für das Tagesmodell
@@ -12,8 +10,6 @@ day_model_general_comparison_function <- function(
   plots_scenario_general_day_model
 ) 
 {
-  #
-  
   plots_scenario_general_day_model_comparison <- list()
 
 # Werte für den Rug später speichern

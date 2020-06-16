@@ -1,5 +1,3 @@
-
-
 ### In dieser Funktion werden die Plots für den Vergleich des ersten Szenarios 
 ### (generelle Unterschätzung) je nach Anteil an hinzugefügten Messungen
 ### erstellt - für das Zeitmodell

@@ -258,7 +258,10 @@ date_data_group <- readRDS(file = "Daten/date_data_group.RDS")
 min_data_night <- readRDS(file = "Daten/min_data_night.RDS")
 date_data_night <- readRDS(file = "Daten/date_data_night.RDS")
 
-source("data_temp.R", encoding = "UTF-8")
+# Je niedriger die Temperatur desto mehr Messungen werden hinzugefügt
+
+min_data_temp <- readRDS(file = "Daten/min_data_temp.RDS")
+date_data_temp <- readRDS(file = "Daten/date_data_temp.RDS")
 
 # Die folgenden Dateien erzeugen die Plots
 

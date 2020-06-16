@@ -1,9 +1,29 @@
 ## Diese Datei erzeugt data_temp
 # Bei niedrigen Temperaturen werden Messungen generiert
 
-# wir brauchen später cloud_cover
+## Pakete laden
 
+library("tidyverse")
+library("lubridate")
+
+## Daten laden
+
+data <- readRDS(file = "Daten/data.RDS")
+date_data <- readRDS(file = "Daten/date_data.RDS")
+min_data <- readRDS(file = "Daten/min_data.RDS")
 cloud_cover <- readRDS(file = "Daten/cloud_cover.RDS")
+
+# NAs (fehlende Werte) rauswerfen
+
+date_data_noNA <- date_data[!is.na(date_data$count_people),]
+data_noNA <- data[!is.na(data$lvs),]
+min_data_noNA <- min_data[!is.na(min_data$count_people_min),]
+
+# Da die Daten zufällig erzeugt werden benutzen wir einen seed
+# so kommt bei jedem Durchlauf das selbe Ergebnis raus
+
+set.seed(42)
+
 
 ## data_temp erzeugen (ohne NAs da wir diese Tage eh nicht brauchen)
 
@@ -101,3 +121,9 @@ date_data_temp <- distinct(subset(data_temp,
 
 min_data_temp <- distinct(subset(data_temp, 
                              select = -c(lvs, position, id)))
+
+# abspeichern
+
+saveRDS(data_temp, file = "Daten/data_temp.RDS")
+saveRDS(min_data_temp, file = "Daten/min_data_temp.RDS")
+saveRDS(date_data_temp, file = "Daten/date_data_temp.RDS")  

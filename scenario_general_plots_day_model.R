@@ -2,11 +2,11 @@
 
 ### In dieser Funktion werden die Plots für den Vergleich des ersten Szenarios 
 ### (generelle Unterschätzung) je nach Anteil an hinzugefügten Messungen
-### erstellt
+### erstellt - für das Tagesmodell
 
-### Die Funktion nimmt als Argument eine Liste von Plots je nach Szenario und
-### plottet sie für jede Kovariable auf einen Graphen.
-### DIe Funktion gibt eine Liste dieser Vergleichsplots aus.
+### Die Funktion nimmt als Argument eine Liste von Plots je nach Anteil und
+### plottet sie für jede Kovariable auf ein Bild
+### Die Funktion gibt eine Liste dieser Vergleichsplots aus.
 
 day_model_general_comparison_function <- function(
   plots_scenario_general_day_model

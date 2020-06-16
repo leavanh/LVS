@@ -1,6 +1,9 @@
 
-### Plottet das Zeitmodell (als Funktion)
-### Nimmt als Argument ein time_model_function(data)-Objekt
+### Diese Funktion plottet für jede nichtparametrische Kovariable eine Kurve
+### Die Funktion nimmt als Argument ein Zeitmodell-Objekt, wie es von der
+### "time_model_function" ausgegeben wird
+### Die Funktion gibt eine Liste der Plots je Kovariable aus plus einen
+### Überblick über alle Plots namens "grid"
 
 plots_time_model <- function(
   time_model
@@ -12,7 +15,7 @@ plots_time_model <- function(
   
   ## Smooth-Plots für nichtparametrische Kovariablen
   
-  pdf(file = NULL)
+  pdf(file = NULL) # Ausgabe von Plots unterbinden
   
   for (i in 1:5) {
     
@@ -67,7 +70,7 @@ plots_time_model <- function(
     plot(sm(day_Viz, select = 1), trans = plogis) +
     l_fitRaster() + l_rug()
   
-  dev.off()
+  dev.off() # Ausgabe von Plot unterbinden
   
   # Nachbauen aus mgcViz-Plot-Daten
   

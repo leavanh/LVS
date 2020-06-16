@@ -1,8 +1,12 @@
 
 
-### In dieser Datei werden die Plots für den Vergleich des ersten Szenarios 
+### In dieser Funktion werden die Plots für den Vergleich des ersten Szenarios 
 ### (generelle Unterschätzung) je nach Anteil an hinzugefügten Messungen
-### erstellt
+### erstellt - für das Zeitmodell
+
+### Die Funktion nimmt als Argument eine Liste von Plots je nach Anteil und
+### plottet sie für jede Kovariable auf ein Bild
+### Die Funktion gibt eine Liste dieser Vergleichsplots aus.
 
 time_model_general_comparison_function <- function(
   plots_scenario_general_time_model

@@ -1,5 +1,9 @@
-### In dieser Datei werden die Plots für die Szenarien erstellt und verglichen
-### Für das Tagesmodell
+
+### Diese Funktion plottet die einzelnen Kurven der verschiedenen Szenarien
+### für jede Kovariable zusammen auf einen Graphen - für das Tagesmodell
+### Die Funktion nimmt als Argument eine Liste von (Listen von) Plots je 
+### Szenario und gibt wiederum eine Liste von Plots aus, die für jede Kovariable
+### die verschiedenen Kurven auf einem Bild zeigt
 
 day_model_comparison_plots_function <- function(
   plots_scenarios_day_model
@@ -84,6 +88,8 @@ guides <- guides(color = guide_legend(ncol = 3, byrow = TRUE,
                                       title.position = "left",
                                       title.hjust = 0.5))
 
+# einzelne Plots je Kovariable richtig beschriften
+
 plots_scenarios_day_model_comparison[[6]] <- 
   plots_scenarios_day_model_comparison[[6]] +
   geom_rug(data = day_model_raw, aes(x = date)) +
@@ -158,7 +164,7 @@ plots_scenarios_day_model_comparison_grid <-
 legend_scenarios_day_model <- 
   get_legend(plots_scenarios_day_model_comparison[[6]])
 
-# Legende der einzelnen Plot löschen
+# Legende der einzelnen Plots im Grid löschen
 
 for (j in 1:6) {
   plots_scenarios_day_model_comparison_grid[[j]] <- 
@@ -166,6 +172,7 @@ for (j in 1:6) {
     theme(legend.position = "none")
 }
 
+# Überblick über alle Plots erzeugen
 
 plots_scenarios_day_model_comparison_grid <- 
   arrangeGrob(plots_scenarios_day_model_comparison_grid[[1]],
@@ -176,6 +183,8 @@ plots_scenarios_day_model_comparison_grid <-
               plots_scenarios_day_model_comparison_grid[[6]],
               ncol = 3,
               bottom = legend_scenarios_day_model)
+
+# Liste zur Ausgabe erstellen
 
 plots_day_model_comparison_list <- list(
   day = plots_scenarios_day_model_comparison[[1]],

@@ -1,20 +1,28 @@
 
-### Plottet das Tagesmodell (als Funktion)
-### Nimmt als Argument ein day_model_function(date_data)-Objekt
+### Diese Funktion plottet für jede nichtparametrische Kovariable eine Kurve
+### Die Funktion nimmt als Argument ein Tagesmodell-Objekt, wie es von der
+### "day_model_function" ausgegeben wird
+### Die Funktion gibt eine Liste der Plots je Kovariable aus plus einen
+### Überblick über alle Plots namens "grid"
 
 plots_day_model <- function(
   day_model
 ) {
 
+# leere Liste erstellen, die aufgefüllt wird
+  
 plot_list <- list()
 
-## Smooth-Plots für nichtparametrische Kovariablen
+pdf(file = NULL) # Ausgabe der Plots unterbinden
 
-pdf(file = NULL)
+# Für jede der 6 Kovarbiablen einen Plot erstellen
 
 for (i in 1:6) {
   
   # Nützliche Werte zur Vereinfachung in eigenen DataFrame
+  # (x = Werte auf der x-Achse, fit = Werte auf der y-Achse,
+  #  se = Werte für das Konfidenzintervall, intercept = Wert des Intercepts zur
+  # Verschiebung der Kurve)
   
   data <- data.frame(
     x = plot(day_model$model, trans = plogis,
@@ -29,13 +37,13 @@ for (i in 1:6) {
     intercept = rep(coef(day_model$model)[1], 100)
   )
   
-  # tatsächliche x-Werte der Daten müssen in eigenen DataFrame für den Rug später
+  # tatsächliche x-Werte der Kovariablen in eigenem DataFrame für den Rug später
   
   raw <- data.frame(
     raw = day_model$model$model[[i+2]]
   )
   
-  # nachgebauter Plot
+  # Plot erstellen inkl. Rug und Kofindenzinervall
   
   plot_list[[i]] <- 
       ggplot(data = data, aes(x = x)) +
@@ -52,10 +60,12 @@ for (i in 1:6) {
   
 }
 
-dev.off()
+dev.off() # Ausgabe der Plots unterbinden
 
 
-## aufgeteilt in Darstellung für den Grid und als Einzelplot
+## die erstellten Plots jeweils richtig beschriften
+## dabei zwei Versionen ("grid" und "smooth") für den Überblick aller Plots und
+## für die Einzeldarstellung
 
 
 # Datum

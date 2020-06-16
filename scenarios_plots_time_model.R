@@ -1,5 +1,10 @@
-### In dieser Datei werden die Plots für die Szenarien erstellt und verglichen
-### Für das Zeitmodell
+
+### Diese Funktion plottet die einzelnen Kurven der verschiedenen Szenarien
+### für jede Kovariable zusammen auf einen Graphen - für das Zeitmodell
+### Die Funktion nimmt als Argument eine Liste von (Listen von) Plots je 
+### Szenario und gibt wiederum eine Liste von Plots aus, die für jede Kovariable
+### die verschiedenen Kurven auf einem Bild zeigt
+
 
 time_model_comparison_plots_function <- function(
   plots_scenarios_time_model
@@ -22,7 +27,7 @@ time_model_raw <- data.frame(
 
 # für jede Kovariable gemeinsame Plots erstellen
 
-# startet bei 2, da erste Variable date_time keinen Smooth-Plot hat
+# startet bei 2, da erste Variable "date_time" keinen Smooth-Plot hat
 # endet bei length(..)-1, da letztes Objekt in der Liste "grid" ist
 
 for (j in 1:(length(plots_scenarios_time_model[[1]])-2)) {
@@ -150,13 +155,15 @@ plots_scenarios_time_model_comparison_grid <-
 legend_scenarios_time_model <- 
   get_legend(plots_scenarios_time_model_comparison[[1]])
 
-# Legende der einzelnen Plots löschen
+# Legende der einzelnen Plots im Grid löschen
 
 for (j in 1:(length(plots_scenarios_time_model[[1]])-2)) {
   plots_scenarios_time_model_comparison_grid[[j]] <- 
     plots_scenarios_time_model_comparison_grid[[j]] + 
     theme(legend.position = "none")
 }
+
+# Überblick über alle Plots erstellen
 
 plots_scenarios_time_model_comparison_grid <- 
   arrangeGrob(plots_scenarios_time_model_comparison_grid[[1]],
@@ -166,6 +173,8 @@ plots_scenarios_time_model_comparison_grid <-
               plots_scenarios_time_model_comparison_grid[[5]],
               bottom = legend_scenarios_time_model,
               ncol = 3)
+
+# Liste zur Ausgabe erstellen
 
 plots_time_model_comparison_list <- list(
   day = plots_scenarios_time_model_comparison[[1]],

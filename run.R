@@ -324,14 +324,29 @@ plogis(time_model_temp$summary$p.coeff[1] +
 
 # Übersicht
 
+# Liste mit Tagesmodell je Szenario
+
+scenarios_day_model <- 
+  list(day_model,
+       day_model_general,
+       day_model_group,
+       day_model_night,
+       day_model_temp)
+
+# Liste mit Plots je Szenario für das Tagesmodell
+
 plots_scenarios_day_model <- list(day_model_plots,
                                    plots_day_model(day_model_general),
                                    plots_day_model(day_model_group),
                                    plots_day_model(day_model_night),
                                    plots_day_model(day_model_temp))
 
+# Liste mit Vergleichsplots
+
 day_model_comparison_plots <- 
 day_model_comparison_plots_function(plots_scenarios_day_model)
+
+# Überblick über Vergleichsplots
 
 grid.arrange(day_model_comparison_plots$grid)
 
@@ -348,14 +363,29 @@ grid.arrange(day_model_comparison_plots$grid)
 
 # Übersicht
 
+# Liste mit Zeitmodell je Szenario
+
+scenarios_time_model <- 
+  list(time_model,
+       time_model_general,
+       time_model_group,
+       time_model_night,
+       time_model_temp)
+
+# Liste mit Plots je Szenario für das Zeitmodell
+
 plots_scenarios_time_model <- list(time_model_plots,
                                    plots_time_model(time_model_general),
                                    plots_time_model(time_model_group),
                                    plots_time_model(time_model_night),
                                    plots_time_model(time_model_temp))
 
+# Liste mit Vergleichsplots
+
 time_model_comparison_plots <- 
   time_model_comparison_plots_function(plots_scenarios_time_model)
+
+# Überblick über Vergleichsplots
 
 grid.arrange(time_model_comparison_plots$grid)
 
@@ -374,6 +404,19 @@ grid.arrange(time_model_comparison_plots$grid)
 # time_model_comparison_plots$date_time_temp
 
 
+# Tabellen mit p-Werten für das jeweilige Modell
+
+source("p_values_scenarios.R", encoding = "UTF-8")
+
+p_values_scenarios_day_model
+
+p_values_scenarios_time_model
+
+
+
+
+
+
 ## Plots für den Vergleich von Szenario 1 mit unterschiedlichen Werten
 
 # es werden in 10 % Schritten mehr Daten dem Szenario "generelle Unterschätzung"
@@ -383,16 +426,32 @@ grid.arrange(time_model_comparison_plots$grid)
 
 # Übersicht
 
+# Liste mit Modellen je Anteil
+
+general_day_model <- 
+  list(day_model,
+       day_model_function(data_general_function(0.1)$date_data),
+       day_model_function(data_general_function(0.2)$date_data),
+       day_model_function(data_general_function(0.3)$date_data),
+       day_model_function(data_general_function(0.4)$date_data),
+       day_model_function(data_general_function(0.5)$date_data))
+
+# Liste mit Plots je Anteil
+
 plots_general_day_model <- 
   list(day_model_plots,
-       plots_day_model(day_model_function(data_general_function(0.1)$date_data)),
-       plots_day_model(day_model_function(data_general_function(0.2)$date_data)),
-       plots_day_model(day_model_function(data_general_function(0.3)$date_data)),
-       plots_day_model(day_model_function(data_general_function(0.4)$date_data)),
-       plots_day_model(day_model_function(data_general_function(0.5)$date_data)))
+       plots_day_model(general_day_model[[2]]),
+       plots_day_model(general_day_model[[3]]),
+       plots_day_model(general_day_model[[4]]),
+       plots_day_model(general_day_model[[5]]),
+       plots_day_model(general_day_model[[6]]))
+
+# Liste mit Vergleichsplots
 
 day_model_general_comparison_plots <- 
   day_model_general_comparison_function(plots_general_day_model)
+
+# Überblick über Verlgeichsplots
 
 grid.arrange(day_model_general_comparison_plots$grid)
 
@@ -409,16 +468,32 @@ grid.arrange(day_model_general_comparison_plots$grid)
 
 # Übersicht
 
+# Liste mit Modellen je Anteil
+
+general_time_model <- 
+  list(time_model,
+       time_model_function(data_general_function(0.1)$min_data),
+       time_model_function(data_general_function(0.2)$min_data),
+       time_model_function(data_general_function(0.3)$min_data),
+       time_model_function(data_general_function(0.4)$min_data),
+       time_model_function(data_general_function(0.5)$min_data))
+
+# Liste mit Plots je Anteil
+
 plots_general_time_model <- 
   list(time_model_plots,
-       plots_time_model(time_model_function(data_general_function(0.1)$min_data)),
-       plots_time_model(time_model_function(data_general_function(0.2)$min_data)),
-       plots_time_model(time_model_function(data_general_function(0.3)$min_data)),
-       plots_time_model(time_model_function(data_general_function(0.4)$min_data)),
-       plots_time_model(time_model_function(data_general_function(0.5)$min_data)))
+       plots_time_model(general_time_model[[2]]),
+       plots_time_model(general_time_model[[3]]),
+       plots_time_model(general_time_model[[4]]),
+       plots_time_model(general_time_model[[5]]),
+       plots_time_model(general_time_model[[6]]))
+
+# Liste mit Vergleichsplots
 
 time_model_general_comparison_plots <- 
   time_model_general_comparison_function(plots_general_time_model)
+
+# Überblick über Vergleichsplots
 
 grid.arrange(time_model_general_comparison_plots$grid)
 
@@ -436,4 +511,13 @@ grid.arrange(time_model_general_comparison_plots$grid)
 # time_model_general_comparison_plots$date_time_30
 # time_model_general_comparison_plots$date_time_40
 # time_model_general_comparison_plots$date_time_50
+
+
+# Tabellen mit p-Werten für das jeweilige Modell
+
+source("p_values_general.R", encoding = "UTF-8")
+
+p_values_general_day_model
+
+p_values_general_time_model
 

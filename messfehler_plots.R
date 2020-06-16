@@ -3,7 +3,7 @@
 ### erzeugt
 
 
-## Anzahl Studentenmessungen vs Checkpointmessungen
+## Anzahl Studentenmessungen gesamt vs Checkpointmessungen
 
 unterschaetzung_plot <- 
 ggplot(data = filter(zlg_beide_bereinigt_sums, 
@@ -12,7 +12,7 @@ ggplot(data = filter(zlg_beide_bereinigt_sums,
   labs(title = "Vergleich der Checkpoint- und Studentendaten",
        x = "Art der Messung", y = "Anzahl")
 
-# Unterscheidung zwischen Kontakten und Erfassung
+# Anzahl an Studentenmessungen je Art des Kontakts, unterschieden nach Erfassung
 
 erf_art_plot <- 
   ggplot(zlg_beide_sums[1:4,], 
@@ -31,7 +31,11 @@ erf_art_plot <-
 #geom_text(aes(label=sum), position=position_dodge(width=0.9), vjust=-0.25)
 
 
-### Erfassungen in 3 min intervall
+# Überblick über Erfassungen nach Zeitraum, zur Übersichtlichkeit in 3-Minuten-
+# Intervalle gruppiert
+
+# Für 27.02.
+
 erf_zeit_27_plot <- 
   ggplot(zlg_27_grouped_3min_erf, 
          aes(x = as.POSIXct(breaks), y = sum,
@@ -52,6 +56,7 @@ erf_zeit_27_plot <-
                     values = c("#993300", "antiquewhite4")) 
 #scale_fill_discrete(name = NULL, labels = c("erfasst", "nicht erfasst"))
 
+# Für 28.02. vormittags
 
 erf_zeit_28_01_plot <- 
   ggplot(zlg_28_01_grouped_3min_erf, 
@@ -73,6 +78,8 @@ erf_zeit_28_01_plot <-
                     values = c("#993300", "antiquewhite4")) 
 #scale_fill_discrete(name = NULL, labels = c("erfasst", "nicht erfasst"))
 
+# Für 28.02. nachmittags
+
 erf_zeit_28_02_plot <- 
   ggplot(zlg_28_02_grouped_3min_erf, 
          aes(x = as.POSIXct(breaks), y = sum,
@@ -93,15 +100,18 @@ erf_zeit_28_02_plot <-
                     values = c("#993300", "antiquewhite4")) 
 #scale_fill_discrete(name = NULL, labels = c("erfasst", "nicht erfasst"))
 
-pdf(file = NULL)
+pdf(file = NULL) # Erzeugung des folgenden Plots unterdrücken
+
+# Überblick über die drei Zeiträume
 
 erf_zeit_grid <- 
   grid.arrange(erf_zeit_27_plot, erf_zeit_28_01_plot, erf_zeit_28_02_plot,
                nrow = 3)
 
-dev.off()
+dev.off() # Erzeugung des vorherigen Plots unterdrücken
 
-# Studentische zählung, erfassung und nicht erfassung von Gruppen
+
+# Anzahl von Erfassungen zu Nichterfassungen je nac Gruppengröße
 
 erf_gruppe_abs_plot <- 
   ggplot(data = erfassung_je_gruppe, 
@@ -118,7 +128,7 @@ erf_gruppe_abs_plot <-
   scale_fill_manual(name = NULL, labels = c("Erfasst", "Nicht Erfasst"), 
                     values = c("#993300", "antiquewhite4"))
 
-#Verhältnis der Gruppengröße
+# Verhältnis von Erfassungen zu Nichterfassungen je nac Gruppengröße
 
 erf_gruppe_rel_plot <- 
   ggplot(data = erfassung_je_gruppe) +

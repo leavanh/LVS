@@ -229,17 +229,8 @@ erf_gruppe_rel_plot # Warnung ignorieren
 
 ### Verschiedene Szenarien vergleichen #########################################
 
-# Für jedes mit euch besprochene Szenario wird hier ein neuer Datensatz erzeugt
+# Für jedes mit euch besprochene Szenario wurde ein neuer Datensatz erzeugt
 # Danach werden die Modelle darauf angewandt
-
-# Um zu sehen wie genau die Datensätze erzeugt werden müsst ihr in die in
-# source() genannten Dateien schauen
-
-
-# Da die Daten zufällig erzeugt werden benutzen wir einen seed
-# so kommt bei jedem Durchlauf das selbe Ergebnis raus
-
-set.seed(42)
 
 # Datensätze der Szenarien laden
 

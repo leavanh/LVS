@@ -2,9 +2,15 @@ Der R-Code besteht aus verschiedenen R-Dateien.
 Um die Grafiken und Ergebnisse zu erhalten einfach run.R durchlaufen lassen.
 
 Wichtiges im Voraus:
+Der Code ist für R 4.0.0 geschrieben und getestet.
 Falls Probleme bei Umlauten entstehen schauen ob "UTF-8" als Encoding eingestellt ist. 
-Als working directory muss der Ort der run-Datei eingestellt sein.
+Als working directory muss der Ort der run-Datei eingestellt sein. (Der Befehl getwd()
+prüft das aktuelle working directory, mithilfe von setwd() kann es geändert werden.)
 Manchmal ist Code auskommentiert, bei Bedarf einfach das Symbol "#" davor löschen.
+Es müssen einige packages installiert werden. RStudio sollte dies eigentlich von
+selbst erkennen und anbieten die packages zu installieren. Ansonsten mithilfe des
+Befehls install.package("packagename") alle in library() aufgerufenen packages selbst
+installieren.
 
 Jetzt zu den einzelnen Dateien:
 

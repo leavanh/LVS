@@ -1,24 +1,30 @@
 \chapter{Methodik}
-In diesem Kapitel wird als erstes die Theorie hinter den Modellen erklärt. Danach gehen wir auf die Schwierigkeiten ein, denen wir gegenüberstanden. Im letzten Teil stellen wir, dann die Ergebnisse vor.
+In diesem Kapitel wird als erstes die Theorie hinter den Modellen erklärt. Danach wird auf die aufgetretenen Schwierigkeiten und die angewandten Lösungen eingegangen. Im letzten Teil werden die Ergebnisse der Modelle besprochen.
+
 \section{Theorie}
-In folgendem Kapitel soll in einem Modell der Zusammenhang einer beobachteten abhängigen Variable, in unserem Fall, der Anteil der Skitourengänger mit LVS-Gerät, durch mehrere unabhängige Variablen erklärt werden.
-Für das bessere Verständis bauen wir den Theorie-Teil von einem einfachen Modell bis hin zu dem von uns verwendeten Modell auf.
+In folgendem Kapitel soll die Theorie hinter den Modellen erklärt werden. Für das bessere Verständnis wird der Theorie-Teil von einem einfachen Modell bis hin zu dem von uns verwendeten Modell aufgebaut.
+
 \subsection{Lineares Regressionsmodell}
-Bei einem linearen Regressionsmodell wird der Erwartungswert einer Zielvariable durch die Linearkombination von Einflussgrö"sen, auch Kovariablen genannt, beschrieben. Das lineare Regressionsmodell nimmt dabei folgende Form an:
+Das einfachste Regressionsmodell ist das lineare Regressionsmodell. Hierbei wird der Erwartungswert einer Zielvariable durch die Linearkombination von Einflussgrö"sen, auch Kovariablen genannt, beschrieben. Das lineare Regressionsmodell nimmt dabei folgende Form an:
 \begin{align}
 y_{i}= \beta_{0}+\beta_{1}x_{i1}+...+\beta_{k}x_{ik}+\epsilon_{i}
 \end{align}
-Die Zielgrö"se wird durch $y_{i}$ abgebildet, welche im Fall des linearen Regressionsmodells normalverteilt ist. Die Kovariablen werden durch $x_{i1},...,x_{ik}$ gekennzeichnet und $\epsilon_{i}$ stellt den Störterm dar. In Anwendungen bei denen es sich nicht um eine normalverteilte Zielvariable handelt ist das lineare Regressionsmodell unzureichend. Um das Problem zu lösen, wird im nächsten Kapitel auf das generalisierte lineare Regressionsmodell eingegangen. (Quelle: Fahrmeir S.62)
-\subsection{Generalisierte lineare Regressionsmodell}
-Das generalisierte lineare Regressionsmodell eignet sich für die Modellierung von Zielvariablen die nicht unbedingt normalverteilt sind. Die abhängige Variable nimmt typischerweise eine Verteilung aus einer Exponentialfamilie (z.B. Binomial, Poisson, Multinomial, Normal,...) an. In unserem Fall handelt es sich um eine durch 0 und 1 kodierte Zielvariable $y_{i}$. Die beobachtete Zielgrö"se, der Anteil an Personen mit LVS-Gerät, ist Binomial-verteilt mit $y_{i}|x_{i}\sim B(1,\pi_{i})$: \\
+Die Zielgrö"se, $y_{i}$, muss stetig und approximativ normalverteilt sein. Die Kovariablen werden durch $x_{i1},...,x_{ik}$ gekennzeichnet und $\epsilon_{i}$ stellt den Störterm dar. In Anwendungen bei denen es sich nicht um eine normalverteilte Zielvariable handelt ist das lineare Regressionsmodell unzureichend. (Quelle: Fahrmeir S.20 ff) \\
+Dieses Problem löst das generalisierte lineare Regressionsmodell, auf welches im nächsten Abschnitt eingegangen wird. 
+
+\subsection{Generalisiertes lineares Regressionsmodell}
+Das generalisierte lineare Regressionsmodell eignet sich für die Modellierung von Zielvariablen die nicht normalverteilt sind. Die abhängige Variable kann eine Verteilung aus der Exponentialfamilie (z.B. Binomial, Poisson, Multinomial, Normal,...)annehmen. Durch eine Link-Funktion wird sie dann in eine normalverteilte Variable transformiert. \\
+Bei den später verwendeten Modellen lässt sich die Zielvariable wie folgt beschreiben: \\
 \begin{align}
 %\vspace{0.1cm}
 y_{i}=\begin{cases}
-1 & \text{,wenn Person mit LVS-Gerät identifiziert wird } \\
-0 & \text{,wenn Person ohne LVS-Gerät identifiziert wird.} \\
+1 & \text{,wenn Person mit LVS-Gerät gemessen wird } \\
+0 & \text{,wenn Person ohne LVS-Gerät gemessen wird.} \\
 \end{cases}
 \end{align}
-Bei der generalisierten Regression mit binärer Zielvariable wird der Effekt der Kovariablen durch die (bedingte) Wahrscheinlichkeit $\pi_{i}$ beschrieben.
+Die beobachtete Zielvariable ist Binomial-verteilt mit $y_{i}|x_{i}\sim B(1,\pi_{i})$. \\
+
+Bei der generalisierten Regression mit binärer Zielvariable, wie in diesem Fall, wird der Effekt der Kovariablen durch die (bedingte) Wahrscheinlichkeit $\pi_{i}$ beschrieben.
 \begin{align}
 \pi_{i}=P(y_{i}=1|x_{i1},...,x_{ik})=E(y_{i}|x_{i1},...,x_{ik})
 \end{align}
@@ -30,26 +36,30 @@ Der Erwartungswert der Zielvariable wird mit dem linearen Prädiktor $\eta_{i}$ 
 \begin{align}
 g(\pi_{i})=\log(\frac{\pi_{i}}{1-\pi_{i}}).
 \end{align}
-In unserer Arbeit machen wir Gebrauch von dem Logit-Link. Diese Transformation ist zur mathematischen Berechnung unseres Modells notwendig. In Kapitel (...) werden wir den Logit-Link zurücktransformieren um die Interpretation der Ergebnisse zu vereinfachen.
-Das generalisierte lineare Regressionsmodell beschreibt lineare Einflüsse der Kovariablen auf die Zielvariable. In praktischen Anwendungen ist dies oft unzureichend, da neben den linearen Einflüssen auch nicht-lineare, flexible Einflüsse von Kovariablen auf die abhängige Variable wirken können (Quelle: Fahrmeir S.190). Daher wird im nächsten Kapitel die additive Regression näher erläutert.
+Die hier verwendeten Modelle machen Gebrauch von dem Logit-Link. \\
+Das generalisierte lineare Regressionsmodell beschreibt lineare Einflüsse der Kovariablen auf die Zielvariable. In praktischen Anwendungen ist dies oft unzureichend, da neben den linearen Einflüssen auch nicht-lineare, flexible Einflüsse von Kovariablen auf die abhängige Variable wirken können (Quelle: Fahrmeir S.190 ff). Daher wird im nächsten Kapitel die additive Regression näher erläutert.
+
 \subsection{Additives Regressionsmodell}
-Das additive Modell stellt in der Statistik ein semi-parametrisches Regressionsmodell dar. Neben mehreren nicht-linearen flexiblen Einﬂüssen können hier auch lineare Einflüsse von Kovariablen auf die abhängige Variable modelliert werden. \\
+Das additive Modell stellt ein semi-parametrisches Regressionsmodell dar. Neben linearen Einflüssen können auch nicht-lineare flexible Einﬂüsse von Kovariablen auf die abhängige Variable modelliert werden. \\
 Das Standardmodell der additiven Regression hat die Form:
 \begin{align}
-y_{i}=\underbrace{\beta_{0}+\beta_{1}x_{i1}+...+\beta_{k}x_{ik}}_{\text{parametrische Effekte}}+ \underbrace{f_{1}(z_{i1})+...+f_{q}(z_{iq})}_{\text{semi-parametrische Effekte}}+\epsilon_{i}
+y_{i}=\underbrace{\beta_{0}+\beta_{1}x_{i1}+...+\beta_{k}x_{ik}}_{\text{parametrische Effekte}}+ \underbrace{f_{1}(z_{i1})+...+f_{q}(z_{iq})}_{\text{nichtparametrische Effekte}}+\epsilon_{i}
 \end{align}
-Der parametrische Teil des Standardmodells hat die gleiche Form, wie schon im linearen Modell aufgezeigt. Die Funktionen $f_{1}(z_{1}),...,f_{q}(z_{q})$ werden mit nichtparametrischen Effekten geschätzt. (Quelle: Fahrmeir S.47)
-Auf die Theorie hinter der Funktion $f$ wird im nächsten Kapitel eingegangen.
+Der parametrische Teil des Standardmodells hat die gleiche Form, wie schon im linearen Modell aufgezeigt. Die Funktionen $f_{1}(z_{1}),...,f_{q}(z_{q})$ sind sogenannte Glättungen und schätzen die nichtparametrischen Effekte. (Quelle: Fahrmeir S.44 ff) \\
+Auf die Theorie hinter den glatten Funktionen $f$ wird im nächsten Kapitel eingegangen.
+
 \subsection{Splines}
-Die Schätzfunktion $f$ wird durch sogenannte Splines modelliert. Splines stellen bestimmte Funktionen dar, die stückweise aus Polynomen eines bestimmten Grades zusammengesetzt werden. Es gibt verschiedene Arten von Splines. In unserer Arbeit beschränken wir uns auf die Penalisierten Splines, die Zyklische Splines und die Thin-Plate Splines.
+Die Glättungsfunktion $f$ wird durch sogenannte Splines modelliert. Splines stellen bestimmte Funktionen dar, die stückweise aus Polynomen eines bestimmten Grades zusammengesetzt werden. Es gibt verschiedene Arten von Splines. In den Modellen wurden die Penalisierten Splines, die Zyklische Splines und die Thin-Plate Splines verwendet. Im Folgenden werden diese erläutert, wobei zum einfacheren Verständnis zuvor noch Polynom- und Basis-Splines erklärt werden.
+
 \subsubsection{Polynom-Splines}
 	Eine Möglichkeit, die Funktion $f$ abzubilden, sind Splines, die über Polynome modelliert werden und Polynom-Splines, oder auch Regressions-Splines, genannt werden. Das polynomiale Modell hat die Form: 
 \begin{align}
 f(z)=\gamma_{0}+\gamma_{1}z+...+\gamma_{l}z^l,
 \end{align}
-wobei das Polynom vom Grad $l$ durch den Einfluss von $z$ auf $y$ modelliert wird und $\gamma_{j}$ die Regressionskoeffizienten darstellen. Um eine flexible Schätzfunktion gewährleisten zu können, wird der Definitionsbereich von $z$ in Intervalle geteilt und Polynome werden für das jeweilige Intervall geschätzt. Die Zerlegung von $z$ erfolgt stückweise auf Basis von sogenannten Knotenmengen $k_{1}$ bis $k_{m}$.  Ein Problem, welches dabei entstehen könnte ist, dass an den Intervallgrenzen keine $glatte$ Funktion entstehen. Der Graph einer $glatten$ Funktion hat an den Intervallgrenzen keine \glqq{Ecken\grqq}. Deshalb muss für die \glqq{mathematische}\grqq ~Glattheit die zusätzliche Bedingung, dass die Funktion $f(z)$ an den Intervallgrenzen $(l-1)$-mal stetig differenzierbar ist, eingeführt werden. Der Grad des Splines und die Anzahl der Knoten können somit im hohen Ma"se die Funktion beeinflussen, je höher die Anzahl an Knoten ist, desto $rauer$ ist die Funktion $f(z)$. Um Polynom-Splines in der Praxis anwenden zu können, bedarf es einer Darstellung der Menge der Polynom-Splines. Eine mögliche Darstellung eines Polynom-Splines stellt die B-Spline-Basisfunktion dar.
+wobei das Polynom vom Grad $l$ durch den Einfluss von $z$ auf $y$ modelliert wird und $\gamma_{j}$ die Regressionskoeffizienten darstellen. Um eine flexible Schätzfunktion gewährleisten zu können, wird der Definitionsbereich von $z$ in Intervalle geteilt und Polynome werden für das jeweilige Intervall geschätzt. Die Zerlegung von $z$ erfolgt stückweise auf Basis von sogenannten Knotenmengen $k_{1}$ bis $k_{m}$.  Ein Problem, welches dabei entstehen könnte ist, dass an den Intervallgrenzen keine $glatte$ Funktion entstehen. Der Graph einer $glatten$ Funktion hat an den Intervallgrenzen keine \glqq{Ecken\grqq}. Deshalb muss für die \glqq{mathematische}\grqq ~Glattheit die zusätzliche Bedingung, dass die Funktion $f(z)$ an den Intervallgrenzen $(l-1)$-mal stetig differenzierbar ist, eingeführt werden. Der Grad des Splines und die Anzahl der Knoten können im hohen Ma"se die Funktion beeinflussen, je höher die Anzahl an Knoten ist, desto $rauer$ ist die Funktion $f(z)$. Um Polynom-Splines in der Praxis anwenden zu können, bedarf es einer Darstellung der Menge der Polynom-Splines. Eine mögliche Darstellung eines Polynom-Splines stellt die B-Spline-Basisfunktion dar. (Quelle S 293 ff)
+
 \subsubsection{Basis Splines}
-Der B-Spline dient als Basisfunktion für Polynom-Splines. Jedoch wird sich auch der Penalisierungs-Spline, welcher im darauffolgenen Kapitel vorgestellt wird, die B-Spline-Basisfunktion zu Nutzen machen. Das Ziel bei der Konstruktion der B-Spline-Basisfunktion ist es die Polynomstücke des gewünschten Grades an den Knoten ausreichend $glatt$ zusammenzusetzen. Die Basisfunktion besteht dabei aus $(l+1)$ Polynomstücken vom Grad $l$, welche stetig an den Knoten zusammengesetzt werden. Die Funktion $f(z)$ lässt sich durch die Linearkombination der Basisfunktionen:
+Der B-Spline dient als Basisfunktion für Polynom-Splines. Jedoch wird sich auch der Penalisierungs-Spline, welcher im folgenden Abschnitt vorgestellt wird, die B-Spline-Basisfunktion zu Nutzen machen. Das Ziel bei der Konstruktion der B-Spline-Basisfunktion ist es die Polynomstücke des gewünschten Grades an den Knoten ausreichend $glatt$ zusammenzusetzen. Die Basisfunktion besteht dabei aus $(l+1)$ Polynomstücken vom Grad $l$, welche stetig an den Knoten zusammengesetzt werden. Die Funktion $f(z)$ lässt sich durch die Linearkombination der Basisfunktionen:
 \begin{align}
 f(z)=\sum_{j=1}^d\gamma_{j}B_{j}(z)
 \end{align}
@@ -67,55 +77,59 @@ Für B-Splines höheren Grades gilt:
 B_{j}^l(z)= \frac{z-k_{j}}{k_{j+l}-k_{j}}B_{j}^{l-1}(z)+
 \frac{k_{j+l+1}-z}{k_{j+l+1}-k_j+1}B_{j+1}^{l-1}(z).
 \end{align}
-Die Abbildung \ref{pic:b_spline} visualisiert die Schätzung eines B-Splines anhand eines fiktiven Datenbeispiels schematisch. Abbildung (a) demonstriert eine B-Spline Basis vom dritten Grad. In Abbildung (b) wird die Basisfunktion mit dem Kleinste-Quadrate-Schätzer $\hat\gamma_{j}$ skaliert. Die Abbildung (c), zeigt die erhaltene Schätzung, wenn die skalierten Basisfunktionen addiert werden.
+(Quelle)
+Die Abbildung \ref{pic:b_spline} (Quelle! s. 307) visualisiert die Schätzung eines B-Splines anhand eines fiktiven Datenbeispiels schematisch. Abbildung (a) demonstriert eine B-Spline Basis vom dritten Grad. In Abbildung (b) wird die Basisfunktion mit dem Kleinste-Quadrate-Schätzer $\hat\gamma_{j}$ skaliert. Die Abbildung (c), zeigt die erhaltene Schätzung, wenn die skalierten Basisfunktionen addiert werden.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.9\textwidth]{plots/b_spline.png}
-	\caption{Schematische Darstellung der Schätzung eines nichtparametrischen Effekts mit B-Splines}
+	\caption{Schematische Darstellung der Schätzung eines nichtparametrischen Effekts mit B-Splines \\
+	Quelle: S. 307!}
 	\label{pic:b_spline}
 \end{figure}
 
-\noindent Das nächste Kapitel behandelt P-Splines, welche auf B-Splines basieren und durch einen Strafterm erweitert worden sind. In unserer Arbeit beschränken wir uns auf P-Splines.
+\noindent Das nächste Kapitel behandelt P-Splines, welche auf B-Splines basieren und durch einen Strafterm erweitert worden sind. Diese werden  bei den später erklärten Modellen verwendet.
+
 \subsubsection{Penalisierte Splines basierend auf B-Splines}
-Im vorherigen Kapitel, haben wir die Wichtigkeit der Knotenmenge kennengelernt. Die Glattheit und Flexibilität der Schätzfunktion $f(z)$ hängt stark von der Anzahl der Knoten ab. Das Ziel ist es die Funktion $f(z)$ auf Basis einer B-Spline Funktion, mit einer großen Zahl an Knoten, zu approximieren um so die Flexibilität der Schätzfunktion sicherzustellen und andererseits zu hohe Variabilität in Form eines Strafterms zu sanktionieren. Der Penalisierte-Spline, gekürzt P-Spline, kombiniert somit eine B-Spline-Basis mit einem Strafterm. Der Strafterm für B-Splines wird häufig durch die quadrierte zweite Ableitung der Schätzfunktion $f(z)$ modelliert, da diese Form im R-Paket $mgcv$ von Simon Woods implementiert wird. Die zweite Ableitung stellt ein Ma"s für die Krümmung der Funktion dar und ist daher in der Lage die Glattheit einer Funktion einzuschätzen.
+Bereits im vorherigen Abschnitt wurde klar, dass die Knotenmenge einen wichtigen Faktor darstellt. Die Glattheit und Flexibilität der Schätzfunktion $f(z)$ hängt stark von der Anzahl der Knoten ab. Eine zu hohe Anzahl von Knoten führt zu sogenanntem \glqq Overfitting\grqq, das hei"st die Funktion ähnelt zu sehr den Daten und ist sehr wacklig. Die Idee der P-Splines ist es die Funktion $f(z)$ auf Basis einer B-Spline Funktion mit einer großen Zahl an Knoten zu approximieren um so die Flexibilität der Schätzfunktion sicherzustellen und andererseits zu hohe Variabilität durch einen Strafterm zu sanktionieren. Der Penalisierte-Spline, gekürzt P-Spline, kombiniert somit eine B-Spline-Basis mit einem Strafterm. Der Strafterm für B-Splines wird durch die quadrierte zweite Ableitung der Schätzfunktion $f(z)$ modelliert. Die zweite Ableitung stellt ein Ma"s für die Krümmung der Funktion dar und ist daher in der Lage die Glattheit einer Funktion einzuschätzen.
 Der Strafterm: 
 \begin{align}
 \lambda\int(f''(z))^2dz.
 \end{align}
-In der Anwendung wird für die Approximation der zweiten Ableitungen, die zweite Differenz des Paramters $\gamma_{j}$ verwendet. Wenn der Glättungsparameter $\lambda$ gegen unendlich konvergiert, erhält man eine nahezu lineare Schätzfunktion $f(z)$ und der Strafterm wird primär durch $\lambda$ reguliert. Im Fall von $\lambda \to 0$ verfügt der Glättungsparameter ($\lambda$) nur über ein geringers Gewicht.
+In der Anwendung wird für die Approximation der zweiten Ableitungen, die zweite Differenz des Parameters $\gamma_{j}$ verwendet. Wenn der Glättungsparameter $\lambda$ gegen unendlich konvergiert, erhält man eine nahezu lineare Schätzfunktion $f(z)$. Im Fall von $\lambda \to 0$ konvergiert auch der Strafterm gegen $0$ und die P-Splines verhalten sich wie unpenalisierte B-Splines. Der Glättungsparameter $\lambda$ wird im Modell durch REML (Restriktierte Maximum-Likelihood) geschätzt.
+
 \subsubsection{Zyklische P-Splines}
-Eine Glättungsfunktion hei"st zyklisch, wenn die Funktion dieselben Werte und ersten Ableitungen an ihrer oberen und unteren Grenze aufweist. Beispielsweise kann man die Funktion für die Variable Woche mit Hilfe des zyklischen P-Splines modellieren. Das Ziel dabei ist es z.B den Sonntag mit dem darauffolgenden Montag zu verknüpfen. Dadurch wird sichergestellt, dass die Werte am Ende einer Woche zusammenhängend zu den Werten am Anfang der darauffolgenden Woche sind. 
+Eine Glättungsfunktion hei"st zyklisch, wenn die Funktion dieselben Werte und ersten Ableitungen an ihrer oberen und unteren Grenze aufweist. Beispielsweise kann man die Funktion für die Variable Wochentag mit Hilfe des zyklischen P-Splines modellieren. Das Ziel dabei ist es z.B den Sonntag mit dem darauffolgenden Montag zu verknüpfen. Dadurch wird sichergestellt, dass die Werte am Ende einer Woche zusammenhängend zu den Werten am Anfang der darauffolgenden Woche sind. 
 Die Schätzfunktion eines zyklischen P-Splines hat die Form:
 \begin{align}
 f(z)=\sum_{j=1}^{k-1}B_{j}(z)\beta_{j}.
 \end{align}
 Der Koeffizient $\beta_{j}$ wird durch den transponierten Vektor $\beta^T=(\beta_{1},...,\beta_{k-1})$ dargestellt, wobei $\beta_{j}=\beta_{k}$ gilt.
 Der Penalisierungsansatz für zyklische P-Splines ist simultan zu der Penalisierung von P-Splines basierend auf B-Splines. (Quelle: Woods S.203)
+
 \subsubsection{Thin-Plate Splines}
-Bisher wurden Funktionen mit nur einer einzigen Kovariable geschätzt. Die Thin-Plate Splines ermöglichen die Schätzung einer Funktion mit mehreren Kovariablen. In unserem Fall handelt es sich um eine Funktion mit zwei Variablen, nämlich dem Datum und der Uhrzeit. Die beiden Variablen wurden in einer Funktion geschätzt, da sie miteinander in Interaktion sind. Wie eine Funktion mit Interaktionsterm aufgebaut ist, wird in einem späteren Kapitel (...) genauer erklärt. Der Vorteil von Thin-Plate Splines ist, dass nun eine Auswahl von Knotenpositionen oder Basisfunktionen nicht notwendig ist, da sich diese durch die mathematische Darstellung des Glättungsparameters ergibt. Die Glattheit, wenn z zweidimensional ist,  wird durch die Minimierung der Funktion von $f$ erzielt, der die folgende Form hat:
+Bisher wurden Funktionen mit nur einer einzigen Kovariable geschätzt. Die Thin-Plate Splines ermöglichen die Schätzung einer Funktion mit mehreren Kovariablen. Bei dem hier angewandeten Modell handelt es sich um eine Funktion mit zwei Variablen, nämlich dem Datum und der Uhrzeit. Die beiden Variablen wurden in einer Funktion geschätzt, da sie miteinander interagieren. Der Vorteil von Thin-Plate Splines ist, dass nun eine Auswahl von Knotenpositionen oder Basisfunktionen nicht notwendig ist, da sich diese durch die mathematische Darstellung des Glättungsparameters ergibt. Die Glattheit, wenn $z$ zweidimensional ist, wird durch die Minimierung der Funktion von $f$ erzielt, die die folgende Form hat:
 \begin{align}
 ||y-f||^2+\underbrace{\lambda}_{\substack{\text{Glättungs-} \\ \text{parameter}}} \underbrace{J_{md}(f)}_{\substack{\text{Straf-} \\ \text{term}}}.
 \end{align}
 Dabei stellt $y$ den Vektor von $y_{i}$ und $f=[(f(z_{1}),...,f(z_{n}))]^T$ dar. Die Funktion $f$ wird durch einen Glättungsparameter multipliziert mit einem Strafterm für raue bzw. wackelige Funktionen ergänzt.
-\subsection{Generalisierte additive Modell}
-In diesem Kapitel wird auf das von uns im Projekt angewandte Modell näher eingegangen. Das generalisierte additive Modell eignet sich um nicht-lineare Effekte von metrischen Kovariablen auf eine, nicht unbedingt normalverteilte, Zielvariable zu beschreiben. Wie schon im additiven Modell erläutert, setzt sich der additive Prädiktor $(\eta_{i})$ aus einem parametrischen- und nicht-parametrischen Teil zusammen. Welche Form $\eta_{i}$ annehmen kann, wird an einem Beispiel veranschaulicht:
+
+\subsection{Generalisiertes additives Modell}
+Das generalisierte additive Modell verbindet das additive Regressionsmodell mit einem generalisierten Modell.
+Es eignet sich um nicht-lineare Effekte von metrischen Kovariablen auf eine nicht unbedingt normalverteilte Zielvariable zu beschreiben. Wie schon im additiven Modell erläutert, setzt sich der additive Prädiktor $(\eta_{i})$ aus einem parametrischen- und einem nichtparametrischen Teil zusammen.
 \begin{align}
-\eta_{i}=\beta_{0}+\beta_{1}(\text{Ferientag}_{i})+f_{1,2}(\text{Uhrzeit}_{i},\text{Datum}_{i})+ \nonumber \\
-f_{3}(\text{Lawinenwarnstufe}_{i})+f_{4}(\text{Wochentag}_{i})+ \nonumber \\
-f_{5}(\text{Temperatur}_{i})+f_{6}(\text{Bewölkung}_{i})+  \nonumber \\
-f_{7}(\text{Schneedifferenz}_{i})
+\eta_{i}=\underbrace{\beta_{0}+\beta_{1}x_{i1}+...+\beta_{k}x_{ik}}_{\text{parametrische Effekte}}+ \underbrace{f_{1}(z_{i1})+...+f_{q}(z_{iq})}_{\text{nichtparametrische Effekte}}+\epsilon_{i}
 \end{align}
-Bei der Funktion $f_{1,2}$ handelt es sich um einen sogenannten Interaktionseffekt. Das ist notwendig, wenn eine nicht-lineare Interaktion zwischen zwei oder mehreren Variablen besteht. In unserem Fall interagieren die Uhrzeit und das Datum mteinander. Das Modell wurde somit um einen Interaktionseffekt erweitert. \\
-\noindent Des weiteren fällt aus, dass nun anstatt den im Kapitel 2 vorgestellten Kovariablen Schneehöhe (in $cm$) und Sonneneinstrahlung (in $W/m^2$) die Kovariablen Schneedifferenz ($f_{6}$) und der Anteil der maximalen Sonneneinstrahlung ($f_{7}$) in das Modell eingebaut wurden. Diese Transformation wurde aufgrund des Concurvity-Problems durchgeführt und wird im nächsten Schritt erläutert. 
+Bei den beiden angewandten Modelle handelt es sich um generalisierte additive Modelle mit einer Logit-Link-Funktion. Die glatten Funktionen werden mithilfe von P-Splines, zyklischen P-Splines und Thin-Plate-Splines geschätzt. Bevor im Kapitel (...)die konkreten Modelle vorgestellt werden, geht es im nächsten Abschnitt um aufgetretene Schwierigkeiten.
+
 \section{Schwierigkeiten}
-In diesem Teil der Arbeit wird ein Überblick über die Schwierigkeiten im Modell gegeben. Es wird als erstes das Concurvity-Problem erläutert, dann die Überdispersion um im letzten Kapitel die Autokorrelation.
+In diesem Teil der Arbeit wird ein Überblick über die Schwierigkeiten im Modell gegeben. Es wird als erstes das Concurvity-Problem erläutert, dann die Überdispersion und im letzten Abschnitt die Autokorrelation.
+
 \subsection{Concurvity}
-Die Kollinerität beschreibt einen linearen Zusammenhang zwischen den unabhängigen Variablen. Die Concurvity kann als Erweiterung der Kollinerität angesehen werden und charakterisiert im Allgemeinen die nicht-lineare Zusammenhänge von Kovariablen. Ein hohes Ma"s an Concurvity weist daher auf einen starken Zusammenhang zwischen zwei oder mehreren Kovariablen hin. Durch das Auftreten der Concurvity kommt es zu einer Art Varianz-Inflation der geschätzten Regressionskoeffizienten. Das hei"st die Koeffizienten in dem generalisierten additiven Modell werden instabil(Quelle: ON CONCURVITY IN NONLINEAR AND NONPARAMETRIC REGRESSION MODELS; S.88f.). Die Kovariable Schneehöhe hat einen starken Zusammenhang zu der Uhrzeit und dem Datum, sowie zu der Temperatur, wie die Tabelle \ref{con1} zeigt. Die Indizes liegen dabei zwischen 0 und 1, wobei 0 keinen Zusammenhang zwischen den Variablen impliziert und 1 einen sehr starken Zusammenhang. Das Indizes wird anhand des quadrierten Terms:
-\begin{align}
-||g||/||f|| 
-\end{align}
-kalkuliert.
-Die Funktion $f$ wird in einen Teil $g$ zerlegt, welcher zum Teil vollständig im Raum eines oder mehrerer anderer Funktionen und im eigenen Funktions-Raum liegt.  (Quelle: ON CONCURVITY IN NONLINEAR AND NONPARAMETRIC REGRESSION MODELS; S.88f.)
+Die Kollinearität beschreibt einen linearen Zusammenhang zwischen den Kovariablen. Die Concurvity kann als Erweiterung der Kollinearität angesehen werden und charakterisiert die nicht-lineare Zusammenhänge von Kovariablen. Ein hohes Ma"s an Concurvity weist daher auf einen starken Zusammenhang zwischen zwei oder mehreren Kovariablen hin. Durch das Auftreten der Concurvity kommt es zu einer Art Varianz-Inflation der geschätzten Regressionskoeffizienten. Das hei"st die Koeffizienten in dem generalisierten additiven Modell werden instabil(Quelle: ON CONCURVITY IN NONLINEAR AND NONPARAMETRIC REGRESSION MODELS; S.88f.). \\
+Bei der Untersuchung der Kovariablen auf Concurvity zeigt sich einige leicht erhöhte Werte. Deshalb wird die Variable Schneehöhe zu Schneedifferenz transformiert. Die Schneedifferenz des jeweiligen Tages berechnet sich durch Subtraktion der Schneehöhe des vorherigen Tages von der Schneehöhe des jeweiligen Tages. Durch die Transformation der Kovariable Schneehöhe zu Schneedifferenz ist das Ma"s an Concurvity gesunken. In Abbildung (...) ist die neue Variable Schneedifferenz nach Datum sehen.
+
+%KOMMT NICHT MIT REIN -> ANHANG
+
 \begin{table}[htbp]
 	\centering
 	\vspace{-1em}
@@ -138,9 +152,6 @@ Die Funktion $f$ wird in einen Teil $g$ zerlegt, welcher zum Teil vollständig i
 	\end{adjustbox}
 \end{table}%
 
-\noindent Durch die Transformation der Kovariable Schneehöhe zu Schneedifferenz ist das Ma"s an Concurvity gesunken, wie in Tabelle \ref{con2} dargestellt. Die Schneedifferenz wurde beispielsweise durch die heutige Schneehöhe subtrahiert mit der gestrigen Schneehöhe errechnet, also
-$\text{Schneedifferenz}_{i}-\text{Schneedifferenz}_{i-1}$.
-
 \begin{table}[htbp]
 	\centering
 	\caption{Concurvity (worst case) nach der Transformation}
@@ -162,10 +173,11 @@ $\text{Schneedifferenz}_{i}-\text{Schneedifferenz}_{i-1}$.
 	\end{adjustbox}
 \end{table}%
 
-\newpage
 \subsection{Überdispersion}
-Bei den bisher vorgestellten Modellen ist man von Individualdaten ausgegangen. Jeder Beobachtung wird genau ein Idividuum aus der Stichprobe zugeordnet.
-Bei den von uns verwendeten Datensätzen im Modell handelt es sich nicht um Individualdaten, sondern um gruppierte Daten. Die Indiviudaldaten werden nach identischen Zeilen in der Datenmatrix gruppiert. In unserer Arbeit wenden wir zwei Modelle an, einmal das Tagesmodell und das Zeitmodell. (Quelle: Fahrmeir S.195f.) Im Tagesmodell wurden die Daten nach dem Tag bzw. Datum gruppiert, wodurch insgesamt $101$ Zeilen in der Datenmatrix generiert wurden. Die Kovariable Uhrzeit wurde dabei nicht beachtet. Da jedoch auch die Uhrzeit von Interesse für die Datenanalyse ist, wurde ein zweites Modell, nämlich das Zeitmodell, aufgestellt. Im Zeitmodell wurden die Individualdaten nach der Minute gruppiert und $19334$ Beobachtungen erzeugt. Das Gruppieren von Individualdaten führt dazu, dass Anteile für Personen mit LVS-Gerät für das jeweilige Datum bzw. das Datum und die Uhrzeit berechnet werden konnten. Durch das gruppieren nach Datum oder Minute kommt es in unserem Fall zur Überdispersion, das hei"st die Daten weisen eine grö"sere Streuung bzw. Varianz auf als durch das Modell zu erwarten ist. Das Problem der Überdispersion kann durch das Einsetzen eines Dispersionsparameters in die Varianzformel gelöst werden.
+Bei den bisher vorgestellten Modellen ist man von Individualdaten ausgegangen. Jeder Beobachtung wird genau ein Individuum aus der Stichprobe zugeordnet.
+Bei den von uns verwendeten Datensätzen im Modell handelt es sich nicht um Individualdaten, sondern um gruppierte Daten. Die Individualdaten werden nach identischen Zeilen in der Datenmatrix gruppiert. In der Arbeit werden zwei Modelle angewendet, das Tagesmodell und das Zeitmodell. (Quelle: Fahrmeir S.195f.) \\
+Im Tagesmodell werden die Daten nach dem Tag bzw. Datum gruppiert, wodurch Datenmatrix insgesamt $n = 101$ Zeilen aufweist. Die Kovariable Uhrzeit wird dabei nicht beachtet. Da jedoch auch die Uhrzeit von Interesse für die Datenanalyse ist, wird ein zweites Modell, nämlich das Zeitmodell, aufgestellt. Im Zeitmodell werden die Individualdaten nach der Minute gruppiert und $n = 19334$ Beobachtungseinheiten erzeugt. Das Gruppieren von Individualdaten führt dazu, dass Anteile für Personen mit LVS-Gerät für das jeweilige Datum bzw. das Datum und die Uhrzeit berechnet werden. \\
+Durch das Gruppieren nach Datum oder Minute kann es zur Überdispersion kommen. Das hei"st die Daten weisen eine grö"sere Streuung bzw. Varianz auf, als durch das Modell zu erwarten ist. Das Problem der Überdispersion wird durch das Einsetzen eines Dispersionsparameters in die Varianzformel gelöst.
 \begin{align}
 Var(y_{i}|\textbf{x}_{i})=\underbrace{\phi}_\text{Dispersionsparameter} \underbrace{\pi_{i}(1-\pi_{i})}_\text{Varianz}
 \end{align}
@@ -174,22 +186,22 @@ Der Dispersionsparameter wird errechnet durch:
 \phi=\frac{\text{Devianz}}{\text{Freiheitsgrade der Residuen}}.
 \end{align} 
 (Quelle: Fahrmeir S.197 f.)
-Im nächsten Absatz wird die Autokorrelation der Uhrzeit vorgestellt.
+
 \subsection{Autokorrelation}
-Die Autokorrelation beschreibt die Korrelation einer Funktion mit sich selbst zu einem früheren Zeitpunkt. In Zeitreihen entsteht das Problem der Autokorrelation häufig, da die Annahme der unkorrelierten Störgrö"sen verletzt ist. Man unterscheidet dabei zwischen der empirischen Autokorrelation ACF(j) und der partiellen Autokorrelation PACF(j).\\
+Die Autokorrelation beschreibt die Korrelation einer Funktion mit sich selbst zu einem früheren Zeitpunkt. In Zeitreihen entsteht das Problem der Autokorrelation häufig, da die Annahme der unkorrelierten Störgrö"sen verletzt ist. Man unterscheidet dabei zwischen der empirischen Autokorrelation (ACF) und der partiellen Autokorrelation (PACF).\\
 Die empirische Autokorrelation wird berechnet durch:
 \begin{align}
 \widehat{\text{ACF}}(j)=\frac{\widehat{\text{Cov}}(\epsilon_{i},\epsilon_{i-j})}{\widehat{\text{Var}}(\epsilon_{i})} ~\text{mit} ~\widehat{\text{Cov}}(\epsilon,\epsilon_{i-j})=\frac{1}{n}\sum_{i=j+1}^{n}\hat{\epsilon}_{i}\hat{\epsilon}_{i-j}.
 \end{align}
-Dabei sind $\epsilon_{i}$ die Resiuden und $\epsilon_{i-j}$ die um $j$ verzögerten Residuen. Das ACF gibt die Korrelation zwischen den Störungen $\epsilon_{i}$ und den um $j$ Perioden verzögerten Störtermen an. Das PACF hingegen berechnet die Korrelation zwischen $\epsilon_{i}$ und $\epsilon_{i-j}$ ohne den Einfluss der dazwischen liegenden Störungen zu beachten. Dabei ist:
+Dabei sind $\epsilon_{i}$ die Residuen und $\epsilon_{i-j}$ die um $j$ verzögerten Residuen. Das ACF gibt die Korrelation zwischen den Störungen $\epsilon_{i}$ und den um $j$ Perioden verzögerten Störtermen an. Das PACF hingegen berechnet die Korrelation zwischen $\epsilon_{i}$ und $\epsilon_{i-j}$ ohne den Einfluss der dazwischen liegenden Störungen zu beachten. Dabei ist:
 \begin{align}
 \epsilon_{i}=\alpha_{1}\epsilon_{i-1}+...+\alpha_{j}\epsilon_{i-j}
 +v_{i},
 \end{align}
-wobei $\alpha_{j}$ der Regressionskoeffizient des Modells ist. Die partielle Autokorrelation PACF(j) kann anhand des Modells von (1.19) geschätzt und damit durch:
+wobei $\alpha_{j}$ der Regressionskoeffizient des Modells ist. Die partielle Autokorrelation PACF wird durch:
 \begin{align}
 \widehat{\text{PACF}}(j)=\hat{\alpha}_{j}
 \end{align}
-bestimmt werden.\\
-Im Zeitmodell korreliert die Funktion der Uhrzeit mit sich selbst zu einem früheren Zeitpunkt. Um das Problem der Autokorrelation genauer zu analysieren können die empirische Autokorrelation und partielle Autokorrelation anhand von sogenannten Korrelogrammen, wie in Abbildung (...), grafisch dargestellt werden. Die beiden Korrelogramme weisen auf eine niedrige empirische- und partielle Autokorrelation hin, wodurch keine weiteren Ma"snahmen zur Behebung der Autokorrelation erfordelich sind.\\
+bestimmt.\\
+Beide Modelle wurden auf Autokorrelation geprüft. Um das Problem der Autokorrelation genauer zu analysieren können die empirische Autokorrelation und partielle Autokorrelation anhand von sogenannten Korrelogrammen, wie in Abbildung (...), grafisch dargestellt werden. Die  Korrelogramme zeigen niedrige empirische- und partielle Autokorrelation bei beiden Modellen, wodurch keine weiteren Ma"snahmen zur Behebung der Autokorrelation erforderlich sind.\\
 (Quelle: Fahrmeir S. 137ff.)

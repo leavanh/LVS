@@ -1,0 +1,23 @@
+\chapter{Angewandte Modelle}
+Nach der Erläuterung des theoretischen Hintergrunds folgen nun die beiden bereits angesprochenen Modelle. Zuerst wird der zuvor allgemein erklärte additive Prädiktor für die beiden angewandten Modelle definiert. Danach werden die Ergebnisse der Modelle vorgestellt.
+
+\section{Tagesmodell}
+Das Tagesmodell ist ein generalisiertes additives Modell, bei dem die Messungen nach Datum gruppiert sind. Der additive Prädiktor sieht damit wie folgt aus:
+\begin{align}
+\eta_{i}=\beta_{0}+\beta_{1}(\text{Ferientag}_{i})+f_{1}(\text{Datum}_{i})+ \nonumber \\
+f_{2}(\text{Lawinenwarnstufe}_{i})+f_{3}(\text{Wochentag}_{i})+ \nonumber \\
+f_{4}(\text{Temperatur}_{i})+f_{5}(\text{durchschnittliche Tages-Bewölkung}_{i})+  \nonumber \\
+f_{6}(\text{Schneedifferenz}_{i}.)
+\end{align}
+
+\section{Zeitmodell}
+Das zweite Modell, das Zeitmodell, stellt ebenfalls ein generalisiertes additives Modell dar. Welches allerdings um die Variable Uhrzeit erweitert wurde und nach Minute gruppiert ist. Damit ergibt sich folgender additiver Prädiktor:
+\begin{align}
+\eta_{i}=\beta_{0}+\beta_{1}(\text{Ferientag}_{i})+f_{1,2}(\text{Uhrzeit}_{i},\text{Datum}_{i})+ \nonumber \\
+f_{3}(\text{Lawinenwarnstufe}_{i})+f_{4}(\text{Wochentag}_{i})+ \nonumber \\
+f_{5}(\text{Temperatur}_{i})+f_{6}(\text{stündliche Bewölkung}_{i})+  \nonumber \\
+f_{7}(\text{Schneedifferenz}_{i}.)
+\end{align}
+Bei der Funktion $f_{1,2}$ handelt es sich um einen sogenannten Interaktionseffekt. Das ist notwendig, wenn eine nicht-lineare Interaktion zwischen zwei oder mehreren Variablen besteht. Hier interagieren die Uhrzeit und das Datum miteinander.
+
+\section{Ergebnisse}

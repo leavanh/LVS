@@ -57,21 +57,32 @@ for (j in 1:(length(plots_scenario_general_day_model[[1]])-1)) {
               mapping = aes(x = x, y = plogis(fit + intercept), 
                             color = "50%"),
               size = 1.0) +
+    geom_line(plots_scenario_general_day_model[[7]][[j]]$data, 
+              mapping = aes(x = x, y = plogis(fit + intercept), 
+                            color = "60%"),
+              size = 1.0) +
+    geom_line(plots_scenario_general_day_model[[8]][[j]]$data, 
+              mapping = aes(x = x, y = plogis(fit + intercept), 
+                            color = "70%"),
+              size = 1.0) +
     geom_line(plots_scenario_general_day_model[[1]][[j]]$data, 
               mapping = aes(x = x, y = plogis(fit + intercept), 
                             color = "Original"),
               size = 1.0) +
     scale_y_continuous(limits = c(0,0.5)) +
     labs(color = "Anteil") +
-    scale_color_manual(breaks = c("Original", "10%", "20%", "30%", "40%", "50%"),
+    scale_color_manual(breaks = c("Original", "10%", "20%", "30%", "40%", "50%",
+                                  "60%", "70%"),
                        values = c("Original" = "#000000", 
                                   "10%" = "#12394e", 
                                   "20%" = "#20698e", 
                                   "30%" = "#2b8cbe", 
                                   "40%" = "#4da8d7", 
-                                  "50%" = "#7dbfe2"))
+                                  "50%" = "#7dbfe2",
+                                  "60%" = "#a4d2ea",
+                                  "70%" = "#cbe5f3"))
   
-}
+ }
 
 
 

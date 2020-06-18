@@ -244,6 +244,8 @@ data_general_20 <- readRDS(file = "Daten/data_general_20.RDS")
 data_general_30 <- readRDS(file = "Daten/data_general_30.RDS")
 data_general_40 <- readRDS(file = "Daten/data_general_40.RDS")
 data_general_50 <- readRDS(file = "Daten/data_general_50.RDS")
+data_general_60 <- readRDS(file = "Daten/data_general_60.RDS")
+data_general_70 <- readRDS(file = "Daten/data_general_70.RDS")
 
 # Je mehr Menschen, desto mehr wird unterschätzt
 
@@ -462,7 +464,9 @@ general_day_model <-
        day_model_function(data_general_20$date_data),
        day_model_function(data_general_30$date_data),
        day_model_function(data_general_40$date_data),
-       day_model_function(data_general_50$date_data))
+       day_model_function(data_general_50$date_data),
+       day_model_function(data_general_60$date_data),
+       day_model_function(data_general_70$date_data))
 
 # Liste mit Plots je Anteil
 
@@ -472,7 +476,9 @@ plots_general_day_model <-
        plots_day_model(general_day_model[[3]]),
        plots_day_model(general_day_model[[4]]),
        plots_day_model(general_day_model[[5]]),
-       plots_day_model(general_day_model[[6]]))
+       plots_day_model(general_day_model[[6]]),
+       plots_day_model(general_day_model[[7]]),
+       plots_day_model(general_day_model[[8]]))
 
 # Liste mit Vergleichsplots
 
@@ -508,7 +514,9 @@ general_time_model <-
        time_model_function(data_general_20$min_data),
        time_model_function(data_general_30$min_data),
        time_model_function(data_general_40$min_data),
-       time_model_function(data_general_50$min_data))
+       time_model_function(data_general_50$min_data),
+       time_model_function(data_general_60$min_data),
+       time_model_function(data_general_70$min_data))
 
 # Liste mit Plots je Anteil
 
@@ -518,7 +526,9 @@ plots_general_time_model <-
        plots_time_model(general_time_model[[3]]),
        plots_time_model(general_time_model[[4]]),
        plots_time_model(general_time_model[[5]]),
-       plots_time_model(general_time_model[[6]]))
+       plots_time_model(general_time_model[[6]]),
+       plots_time_model(general_time_model[[7]]),
+       plots_time_model(general_time_model[[8]]))
 
 # Liste mit Vergleichsplots
 
@@ -545,6 +555,8 @@ grid.arrange(time_model_general_comparison_plots$grid)
 # time_model_general_comparison_plots$date_time_30
 # time_model_general_comparison_plots$date_time_40
 # time_model_general_comparison_plots$date_time_50
+# time_model_general_comparison_plots$date_time_60
+# time_model_general_comparison_plots$date_time_70
 
 
 # Tabellen mit p-Werten für das jeweilige Modell

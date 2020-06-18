@@ -136,6 +136,8 @@ data_general_20 <- data_general_function(0.2)
 data_general_30 <- data_general_function(0.3)
 data_general_40 <- data_general_function(0.4)
 data_general_50 <- data_general_function(0.5)
+data_general_60 <- data_general_function(0.6)
+data_general_70 <- data_general_function(0.7)
 
 # abspeichern
 
@@ -145,3 +147,5 @@ saveRDS(data_general_20, file = "Daten/data_general_20.RDS")
 saveRDS(data_general_30, file = "Daten/data_general_30.RDS")
 saveRDS(data_general_40, file = "Daten/data_general_40.RDS")
 saveRDS(data_general_50, file = "Daten/data_general_50.RDS")
+saveRDS(data_general_60, file = "Daten/data_general_60.RDS")
+saveRDS(data_general_70, file = "Daten/data_general_70.RDS")

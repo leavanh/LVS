@@ -61,21 +61,32 @@ for (j in 1:(length(plots_scenario_general_time_model[[1]])-2)) {
               mapping = aes(x = x, y = plogis(fit + intercept), 
                             color = "50%"),
               size = 1.0) +
+    geom_line(plots_scenario_general_time_model[[7]][[j]]$data, 
+              mapping = aes(x = x, y = plogis(fit + intercept), 
+                            color = "60%"),
+              size = 1.0) +
+    geom_line(plots_scenario_general_time_model[[8]][[j]]$data, 
+              mapping = aes(x = x, y = plogis(fit + intercept), 
+                            color = "70%"),
+              size = 1.0) +
     geom_line(plots_scenario_general_time_model[[1]][[j]]$data, 
               mapping = aes(x = x, y = plogis(fit + intercept), 
                             color = "Original"),
               size = 1.0) +
     scale_y_continuous(limits = c(0,1)) +
     labs(color = "Anteil") +
-    scale_color_manual(breaks = c("Original", "10%", "20%", "30%", "40%", "50%"),
+    scale_color_manual(breaks = c("Original", "10%", "20%", "30%", "40%", "50%",
+                                  "60%", "70%"),
                        values = c("Original" = "#000000", 
                                   "10%" = "#12394e", 
                                   "20%" = "#20698e", 
                                   "30%" = "#2b8cbe", 
                                   "40%" = "#4da8d7", 
-                                  "50%" = "#7dbfe2"))
+                                  "50%" = "#7dbfe2",
+                                  "60%" = "#a4d2ea",
+                                  "70%" = "#cbe5f3"))
   
-}
+ }
 
 
 
@@ -183,6 +194,8 @@ plots_time_model_comparison_list <- list(
   date_time_30 = plots_scenario_general_time_model[[4]]$date_time,
   date_time_40 = plots_scenario_general_time_model[[5]]$date_time,
   date_time_50 = plots_scenario_general_time_model[[6]]$date_time,
+  date_time_60 = plots_scenario_general_time_model[[7]]$date_time,
+  date_time_70 = plots_scenario_general_time_model[[8]]$date_time,
   grid = plots_scenario_general_time_model_comparison_grid
 )
 

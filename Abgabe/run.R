@@ -48,6 +48,7 @@ date_lvs/date_ratio
 date_position
 date_snowhight|date_snowdiff
 date_temperature
+date_cloud_cover
 boxplot_cloud_cover|boxplot_avalanche_report
 holiday_plot
 day_plot

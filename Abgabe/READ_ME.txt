@@ -1,10 +1,16 @@
 Der R-Code besteht aus verschiedenen R-Dateien.
 Um die Grafiken und Ergebnisse zu erhalten einfach run.R durchlaufen lassen.
 
-Wichtiges im Vorraus:
+Wichtiges im Voraus:
+Der Code ist für R 4.0.0 geschrieben und getestet.
 Falls Probleme bei Umlauten entstehen schauen ob "UTF-8" als Encoding eingestellt ist. 
-Als working directory muss der Ort der run-Datei eingestellt sein.
-Manchmal ist Code auskommentiert, bei Bedarf einfach # löschen.
+Als working directory muss der Ort der run-Datei eingestellt sein. (Der Befehl getwd()
+prüft das aktuelle working directory, mithilfe von setwd() kann es geändert werden.)
+Manchmal ist Code auskommentiert, bei Bedarf einfach das Symbol "#" davor löschen.
+Es müssen einige packages installiert werden. RStudio sollte dies eigentlich von
+selbst erkennen und anbieten die packages zu installieren. Ansonsten mithilfe des
+Befehls install.package("packagename") alle in library() aufgerufenen packages selbst
+installieren.
 
 Jetzt zu den einzelnen Dateien:
 
@@ -21,7 +27,7 @@ data_general.R, data_group.R, data_night.R, data_temp.R.
 Alle diese Dateien erzeugen DataFrames die im Ordner "Daten" gespeichert werden. Da
 das Erzeugen teilweise etwas Zeit kostet und auch nur einmal anfangs nötig ist
 werden diese Dateien nicht in run.R aufgerufen. Wir haben diese Dateien bereits durch-
-laufen lassen und die richtigen DataFrames in "Daten" gespeichert. Ihr müsst das also
+laufen lassen und die richtigen DataFrames im Ordner "Daten" gespeichert. Ihr müsst das also
 nicht mehr machen (ihr braucht wirklich nur run.R öffnen). Falls ihr jedoch wissen 
 wollt, wie manche Variablen zustande kommen oder was genau die Szenarien sind so könnt 
 ihr in diese Dateien rein schauen.

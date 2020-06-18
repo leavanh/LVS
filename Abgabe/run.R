@@ -41,8 +41,8 @@ min_data_noNA <- min_data[!is.na(min_data$count_people_min),]
 
 source("descriptive.R", encoding = "UTF-8")
 
-str(data)
-summary(date_data)
+str(data) # statt data kann auch date_data usw angeschaut werden
+summary(date_data) # statt date_data kann auch min_data usw angeschaut werden
 date_data_plot
 date_lvs/date_ratio
 date_position

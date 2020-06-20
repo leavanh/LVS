@@ -1,0 +1,26 @@
+\begin{thebibliography}{}
+
+\bibitem[\protect\citeauthoryear{Amodio, Aria, and D’Ambrosio}{Amodio
+  et~al.}{2014}]{amodio2014concurvity}
+Amodio, S., M.~Aria, and A.~D’Ambrosio (2014).
+\newblock On concurvity in nonlinear and nonparametric regression models.
+\newblock {\em Statistica\/}~{\em 74\/}(1), 85--98.
+
+\bibitem[\protect\citeauthoryear{DAV}{DAV}{}]{Alpenverein}
+DAV.
+\newblock {Aktionstag Natürlich auf Tour} ab.
+\newblock
+  \url{https://www.alpenverein.de/natur/aktionstag-natuerlich-auf-tour_aid_32844.html}.
+
+\bibitem[\protect\citeauthoryear{Fahrmeir, Kneib, Lang, and Marx}{Fahrmeir
+  et~al.}{2007}]{fahrmeir2007regression}
+Fahrmeir, L., T.~Kneib, S.~Lang, and B.~Marx (2007).
+\newblock {\em Regression}.
+\newblock Springer.
+
+\bibitem[\protect\citeauthoryear{Wood}{Wood}{2017}]{wood2017generalized}
+Wood, S.~N. (2017).
+\newblock {\em Generalized additive models: an introduction with R}.
+\newblock CRC press.
+
+\end{thebibliography}

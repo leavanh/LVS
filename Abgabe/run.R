@@ -10,7 +10,6 @@ library("mgcv") # für das GAM-Modell
 library("mgcViz") # für die Visualisierung im GAM-Modell
 library("lubridate") # für die Arbeit mit Zeitvariablen
 library("gridExtra") # für die Erstellung von Plotrastern
-library("ggformula")
 library("gtools") # für p-wert-format
 library("cowplot") # für get_legend
 library("readxl") # zum Einlesen der Messfehlerdaten

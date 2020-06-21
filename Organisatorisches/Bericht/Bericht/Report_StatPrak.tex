@@ -7,7 +7,6 @@
 
 %\hypersetup{colorlinks=true, citecolor=red}
 
-
 \usepackage{natbib}
 \usepackage[numbib]{tocbibind}
 \usepackage{float}
@@ -32,13 +31,10 @@
 \usepackage{amsmath}
 \usepackage{bbm}
 \usepackage{bbold}
+%\usepackage{caption}
+%\captionsetup[table]{position=bottom}
 
-
-
-
-
-\pagenumbering{roman}
-
+\pagenumbering{arabic}
 \begin{document}
 	
 \pagestyle{myheadings}	
@@ -65,13 +61,25 @@
 		
 		
 		
-		\vspace{4cm}
+		\vspace{3cm}
+		
+		\hrule
+		
+		\vspace{1cm}
 		
 		{\centering
-			{
+			{	
 				\Large\bfseries Abschlussbericht zum Projekt\\
-				LVS-IR-Taubenstein\par}
-			\vspace{9cm}
+				LVS-IR-Taubenstein \\
+				im Rahmen des \\
+				statistischen Praktikums\par}
+			
+		\vspace{1cm}
+		
+		\hrule
+		
+			\vspace{7cm}
+				
 			\begin{flushleft}
 				Projektpartner: Sascha Filimon, Roman Ossner\\ 
 				Gruppenbetreuer: Dr. Andr\'{e} Klima\\ 
@@ -96,44 +104,40 @@
 \tableofcontents	
 \newpage	
 \listoffigures	
-\listoftables	
-\setcounter{page}{1}
-\thispagestyle{empty}		
+\listoftables			
 \endgroup
 	
 \newpage	
-\pagenumbering{arabic}
 
 \chapter*{Abstract}
-\setcounter{page}{1}
-Im Rahmen dieser Arbeit und in Zusammenarbeit mit der Sektion München und Oberland des Deutschen Alpenvereins und des Departements für Geographie der Ludwig-Maximilians-Universität München wurden die Auswirkungen von Umwelteinflüssen auf die Mitnahme von Lawinenverschüttungssuchgeräte untersucht. \\
-Ziel der vorliegenden Analyse ist die Untersuchung der Auswirkungen einzelner Parameter auf den Anteil von Personen, die ein solches Gerät bei sich tragen. \\
-Diese Ergebnisse sollen helfen das Verhalten der Personen besser einschätzen und es in Folge auch besser steuern zu können. Beispiele der Kovariablen sind das Datum, die Uhrzeit, die Temperatur und die Lawinenwarnstufe. Als Datengrundlage dienen Messungen zweier Checkpoints im Gebiet Taubenstein, welche in der Wintersaison 2018/19 erhoben wurden. \\
-Es wurden zwei Modelle, beides Generalisierte Additive Modelle mit der Binomial-Verteilung und der Logit-Link Funktion, geschätzt. Die beiden Modelle aggregieren die Daten auf unterschiedlichen Ebenen, so dass das eine Modell die Kovariable Uhrzeit au"ser Acht lässt. Aus beiden Modellen lassen sich schließlich die Zusammenhänge der Kovariablen mit dem Anteil der Personen mit LVS-Gerät ermitteln. Am Auffälligsten ist dabei eine generelle Abnahme des Anteils über die Saison. Ebenfalls zu beobachten sind bestimmte Uhrzeiten, an denen der Anteil höher ist und ein steigender zu erwartender Anteil mit der Lawinenwarnstufe. \\
-Neben den Daten der Saison 18/19 wurden auch Daten zu zwei Tagen im Februar 2020 analysiert. Das Ziel war es hierbei mögliche Messfehler der Messgeräte quantifizieren zu können. Es wurde festgestellt, dass die Messgeräte ungefähr 22\% der vorbeilaufenden Personen nicht identifizieren. \\
-Auf der Grundlage der Erkenntnis, dass Messfehler vorliegen wurde dann eine Sensitivitätsanalyse durchgeführt. Verschiedene Unterschätzungsszenarien wurden an den Daten simuliert, die Modelle darauf angewandt und dann miteinander verglichen. Die Szenarien sind: eine generelle Unterschätzung (dabei wird stufenweise von 10\% bis auf 70\% vorgegangen), eine Unterschätzung von Gruppen und eine Unterschätzung bei niedrigen Temperaturen. \\
-Neben den Unterschätzungen wurde auch ein Überschätzungsszenario durchgeführt und nachts Messungen entfernt, da sie von Wildtieren stammen könnten. Alle Szenarien zeigen kaum Unterschiede in der Art des Effekts der Kovariablen. Einzig die Höhe des zu erwartenden Anteils nimmt ab oder zu.
+{\footnotesize Im Rahmen dieser Arbeit und in Zusammenarbeit mit der Sektion München und Oberland des Deutschen Alpenvereins und des Departements für Geographie der Ludwig-Maximilians-Universität München wurden die Auswirkungen von Umwelteinflüssen auf die Mitnahme von Lawinenverschüttungssuchgeräte (abgekürzt LVS-Geräte) untersucht. \\
+Ziel der vorliegenden Analyse ist die Untersuchung der Auswirkungen einzelner Kovariablen auf den Anteil von Personen, die ein solches Gerät bei sich tragen.
+%Beispiel für diese Kovariablen sind das Datum, die Uhrzeit, die Temperatur und die Lawinenwarnstufe. 
+Die Ergebnisse sollen helfen das Verhalten der Personen besser einschätzen und es in Folge auch besser steuern zu können. Als Datengrundlage dienen die Messungen zweier Checkpoints im Gebiet Spitzingsee und dazugehörige Wetterdaten, welche für die Wintersaison 2018/19 erhoben wurden.
+Es wurden zwei Modelle, beides Generalisierte Additive Modelle mit der Binomial-Verteilung und der Logit-Link Funktion, geschätzt. Ein Modell lässt die Kovariable Uhrzeit au"ser Acht, so dass die beiden Modelle die Daten auf unterschiedlichen Ebenen aggregieren. Aus beiden Modellen lassen sich schlie"slich die Zusammenhänge der Kovariablen mit dem Anteil der Personen mit LVS-Gerät ermitteln. Am Auffälligsten ist dabei eine generelle Abnahme des Anteils über die Saison. Ebenfalls zu beobachten sind bestimmte Uhrzeiten, an denen der Anteil höher ist und ein steigender zu erwartender Anteil mit der Lawinenwarnstufe.
+Neben den Daten der Saison 18/19 wurden auch Daten zu zwei Tagen im Februar 2020 analysiert. Das Ziel war es hierbei mögliche Messfehler der Messgeräte quantifizieren zu können. Es wurde festgestellt, dass die Messgeräte ungefähr 22\% der vorbeilaufenden Personen nicht identifizieren.
+Auf der Grundlage der Erkenntnis über die Messfehler wurden verschiedene Unterschätzungsszenarien simuliert, die Modelle darauf angewandt und dann die Ergebnisse miteinander verglichen. Die Szenarien sind: eine generelle Unterschätzung (dabei wird stufenweise von 10\% bis auf 70\% vorgegangen), eine Unterschätzung von Gruppen und eine Unterschätzung bei niedrigen Temperaturen. Neben den Unterschätzungen wurde auch ein Überschätzungsszenario durchgeführt und nachts Messungen entfernt, da sie von Wildtieren stammen könnten. Alle Szenarien zeigen kaum Unterschiede in der Art des Zusammenhangs der Zielvariable mit den Kovariablen. Einzig die Höhe des zu erwartenden Anteils insgesamt nimmt ab oder zu.}
 
 
 \chapter{Einleitung}
-Die Bayerischen Berge sind der Lebensraum zahlreicher Wildtiere. Jedoch nutzen auch Menschen die Alpen. Vor allem im Winter dringen Bergsportler in die Rückzuggebiete der Tiere ein und stören diese. \\
-Der Deutsche Alpenverein versucht diese Konflikte zu entschärfen. Die Besucher werden vor Ort informiert und sollen durch Lenkungsmaßnahmen gesteuert werden. Dazu ist es nötig das Verhalten der Besucher zu verstehen. Dafür werden Signale von Lawinenverschüttungssuchgeräten ausgewertet und analysiert. Von Interesse ist deshalb auch ob, und unter welchen Umständen Wintersportler ein solches Gerät bei sich tragen. \\
-Im Rahmen des statistischen Praktikums im Wintersemester 2019/20 und in Zusammenarbeit mit dem Deutschen Alpenverein Sektion München und Oberland und dem Department für Geografie der Ludwig-Maximilians-Universität München wurden in diesem Projekt die Auswirkungen verschiedener Umwelteinflüsse auf den Anteil der Personen die ein LVS-Gerät bei sich tragen untersucht. \\
+Die Bayrischen Berge sind der Lebensraum zahlreicher Wildtiere. Jedoch nutzen auch Menschen die Alpen. Vor allem im Winter dringen Bergsportler in die Rückzuggebiete der Tiere ein und stören diese. \\
+Der Deutsche Alpenverein versucht diese Konflikte zu entschärfen. Die Besucher werden vor Ort informiert und sollen durch Lenkungsma"snahmen gesteuert werden. Dazu ist es nötig das Verhalten der Besucher zu verstehen. Dafür werden Signale von Lawinenverschüttungssuchgeräten ausgewertet und analysiert. Von Interesse ist deshalb auch ob, und unter welchen Umständen Wintersportler ein solches Gerät bei sich tragen. \\
+Im Rahmen des statistischen Praktikums im Wintersemester 2019/20 und in Zusammenarbeit mit dem Deutschen Alpenverein Sektion München und Oberland und dem Department für Geographie der Ludwig-Maximilians-Universität München wurden in diesem Projekt die Auswirkungen verschiedener Umwelteinflüsse auf den Anteil der Personen die ein LVS-Gerät bei sich tragen untersucht. \\
 Grundlage der Analyse sind dabei von zwei Checkpoints am Berg Taubenstein erhobene Messungen während der Wintersaison 2018/19. Neben den Checkpointmessungen liegen auch Daten zu Wetterbedingungen vor. Aus diesen Daten werden zwei Modelle geschätzt und analysiert. Dabei handelt es sich um generalisierte additive Modelle mit der Binomialverteilung und einer Logit-Link-Funktion. Die Validität der Modelle ist allerdings nur gegeben, wenn die für sie benutzten Daten keine strukturellen Fehler aufweisen. \\
-Es wurde jedoch erkannt, dass die Messgeräte, welche die Daten über die Mitnahme der LVS-Geräte liefern fehlerhaft sind. Um das Ausmaß des Messfehlers feststellen zu können wurden im Februar 2020 manuelle Zählungen von Studierenden durchgeführt. Diese werden analysiert und auf Basis der Ergebnisse und Überlegungen der Projektpartner werden verschiedene Szenarien von fehlerhaften Messungen identifiziert. Diese werden an den Daten simuliert und die Modelle werden darauf angewandt. So möchte man untersuchen, welche Auswirkungen verschiedene Arten von Messfehlern auf die Ergebnisse des Modells haben. \\
-Im Folgenden wird kurz auf den Hintergrund des Projekts genauer eingegangen. Danach werden die Daten beschrieben bevor zur Theorie hinter den Modellen übergegangen wird. Die praktischen Schwierigkeiten werden besprochen und die angewandten Modelle aufgezeigt. Im Anschluss werden die Ergebnisse beider Modelle besprochen und verglichen. Danach folgt die Messfehleranalyse. Zuerst werden die Zählungen der Studierenden deskriptiv betrachtet. Daraus werden dann vier Szenarien abgeleitet und für beide Modelle durchgeführt. Die Ergebnisse werden dann verglichen. Das Szenario der generellen Unterschätzung wird anschließend noch in 10\%-Schritten angewandt und verglichen. Abschlie"send wird ein Fazit gezogen.
+Es wurde jedoch erkannt, dass die Messgeräte, welche die Daten über die Mitnahme der LVS-Geräte liefern fehlerhaft sind. Um das Ausma"s des Messfehlers feststellen zu können wurden im Februar 2020 manuelle Zählungen von Studierenden durchgeführt. Diese werden analysiert und auf Basis der Ergebnisse und Überlegungen der Projektpartner werden verschiedene Szenarien für fehlerhafte Messungen identifiziert. Diese werden an den Daten simuliert und die Modelle werden darauf angewandt. So möchte man untersuchen, welche Auswirkungen verschiedene Arten von Messfehlern auf die Ergebnisse des Modells haben. \\
+Im Folgenden wird kurz auf den Hintergrund des Projekts genauer eingegangen. Danach werden die Daten beschrieben bevor zur Theorie hinter den Modellen übergegangen wird. Die praktischen Schwierigkeiten werden besprochen und die angewandten Modelle aufgezeigt. Im Anschluss werden die Ergebnisse beider Modelle besprochen und verglichen. Danach folgt die Messfehleranalyse. Zuerst werden die Zählungen der Studierenden deskriptiv betrachtet. Daraus werden dann vier Szenarien abgeleitet und für beide Modelle durchgeführt. Die Ergebnisse werden dann verglichen. Das Szenario der generellen Unterschätzung wird anschlie"send noch mit steigender Unterschätzung in 10\%-Schritten angewandt und verglichen. Abschlie"send wird ein Fazit gezogen und ein Ausblick gegeben.
 
 
 \chapter{Hintergrund}
 
 Für viele Besucher sind die Bayrischen Alpen ein beliebtes Gebiet, im Sommer sind Wanderer anzutreffen und im Winter vorrangig Skitouren- und Schneeschuhgeher. Jedoch stellt das Alpengebiet auch das Territorium von verschiedenen Tierarten dar. Es ist zu beobachten, dass es immer wieder zu räumlichen Konfliktsituation zwischen Menschen und Tieren kommt. Vor allem im Winter dringen die Sportler tief in die Rückzugsgebiete der Tiere ein und zwingen diese zur Flucht. \\
-Um die räumlichen Konflikte zu entschärfen, werden die Besuchenden vor Ort informiert und durch Lenkungsmaßnahmen gesteuert. Mit dem Ziel einen nachhaltigen Tourismus gewährleisten zu können wurde ein Aktionstag seitens des Alpenvereins initiiert. Der Aktionstag ist ein Bestandteil der Kampagne „Natürlich auf Tour“ und dient der Sensibilisierung von Besuchern für einen verantwortungsvollen Umgang mit der Natur. 
+Um die räumlichen Konflikte zu entschärfen, werden die Besuchenden vor Ort informiert und durch Lenkungsma"snahmen gesteuert. Mit dem Ziel einen nachhaltigen Tourismus gewährleisten zu können wurde ein Aktionstag seitens des Alpenvereins initiiert. Der Aktionstag ist ein Bestandteil der Kampagne „Natürlich auf Tour“ und dient der Sensibilisierung von Besuchern für einen verantwortungsvollen Umgang mit der Natur. 
 (\cite{Alpenverein}) \\
-Um das Besucherverhalten besser zu verstehen und beeinflussen zu können, werden die Signale der LVS-Geräts, das ein Skitourengeher in der Regel dicht am Körper trägt, ausgewertet und analysiert. \\
-Ein LVS-Gerät ist ein Lawinenverschüttungssuchgerät und gehört zur Ausrüstung von Sportlern die in Schneegebieten unterwegs sind. Mit Hilfe eines LVS-Geräts können Personen, die von einer Lawine verschüttet worden sind, geortet werden. \\
+Um das Besucherverhalten besser zu verstehen und beeinflussen zu können, werden die Signale des LVS-Geräts, das ein Skitourengeher in der Regel dicht am Körper trägt, ausgewertet und analysiert. \\
+Ein Lawinenverschüttungssuchgerät oder auch LVS-Gerät gehört zur Ausrüstung von Sportlern die in Schneegebieten unterwegs sind. Mit Hilfe eines LVS-Geräts können Personen, die von einer Lawine verschüttet worden sind, geortet werden. (\cite{schweizerlawinen}) \\
 Die Untersuchung über die Mitnahme von LVS-Geräten wurde anhand von Checkpoints gemessen. An den LVS-Checkpoints kann der Wintersportler sein Gerät auf dessen Funktionalität testen. Wenn eine Person ein eingeschaltetes LVS-Gerät bei sich trägt und an einem Checkpoint vorbei läuft, wird dies als ein LVS-Signal registriert und das Gerät leuchtet grün auf. Falls eine Person, die kein Gerät dabei hat, bzw. eins mit sich führt, dieses jedoch nicht eingeschaltet ist am Checkpoint vorbeiläuft, dann wird dies als eine Infrarot-Signal (abgekürzt: IR-Signal) identifiziert und das Messgerät leuchtet rot auf. \\
 Die dabei anonym erhobenen Daten werden für die weitere Untersuchung betrachtet. \\
-In unserem Projekt betrachten wir nicht das ganze Alpengebiet als Untersuchungsort, sondern beschränken uns auf den Spitzingsee. \\
+In diesem Projekt wird nicht das ganze Alpengebiet als Untersuchungsort betrachtet, sondern es wird sich auf den Berg Taubenstein am Spitzingsee beschränkt. \\
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{plots/spitzingsee}
@@ -141,19 +145,19 @@ In unserem Projekt betrachten wir nicht das ganze Alpengebiet als Untersuchungso
 	\label{pic:spitzingsee}	
 \end{figure}
 %(Quelle: https://www.bergpixel.de/spitzingsee-rotwand-taubenstein-3/)
-\noindent Der Spitzingsee ist ein beliebter Anlaufpunkt für Skitouren- und Schneeschuhgeher, aber auch das Revier von Wildtieren und daher als Untersuchungsraum für das Projekt geeignet.  Am Taubenstein-Parkplatz sind zur Hochsaison zwischen 500 bis 1000 Besucher anzutreffen, weshalb dieser Punkt für das Aufstellen von zwei Checkpoints genutzt wurde. %(Quelle: Panorama-6-2018-Skitouren-naturvertäglich-Bayern.pdf) \\
+\noindent Das Gebiet Spitzingsee ist ein beliebter Anlaufspunkt für Skitouren- und Schneeschuhgeher, aber auch das Revier von Wildtieren und daher als Untersuchungsraum für das Projekt geeignet. Am Taubenstein-Parkplatz sind zur Hochsaison zwischen 500 bis 1000 Besucher anzutreffen, weshalb dieser Punkt für das Aufstellen von zwei Checkpoints genutzt wurde. (\cite{skigebiete2018}) %(Quelle: Panorama-6-2018-Skitouren-naturvertäglich-Bayern.pdf) \\
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{plots/checkpoint}
 	\caption{LVS-Checkpoints an der Nord und Südseite des Taubenstein-Parkplatzes (Bildquelle: Roman Ossner DAV)}
 	\label{pic:checkpoint}	
 \end{figure}
-\noindent Es gibt insgesamt zwei Checkpoints die einmal auf der Nord- und Südseite des Parkplatzes kurz vor Aufstieg des Bergs aufgestellt sind. \\
-Im Fokus der Analyse steht der Zusammenhang zwischen dem Anteil der Besucher mit LVS-Gerät an allen Besuchern und verschiedenen Umweltfaktoren. Die von den Checkpoints generierten Daten werden im nächsten Kapitel näher beschrieben. 
+\noindent Es gibt zwei Checkpoints die auf der Nord- und Südseite des Parkplatzes kurz vor Aufstieg des Bergs aufgestellt sind. \\
+Im Fokus der Analyse steht der Zusammenhang zwischen dem Anteil der Besucher mit LVS-Gerät an allen Besuchern und verschiedenen Umweltfaktoren. Die von den Checkpoints generierten Daten und die einzelnen Kovariablen werden im nächsten Kapitel näher beschrieben. 
 
 \chapter{Datengrundlage}
 In diesem Kapitel wird ein Überblick über die Datengrundlage des Projekts LVS-IR-Taubenstein gegeben. \\
-Zuerst werden die im Zeitraum 2018/19 erhobenen Daten beschrieben. Da bekannt war, dass die Messgeräte fehlerhaft aufzeichnen, wurde im Februar 2020, seitens des Departments für Geographie eine manuelle Erhebung durchgeführt. Diese werden anschlie"send kurz beschrieben, im \autoref{chap:Messfehleranalyse} Messfehleranalyse wird genauer darauf eingegangen. \\
+Zuerst werden die im Zeitraum 2018/19 erhobenen Daten beschrieben. Da bekannt war, dass die Messgeräte fehlerhaft aufzeichnen, wurde im Februar 2020 seitens des Departments für Geographie eine manuelle Erhebung durchgeführt. Die daraus gewonnenen Daten werden anschlie"send kurz beschrieben, im \autoref{chap:Messfehleranalyse} Messfehleranalyse wird genauer darauf eingegangen. \\
 Die Messdaten wurden vom DAV München und Oberland und vom Department für Geographie der LMU zur Verfügung gestellt.
 
 \section{Erhebungszeitraum 2018/2019}
@@ -161,6 +165,7 @@ In der Wintersaison 2018/2019 wurden die Daten von zwei Checkpoints an der Nord-
 Im Messzeitraum vom 21.12.2018 bis zum 13.04.2019 wurden insgesamt 37593 Messungen erfasst. Da die Messgeräte zeitweise aufgrund von starkem Schneefall bedeckt waren und nicht richtig messen konnten oder andersweitig nicht valide gemessen haben wurden die Daten für den Zeitraum vom 21.12.2018 bis zum 25.12.2018 und vom 07.01.2019 bis 15.01.2019 entfernt. \\
 Damit bleiben 37216 Messungen übrig. Darunter wurden 28911 Personen ohne LVS-Gerät und 8305 Personen mit LVS-Gerät von den beiden Checkpoints registriert. \\
 Die Messgeräte lösen bei jeder vorbeigehenden Person aus, wodurch auch Mehrfacherfassungen möglich sind. Das führt dazu, dass eine Person zum Beispiel beim Losgehen und Zurückkommen vom Checkpoint doppelt erfasst wird. \\
+Nachfolgend werden die zur Analyse des Modells erforderlichen Variablen vorgestellt.
 \subsection*{Zielvariable:}
 \begin{itemize}
 	\item Anteil der Personen mit LVS-Gerät
@@ -171,25 +176,23 @@ Die Messgeräte lösen bei jeder vorbeigehenden Person aus, wodurch auch Mehrfac
 	\item Wochentag
 	\item Ferientag
 	\item Schneehöhe (in cm)
-	\item Temperatur (in ◦C)
+	\item Temperatur (in $^\circ$C)
 	\item Lawinenwarnstufe
 	\item Bewölkung
 	\item Uhrzeit der Messung
-	\item (Position)
+	\item Position
 \end{itemize}
-Nachfolgend werden die zur Analyse des Modells erforderlichen Variablen vorgestellt.
 
 \newpage
 \subsubsection*{Anteil der Personen mit LVS-Gerät:}
 Bei der Zielvariable handelt es sich um den Anteil der Personen mit bei geführtem LVS-Gerät an allen Personen die an den Checkpoints vorbeilaufen.
-Kovariablen:
 \subsubsection*{Datum:}
 Es liegen wie oben erwähnt Daten vom 25.12.2018 bis zum 06.01.2019 und vom 16.01.2019 bis zum 13.04.2019 vor. \\
 Das Balkendiagramm (\ref{pic:date_lvs}) zeigt die absolute Häufigkeit der Messungen nach Datum und Art der Messung. Hier zu erkennen sind die fehlenden Messungen im Zeitraum vom 07.01.2019 bis zum 15.01.2019.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{plots/date_lvs}
-	\caption{Balkendiagramm der absoluten Häufigkeit der Messungen mit und ohne LVS-Gerät nach Datum}
+	\caption{Gestapeltes Balkendiagramm der absoluten Häufigkeit der Messungen mit und ohne LVS-Gerät nach Datum}
 	\label{pic:date_lvs}	
 \end{figure}
 
@@ -239,18 +242,18 @@ Von Mitte Januar bis Mitte Februar ist der höchste Schnee zu beobachten, wobei 
   
 \newpage
 \subsubsection*{Temperatur:}
-Die Variable Temperatur wurde um 12 Uhr mittags des jeweiligen Tages in Grad Celsius erhoben. Tendenziell ist in Abbildung (\ref{pic:date_temperature}) ein steigender Temperaturverlauf mit starken Schwankungen von Ende Dezember bis Mitte April zu beobachten. Die niedrigste gemessene Temperatur beträgt -7,9 Grad Celsius und die Höchste 9,7 Grad Celsius. 
+Die Variable Temperatur wurde um 12 Uhr mittags des jeweiligen Tages in Grad Celsius erhoben. Tendenziell ist in Abbildung (\ref{pic:date_temperature}) ein steigender Temperaturverlauf mit starken Schwankungen von Ende Dezember bis Mitte April zu beobachten. Die niedrigste gemessene Temperatur beträgt -7,9 $^\circ$C und die Höchste 9,7 $^\circ$C. 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{plots/date_temperature}
-	\caption{Liniendiagramm der Temperatur in $^\circ$C um 12 Uhr mittags nach Datum (ausgegraute Werte an Tagen die aus dem Datensatz entfernt wurden; horizontale, gestrichelte Linie kennzeichnet 0 Grad Celsius)}
+	\caption{Liniendiagramm der Temperatur in $^\circ$C um 12 Uhr mittags nach Datum (ausgegraute Werte an Tagen die aus dem Datensatz entfernt wurden; horizontale, gestrichelte Linie kennzeichnet $0 ^\circ$C)}
 	\label{pic:date_temperature}	
 \end{figure}
 
 \newpage
 \subsubsection*{Lawinenwarnstufe:}
 Die Variable Lawinenwarnstufe besteht aus dem Durchschnitt zweier anderer Variablen, nämlich der Lawinenwarnstufe am Fu"s und an der Spitze des Berges, welche täglich erhoben wurden. Es gibt Warnstufen von eins bis fünf, wobei fünf die grö"sste Gefahr bedeutet. \\
-In Abbildung (\ref{pic:boxplot_avalanche_report}) wird anhand eines Boxplots die Verteilung der Variable ersichtlich. Zu beobachten ist, dass der Median bei Warnstufe zwei liegt. Ebenfalls erkennbar ist, dass die Lawinenwarnstufe fünf in unserem Datensatz nicht vorkommt. Die höchste vorkommende Lawinenwarnstufe ist vier und die Niedrigste, die auch das 25\%-Quantil darstellt, ist eins. 
+In Abbildung (\ref{pic:boxplot_avalanche_report}) wird anhand eines Boxplots die Verteilung der Variable ersichtlich. Zu beobachten ist, dass der Median bei Warnstufe zwei liegt. Ebenfalls erkennbar ist, dass die Lawinenwarnstufe fünf im vorliegenden Datensatz nicht vorkommt. Die höchste vorkommende Lawinenwarnstufe ist vier und die Niedrigste, die auch das 25\%-Quantil darstellt, ist eins. 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{plots/boxplot_avalanche_report}
@@ -278,7 +281,7 @@ Deshalb wurde, in Absprache mit den Projektpartnern, beschlossen den Tag von 4 U
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{plots/time_lvs}
-	\caption{Balkendiagramm der absoluten Häufigkeit der Personen mit und ohne LVS-Gerät nach Uhrzeit der Messung (vertikale Linie kennzeichnet den neuen Tagesbeginn)}
+	\caption{Gestapeltes Balkendiagramm der absoluten Häufigkeit der Personen mit und ohne LVS-Gerät nach Uhrzeit der Messung (vertikale Linie kennzeichnet den neuen Tagesbeginn)}
 	\label{pic:time_lvs}	
 \end{figure}
 
@@ -293,16 +296,16 @@ Die absoluten Häufigkeiten über die Wintersaison hinweg sind in Abbildung (\re
 	\label{pic:date_position}	
 \end{figure}
 
-\noindent Die Messungen für die Variablen Schneehöhe, Temperatur und Lawinenwarnstufe wurden nicht von den Checkpoints am Spitzingsee gemessen, sondern von dem Gewässerkundlichen Dienst Bayern erhoben. Die Messungen der Variable Bewölkung stammen von Meteoblue %(ref: https://www.meteoblue.com/de/wetter/woche/taubenstein_deutschland_2823864).
+\noindent Die Messungen für die Variablen Schneehöhe, Temperatur und Lawinenwarnstufe wurden nicht von den Checkpoints am Spitzingsee gemessen, sondern von dem Gewässerkundlichen Dienst Bayern erhoben. Die Messungen der Variable Bewölkung stammen von Meteoblue. %(ref: https://www.meteoblue.com/de/wetter/woche/taubenstein_deutschland_2823864).
 
 \section{Erhebungszeitraum 2020}
 Da erkannt wurde, dass die Messgeräte teilweise fehlerhaft messen, wurden manuelle Zählungen der Studierenden des Departments für Geografie durchgeführt. \\
 Der Erhebungszeitraum beschränkt sich auf den 27.02.2020 und 28.02.2020. An diesen Tagen wurden nur Zählungen am Checkpoint-Nord durchgeführt (da der Checkpoint-Süd ausgefallen ist). \\
-Diese sollen dabei helfen mögliche Strukturen des Messfehlers zu erkennen. Dabei haben die Studierenden beobachtet, ob eine vorbeilaufende Person vom Checkpoint registriert wird. Jede vorbeigehende Person wurde notiert und ebenso wurde vermerkt, ob diese vom Checkpoint erkannt wurde. Dabei wurde nicht zwischen Person mit und ohne LVS-Gerät unterschieden.\\ Die Studierenden haben außerdem angegeben, ob es sich bei der Person um einen Skitourengänger oder einen anderen Kontakt handelt. \\
+Diese sollen dabei helfen mögliche Strukturen des Messfehlers zu erkennen. Dabei haben die Studierenden beobachtet, ob eine vorbeilaufende Person vom Checkpoint registriert wird. Jede vorbeigehende Person wurde notiert und ebenso wurde vermerkt, ob diese vom Checkpoint erkannt wurde. Dabei wurde nicht zwischen Personen mit und ohne LVS-Gerät unterschieden.\\ Die Studierenden haben au"serdem angegeben, ob es sich bei der Person um einen Skitourengänger oder einen anderen Kontakt handelt. \\
 Neben den Daten der Studierenden liegen auch die vom Checkpoint erhobenen Daten vor. Insgesamt wurden von den Studierenden 208 Personen gezählt und von den Checkpoints 170 Messungen erfasst. Die aus diesen Daten gewonnen Erkenntnisse und deren Auswirkungen werden in \autoref{chap:Messfehleranalyse} beschrieben. 
 
 \chapter{Methodik}
-In diesem Kapitel wird als erstes die Theorie hinter den Modellen erklärt. Danach wird auf die aufgetretenen Schwierigkeiten und die angewandten Lösungen eingegangen. Im letzten Teil werden die Ergebnisse der Modelle besprochen.
+In diesem Kapitel wird als erstes die Theorie hinter den Modellen erklärt. Danach wird auf die aufgetretenen Schwierigkeiten und die angewandten Lösungen eingegangen.
 
 \section{Theorie}
 In folgendem Kapitel soll die Theorie hinter den Modellen erklärt werden. Für das bessere Verständnis wird der Theorie-Teil von einem einfachen Modell bis hin zu dem von uns verwendeten Modell aufgebaut. \\
@@ -313,11 +316,12 @@ Das einfachste Regressionsmodell ist das lineare Regressionsmodell. Hierbei wird
 \begin{align}
 y_{i}= \beta_{0}+\beta_{1}x_{i1}+...+\beta_{k}x_{ik}+\epsilon_{i}
 \end{align}
-Die Zielgrö"se, $y_{i}$, muss stetig und approximativ normalverteilt sein. Die Kovariablen werden durch $x_{i1},...,x_{ik}$ gekennzeichnet und $\epsilon_{i}$ stellt den Störterm dar. In Anwendungen bei denen es sich nicht um eine normalverteilte Zielvariable handelt ist das lineare Regressionsmodell unzureichend. (\cite{fahrmeir2007regression} S.20 ff.) \\
+Die Zielgrö"se, $y_{i}$, muss stetig und approximativ normalverteilt sein. Die Kovariablen werden durch $x_{i1},...,x_{ik}$ gekennzeichnet und $\epsilon_{i}$ stellt den Störterm dar. \\
+In Anwendungen bei denen es sich nicht um eine normalverteilte Zielvariable handelt ist das lineare Regressionsmodell unzureichend. (\cite{fahrmeir2007regression} S.20 ff.) \\
 Dieses Problem löst das generalisierte lineare Regressionsmodell, auf welches im nächsten Abschnitt eingegangen wird. 
 
 \subsection{Generalisiertes lineares Regressionsmodell}
-Das generalisierte lineare Regressionsmodell eignet sich für die Modellierung von Zielvariablen die nicht normalverteilt sind. Die abhängige Variable kann eine Verteilung aus der Exponentialfamilie (z.B. Binomial, Poisson, Multinomial, Normal,...)annehmen. Durch eine Link-Funktion wird sie dann in eine normalverteilte Variable transformiert. \\
+Das generalisierte lineare Regressionsmodell eignet sich für die Modellierung von Zielvariablen die nicht normalverteilt sind. Die abhängige Variable kann eine Verteilung aus der Exponentialfamilie (z.B. Binomial, Poisson, Multinomial, Normal,...) annehmen. Durch eine Link-Funktion wird sie dann in eine normalverteilte Variable transformiert. \\
 Bei den später verwendeten Modellen lässt sich die Zielvariable wie folgt beschreiben: \\
 \begin{align}
 %\vspace{0.1cm}
@@ -394,7 +398,7 @@ Die Abbildung \ref{pic:b_spline} visualisiert die Schätzung eines B-Splines anh
 \noindent Das nächste Kapitel behandelt P-Splines, welche auf B-Splines basieren und durch einen Strafterm erweitert worden sind. Diese werden  bei den später erklärten Modellen verwendet.
 
 \subsubsection{Penalisierte Splines basierend auf B-Splines}
-Bereits im vorherigen Abschnitt wurde klar, dass die Knotenmenge einen wichtigen Faktor darstellt. Die Glattheit und Flexibilität der Schätzfunktion $f(z)$ hängt stark von der Anzahl der Knoten ab. Eine zu hohe Anzahl von Knoten führt zu sogenanntem \glqq Overfitting\grqq, das hei"st die Funktion ähnelt zu sehr den Daten und ist sehr wacklig. Die Idee der P-Splines ist es die Funktion $f(z)$ auf Basis einer B-Spline Funktion mit einer gro"sen Zahl an Knoten zu approximieren um so die Flexibilität der Schätzfunktion sicherzustellen und andererseits zu hohe Variabilität durch einen Strafterm zu sanktionieren. Die Knoten Für die Penalisierten Splines wurden in den angewandten Modellen nach Perzentilen gesetzt. Das dient dazu, die Knoten dahin zu setzen wo vielen Beobachtungen sind, um an diesen Stellen mehr Flexibilität zu erreichen. Der Penalisierte-Spline, gekürzt P-Spline, kombiniert somit eine B-Spline-Basis mit einem Strafterm. Der Strafterm für B-Splines wird durch die quadrierte zweite Ableitung der Schätzfunktion $f(z)$ modelliert. Die zweite Ableitung stellt ein Ma"s für die Krümmung der Funktion dar und ist daher in der Lage die Glattheit einer Funktion einzuschätzen.
+Bereits im vorherigen Abschnitt wurde klar, dass die Knotenmenge einen wichtigen Faktor darstellt. Die Glattheit und Flexibilität der Schätzfunktion $f(z)$ hängt stark von der Anzahl der Knoten ab. Eine zu hohe Anzahl von Knoten führt zu sogenanntem \glqq Overfitting\grqq, das hei"st die Funktion ähnelt zu sehr den Daten und ist sehr wacklig. Die Idee der P-Splines ist es die Funktion $f(z)$ auf Basis einer B-Spline Funktion mit einer gro"sen Zahl an Knoten zu approximieren um so die Flexibilität der Schätzfunktion sicherzustellen und andererseits zu hohe Variabilität durch einen Strafterm zu sanktionieren. Der Penalisierte-Spline, gekürzt P-Spline, kombiniert somit eine B-Spline-Basis mit einem Strafterm. Der Strafterm für B-Splines wird durch die quadrierte zweite Ableitung der Schätzfunktion $f(z)$ modelliert. Die zweite Ableitung stellt ein Ma"s für die Krümmung der Funktion dar und ist daher in der Lage die Glattheit einer Funktion einzuschätzen.
 Der Strafterm: 
 \begin{align}
 \lambda\int(f''(z))^2dz.
@@ -411,7 +415,7 @@ Der Koeffizient $\beta_{j}$ wird durch den transponierten Vektor $\beta^T=(\beta
 Der Penalisierungsansatz für zyklische P-Splines ist simultan zu der Penalisierung von P-Splines basierend auf B-Splines. (\cite{wood2017generalized} S.202 ff.)
 
 \subsubsection{Thin-Plate Splines}
-Bisher wurden Funktionen mit nur einer einzigen Kovariable geschätzt. Die Thin-Plate Splines ermöglichen die Schätzung einer Funktion mit mehreren Kovariablen. Bei dem hier angewandeten Modell handelt es sich um eine Funktion mit zwei Variablen, nämlich dem Datum und der Uhrzeit. Die beiden Variablen wurden in einer Funktion geschätzt, da sie miteinander interagieren. Der Vorteil von Thin-Plate Splines ist, dass nun eine Auswahl von Knotenpositionen oder Basisfunktionen nicht notwendig ist, da sich diese durch die mathematische Darstellung des Glättungsparameters ergibt. Die Glattheit, wenn $z$ zweidimensional ist, wird durch die Minimierung der Funktion von $f$ erzielt, die die folgende Form hat:
+Bisher wurden Funktionen mit nur einer einzigen Kovariable geschätzt. Die Thin-Plate Splines ermöglichen die Schätzung einer Funktion mit mehreren Kovariablen. Bei einem der hier angewandeten Modelle handelt es sich um eine Funktion mit zwei Variablen, nämlich dem Datum und der Uhrzeit. Die beiden Variablen wurden in einer Funktion geschätzt, da sie miteinander interagieren. Der Vorteil von Thin-Plate Splines ist, dass nun eine Auswahl von Knotenpositionen oder Basisfunktionen nicht notwendig ist, da sich diese durch die mathematische Darstellung des Glättungsparameters ergibt. Die Glattheit, wenn $z$ zweidimensional ist, wird durch die Minimierung der Funktion von $f$ erzielt, die die folgende Form hat:
 \begin{align}
 ||y-f||^2+\underbrace{\lambda}_{\substack{\text{Glättungs-} \\ \text{parameter}}} \underbrace{J_{md}(f)}_{\substack{\text{Straf-} \\ \text{term}}}.
 \end{align}
@@ -424,7 +428,7 @@ Es eignet sich um nicht-lineare Effekte von metrischen Kovariablen auf eine nich
 \eta_{i}=\underbrace{\beta_{0}+\beta_{1}x_{i1}+...+\beta_{k}x_{ik}}_{\text{parametrische Effekte}}+ \underbrace{f_{1}(z_{i1})+...+f_{q}(z_{iq})}_{\text{nichtparametrische Effekte}}+\epsilon_{i}
 \end{align}
 (\cite{fahrmeir2007regression} S.47 f.) \\
-Bei den beiden angewandten Modelle handelt es sich um generalisierte additive Modelle mit einer Logit-Link-Funktion. Die glatten Funktionen werden mithilfe von P-Splines, zyklischen P-Splines und Thin-Plate-Splines geschätzt. Bevor im Kapitel (...)die konkreten Modelle vorgestellt werden, geht es im nächsten Abschnitt um aufgetretene Schwierigkeiten.
+Bei den beiden angewandten Modelle handelt es sich um generalisierte additive Modelle mit einer Logit-Link-Funktion. Die glatten Funktionen werden mithilfe von P-Splines, zyklischen P-Splines und Thin-Plate-Splines geschätzt. Die Knoten für die Penalisierten Splines wurden in den angewandten Modellen nach Perzentilen gesetzt. Das dient dazu, die Knoten dahin zu setzen wo vielen Beobachtungen sind, um an diesen Stellen mehr Flexibilität zu erreichen. Bevor im Kapitel (...)die konkreten Modelle vorgestellt werden, geht es im nächsten Abschnitt um aufgetretene Schwierigkeiten.
 
 \section{Praktische Herausforderungen}
 In diesem Teil der Arbeit wird ein Überblick über die Praktische Herausforderungen im Modell gegeben. Es wird als erstes das Concurvity-Problem erläutert, dann die Überdispersion und im letzten Abschnitt die Autokorrelation.
@@ -445,7 +449,7 @@ Bei der Untersuchung der Kovariablen auf Concurvity zeigt sich einige leicht erh
 Bei den bisher vorgestellten Modellen ist man von Individualdaten ausgegangen. Jeder Beobachtung wird genau ein Individuum aus der Stichprobe zugeordnet.
 Bei den angewandten Datensätzen im Modell handelt es sich nicht um Individualdaten, sondern um gruppierte Daten. Die Individualdaten werden nach identischen Zeilen in der Datenmatrix gruppiert. (\cite{fahrmeir2007regression} S.195 f.) \\ 
 In der Arbeit werden zwei Modelle angewendet, das Tagesmodell und das Zeitmodell. \\
-Im Tagesmodell werden die Daten nach dem Tag bzw. Datum gruppiert, wodurch Datenmatrix insgesamt $n = 101$ Zeilen aufweist. Die Kovariable Uhrzeit wird dabei nicht beachtet. Da jedoch auch die Uhrzeit von Interesse für die Datenanalyse ist, wird ein zweites Modell, nämlich das Zeitmodell, aufgestellt. Im Zeitmodell werden die Individualdaten nach der Minute gruppiert und $n = 19334$ Beobachtungseinheiten erzeugt. Das Gruppieren von Individualdaten führt dazu, dass Anteile für Personen mit LVS-Gerät für das jeweilige Datum bzw. das Datum und die Uhrzeit berechnet werden. \\
+Im Tagesmodell werden die Daten nach Tag bzw. Datum gruppiert, wodurch die Datenmatrix insgesamt $n = 101$ Zeilen aufweist. Die Kovariable Uhrzeit wird dabei nicht beachtet. Da jedoch auch die Uhrzeit von Interesse für die Datenanalyse ist, wird ein zweites Modell, nämlich das Zeitmodell, aufgestellt. Im Zeitmodell werden die Individualdaten nach der Minute gruppiert und $n = 19334$ Beobachtungseinheiten erzeugt. Das Gruppieren von Individualdaten führt dazu, dass Anteile für Personen mit LVS-Gerät für das jeweilige Datum bzw. das Datum und die Uhrzeit berechnet werden. \\
 Durch das Gruppieren nach Datum oder Minute kann es zur Überdispersion kommen. Das hei"st die Daten weisen eine grö"sere Streuung bzw. Varianz auf, als durch das Modell zu erwarten ist. Das Problem der Überdispersion wird durch das Einsetzen eines Dispersionsparameters in die Varianzformel gelöst.
 \begin{align}
 Var(y_{i}|\textbf{x}_{i})=\underbrace{\phi}_\text{Dispersionsparameter} \underbrace{\pi_{i}(1-\pi_{i})}_\text{Varianz}.
@@ -457,7 +461,7 @@ Der Dispersionsparameter wird errechnet durch:
 ({(\cite{fahrmeir2007regression} S.195 f.)})
 
 \subsection{Autokorrelation}
-Die Autokorrelation beschreibt die Korrelation einer Funktion mit sich selbst zu einem früheren Zeitpunkt. In Zeitreihen entsteht das Problem der Autokorrelation häufig, da die Annahme der unkorrelierten Störgrö"sen verletzt ist. Man unterscheidet dabei zwischen der empirischen Autokorrelation (ACF) und der partiellen Autokorrelation (PACF).\\
+Die Autokorrelation beschreibt die Korrelation einer Funktion mit sich selbst zu einem früheren Zeitpunkt. In Zeitreihen kann das Problem der Autokorrelation entstehen, wenn die Annahme der unkorrelierten Störgrö"sen verletzt ist. Man unterscheidet zwischen der empirischen Autokorrelation (ACF) und der partiellen Autokorrelation (PACF).\\
 Die empirische Autokorrelation wird berechnet durch:
 \begin{align}
 \widehat{\text{ACF}}(j)=\frac{\widehat{\text{Cov}}(\epsilon_{i},\epsilon_{i-j})}{\widehat{\text{Var}}(\epsilon_{i})} \quad \text{mit} \quad \widehat{\text{Cov}}(\epsilon,\epsilon_{i-j})=\frac{1}{n}\sum_{i=j+1}^{n}\hat{\epsilon}_{i}\hat{\epsilon}_{i-j}.
@@ -476,19 +480,21 @@ Beide Modelle wurden auf Autokorrelation geprüft. Um das Problem der Autokorrel
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{plots/ACF}
-	\caption{Korrelogramm der Autokorrelation nach Verzögerung (Lag) für das Tages- und Zeitmodell}
+	\caption{Korrelogramm der Autokorrelation nach Verzögerung (Lag)}
 	\label{pic:ACF}	
 \end{figure}
 
 \begin{figure}[H]
 	\centering
+	\vspace{-0.85cm}
 	\includegraphics[width=\linewidth]{plots/PACF}
-	\caption{Korrelogramm der partiellen Autokorrelation nach Verzögerung (Lag) für das Tages- und Zeitmodell}
+	\caption{Korrelogramm der partiellen Autokorrelation nach Verzögerung (Lag)}
 	\label{pic:PACF}	
 \end{figure}
 
 
 \chapter{Angewandte Modelle}
+\vspace{-0.5cm}
 Nach der Erläuterung des theoretischen Hintergrunds folgen nun die beiden bereits angesprochenen Modelle. Zuerst wird der zuvor allgemein erklärte additive Prädiktor für die beiden angewandten Modelle definiert. Danach werden die Ergebnisse der Modelle vorgestellt.
 
 \section{Tagesmodell}
@@ -503,7 +509,7 @@ Das Tagesmodell ist ein generalisiertes additives Modell, bei dem die Messungen 
 \end{align}
 
 \section{Zeitmodell}
-Das zweite Modell, das Zeitmodell, stellt ebenfalls ein generalisiertes additives Modell dar. Welches allerdings um die Variable Uhrzeit erweitert wurde und nach Minute gruppiert ist. Damit ergibt sich folgender additiver Prädiktor:
+Das zweite Modell, das Zeitmodell, stellt ebenfalls ein generalisiertes additives Modell dar, welches allerdings um die Variable Uhrzeit erweitert wurde und nach Minute gruppiert ist. Damit ergibt sich folgender additiver Prädiktor:
 \begin{align}
 \begin{split}
 \eta_{i}= ~ &\beta_{0}+\beta_{1}(\text{Ferientag}_{i})+ \\
@@ -518,12 +524,12 @@ Bei der Funktion $f_{1,2}$ handelt es sich um einen sogenannten Interaktionseffe
 \section{Ergebnisse}
 Es werden die Ergebnisse des Tages- und des Zeitmodells vorgestellt und die beiden Modelle miteinander verglichen.
 \subsection{Ergebnisse des Tagesmodells}
-Das Modell umfasst n = 101 Tage an den Messungen vorliegen. 
+Das Modell umfasst $n = 101$ Tage, an denen Messungen vorliegen. 
 Der Intercept ist der zu erwartende Anteil von Personen mit LVS-Gerät an einem Tag, der kein Ferientag ist und bei dem alle anderen Kovariablen durchschnittlich sind. Der Intercept des Tagesmodells beträgt 21,67\%. An einem Ferientag mit ansonsten durchschnittlichen Variablen wird ein Anteil von Personen mit LVS-Gerät in Höhe von 19,71\% erwartet. \\
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{plots/smooth_day_model}
-	\caption{ Die glatten Funktionen der Variablen Wochentag, Lawinenwarnstufe, durchschnittliche Tages-Bewölkung, Temperatur, Schneedifferenz und Datum für das Tagesmodell }
+	\caption{Zusammenhang der Variablen Wochentag, Lawinenwarnstufe, durchschnittliche Tagesbewölkung, Temperatur, Schneedifferenz und Datum mit dem Anteil der Personen mit LVS-Gerät als glatte Funktionen für das Tagesmodell}
 	\label{pic:smooth_day_model}	
 \end{figure}
 \noindent In Abbildung (\ref{pic:smooth_day_model}) werden die glatten Funktionen der nichtparametrischen Variablen dargestellt. Im Folgenden werden diese einzeln beschrieben.
@@ -542,23 +548,23 @@ Der zu erwartende Anteil von Personen mit LVS-Geräten schwankt sehr viel von un
 \subsection{Ergebnisse des Zeitmodells}
 Nachfolgend werden die Ergebnisse des Zeitmodells betrachtet. Hier wurden die Messungen nicht nach dem Tag, sondern nach der Minute gruppiert. Insgesamt gibt es n = 19334 Minuten, in denen mindestens eine Messung vorliegt. \\
 Der Intercept des Zeitmodells liegt etwas niedriger als der des Tagesmodells, nämlich bei 20,32\%. Der zu erwartende Anteil an einem Ferientag mit ansonsten durchschnittlichen Variablen ist dafür höher und liegt bei 21, 40\%. \\
+In Abbildung (\ref{pic:smooth_time_model}) zu sehen sind die glatten Funktionen der nichtparametrischen Variablen (bis auf das Datum und die Uhrzeit der Messungen). Diese werden nun mit den jeweiligen glatten Funktionen des Tagesmodells verglichen.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{plots/smooth_time_model}
-	\caption{ Die glatten Funktionen der Variablen Wochentag, Lawinenwarnstufe, durchschnittliche Tages-Bewölkung, Temperatur, Schneedifferenz und Datum für das Tagesmodell }
+	\caption{Zusammenhang der Variablen Wochentag, Lawinenwarnstufe, stündliche Bewölkung, Temperatur und Schneedifferenz mit dem Anteil der Personen mit LVS-Gerät als glatte Funktionen für das Zeitmodell}
 	\label{pic:smooth_time_model}	
 \end{figure}
-\noindent In Abbildung (\ref{pic:smooth_time_model}) zu sehen sind die glatten Funktionen der nichtparametrischen Variablen (bis auf das Datum und die Uhrzeit der Messungen). Diese werden nun mit den jeweiligen glatten Funktionen des Tagesmodells verglichen. \\
-Bei Wochentag und Lawinenwarnstufe ist ein ähnlicher Trend wie beim Tagesmodell zu erkennen. Die Glättung der Variable Bewölkung schwankt deutlich weniger und es lässt sich ein positiver Zusammenhang erkennen. Je bewölkter es ist, desto höher ist der zu erwartende Anteil der Personen mit LVS-Gerät. \\
-Auch die glatte Funktion der Temperatur verhält sich ähnlich zum Tagesmodell. Bei Minusgraden ist der zu erwartende Anteil allerdings nicht mehr konstant, sondern nimmt mit sinkender Temperatur zu. Bei der glatten Funktion der Variable Schneedifferenz ist ein Trend zu beobachten. Wie auch beim Tagesmodell steigt der Anteil mit steigender Schneedifferenz. Allerdings schwankt der zu erwartende Anteil deutlich und sinkt nach einer Schneezunahme von 10 cm nochmal ab, bevor er wieder steigt.
+\noindent Bei Wochentag und Lawinenwarnstufe ist ein ähnlicher Trend wie beim Tagesmodell zu erkennen. Die Glättung der Variable Bewölkung schwankt deutlich weniger und es lässt sich ein positiver Zusammenhang erkennen. Je bewölkter es ist, desto höher ist der zu erwartende Anteil der Personen mit LVS-Gerät. \\
+Auch die glatte Funktion der Temperatur verhält sich ähnlich zum Tagesmodell. Bei Minusgraden ist der zu erwartende Anteil allerdings nicht mehr konstant, sondern nimmt mit sinkender Temperatur zu. Bei der glatten Funktion der Variable Schneedifferenz ist ein Trend zu beobachten. Wie auch beim Tagesmodell steigt der Anteil mit steigender Schneedifferenz. Allerdings schwankt der zu erwartende Anteil deutlich und sinkt nach einer Schneezunahme von 10 cm nochmal ab, bevor er wieder steigt. \\
+In Abbildung (\ref{pic:time_model_date_time}) ist die Glättung der Variablen Uhrzeit und Datum zu erkennen. Über die Saison hinweg kann man eine generelle Abnahme des zu erwartenden Anteils von Personen mit LVS-Gerät erkennen.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{plots/time_model_date_time}
-	\caption{Die glatte Funktion der Interaktion von Uhrzeit und Datum für das Zeitmodell (Linien stellen Sonnenauf- und untergang dar)}
+	\caption{Zusammenhang der Variablen Datum und Uhrzeit mit dem Anteil der Personen mit LVS-Gerät als glatte Funktionen für das Zeitmodell (Linien stellen Sonnenauf- und untergang dar)}
 	\label{pic:time_model_date_time}	
 \end{figure}
-\noindent In Abbildung (\ref{pic:time_model_date_time}) ist die Glättung der Variablen Uhrzeit und Datum zu erkennen. Über die Saison hinweg kann man eine generelle Abnahme des zu erwartenden Anteils von Personen mit LVS-Gerät erkennen. \\
-Betrachtet man die Uhrzeit wird ersichtlich, dass morgens von ungefähr 7:00 bis 11:00 Uhr ein besonders hoher zu erwartender Anteil von bis zu 40\% zu beobachten ist. Abends von 19:00 bis 22:00 ist ein geringer Anstieg des Anteils erkennbar. Das zu diesen Uhrzeiten ein erhöhter Anteil von Personen mit LVS-Gerät zu erwarten ist ändert sich auch im Verlauf der Saison kaum und scheint nicht mit der Uhrzeit des Sonnenauf- und -untergangs zusammenzuhängen.
+\noindent Betrachtet man die Uhrzeit wird ersichtlich, dass morgens von ungefähr 7:00 bis 11:00 Uhr ein besonders hoher zu erwartender Anteil von bis zu 40\% zu beobachten ist. Abends von 19:00 bis 22:00 ist ein geringer Anstieg des Anteils erkennbar. Das zu diesen Uhrzeiten ein erhöhter Anteil von Personen mit LVS-Gerät zu erwarten ist ändert sich auch im Verlauf der Saison kaum und scheint nicht mit der Uhrzeit des Sonnenauf- und -untergangs zusammenzuhängen.
 
 \subsection{Signifikanz}
 Neben dem Verlauf der glatten Funktionen werden auch die Signifikanzen der Variablen für beide Modellen betrachtet. \\
@@ -568,32 +574,47 @@ Ob eine Variable signifikant ist, also ob der Einfluss der Kovariable auf die Zi
 \chapter{Messfehleranalyse}
 \label{chap:Messfehleranalyse}
 Wie bereits zuvor erwähnt, haben die Projektpartner festgestellt, dass die Checkpoints in ihrer Messung Messfehler haben. \\
-Messfehler sind Abweichungen der erhobenen Daten vom wahren Wert. In unserem Fall bedeutet das, dass die Checkpointmessungen nicht exakt den vorbeigehenden Personen mit oder ohne LVS-Gerät entsprechen, somit ist eine mögliche Unter-/Überschätzung des Anteils an LVS-Geräten vorhanden. Dabei können Messfehler verschiedener Art vorkommen, die jeweils eigene Ursachen haben, und so die Stärke und Richtung der Fehlschätzung unterschiedlich beeinflussen. \\
-Im folgenden Teil werden erst von den Projektpartnern gesammelte Daten über die Genauigkeit der Checkpointmessungen an zwei Tagen untersucht und danach (unter anderem) daraus verschiedene Szenarien für mögliche Messfehler erstellt. Anhand des jeweiligen Szenarios werden Messungen aus dem originalen Datensatz ergänzt oder entfernt und es wird verglichen, inwiefern sich die Ergebnisse unserer zwei Modelle für die gewählten Szenarien unterscheiden.
+Messfehler sind Abweichungen der erhobenen Daten vom wahren Wert. (\cite{messfehler}) \\
+Das bedeutet, dass die Checkpointmessungen nicht exakt den vorbeigehenden Personen mit oder ohne LVS-Gerät entsprechen. Somit ist eine Unter-/Überschätzung des Anteils an LVS-Geräten möglich. Dabei können Messfehler verschiedener Art vorkommen, die jeweils eigene Ursachen haben, und so die Stärke und Richtung der Fehlschätzung unterschiedlich beeinflussen. \\
+Im folgenden Teil werden erst von den Projektpartnern gesammelte Daten über die Genauigkeit der Checkpointmessungen an zwei Tagen untersucht und danach verschiedene Szenarien für mögliche Messfehler erstellt. Anhand des jeweiligen Szenarios werden Messungen aus dem originalen Datensatz ergänzt oder entfernt und es wird verglichen, inwiefern sich die Ergebnisse der zwei Modelle für die gewählten Szenarien unterscheiden.
 
 \section{Messfehler Beschreibung}
-Um die Schwere und Art der Messfehler zu untersuchen, wurde eine Gruppe von Studenten mehrmals zum Aufstiegsort geschickt. Unter Anderem wurden dabei verschiedene Tests angestellt, z.B. wurde die Erfassung der Personen abhängig von unterschiedlichen Entfernungen und Winkeln zum Checkpoint untersucht oder man ließ einen Hund mehrmals am Checkpoint vorbeilaufen und markierte, wann dieser vom Checkpoint registriert wurde und wann nicht. Für die folgende Analyse werden Daten benutzt, die von einer manuellen Zählung einer solchen Gruppe von Studenten am 27.02. und 28.02.2020 stammen. Genauer gesagt fanden die Zählungen zu drei unterschiedlichen Zeiträumen statt: am 27.02. von 10:32 bis 12:58, am 28.02. von 10:38 bis 12:26 und von 14:40 bis 16:50. \\
-Dabei wurde eingetragen, wie viele mögliche Kontakte zu jeder Minute am Checkpoint vorbeigegangen sind. Zudem werden die Kontakte auf zwei verschiedene Arten unterschieden. Einerseits gibt es eine Unterscheidung zwischen „Skitourengeher“, die eigentlich zu interessierende Art von Besuchern mit eventuellen LVS-Geräten, und „andere Kontakte“, also andere Besucher wie Spaziergänger oder z.B. ein Hund. Andererseits wird zusätzlich zwischen „erfassten“ und „nicht erfassten“ Kontakten unterschieden, wobei ein Kontakt als erfasst gilt, wenn er augenscheinlich vom Checkpoint erkannt und registriert wurde.\\
-Wichtig zu erwähnen ist, dass bei der manuellen Zählung keine Unterscheidung zwischen Besuchern mit und ohne LVS-Gerät gemacht wurde. Zusätzlich zu den manuellen Zählungen liegen die tatsächlich von den Checkpoints erhobenen Messungen zur Saison 19/20 vor, wobei einer der Checkpoints früh in der Saison ausgefallen ist und zu den zwei Tagen der manuellen Zählungen somit nur ein Checkpoint aktiv war.
+Um die Schwere und Art der Messfehler zu untersuchen, wurde eine Gruppe von Studierenden mehrmals zum Aufstiegsort geschickt. Unter Anderem wurden dabei verschiedene Tests angestellt, z.B. wurde die Erfassung der Personen abhängig von unterschiedlichen Entfernungen und Winkeln zum Checkpoint untersucht oder man lie"s einen Hund mehrmals am Checkpoint vorbeilaufen und markierte, wann dieser vom Checkpoint registriert wurde und wann nicht. Für die folgende Analyse werden Daten benutzt, die von einer manuellen Zählung einer solchen Gruppe von Studierenden am 27.02.- und 28.02.2020 stammen. Genauer gesagt fanden die Zählungen zu drei unterschiedlichen Zeiträumen statt: am 27.02. von 10:32 bis 12:58 Uhr, am 28.02. von 10:38 bis 12:26 Uhr und von 14:40 bis 16:50~Uhr.\\
+Dabei wurde eingetragen, wie viele Kontakte zu jeder Minute am Checkpoint vorbeigegangen sind. Zudem werden die Kontakte auf zwei verschiedene Arten unterschieden. Einerseits gibt es eine Unterscheidung zwischen „Skitourengeher“, die eigentlich zu interessierende Art von Besuchern mit eventuellen LVS-Geräten, und „andere Kontakte“, also andere Besucher wie Spaziergänger oder z.B. ein Hund. Andererseits wird zusätzlich zwischen „erfassten“ und „nicht erfassten“ Kontakten unterschieden, wobei ein Kontakt als erfasst gilt, wenn er augenscheinlich vom Checkpoint erkannt und registriert wurde.\\
+Wichtig zu erwähnen ist, dass bei der manuellen Zählung keine Unterscheidung zwischen Besuchern mit und ohne LVS-Gerät gemacht wurde. Zusätzlich zu den manuellen Zählungen liegen die tatsächlich von den Checkpoints erhobenen Messungen zur Saison 19/20 vor, wobei der Checkpoint-Süd früh in der Saison ausgefallen ist und zu den zwei Tagen der manuellen Zählungen somit nur ein Checkpoint aktiv war.
 
-\section{Messfehler deskriptive Analyse}
-Die Anzahl der in der manuellen Zählung eingetragenen Kontakte beträgt insgesamt 208. Davon sind 122 Skitourengeher und 86 andere Kontakte. Als erfasst vom Checkpoint wurden 161 Kontakte eingetragen, als nicht erfasst somit 47. \\
-Da die angegebenen Uhrzeiten in der manuellen Zählung und der tatsächlichen Registrierung im Checkpoint voneinander abweichen, werden beim genaueren Vergleich von Erfassungen und Nichterfassungen nur die Daten der manuellen Zählung hergenommen. Für den gesamten Zeitraum der manuellen Zählung kann man jedoch die tatsächlich vom Checkpoint eingetragene Anzahl an erfassten Kontakten hernehmen, die mit 170 etwas höher ist als die 161 von den Studenten angegebenen Nichterfassungen. Für die Berechnung der Unterschätzung insgesamt wird deshalb die Anzahl der vom Checkpoint gemessenen Kontakte, also 170, mit den insgesamt durch die manuelle Zählung festgehaltenen Kontakten, also 208, verglichen. Damit kommt man auf eine allgemeine Unterschätzung des Checkpoints von ca. 22\%. Hierbei wird \glqq Unterschätzung \grqq definiert als der Anteil an vorhandenen Messungen, die man dem Checkpoint hinzufügen müsste, um auf den wahren Wert der vorbeigehenden Kontakte zu bekommen. In unserem Fall müsste man dem Checkpoint ca. 22\% von 170 erfassten Kontakten hinzufügen, um auf den wahren Wert von 208 Kontakten zu kommen. \\
-Für die Berechnung der Unterschätzung wurden keine Messungen aus den manuellen Zählungen entfernt. Insbesondere auch keine Fälle, zu denen angegeben war, dass das Gerät durch fälschliche Messungen wie Mehrfacherfassungen einer Person den wahren Wert überschätzt. In diesem Sinne ist die berechnete Unterschätzung keine „reine“ Unterschätzung sondern die Unterschätzung für alle gemessenen Beobachtungen.
-Um zu testen, wie genau die Erfassung des Checkpoints bei größeren Gruppen an vorbeigehenden Kontakten funktioniert, wurde eine Untersuchung des Anteils an erfassten Kontakten in Abhängigkeit von Gruppengröße durchgeführt. Als Gruppe zählen hierbei alle Kontakte, die zur selben Uhrzeit in der manuellen Zählung vermerkt wurden. Sind also beispielsweise um 15:23 vier Kontakte in der manuellen Zählung vermerkt, so gilt dies als Gruppe von vier Personen. In den Daten kommen jeweils mehrere Gruppen in einer Grö"se von 1 bis 5 und eine Gruppe von 8 Kontakten vor. \\
+\section{Deskriptive Analyse der Messfehlerdaten}
+Die Anzahl der in der manuellen Zählung eingetragenen Kontakte beträgt insgesamt 208. Davon sind, siehe Abbildung (\ref{pic:erf_art_plot}),  122 Skitourengeher und 86 andere Kontakte. Als erfasst vom Checkpoint wurden 161 Kontakte eingetragen, als nicht erfasst somit 47. \\
+Da die angegebenen Uhrzeiten in der manuellen Zählung und der tatsächlichen Registrierung im Checkpoint voneinander abweichen, werden beim genaueren Vergleich von Erfassungen und Nichterfassungen nur die Daten der manuellen Zählung hergenommen. Für den gesamten Zeitraum der manuellen Zählung kann man jedoch die tatsächlich vom Checkpoint eingetragene Anzahl an erfassten Kontakten hernehmen, die mit 170 etwas höher ist als die 161 von den Studierenden angegebenen Nichterfassungen. Für die Berechnung der Unterschätzung insgesamt wird deshalb die Anzahl der vom Checkpoint gemessenen Kontakte, also 170, mit den insgesamt durch die manuelle Zählung festgehaltenen Kontakten, also 208, verglichen. Damit kommt man auf eine allgemeine Unterschätzung des Checkpoints von ca. 22\%. Hierbei wird \glqq Unterschätzung \grqq definiert als der Anteil an vorhandenen Messungen, die man dem Checkpoint hinzufügen müsste, um auf den wahren Wert der vorbeigehenden Kontakte zu bekommen. Dem Checkpoint müsste man ca. 22\% von 170 erfassten Kontakten hinzufügen, um auf den wahren Wert von 208 Kontakten zu kommen. \\
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\linewidth]{plots/erf_gruppe_rel_plot}
-	\caption{ }
-	\label{pic:erf_gruppe_rel_plot}	
+	\includegraphics[width=\linewidth]{plots/erf_art_plot}
+	\caption{Balkendiagramm der absoluten Häufigkeit der gemessenen Kontakte in der manuellen Zählung, aufgeteilt nach Art des Kontakts und Erfassung/Nichterfassung}
+	\label{pic:erf_art_plot}	
 \end{figure}
-\noindent Wie man in der Abbildung (\ref{pic:erf_gruppe_rel_plot})sieht, schwankt der Anteil von Nichterfassungen an allen Messungen bei den fünf kleineren Gruppengrö"sen um einen Wert von 18\%, der einer Unterschätzung von 22\% entspricht. (0.18/0.82=0.22) In der Achtergruppe ist der Anteil von Nichterfassungen allerdings über 50\%, d.h. es wurden in dieser Gruppe mehr Kontakte vom Checkpoint nicht erkannt als erkannt.
+
+\noindent Für die Berechnung der Unterschätzung wurden keine Messungen aus den manuellen Zählungen entfernt. Insbesondere auch keine Fälle, zu denen angegeben war, dass das Gerät durch fälschliche Messungen wie Mehrfacherfassungen einer Person den wahren Wert überschätzt. In diesem Sinne ist die berechnete Unterschätzung keine „reine“ Unterschätzung sondern die Unterschätzung für alle gemessenen Beobachtungen.
+Um zu testen, wie genau die Erfassung des Checkpoints bei grö"seren Gruppen an vorbeigehenden Kontakten funktioniert, wurde eine Untersuchung des Anteils an erfassten Kontakten in Abhängigkeit von Gruppengrö"se durchgeführt. Als Gruppe zählen hierbei alle Kontakte, die zur selben Uhrzeit in der manuellen Zählung vermerkt wurden. Sind also beispielsweise um 15:23 vier Kontakte in der manuellen Zählung vermerkt, so gilt dies als Gruppe von vier Personen. In den Daten kommen jeweils mehrere Gruppen in einer Grö"se von 1 bis 5 und eine Gruppe von 8 Kontakten vor. \\
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\linewidth]{plots/erf_gruppe_rel_plot}
+	\caption{Gestapeltes Balkendiagramm für das Verhältnis erfasster zu nicht erfasster Kontakte nach Gruppengröße}
+	\label{pic:erf_gruppe_rel_plot}	
+\end{figure}\\
+\noindent Wie man in der Abbildung (\ref{pic:erf_gruppe_rel_plot}) sieht, schwankt der Anteil von Nichterfassungen an allen Messungen bei den fünf kleineren Gruppengrö"sen um einen Wert von 18\%, der einer Unterschätzung von 22\% ($0.18/0.82=0.22$) entspricht. In der Achtergruppe ist der Anteil von Nichterfassungen allerdings über 50\%, d.h. es wurden in dieser Gruppe mehr Kontakte vom Checkpoint nicht erkannt als erkannt.
 
 \section{Messfehlerszenarien im Vergleich}
-\subsection{Szenarien im Tagesmodell}
-\begin{table}[htbp]
+Ursprünglich war mit den Projektpartnern vereinbart, die Daten zu den Messfehlern herzunehmen, um das bereits aufgestellte Modell auf Grundlage der Checkpointdaten der Saison 18/19 anzupassen und das neue, verbesserte Modell an den Daten zur Saison 19/20 zu testen. Da das Frühjahr 2020, zu dem die manuellen Zählungen geplant waren, von den Wetterbedingungen sehr milde war und somit vergleichsweise sehr wenige Besucher am Untersuchungsort unterwegs waren, ist der Umfang der Daten zu den Messfehlern allerdings deutlich geringer als vorgesehen. Da die meisten Kovariablen im Modell täglich erhoben werden und für die Messfehler nur Daten zu zwei Tagen mit nur insgesamt 208 Messungen vorliegen, ist der Informationsgehalt zu gering für eine sinnvolle Anpassung der Modelle. \\
+Stattdessen wurden in Abstimmung mit den Projektpartnern aus den Erkenntnissen über die Messfehler vier verschiedene Szenarien entworfen. Für jedes Szenario wird der originale Datensatz aus der Saison 18/19 angepasst und die bestehenden Modelle auf den jeweils neu erzeugten Datensatz angewandt. Die Ergebnisse für die unterschiedlichen Szenarien werden mit den originalen Ergebnissen verglichen, um Aussagen darüber treffen zu können, inwiefern sich unterschiedliche Messfehler auf die Ergebnisse des Modells auswirken. Da aus den Tests hervorgegangen ist, dass der Checkpoint bei der Messung von LVS-Geräten sehr genau ist und Messfehler eher bei der Infrarotmessung entstehen, werden in jedem Szenario nur Messungen ohne LVS-Gerät hinzugefügt (bzw. entfernt). \\
+Szenario 1 geht von einer generellen Unterschätzung von 22\% aus, nach dem Wert aus der Analyse der Messfehlerdaten. Hier werden dem Datensatz zu zufälligen Zeitpunkten insgesamt 22\% neue Beobachtungen von Kontakten ohne LVS-Gerät hinzugefügt. \\
+Szenario 2 geht von einer ansteigenden Unterschätzung bei zunehmender Gruppengröße aus. Hier wird für jede Beobachtung mit einer bestimmten Wahrscheinlichkeit eine neue Beobachtung hinzugefügt, so dass bei größeren Gruppen im Durchschnitt auch mehr neue Beobachtungen hinzukommen. \\
+Szenario 3 geht von einer nächtlichen Überschätzung aus. Die Tests haben gezeigt, dass teilweise auch ein vorbeilaufender Hund vom Checkpoint erfasst wird. Da nachts wenige Menschen unterwegs und besonders in den Dämmerungszeiten vermehrt Tiere unterwegs sind, wird nachts ein fester Anteil an Beobachtungen ohne LVS-Gerät aus dem Datensatz entfernt, der für irrtümlich erfasste Tiere steht. \\
+Szenario 4 geht von einer wachsenden Unterschätzung bei fallenden Temperaturen aus. Hier wird davon ausgegangen, dass der Checkpoint bei größerer Kälte fehleranfälliger wird und es wird für sinkende Temperaturen ein bestimmter Anteil an neuen Beobachtungen hinzugefügt. \\
+Die Ergebnisse für die Szenarien im Vergleich zum originalen Datensatz werden erneut erst für das Tagesmodell, danach für das Zeitmodell verglichen.
+\subsection{Im Tagesmodell}
+Die Tabelle (\ref{tab:Szenarien im Tagesmodell}) zeigt im Tagesmodell die Werte für die Koeffizienten von Intercept und Ferientag, die p-Werte und Signifikanzen für alle Kovariablen für den originalen Datensatz und jedes Messfehlerszenario im Vergleich. \\
+\begin{table}[h]
 	\centering
-	\caption{Tabelle für das Original, Szenario 1 (Generelle Unterschätzung von 22\%), Szenario 2 (Unterschätzung nach Gruppengrö”se), Szenario 3 (Nächtliche Überschätzung) und Szenario 4 (Unterschätzung nach Temperatur) für das Tagesmodell}
 	\begin{adjustbox}{max width=\textwidth}
 	\begin{tabular}{l|ccc|ccc|ccc|ccc|ccc|}
 		\multicolumn{1}{r}{} & 
@@ -613,27 +634,26 @@ Um zu testen, wie genau die Erfassung des Checkpoints bei größeren Gruppen an 
 		s(Schneedifferenz) &       & 0.635 &       &       & 0.48  &       &       & 0.647 &       &       & 0.72  &       &       & 0.651 &   \\
 		\cmidrule{2-16}    \end{tabular}%
 	\end{adjustbox}
+	\caption{Tabelle mit Koeffizienten und p-Werten für das Original, Szenario 1 (Generelle Unterschätzung von 22\%), Szenario 2 (Unterschätzung nach Gruppengrösse), Szenario 3 (Nächtliche Überschätzung) und Szenario 4 (Unterschätzung nach Temperatur) für das Tagesmodell}
 	\label{tab:Szenarien im Tagesmodell}%
-\end{table}%
-
-\noindent Tabelle (\ref{tab:Szenarien im Tagesmodell}) zeigt im Tagesmodell die Werte für die Koeffizienten von Intercept und Ferientag, die p-Werte und Signifikanzen für alle Kovariablen für den originalen Datensatz und jedes Messfehlerszenario im Vergleich. \\
-Da in den Szenarien nur Beobachtungen ohne LVS-Gerät hinzugefügt bzw. entfernt werden, sinken bzw. steigen die Koeffizienten für die zwei parametrischen Variablen entsprechend. Szenario 1 mit genereller Unterschätzung hat die höchste Menge an hinzugefügten Beobachtungen, deswegen ist der Intercept, also der Anteil an Messungen mit LVS-Geräten bei konstant gehaltenen Kovariablen und keinem Ferientag, mit einem Wert von 15,8\% am geringsten. Szenario 3 mit nächtlicher Überschätzung ist das einzige Szenario, bei dem Beobachtungen entfernt werden, deswegen steigt hier der Koeffizient für den Intercept auf einen Wert von 23,2\%. Analog gelten die Aussagen für den Anteil an Ferientagen bei konstant gehaltenen Kovariablen. Bei der generellen Unterschätzung ist der Wert für Ferientage mit 16,2\% höher als der Wert für den Intercept. \\
-Bei einem Signifikanzniveau von 5\% haben nur der Intercept und das Datum bei allen Szenarien wie im Original einen statistisch signifikanten Zusammenhang mit dem Anteil an LVS-Geräten. Die Kovariable für Lawinengefahr hat im Original und bei jedem Szenario außer der nächtlichen Überschätzung einen statistisch signifikanten Zusammenhang. Alle anderen Kovariablen, als für Ferientag, Bewölkung, Wochentag, Temperatur, Bewölkung und Schneedifferenz, haben wie im Original keinen statistischen Zusammenhang mit dem Anteil auf dem gewählten Signifikanziveau. \\
+\end{table}\\
+\noindent Da in den Szenarien nur Beobachtungen ohne LVS-Gerät hinzugefügt bzw. entfernt werden, sinken bzw. steigen die Koeffizienten für die zwei parametrischen Variablen entsprechend. Szenario 1 mit genereller Unterschätzung hat die höchste Menge an hinzugefügten Beobachtungen, deswegen ist der Intercept, also der Anteil an Messungen mit LVS-Geräten bei konstant gehaltenen Kovariablen und keinem Ferientag, mit einem Wert von 15,8\% am geringsten. Szenario 3 mit nächtlicher Überschätzung ist das einzige Szenario, bei dem Beobachtungen entfernt werden, deswegen steigt hier der Koeffizient für den Intercept auf einen Wert von 23,2\%. Analog gelten die Aussagen für den Anteil an Ferientagen bei konstant gehaltenen Kovariablen. Bei der generellen Unterschätzung ist der Wert für Ferientage mit 16,2\% höher als der Wert für den Intercept.\\
+Bei einem Signifikanzniveau von 5\% haben nur der Intercept und das Datum bei allen Szenarien wie im Original einen statistisch signifikanten Zusammenhang mit dem Anteil an LVS-Geräten. Die Kovariable für Lawinengefahr hat im Original und bei jedem Szenario au"ser der nächtlichen Überschätzung einen statistisch signifikanten Zusammenhang. Alle anderen Kovariablen, als für Ferientag, Bewölkung, Wochentag, Temperatur, Bewölkung und Schneedifferenz, haben wie im Original keinen statistischen Zusammenhang mit dem Anteil auf dem gewählten Signifikanziveau. \\
+Die Abbildung (\ref{pic:day_model_comparison_plots}) zeigt im Tagesmodell den Zusammenhang zwischen Anteil an LVS-Geräten und allen nonparametrischen Kovariablen im Original und den verschiedenen Messfehlerszenarien.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{plots/day_model_comparison_plots}
-	\caption{ Die glatten Funktionen der Variablen Wochentag, Lawinenwarnstufe, durchschnittliche Tages-Bewölkung, Temperatur, Schneedifferenz und Datum für das Tagesmodell für die verschiedenen Szenarien}
+	\caption{Zusammenhang der Variablen Wochentag, Lawinenwarnstufe, durchschnittliche Tagesbewölkung, Temperatur, Schneedifferenz und Datum mit dem Anteil der Personen mit LVS-Gerät als glatte Funktionen im Tagesmodell für den originalen Datensatz und jedes Szenario}
 	\label{pic:day_model_comparison_plots}	
 \end{figure}
-\noindent Abbildung (\ref{pic:day_model_comparison_plots}) zeigt im Tagesmodell den Zusammenhang zwischen Anteil an LVS-Geräten und allen nonparametrischen Kovariablen im Original und den verschiedenen Messfehlerszenarien. \\
-Es lässt sich anhand von Abbildung (\ref{pic:day_model_comparison_plots}) feststellen, dass die Zusammenhänge der einzelnen Kovariablen mit dem Anteil an LVS-Geräten für alle Szenarien zumeist einen ähnlichen Verlauf nehmen wie im Original. So hat die glatte Funnktion z.B. für den Wochentag bei jedem Szenario wie im Original höhere Werte für Montag, Mittwoch und Samstag als für Dienstag, Donnerstag oder Freitag. Auch für die anderen Kovariablen unterscheidet sich der Verlauf des Zusammenhangs insbesondere für Szenarien 2 bis 4 nur geringfügig vom Original. \\
+\noindent Daran lässt sich feststellen, dass die Zusammenhänge der einzelnen Kovariablen mit dem Anteil an LVS-Geräten für alle Szenarien zumeist einen ähnlichen Verlauf nehmen wie im Original. So hat die glatte Funnktion z.B. für den Wochentag bei jedem Szenario wie im Original höhere Werte für Montag, Mittwoch und Samstag als für Dienstag, Donnerstag oder Freitag. Auch für die anderen Kovariablen unterscheidet sich der Verlauf des Zusammenhangs insbesondere für Szenarien 2 bis 4 nur geringfügig vom Original. \\
 Einzig in Szenario 1, der generellen Unterschätzung, sind an mehreren Stellen grö"ssere Unterschiede zu bemerken. So schwankt der Anteil im Zusammenhang mit der Bewölkung  weniger stark als im Original und den anderen Szenarien. Für niedrige Temperaturen bis -3 Grad sinkt der Anteil im Gegensatz zu den anderen Szenarien, verläuft danach aber ähnlich. Bei einer Schneedifferenz von 5 bis 20 cm steigt der Anteil geringer als in den anderen Szenarien bis nur ca. 15\%, für Werte zwischen 20 und 32 cm dagegen steigt der Anteil in Szenario 1 deutlich stärker und sinkt danach auch deutlich stärker ab als in den anderen Szenarien, mit einem Höchstwert von ca. 28\%. \\
-Wie schon erwähnt ist die Unsicherheit in diesem Bereich allerdings erhöht, da nur wenige Tage mit hohen Werten für die Schneedifferenz vorkommen. Beim Datum unterscheidet sich Szenario 1 im Bereich vom 01. März bis zum15. März, da der Anteil dort fast konstant bei ca. 15\% liegt und nicht wie in den anderen Szenarien ansteigt und wieder abfällt.
+Wie schon erwähnt ist die Unsicherheit in diesem Bereich allerdings erhöht, da nur wenige Tage mit hohen Werten für die Schneedifferenz vorkommen. Beim Datum unterscheidet sich Szenario 1 im Bereich vom 01. März bis zum 15. März, da der Anteil dort fast konstant bei ca. 15\% liegt und nicht wie in den anderen Szenarien ansteigt und wieder abfällt.
 
-\subsection{Szenarien im Zeitmodell}
+\subsection{Im Zeitmodell}
+Die Tabelle (\ref{tab:Szenarien im Zeitmodell}) zeigt im Zeitmodell die Werte für die Koeffizienten von Intercept und Ferientag, die p-Werte und Signifikanzen für alle Kovariablen für den originalen Datensatz und jedes Messfehlerszenario im Vergleich. 
 \begin{table}[htbp]
 	\centering
-	\caption{Tabelle für das Original, Szenario 1 (Generelle Unterschätzung von 22\%), Szenario 2 (Unterschätzung nach Gruppengrö”se), Szenario 3 (Nächtliche Überschätzung) und Szenario 4 (Unterschätzung nach Temperatur) für das Zeitmodell}
 	\begin{adjustbox}{max width=\textwidth}
 	\begin{tabular}{l|ccc|ccc|ccc|ccc|ccc|}
 		\multicolumn{1}{r}{} & \multicolumn{3}{c}{Original} & \multicolumn{3}{c}{Szenario 1} &
@@ -643,7 +663,7 @@ Wie schon erwähnt ist die Unsicherheit in diesem Bereich allerdings erhöht, da
 		& Koeffizient & p-Wert &       & Koeffizient & p-Wert &       & Koeffizient & p-Wert &       & Koeffizient & p-Wert &       & Koeffizient & p-Wert &  \\
 		\cmidrule{2-16}    (Intercept) & 0.203 & <2e-16 & ***   & 0.127 & <2e-16 & ***   & 0.163 & <2e-16 & ***   & 0.218 & <2e-16 & ***   & 0.119 & <2e-16 & *** \\
 		Ferientag & 0.214 & 0.2   &       & 0.126 & 0.9   &       & 0.170 & 0.3   &       & 0.229 & 0.2   &       & 0.122 & 0.5   &   \\
-		s(Datum) & x     & <2e-16 & ***   & x     & <2e-16 & ***   & x     & <2e-16 & ***   & x     & <2e-16 & ***   & x     & <2e-16 & *** \\
+		s(Datum,Uhrzeit) & x     & <2e-16 & ***   & x     & <2e-16 & ***   & x     & <2e-16 & ***   & x     & <2e-16 & ***   & x     & <2e-16 & *** \\
 		s(Lawinengefahr) & x     & 6.00E-13 & ***   & x     & <2e-16 & ***   & x     & 5.00E-13 & ***   & x     & 1.00E-12 & ***   & x     & <2e-16 & *** \\
 		s(Wochentag) & x     & 2.00E-10 & ***   & x     & 3.00E-15 & ***   & x     & 6.00E-10 & ***   & x     & 6.00E-10 & ***   & x     & 1.00E-10 & *** \\
 		s(Temperatur) & x     & 5.00E-10 & ***   & x     & <2e-16 & ***   & x     & 4.00E-10 & ***   & x     & 1.00E-08 & ***   & x     & 1.00E-10 & *** \\
@@ -651,31 +671,31 @@ Wie schon erwähnt ist die Unsicherheit in diesem Bereich allerdings erhöht, da
 		s(Schneedifferenz) & x     & 6.00E-08 & ***   & x     & 7.00E-09 & ***   & x     & 2.00E-08 & ***   & x     & 1.00E-07 & ***   & x     & 5.00E-08 & *** \\
 		\cmidrule{2-16}    \end{tabular}%
 	\end{adjustbox}
+	\caption{Tabelle mit Koeffizienten und p-Werten für das Original, Szenario 1 (Generelle Unterschätzung von 22\%), Szenario 2 (Unterschätzung nach Gruppengrösse), Szenario 3 (Nächtliche Überschätzung) und Szenario 4 (Unterschätzung nach Temperatur) für das Zeitmodell}
 	\label{tab:Szenarien im Zeitmodell}%
 \end{table}%
 
-\noindent Tabelle (\ref{tab:Szenarien im Zeitmodell}) zeigt im Zeitmodell die Werte für die Koeffizienten von Intercept und Ferientag, die p-Werte und Signifikanzen für alle Kovariablen für den originalen Datensatz und jedes Messfehlerszenario im Vergleich. \\
-Ähnlich wie beim Tagesmodell verhalten sich die Koeffizienten für den Intercept und Ferientag. In den Szenarien mit Unterschätzung sinken beide Anteile im Vergleich zum Original bei einem Tiefstwert von 12,7\% für den Intercept bei der generellen Unterschätzung und einem erhöhten Wert von 21,8\% beim Szenario der nächtlichen Überschätzung, analog für den Anteil an Ferientagen. Bei der generellen Unterschätzung ist der Anteil an Ferientagen mit 12,6\% geringer ist als an Tagen, die keine Ferientage sind. \\
+\noindent Ähnlich wie beim Tagesmodell verhalten sich die Koeffizienten für den Intercept und Ferientag. In den Szenarien mit Unterschätzung sinken beide Anteile im Vergleich zum Original bei einem Tiefstwert von 12,7\% für den Intercept bei der generellen Unterschätzung und einem erhöhten Wert von 21,8\% beim Szenario der nächtlichen Überschätzung, analog für den Anteil an Ferientagen. Bei der generellen Unterschätzung ist der Anteil an Ferientagen mit 12,6\% geringer ist als an Tagen, die keine Ferientage sind. \\
 Wie im Original sind in allen Szenarien alle Variablen bis auf Ferientag statistisch signifikant. \\
+Abbildung \ref{pic:time_model_comparison} zeigt im Zeitmodell den Zusammenhang zwischen Anteil an LVS-Geräten und allen nonparametrischen Kovariablen im Original und den verschiedenen Messfehlerszenarien.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{plots/time_model_comparison}
-	\caption{ Die glatten Funktionen der Variablen Wochentag, Lawinenwarnstufe, durchschnittliche Tages-Bewölkung, Temperatur, Schneedifferenz für das Zeitmodell für die verschiedenen Szenarien}
+	\caption{Zusammenhang der Variablen Wochentag, Lawinenwarnstufe, stündliche Bewölkung, Temperatur und Schneedifferenz mit dem Anteil der Personen mit LVS-Gerät als glatte Funktionen im Zeitmodell für den originalen Datensatz und jedes Szenario}
 	\label{pic:time_model_comparison}	
 \end{figure}
-\noindent Die Abbildung (\ref{pic:time_model_comparison}) zeigt im Zeitmodell den Zusammenhang zwischen Anteil an LVS-Geräten und allen nonparametrischen Kovariablen im Original und den verschiedenen Messfehlerszenarien. \\
-Wie im Tagesmodell verlaufen die Zusammenhänge der einzelnen Kovariablen mit dem Anteil an LVS-Geräten bei allen Szenarien zumeist ähnlich zum Original. Größere Unterschiede bestehen bei der Bewölkung, wo für das Szenario mit genereller Unterschätzung und einer Unterschätzung bei niedrigen Temperaturen ein konstanter Anstieg bei wachsender durchschnittlicher Bewölkung zu beobachten ist, und bei der Schneedifferenz, wo im Bereich von 10 bis 20 cm der Anteil im Szenario mit Unterschätzung bei niedrigen Temperaturen verhältnismäßig weniger Schwankungen unterliegt. \\
+\noindent Wie im Tagesmodell verlaufen die Zusammenhänge der einzelnen Kovariablen mit dem Anteil an LVS-Geräten bei allen Szenarien zumeist ähnlich zum Original. Grö"sere Unterschiede bestehen bei der Bewölkung, wo für das Szenario mit genereller Unterschätzung und einer Unterschätzung bei niedrigen Temperaturen ein konstanter Anstieg bei wachsender durchschnittlicher Bewölkung zu beobachten ist, und bei der Schneedifferenz, wo im Bereich von 10 bis 20 cm der Anteil im Szenario mit Unterschätzung bei niedrigen Temperaturen verhältnismä"sig weniger Schwankungen unterliegt. \\
 Auffällig ist, dass der Anteil bei Werten für die Schneedifferenz von 20 cm und mehr für das Original und Szenarien 2 bis 4 nun im Vergleich zum Tagesmodell stärker ansteigt und wieder sinkt und somit dem Verlauf von Szenario 1 ähnlicher ist.
 
 \section{Szenario mit steigender genereller Unterschätzung}
 Für das Szenario mit genereller Unterschätzung wird im obigen Vergleich eine Unterschätzung von 22\% angenommen. \\
-Im Folgenden wird verglichen, wie sich die Ergebnisse der beiden Modelle für unterschiedliche Werte für die allgemeine Unterschätzung verhalten.
+Im Folgenden wird verglichen, wie sich die Ergebnisse der beiden Modelle für das Szenario mit allgemeiner Unterschätzung verhalten, wenn man unterschiedliche Werte für die Unterschätzung annimmt. Dafür wird die Unterschätzung in 10\%-Schritten bis zu einem Wert von 70\% erhöht.
 
-\subsection{Szenario 1 im Tagesmodell}
-
-\begin{table}[htbp]
+\subsection{Im Tagesmodell}
+Die Tabelle (\ref{tab:Szenario 1 im Tagesmodell}) zeigt im Tagesmodell die Werte für die Koeffizienten von Intercept und Ferientag, die p-Werte und Signifikanzen für alle Kovariablen für den originalen Datensatz und steigender allgemeiner Unterschätzung. 
+\begin{table}[H]
+	\vspace{-0.5cm}
 	\centering
-	\caption{Add caption}
 	\begin{adjustbox}{max width=\textwidth}
 	\begin{tabular}{l|ccc|ccc|ccc|ccc|}
 		\multicolumn{1}{r}{} & \multicolumn{3}{c}{Original} & \multicolumn{3}{c}{10\%} & \multicolumn{3}{c}{20\%} & \multicolumn{3}{c}{30\%} \\
@@ -689,7 +709,7 @@ Im Folgenden wird verglichen, wie sich die Ergebnisse der beiden Modelle für un
 		s(Bewölkung) &       & 0.371 &       &       & 0.814 &       &       & 0.89  &       &       & 0.82  &   \\
 		s(Schneedifferenz) &       & 0.635 &       &       & 0.527 &       &       & 0.42  &       &       & 0.40  &   \\
 		\cmidrule{2-13}    \multicolumn{1}{r}{} &       &       & \multicolumn{1}{c}{} &       &       & \multicolumn{1}{c}{} &       &       & \multicolumn{1}{c}{} &       &       & \multicolumn{1}{c}{} \\
-		\multicolumn{1}{r}{} &       &       & \multicolumn{1}{c}{} &       &       & \multicolumn{1}{c}{} &       &       & \multicolumn{1}{c}{} &       &       & \multicolumn{1}{c}{} \\
+		%\multicolumn{1}{r}{} &       &       & \multicolumn{1}{c}{} &       &       & \multicolumn{1}{c}{} &       &       & \multicolumn{1}{c}{} &       &       & \multicolumn{1}{c}{} \\
 		\multicolumn{1}{r}{} & \multicolumn{3}{c}{40\%} & \multicolumn{3}{c}{50\%} & \multicolumn{3}{c}{60\%} & \multicolumn{3}{c}{70\%} \\
 		& Koeffizient & p-Wert &       & Koeffizient & p-Wert &       & Koeffizient & p-Wert &       & Koeffizient & p-Wert & \multicolumn{1}{c}{} \\
 		\cmidrule{2-13}    (Intercept) & 0.134 & <2e-16 & ***   & 0.122 & <2e-16 & ***   & 0.115 & <2e-16 & ***   & 0.107 & <2e-16 & *** \\
@@ -703,43 +723,47 @@ Im Folgenden wird verglichen, wie sich die Ergebnisse der beiden Modelle für un
 		\cmidrule{2-13}    
 	\end{tabular}%
 	\end{adjustbox}
+	\caption{Tabelle mit Koeffizienten und p-Werten der Kovariablen für steigende Werte an allgemeiner Unterschätzung im Tagesmodell}
 	\label{tab:Szenario 1 im Tagesmodell}%
 \end{table}%
-\noindent Da für steigende Unterschätzung ein größerer Anteil an Beobachtungen ohne LVS-Geräte hinzugefügt wird, sinken die Werte für Intercept und Ferientag. Einen höheren Anteil an Ferientagen gibt es bei einer Unterschätzung von 20\%, 30\% und 50\%. \\
+
+\noindent Da für steigende Unterschätzung ein grö"serer Anteil an Beobachtungen ohne LVS-Geräte hinzugefügt wird, sinken die Werte für Intercept und Ferientag. Einen höheren Anteil an Ferientagen gibt es bei einer Unterschätzung von 20\%, 30\% und 50\%. \\
 Dies wird allerdings hauptsächlich davon beeinflusst, an welchen Tagen neue Beobachtungen zufällig generiert werden. Wie im Original sind in jedem Fall der Intercept, Datum und Lawinengefahr statistisch signifikant, ab einer Unterschätzung von 30\% ist auch Wochentag signifikant.\\
+Abbildung (\ref{pic:day_model_general_comparison}) zeigt im Tagesmodell den Zusammenhang zwischen Anteil an LVS-Geräten und nonparametrischer Kovariablen im Original und steigenden Werten für den Anteil an Unterschätzung.
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{plots/day_model_general_comparison}
-	\caption{ Die glatten Funktionen der Variablen Wochentag, Lawinenwarnstufe, durchschnittliche Tages-Bewölkung, Temperatur, Schneedifferenz für das Tagesmodell}
+	\caption{Zusammenhang der Variablen Wochentag, Lawinenwarnstufe, durchschnittliche Tagesbewölkung, Temperatur, Schneedifferenz und Datum mit dem Anteil der Personen mit LVS-Gerät als glatte Funktionen im Tagesmodell für den originalen Datensatz und steigende Werte an allgemeiner Unterschätzung}
 	\label{pic:day_model_general_comparison}	
 \end{figure}
-\noindent Abbildung (\ref{pic:day_model_general_comparison}) zeigt im Tagesmodell den Zusammenhang zwischen Anteil an LVS-Geräten und allen nonparametrischen Kovariablen im Original und steigenden Werten für den Anteil an Unterschätzung. \\
-Die Verläufe des Zusammenhangs zwischen Anteil an LVS-Geräten und den einzelnen Kovariablen sind für alle Anteile an Unterschätzung sehr ähnlich. \\
-Eine kleine Auffälligkeit ist ein größeres Abflachen des Anteils an LVS-Geräten bei einer Lawinenwarnstufe ab 3 bei Anteilen an Unterschätzung von 40\% und höher. Unterschiede zum Original verhalten sich bei allen Werten für Unterschätzung wie vorher für eine Unterschätzung von 22\% beschrieben.
 
-\subsection{Szenario 1 im Zeitmodell}
+\noindent Die Verläufe des Zusammenhangs zwischen Anteil an LVS-Geräten und den einzelnen Kovariablen sind für alle Anteile an Unterschätzung sehr ähnlich. \\
+Eine kleine Auffälligkeit ist ein grö"seres Abflachen des Anteils an LVS-Geräten bei einer Lawinenwarnstufe ab 3 bei Anteilen an Unterschätzung von 40\% und höher. Unterschiede zum Original verhalten sich bei allen Werten für Unterschätzung wie vorher für eine Unterschätzung von 22\% beschrieben.
+
+\subsection{Im Zeitmodell}
+Die Tabelle (\ref{tab:Szenario 1 im Zeitmodell}) zeigt im Zeitmodell die Werte für die Koeffizienten von Intercept und Ferientag, die p-Werte und Signifikanzen für alle Kovariablen für den originalen Datensatz und steigender allgemeiner Unterschätzung.  
 \begin{table}[htbp]
 	\centering
-	\caption{Add caption}
 	\begin{adjustbox}{max width=\textwidth}
 	\begin{tabular}{l|ccc|ccc|ccc|ccc|}
 		\multicolumn{1}{r}{} & \multicolumn{3}{c}{Original} & \multicolumn{3}{c}{10\%} & \multicolumn{3}{c}{20\%} & \multicolumn{3}{c}{30\%} \\
 		& Koeffizient & p-Wert &       & Koeffizient & p-Wert &       & Koeffizient & p-Wert &       & Koeffizient & p-Wert & \multicolumn{1}{c}{} \\
 		\cmidrule{2-13}    (Intercept) & 0.203 & <2e-16 & ***   & 0.165 & <2e-16 & ***   & 0.133 & <2e-16 & ***   & 0.107 & <2e-16 & *** \\
 		Ferientag & 0.214 & 0.2   &       & 0.167 & 0.7   &       & 0.133 & 0.9   &       & 0.105 & 0.6   &   \\
-		s(Datum) &       & <2e-16 & ***   &       & <2e-16 & ***   &       & <2e-16 & ***   &       & <2e-16 & *** \\
+		s(Datum,Uhrzeit) &       & <2e-16 & ***   &       & <2e-16 & ***   &       & <2e-16 & ***   &       & <2e-16 & *** \\
 		s(Lawinengefahr) &       & <2e-16 & ***   &       & <2e-16 & ***   &       & <2e-16 & ***   &       & <2e-16 & *** \\
 		s(Wochentag) &       & <2e-16 & ***   &       & <2e-16 & ***   &       & <2e-16 & ***   &       & <2e-16 & *** \\
 		s(Temperatur) &       & <2e-16 & ***   &       & <2e-16 & ***   &       & <2e-16 & ***   &       & <2e-16 & *** \\
 		s(Bewölkung) &       & <2e-16 & ***   &       & <2e-16 & ***   &       & <2e-16 & ***   &       & <2e-16 & *** \\
 		s(Schneedifferenz) &       & <2e-16 & ***   &       & <2e-16 & ***   &       & <2e-16 & ***   &       & <2e-16 & *** \\
 		\cmidrule{2-13}    \multicolumn{1}{r}{} &       &       & \multicolumn{1}{c}{} &       &       & \multicolumn{1}{c}{} &       &       & \multicolumn{1}{c}{} &       &       & \multicolumn{1}{c}{} \\
-		\multicolumn{1}{r}{} &       &       & \multicolumn{1}{c}{} &       &       & \multicolumn{1}{c}{} &       &       & \multicolumn{1}{c}{} &       &       & \multicolumn{1}{c}{} \\
+		%\multicolumn{1}{r}{} &       &       & \multicolumn{1}{c}{} &       &       & \multicolumn{1}{c}{} &       &       & \multicolumn{1}{c}{} &       &       & \multicolumn{1}{c}{} \\
 		\multicolumn{1}{r}{} & \multicolumn{3}{c}{40\%} & \multicolumn{3}{c}{50\%} & \multicolumn{3}{c}{60\%} & \multicolumn{3}{c}{70\%} \\
 		& Koeffizient & p-Wert &       & Koeffizient & p-Wert &       & Koeffizient & p-Wert &       & Koeffizient & p-Wert & \multicolumn{1}{c}{} \\
 		\cmidrule{2-13}    (Intercept) & 0.0899 & <2e-16 & ***   & 0.0771 & <2e-16 & ***   & 0.0664 & <2e-16 & ***   & 0.0582 & <2e-16 & *** \\
 		Ferientag & 0.0851 & 0.1   &       & 0.0735 & 0.2   &       & 0.0620 & 0.05  & *     & 0.0537 & 0.02  & * \\
-		s(Datum) &       & <2e-16 & ***   &       & <2e-16 & ***   &       & <2e-16 & ***   &       & <2e-16 & *** \\
+		s(Datum,Uhrzeit) &       & <2e-16 & ***   &       & <2e-16 & ***   &       & <2e-16 & ***   &       & <2e-16 & *** \\
 		s(Lawinengefahr) &       & <2e-16 & ***   &       & <2e-16 & ***   &       & <2e-16 & ***   &       & <2e-16 & *** \\
 		s(Wochentag) &       & <2e-16 & ***   &       & <2e-16 & ***   &       & <2e-16 & ***   &       & <2e-16 & *** \\
 		s(Temperatur) &       & <2e-16 & ***   &       & <2e-16 & ***   &       & <2e-16 & ***   &       & <2e-16 & *** \\
@@ -747,72 +771,52 @@ Eine kleine Auffälligkeit ist ein größeres Abflachen des Anteils an LVS-Gerä
 		s(Schneedifferenz) &       & <2e-16 & ***   &       & <2e-16 & ***   &       & <2e-16 & ***   &       & <2e-16 & *** \\
 		\cmidrule{2-13}    \end{tabular}%
 	\end{adjustbox}
+	\caption{Tabelle mit Koeffizienten und p-Werten der Kovariablen für steigende Werte an allgemeiner Unterschätzung im Zeitmodell}
 	\label{tab:Szenario 1 im Zeitmodell}%
 \end{table}%
 
 \noindent Analog wie im Tagesmodell sinken die Koeffizienten für Intercept und Ferientag mit wachsender Unterschätzung. Ab einer Unterschätzung von 30\% ist der Anteil an LVS-Geräten an Ferientagen geringer. \\
 Wie im Original sind für alle Werte für die Unterschätzung alle Kovariablen bis auf Ferientag signifikant, ab einer Unterschätzung von 60\% ist auch Ferientag signifikant. \\
+Abbildung (\ref{pic:time_model_general_comparison}) zeigt im Zeitmodell den Zusammenhang zwischen Anteil an LVS-Geräten und nonparametrischen Kovariablen im Original und steigenden Werten für den Anteil an Unterschätzung.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{plots/time_model_general_comparison}
-	\caption{ Die glatten Funktionen der Variablen Wochentag, Lawinenwarnstufe, durchschnittliche Tages-Bewölkung, Temperatur, Schneedifferenz für das Zeitmodell}
+	\caption{Zusammenhang der Variablen Wochentag, Lawinenwarnstufe, stündliche Bewölkung, Temperatur und Schneedifferenz mit dem Anteil der Personen mit LVS-Gerät als glatte Funktionen im Zeitmodell für den originalen Datensatz und steigende Werte an allgemeiner Unterschätzung}
 	\label{pic:time_model_general_comparison}	
 \end{figure}
-\noindent Abbildung (\ref{pic:time_model_general_comparison}) zeigt im Zeitmodell den Zusammenhang zwischen Anteil an LVS-Geräten und allen nonparametrischen Kovariablen im Original und den verschiedenen Messfehlerszenarien. \\
-Wie im Tagesmodell verlaufen die Zusammenhänge zwischen Anteil an LVS-Geräten und den einzelnen Kovariablen für alle Werte an Unterschätzung sehr ähnlich. Größere Unterschiede gibt es weder untereinander noch zum Original.
+\noindent Wie im Tagesmodell verlaufen die Zusammenhänge zwischen Anteil an LVS-Geräten und den einzelnen Kovariablen für alle Werte an Unterschätzung sehr ähnlich. Grö"sere Unterschiede gibt es weder untereinander noch zum Original.
 
 \chapter{Fazit}
-Um die Auswirkungen von Umwelteinflüssen auf die Mitnahme von LVS-Geräten zu untersuchen, wurden zwei Modelle gebildet: einmal wurde dabei nach Datum gruppiert und einmal nach der Uhrzeit. Beim nach Datum gruppierten Modell, dem Tagesmodell, wurden dabei Wochentag, Ferientag, Lawinenwarnstufe, tägliche Durchschnittsbewölkung, Temperatur, Schneedifferenz  und Datum als Kovariablen berücksichtigt. \\
-Als signifikant haben sich der Intercept, die Lawinenwarnstufe und das Datum herausgestellt. Bei der Betrachtung des Zeitmodells wurde statt der täglichen Durchschnittsbewölkung die stündliche Bewölkung verwendet und au"serdem Uhrzeit als weitere Variable mit aufgenommen. Hier zeigen sich alle Variablen bis auf Ferientag signifikant. Beide Modelle zeigen eine Abnahme des Anteils von Personen mit LVS-Gerät über die Saison hinweg. Außerdem ist zu erkennen, dass bei höheren Lawinenwarnstufen auch höhere Anteile zu erwarten sind. Das Zeitmodell zeigt, dass Uhrzeit ebenfalls eine Rolle spielt. \\
-Eine Analyse der Daten zu den Messfehlern hat ergeben, dass der wahre Wert an vorbeigehenden Kontakten durch den Checkpoint um ca. 22\% unterschätzt wird. Eine besonders hohe Unterschätzung liegt bei einer großen Gruppe an zur selben Minute vorbeigehender Kontakte vor. Ein Vergleich der Modellergebnisse des originalen Datensatzes und verschiedenen Messfehlerszenarien hat ergeben, dass der Verlauf der Zusammenhänge zwischen Anteil an LVS-Geräten und Kovariablen in beiden Modellen für alle Szenarien ziemlich ähnlich ist. Einzig das Szenario mit genereller Unterschätzung zeigt im Tagesmodell mehrere größere Unterschiede, ansonsten kommen diese nur an vereinzelten Stellen vor. \\ Jedoch ändert sich die Höhe des zu erwartenden Anteils je nach Szenario. Auch ein näherer Blick auf das Szenario mit genereller Unterschätzung zeigt bei steigenden Werten für die Unterschätzung nur kleinere Unterschiede zwischen den Szenarien. Auch hier verlaufen die die Zusammenhänge recht ähnlich und unterscheiden sich nur in der zu erwartenden Höhe des Anteils von Personen mit LVS-Gerät. Messfehler, welche den vorgestellten Szenarien entsprechen, ändern somit zwar den Anteil an Personen mit LVS-Gerät den man zu erwarten hat, jedoch nicht die Richtung des Zusammenhanges. \\
+Um die Auswirkungen von Umwelteinflüssen auf die Mitnahme von LVS-Geräten zu untersuchen, wurden zwei Modelle gebildet: einmal wurde dabei nach Datum gruppiert und einmal nach der Uhrzeit. \\
+Beim nach Datum gruppierten Modell, dem Tagesmodell, wurden dabei Wochentag, Ferientag, Lawinenwarnstufe, tägliche Durchschnittsbewölkung, Temperatur, Schneedifferenz  und Datum als Kovariablen berücksichtigt.
+Als signifikant haben sich der Intercept, die Lawinenwarnstufe und das Datum herausgestellt. Bei der Betrachtung des Zeitmodells wurde statt der täglichen Durchschnittsbewölkung die stündliche Bewölkung verwendet und au"serdem Uhrzeit als weitere Variable mit aufgenommen. Hier zeigen sich alle Variablen bis auf Ferientag signifikant. Beide Modelle zeigen eine Abnahme des Anteils von Personen mit LVS-Gerät über die Saison hinweg. Au"serdem ist zu erkennen, dass bei höheren Lawinenwarnstufen auch höhere Anteile zu erwarten sind. Das Zeitmodell zeigt, dass Uhrzeit ebenfalls eine Rolle spielt. \\
+Eine Analyse der Daten zu den Messfehlern hat ergeben, dass der wahre Wert an vorbeigehenden Kontakten durch den Checkpoint um ca. 22\% unterschätzt wird. Eine besonders hohe Unterschätzung liegt bei einer gro"sen Gruppe an zur selben Minute vorbeigehender Kontakte vor. Ein Vergleich der Modellergebnisse des originalen Datensatzes und verschiedenen Messfehlerszenarien hat ergeben, dass der Verlauf der Zusammenhänge zwischen Anteil an LVS-Geräten und Kovariablen in beiden Modellen für alle Szenarien ziemlich ähnlich ist. Einzig das Szenario mit genereller Unterschätzung zeigt im Tagesmodell mehrere grö"sere Unterschiede, ansonsten kommen diese nur an vereinzelten Stellen vor. \\ Jedoch ändert sich die Höhe des zu erwartenden Anteils je nach Szenario. Auch ein näherer Blick auf das Szenario mit genereller Unterschätzung zeigt bei steigenden Werten für die Unterschätzung nur kleinere Unterschiede zwischen den Szenarien. Auch hier verlaufen die die Zusammenhänge recht ähnlich und unterscheiden sich nur in der zu erwartenden Höhe des Anteils von Personen mit LVS-Gerät. Messfehler, welche den vorgestellten Szenarien entsprechen, ändern somit zwar den Anteil an Personen mit LVS-Gerät den man zu erwarten hat, jedoch nicht die Richtung des Zusammenhanges. \\
 Dies führt zu dem Ergebnis, dass, auch bei fehlerhaften Messgeräten, über die Saison hinweg weniger Besucher LVS-Geräte bei sich tragen. Bei höheren Lawinenwarnstufen tragen mehr Besucher ein LVS-Gerät bei sich und über die Saison hinweg ändern sich die Zeiten zu denen mehr Besucher LVS-Geräte bei sich tragen nicht.
 
 
-\chapter{Anhang}
-\begin{table}[htbp]
-	\centering
-	\vspace{-1em}
-	\caption{Concurvity (worst case) vor der Transformation für das Zeitmodell}
-	\begin{adjustbox}{max width=\textwidth}
-		\begin{tabular}{lccccccc}
-			& para & f(Uhrzeit,Datum) & f(Wochentag) & f(Lawinenwarnstufe) & f(Temperatur) & f(Bewölkung) & f(Schneehöhe) \\
-			\midrule
-			\midrule
-			para  & 1.0000 & 0.0000 & 0.2593 & 0.0000 & 0.0000 & 0.0000 & 0.0000 \\
-			f(Uhrzeit,Datum) & 0.0000 & 1.0000 & 0.1140 & 0.1466 & 0.6494 & 0.1273 & 0.6110 \\
-			f(Wochentag) & 0.2613 & 0.1137 & 1.0000 & 0.0729 & 0.3166 & 0.0604 & 0.1341 \\
-			f(Lawinenwarnstufe) & 0.0000 & 0.1466 & 0.0732 & 1.0000 & 0.2559 & 0.1662 & 0.3877 \\
-			f(Temperatur) & 0.0000 & 0.6494 & 0.3171 & 0.2559 & 1.0000 & 0.1872 & 0.6004 \\
-			f(Bewölkung) & 0.0000 & 0.1273 & 0.0606 & 0.1662 & 0.1872 & 1.0000 & 0.2662 \\
-			f(Schneehöhe) & 0.0000 & 0.6110  & 0.1359 & 0.3877 & 0.6004 & 0.2662 & 1.0000 \\
-			\bottomrule
-		\end{tabular}%
-		\label{con1}%
-	\end{adjustbox}
-\end{table}%
-
-\begin{table}[htbp]
-	\centering
-	\caption{Concurvity (worst case) nach der Transformation für das Zeitmodell}
-	\begin{adjustbox}{max width=\textwidth}
-		\begin{tabular}{lccccccc}
-			& para & f(Uhrzeit,Datum) & f(Wochentag) & f(Lawinenwarnstufe) & f(Temperatur) & f(Bewölkung) & f(Schneedifferenz) \\
-			\midrule
-			\midrule
-			para  & 1.0000 & 0.0000 & 0.2593 & 0.0000 & 0.0000 & 0.0000 & 0.0000 \\
-			f(Uhrzeit,Datum) & 0.0000 & 1.0000 & 0.1140 & 0.1466 & 0.6494 & 0.1273 & 0.2108 \\
-			f(Wochentag) & 0.2613 & 0.1137 & 1.0000 & 0.0729 & 0.3166 & 0.0604 & 0.2203 \\
-			f(Lawinenwarnstufe) & 0.0000 & 0.1466 & 0.0732 & 1.0000 & 0.2559 & 0.1662 & 0.5220 \\
-			f(Temperatur) & 0.0000 & 0.6494 & 0.3171 & 0.2559 & 1.0000 & 0.1872 & 0.3856 \\
-			f(Bewölkung) & 0.0000 & 0.1273 & 0.0606 & 0.1662 & 0.1872 & 1.0000 & 0.1434 \\
-			f(Schneedifferenz) & 0.0000 & 0.2108 & 0.2201 & 0.5220 & 0.3856 & 0.1434 & 1.0000 \\
-			\bottomrule
-		\end{tabular}%
-		\label{con2}%
-	\end{adjustbox}
-\end{table}%
+\chapter{Ausblick}
+Für eine mögliche verbesserte Genauigkeit des Modells und eine eventuelle Reduzierung der Concurvity zwischen Kovariablen könnte es sinnvoll sein, weitere Kovariablen hinzuzufügen oder  mit bestehenden Kovariablen auszutauschen. Dazu würden sich z.B. Wetterdaten über Windstärke oder Niederschlag eignen. Außerdem könnten stündliche statt tägliche Werte für die Kovariablen die Modellgüte verbessern. \\
+Für eine weitere Betrachtung der Auswirkung der Messfehler könnten zusätzliche Szenarien erstellt werden. Außerdem könnte man vorhandene Szenarien miteinander verbinden, z.B. eine Unterschätzung nach Gruppengröße und Temperatur zusammen, um einen höheren Grad an Komplexität in den Szenarien und damit eine mögliche Näherung an die tatsächliche Zusammensetzung der Messfehler zu testen. \\
+Weitere Feldstudien zu den Messfehlern und die damit erhöhte Menge an Daten könnte man nutzen, um genauere Informationen über die Richtungen der Messfehler zu sammeln und damit die Modelle selbst anzupassen.
 
 \bibliographystyle{chicago}
 \bibliography{Report}	
+
+\chapter{Umsetzung in R}
+Für die technische Umsetzung der beschriebenen Methoden, Berechnungen und die Erstellung der Grafiken wurde das Softwareprogramm R (Version 4.0.0) und die Entwicklungsumgebung RStudio benutzt.\\
+
+\noindent Verwendete Packages:\\
+tidyverse (für die Datenbearbeitung und Grafikerstellung) \\
+patchwork (für das Anzeigen von mehreren Grafiken in Rastern) \\
+GGally (für die Darstellung mehrerer Grafiken) \\
+mgcv (für die Umsetzung der Modelle) \\
+lubridate (für die Datenbearbeitung mit Datum- und Zeitvariablen) \\
+gridExtra (für die Darstellung der glatten Funktionen in einem Raster) \\
+gtools (für die Formattierung von p-Werten) \\
+cowplot (für das Abspeichern einer Legende als eigenes Objekt) \\
+readxl (für das Einlesen von Exceldateien) \\
+
+\noindent Der verwendete R-Code liegt der Abgabe bei.
+
 
 \end{document}

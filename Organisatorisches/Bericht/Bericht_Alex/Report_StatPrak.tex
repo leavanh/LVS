@@ -305,6 +305,7 @@ Diese sollen dabei helfen mögliche Strukturen des Messfehlers zu erkennen. Dabe
 Neben den Daten der Studierenden liegen auch die vom Checkpoint erhobenen Daten vor. Insgesamt wurden von den Studierenden 208 Personen gezählt und von den Checkpoints 170 Messungen erfasst. Die aus diesen Daten gewonnen Erkenntnisse und deren Auswirkungen werden in \autoref{chap:Messfehleranalyse} beschrieben. 
 
 \chapter{Methodik}
+\vspace{-0.5cm}
 In diesem Kapitel wird als erstes die Theorie hinter den Modellen erklärt. Danach wird auf die aufgetretenen Schwierigkeiten und die angewandten Lösungen eingegangen.
 
 \section{Theorie}
@@ -331,7 +332,6 @@ y_{i}=\begin{cases}
 \end{cases}
 \end{align}
 Die beobachtete Zielvariable ist Binomial-verteilt mit $y_{i}|x_{i}\sim B(1,\pi_{i})$. \\
-
 Bei der generalisierten Regression mit binärer Zielvariable, wie in diesem Fall, wird der Effekt der Kovariablen durch die (bedingte) Wahrscheinlichkeit $\pi_{i}$ beschrieben.
 \begin{align}
 \pi_{i}=P(y_{i}=1|x_{i1},...,x_{ik})=E(y_{i}|x_{i1},...,x_{ik})
@@ -345,7 +345,7 @@ Der Erwartungswert der Zielvariable wird mit dem linearen Prädiktor $\eta_{i}$ 
 g(\pi_{i})=\log(\frac{\pi_{i}}{1-\pi_{i}}).
 \end{align}
 Die hier verwendeten Modelle machen Gebrauch von dem Logit-Link. \\
-Das generalisierte lineare Regressionsmodell beschreibt lineare Einflüsse der Kovariablen auf die Zielvariable. In praktischen Anwendungen ist dies oft unzureichend, da neben den linearen Einflüssen auch nicht-lineare, flexible Einflüsse von Kovariablen auf die abhängige Variable wirken können. (\cite{fahrmeir2007regression} S.189 ff.) Daher wird im nächsten Kapitel die additive Regression näher erläutert.
+Das generalisierte lineare Regressionsmodell beschreibt lineare Einflüsse der Kovariablen auf die Zielvariable. In praktischen Anwendungen ist dies oft unzureichend, da neben den linearen Einflüssen auch nicht-lineare, flexible Einflüsse von Kovariablen auf die abhängige Variable wirken können. (\cite{fahrmeir2007regression} S.189 ff.) Daher wird im nächsten Abschnitt die additive Regression näher erläutert.
 
 \subsection{Additives Regressionsmodell}
 Das additive Modell stellt ein semi-parametrisches Regressionsmodell dar. Neben linearen Einflüssen können auch nicht-lineare flexible Einﬂüsse von Kovariablen auf die abhängige Variable modelliert werden. \\
@@ -354,7 +354,7 @@ Das Standardmodell der additiven Regression hat die Form:
 y_{i}=\underbrace{\beta_{0}+\beta_{1}x_{i1}+...+\beta_{k}x_{ik}}_{\text{parametrische Effekte}}+ \underbrace{f_{1}(z_{i1})+...+f_{q}(z_{iq})}_{\text{nichtparametrische Effekte}}+\epsilon_{i}
 \end{align}
 Der parametrische Teil des Standardmodells hat die gleiche Form, wie schon im linearen Modell aufgezeigt. Die Funktionen $f_{1}(z_{1}),...,f_{q}(z_{q})$ sind sogenannte Glättungen und schätzen die nichtparametrischen Effekte. (\cite{fahrmeir2007regression} S.44 ff.) \\
-Auf die Theorie hinter den glatten Funktionen $f$ wird im nächsten Kapitel eingegangen.
+Auf die Theorie hinter den glatten Funktionen $f$ wird im nächsten Abschnitt eingegangen.
 
 \subsection{Splines}
 Die Glättungsfunktion $f$ wird durch sogenannte Splines modelliert. Splines stellen bestimmte Funktionen dar, die stückweise aus Polynomen eines bestimmten Grades zusammengesetzt werden. Es gibt verschiedene Arten von Splines. (\cite{fahrmeir2007regression} S. 291 ff.) \\
@@ -395,7 +395,7 @@ Die Abbildung \ref{pic:b_spline} visualisiert die Schätzung eines B-Splines anh
 	\label{pic:b_spline}
 \end{figure}
 
-\noindent Das nächste Kapitel behandelt P-Splines, welche auf B-Splines basieren und durch einen Strafterm erweitert worden sind. Diese werden bei den später erklärten Modellen verwendet.
+\noindent Der nächste Abschnitt behandelt P-Splines, welche auf B-Splines basieren und durch einen Strafterm erweitert worden sind. Diese werden bei den später erklärten Modellen verwendet.
 
 \subsubsection{Penalisierte Splines basierend auf B-Splines}
 Bereits im vorherigen Abschnitt wurde klar, dass die Knotenmenge einen wichtigen Faktor darstellt. Die Glattheit und Flexibilität der Schätzfunktion $f(z)$ hängt stark von der Anzahl der Knoten ab. Eine zu hohe Anzahl von Knoten führt zu sogenanntem \glqq Overfitting\grqq, das hei"st die Funktion ähnelt zu sehr den Daten und ist sehr wacklig. Die Idee der P-Splines ist es, die Funktion $f(z)$ auf Basis einer B-Spline Funktion mit einer gro"sen Zahl an Knoten zu approximieren, um so die Flexibilität der Schätzfunktion sicherzustellen und andererseits zu hohe Variabilität durch einen Strafterm zu sanktionieren. Der Penalisierte-Spline, gekürzt P-Spline, kombiniert somit eine B-Spline-Basis mit einem Strafterm. Der Strafterm für B-Splines wird durch die quadrierte zweite Ableitung der Schätzfunktion $f(z)$ modelliert. Die zweite Ableitung stellt ein Ma"s für die Krümmung der Funktion dar und ist daher in der Lage die Glattheit einer Funktion einzuschätzen.
@@ -428,7 +428,7 @@ Es eignet sich um nicht-lineare Effekte von metrischen Kovariablen auf eine nich
 \eta_{i}=\underbrace{\beta_{0}+\beta_{1}x_{i1}+...+\beta_{k}x_{ik}}_{\text{parametrische Effekte}}+ \underbrace{f_{1}(z_{i1})+...+f_{q}(z_{iq})}_{\text{nichtparametrische Effekte}}+\epsilon_{i}
 \end{align}
 (\cite{fahrmeir2007regression} S.47 f.) \\
-Bei den beiden angewandten Modelle handelt es sich um generalisierte additive Modelle mit einer Logit-Link-Funktion. Die glatten Funktionen werden mithilfe von P-Splines, zyklischen P-Splines und Thin-Plate-Splines geschätzt. Die Knoten für die Penalisierten Splines wurden in den angewandten Modellen nach Perzentilen gesetzt. Das dient dazu, die Knoten dahin zu setzen wo vielen Beobachtungen sind, um an diesen Stellen mehr Flexibilität zu erreichen. Bevor im Kapitel (...)die konkreten Modelle vorgestellt werden, geht es im nächsten Abschnitt um aufgetretene Schwierigkeiten.
+Bei den beiden angewandten Modelle handelt es sich um generalisierte additive Modelle mit einer Logit-Link-Funktion. Die glatten Funktionen werden mithilfe von P-Splines, zyklischen P-Splines und Thin-Plate-Splines geschätzt. Die Knoten für die Penalisierten Splines wurden in den angewandten Modellen nach Perzentilen gesetzt. Das dient dazu, die Knoten dahin zu setzen wo vielen Beobachtungen sind, um an diesen Stellen mehr Flexibilität zu erreichen. Bevor im \autoref{chap:modelle} die konkreten Modelle vorgestellt werden, geht es im nächsten Abschnitt um aufgetretene Schwierigkeiten.
 
 \section{Praktische Herausforderungen}
 In diesem Teil der Arbeit wird ein Überblick über die Praktische Herausforderungen im Modell gegeben. Es wird als erstes das Concurvity-Problem erläutert, dann die Überdispersion und im letzten Abschnitt die Autokorrelation.
@@ -448,7 +448,7 @@ Bei der Untersuchung der Kovariablen auf Concurvity zeigen sich einige leicht er
 \subsection{Überdispersion}
 Bei den bisher vorgestellten Modellen ist man von Individualdaten ausgegangen. Jeder Beobachtung wird genau ein Individuum aus der Stichprobe zugeordnet.
 Bei den angewandten Datensätzen im Modell handelt es sich nicht um Individualdaten, sondern um gruppierte Daten. Die Individualdaten werden nach identischen Zeilen in der Datenmatrix gruppiert. (\cite{fahrmeir2007regression} S.195 f.) \\ 
-In der Arbeit werden zwei Modelle angewendet, das Tagesmodell und das Zeitmodell. \\
+In der Arbeit werden zwei Modelle angewendet, das Tagesmodell und das Zeitmodell.
 Im Tagesmodell werden die Daten nach Tag bzw. Datum gruppiert, wodurch die Datenmatrix insgesamt $n = 101$ Zeilen aufweist. Die Kovariable Uhrzeit wird dabei nicht beachtet. Da jedoch auch die Uhrzeit von Interesse für die Datenanalyse ist, wird ein zweites Modell, nämlich das Zeitmodell, aufgestellt. Im Zeitmodell werden die Individualdaten nach der Minute gruppiert und $n = 19334$ Beobachtungseinheiten erzeugt. Das Gruppieren von Individualdaten führt dazu, dass Anteile für Personen mit LVS-Gerät für das jeweilige Datum bzw. das Datum und die Uhrzeit berechnet werden. \\
 Durch das Gruppieren nach Datum oder Minute kann es zur Überdispersion kommen. Das hei"st die Daten weisen eine grö"sere Streuung bzw. Varianz auf, als durch das Modell zu erwarten ist. Das Problem der Überdispersion wird durch das Einsetzen eines Dispersionsparameters in die Varianzformel gelöst.
 \begin{align}
@@ -478,6 +478,7 @@ wobei $\alpha_{j}$ der Regressionskoeffizient des Modells ist. Die partielle Aut
 bestimmt. (\cite{fahrmeir2007regression} S.137 ff.)\\
 Beide Modelle wurden auf Autokorrelation geprüft. Um das Problem der Autokorrelation genauer zu analysieren, können die empirische Autokorrelation und partielle Autokorrelation anhand von sogenannten Korrelogrammen, wie in den Abbildungen (\ref{pic:ACF}) und (\ref{pic:PACF}), grafisch dargestellt werden. Die  Korrelogramme zeigen niedrige empirische- und partielle Autokorrelation bei beiden Modellen, wodurch keine weiteren Ma"snahmen zur Behebung der Autokorrelation erforderlich sind.
 \begin{figure}[H]
+	\vspace{-1cm}
 	\centering
 	\includegraphics[width=\linewidth]{plots/ACF}
 	\caption{Korrelogramm der Autokorrelation nach Verzögerung (Lag)}
@@ -486,7 +487,7 @@ Beide Modelle wurden auf Autokorrelation geprüft. Um das Problem der Autokorrel
 
 \begin{figure}[H]
 	\centering
-	\vspace{-0.85cm}
+	\vspace{-1cm}
 	\includegraphics[width=\linewidth]{plots/PACF}
 	\caption{Korrelogramm der partiellen Autokorrelation nach Verzögerung (Lag)}
 	\label{pic:PACF}	
@@ -494,6 +495,7 @@ Beide Modelle wurden auf Autokorrelation geprüft. Um das Problem der Autokorrel
 
 
 \chapter{Angewandte Modelle}
+\label{chap:modelle}
 \vspace{-0.5cm}
 Nach der Erläuterung des theoretischen Hintergrunds folgen nun die beiden bereits angesprochenen Modelle. Zuerst wird der zuvor allgemein erklärte additive Prädiktor für die beiden angewandten Modelle definiert. Danach werden die Ergebnisse der Modelle vorgestellt.
 

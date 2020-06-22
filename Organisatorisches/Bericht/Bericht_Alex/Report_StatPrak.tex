@@ -130,7 +130,7 @@ Im Folgenden wird kurz auf den Hintergrund des Projekts genauer eingegangen. Dan
 
 \chapter{Hintergrund}
 
-Für viele Besucher sind die Bayrischen Alpen ein beliebtes Gebiet, im Sommer sind Wanderer anzutreffen und im Winter vorrangig Skitouren- und Schneeschuhgeher. Jedoch stellt das Alpengebiet auch das Territorium von verschiedenen Tierarten dar. Es ist zu beobachten, dass es immer wieder zu räumlichen Konfliktsituation zwischen Menschen und Tieren kommt. Vor allem im Winter dringen die Sportler tief in die Rückzugsgebiete der Tiere ein und zwingen diese zur Flucht. \\
+Für viele Besucher sind die Bayrischen Alpen ein beliebtes Gebiet, im Sommer sind Wanderer anzutreffen und im Winter vorrangig Skitouren- und Schneeschuhgeher. Jedoch stellt das Alpengebiet auch das Territorium von verschiedenen Tierarten dar. Es ist zu beobachten, dass es immer wieder zu räumlichen Konfliktsituationen zwischen Menschen und Tieren kommt. Vor allem im Winter dringen die Sportler tief in die Rückzugsgebiete der Tiere ein und zwingen diese zur Flucht. \\
 Um die räumlichen Konflikte zu entschärfen, werden die Besuchenden vor Ort informiert und durch Lenkungsma"snahmen gesteuert. Mit dem Ziel, einen nachhaltigen Tourismus gewährleisten zu können, wurde ein Aktionstag seitens des Alpenvereins initiiert. Der Aktionstag ist ein Bestandteil der Kampagne „Natürlich auf Tour“ und dient der Sensibilisierung von Besuchern für einen verantwortungsvollen Umgang mit der Natur. 
 (\cite{Alpenverein}) \\
 Um das Besucherverhalten besser zu verstehen und beeinflussen zu können, werden die Signale des LVS-Geräts, das ein Skitourengeher in der Regel dicht am Körper trägt, ausgewertet und analysiert. \\
@@ -310,7 +310,7 @@ In diesem Kapitel wird als erstes die Theorie hinter den Modellen erklärt. Dana
 
 \section{Theorie}
 In folgendem Kapitel soll die Theorie hinter den Modellen erklärt werden. Für das bessere Verständnis wird der Theorie-Teil von einem einfachen Modell bis hin zu dem von uns verwendeten Modell aufgebaut. \\
-Die mathematischen Formeln und Konzepte aus diesem Kapitel basieren, wenn nicht anders vermerkt, aus dem Buch \glqq{Regression-Modelle, Methoden und Anwendungen}\grqq ~von Ludwig Fahrmeir et al..
+Die mathematischen Formeln und Konzepte aus diesem Kapitel basieren, wenn nicht anders vermerkt, auf dem Buch \glqq{Regression-Modelle, Methoden und Anwendungen}\grqq ~von Ludwig Fahrmeir et al..
 
 \subsection{Lineares Regressionsmodell}
 Das einfachste Regressionsmodell ist das lineare Regressionsmodell. Hierbei wird der Erwartungswert einer Zielvariable durch die Linearkombination von Einflussgrö"sen, auch Kovariablen genannt, beschrieben. Das lineare Regressionsmodell nimmt dabei folgende Form an:
@@ -358,7 +358,7 @@ Auf die Theorie hinter den glatten Funktionen $f$ wird im nächsten Abschnitt ei
 
 \subsection{Splines}
 Die Glättungsfunktion $f$ wird durch sogenannte Splines modelliert. Splines stellen bestimmte Funktionen dar, die stückweise aus Polynomen eines bestimmten Grades zusammengesetzt werden. Es gibt verschiedene Arten von Splines. (\cite{fahrmeir2007regression} S. 291 ff.) \\
-In den Modellen wurden die Penalisierten Splines, die Zyklische Splines und die Thin-Plate Splines verwendet. Im Folgenden werden diese erläutert, wobei zum einfacheren Verständnis zuvor noch Polynom- und Basis-Splines erklärt werden.
+In den Modellen wurden die Penalisierten Splines, die Zyklischen Splines und die Thin-Plate Splines verwendet. Im Folgenden werden diese erläutert, wobei zum einfacheren Verständnis zuvor noch Polynom- und Basis-Splines erklärt werden.
 
 \subsubsection{Polynom-Splines}
 Eine Möglichkeit, die Funktion $f$ abzubilden, sind Splines, die über Polynome modelliert werden und Polynom-Splines, oder auch Regressions-Splines, genannt werden. Das polynomiale Modell hat die Form: 
@@ -549,7 +549,7 @@ Der zu erwartende Anteil steigt zwischen einer Schneedifferenz von 0 cm und 30 c
 Der zu erwartende Anteil von Personen mit LVS-Geräten schwankt sehr viel von unter 10\% auf über 40\%. Trotzdem lässt sich eine generelle Abnahme erkennen. Vorsicht ist bei der Interpretation an den fehlenden Tagen geboten, weshalb die Glättung an diesen Tagen transparenter dargestellt wurde.
 \subsection{Ergebnisse des Zeitmodells}
 Nachfolgend werden die Ergebnisse des Zeitmodells betrachtet. Hier wurden die Messungen nicht nach dem Tag, sondern nach der Minute gruppiert. Insgesamt gibt es n = 19334 Minuten, in denen mindestens eine Messung vorliegt. \\
-Der Intercept des Zeitmodells liegt etwas niedriger als der des Tagesmodells, nämlich bei 20,32\%. Der zu erwartende Anteil an einem Ferientag mit ansonsten durchschnittlichen Variablen ist dafür höher und liegt bei 21, 40\%. \\
+Der Intercept des Zeitmodells liegt etwas niedriger als der des Tagesmodells, nämlich bei 20,32\%. Der zu erwartende Anteil an einem Ferientag mit ansonsten durchschnittlichen Variablen ist dafür höher und liegt bei 21,40\%. \\
 In Abbildung (\ref{pic:smooth_time_model}) zu sehen sind die glatten Funktionen der nichtparametrischen Variablen (bis auf das Datum und die Uhrzeit der Messungen). Diese werden nun mit den jeweiligen glatten Funktionen des Tagesmodells verglichen.
 \begin{figure}[H]
 	\centering

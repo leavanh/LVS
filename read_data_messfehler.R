@@ -1,6 +1,4 @@
-
-
-## Daten aus 19/20 einlesen
+## Daten zu den Messfehlern 19/20 einlesen
 
 # Zuerst die Checkpointmessungen aus den .txt-Dateien in Exceldatei namens 
 # "Date_1920.xlsx" kopiert
@@ -220,10 +218,3 @@ nicht_erfasst_je_gruppe <- zlg_beide %>% group_by(gesamt) %>%
 
 erfassung_je_gruppe <- rbind(erfasst_je_gruppe, nicht_erfasst_je_gruppe) %>%
   rename(grösse = gesamt)
-
-
-
-
-
-
-

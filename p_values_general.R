@@ -15,7 +15,7 @@ p_values_general_day_model <- data.frame(1:8)
 
 i <- 0
 
-for (n in c(0, 0.1, 0.2, 0.3, 0.4, 0.5)) {
+for (n in c(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7)) {
   
   i = i + 1
   
@@ -62,7 +62,7 @@ p_values_general_time_model <- data.frame(1:8)
 
 i <- 0
 
-for (n in c(0, 0.1, 0.2, 0.3, 0.4, 0.5)) {
+for (n in c(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7)) {
   
   i = i + 1
   

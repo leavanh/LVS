@@ -1,4 +1,3 @@
-
 ### In dieser Datei werden die Plots für die deskriptive Messfehleranalyse 
 ### erzeugt
 
@@ -19,13 +18,11 @@ erf_art_plot <-
          aes(x = factor(kontakt, levels = c("SG", "aK")),
              y = sum, fill = erfassung)) +
   geom_bar(stat="identity", position = "dodge") +
-  labs(#title = "Manuelle Zählung am 27.02- und 28.02.2019",
+  labs(title = "Manuelle Zählung am 27.02- und 28.02.2019",
     x = NULL,
     y = "Absolute Häufigkeit") +
   scale_x_discrete(labels=c("SG" = "Skitourengänger", 
                             "aK" = "Andere Kontakte")) +
-  theme(legend.position="top",
-        text = element_text(size= 15)) +
   scale_fill_manual(name = NULL, labels = c("Erfasst", "Nicht Erfasst"), 
                     values = c("#993300", "antiquewhite4"))
 #geom_text(aes(label=sum), position=position_dodge(width=0.9), vjust=-0.25)
@@ -122,8 +119,7 @@ erf_gruppe_abs_plot <-
        y = "Anzahl") +
   scale_x_continuous(breaks = 1:8) +
   theme(
-    axis.line = element_line(colour = "black"),
-    text = element_text(size= 15)) +
+    axis.line = element_line(colour = "black")) +
   #scale_fill_discrete(name = NULL, labels = c("erfasst", "nicht erfasst"))
   scale_fill_manual(name = NULL, labels = c("Erfasst", "Nicht Erfasst"), 
                     values = c("#993300", "antiquewhite4"))
@@ -138,6 +134,5 @@ erf_gruppe_rel_plot <-
     x = "Gruppengröße",
     y = "Anteil") +
   scale_x_continuous(breaks = 1:8) +
-  theme(text = element_text(size = 15), legend.position="top") +
   scale_fill_manual(name = NULL, labels = c("Erfasst", "Nicht Erfasst"), 
                     values = c("#993300", "antiquewhite4")) 

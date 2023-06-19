@@ -10,9 +10,9 @@ library("mgcv") # für das GAM-Modell
 library("mgcViz") # für die Visualisierung im GAM-Modell
 library("lubridate") # für die Arbeit mit Zeitvariablen
 library("gridExtra") # für die Erstellung von Plotrastern
-library("ggformula")
 library("gtools") # für p-wert-format
 library("cowplot") # für get_legend
+library("readxl") # zum Einlesen der Messfehlerdaten
 
 ## Theme (Ästhetik) der Plots festsetzen
 
@@ -40,13 +40,14 @@ min_data_noNA <- min_data[!is.na(min_data$count_people_min),]
 
 source("descriptive.R", encoding = "UTF-8")
 
-str(data)
-summary(date_data)
+str(data) # statt data kann auch date_data usw angeschaut werden
+summary(date_data) # statt date_data kann auch min_data usw angeschaut werden
 date_data_plot
 date_lvs/date_ratio
 date_position
 date_snowhight|date_snowdiff
 date_temperature
+date_cloud_cover
 boxplot_cloud_cover|boxplot_avalanche_report
 holiday_plot
 day_plot
@@ -151,7 +152,7 @@ gridPrint(grobs = time_model_plots$grid,
 
 # Einzelplots
 
- time_model_plots$date_time
+time_model_plots$date_time
 # time_model_plots$day
 # time_model_plots$avalanche
 # time_model_plots$cloud_cover
@@ -171,7 +172,7 @@ gridPrint(grobs = time_model_plots$grid,
 
 
 ### Deskriptive Analyse der Messfehler-Daten ###################################
- 
+
 # Es wurde die Zählung der Studenten mit den vom Messgerät übermittelten Daten
 # verglichen
 # Da die Messgerät-Uhrzeit nicht immer mit der Studenten-Uhrzeit übereinstimmt
@@ -183,17 +184,17 @@ gridPrint(grobs = time_model_plots$grid,
 
 source("read_data_messfehler.R", encoding = "UTF-8") # Warnmeldung ignorieren
 source("messfehler_plots.R", encoding = "UTF-8")
- 
- 
+
+
 # Tabelle mit Gesamtwerten der manuellen Zählung nach Art
 # SG: Skitourengänger
 # aK: anderer Kontakt
 # beide: beide zusammengerechnet
- 
+
 zlg_beide_sums
- 
+
 # Anteil "Skitourengänger" an Gesamtzahl der von Studenten gemessenen Personen:
-  
+
 zlg_beide_sums$sum[zlg_beide_sums$type == "SG_gesamt"] / 
   zlg_beide_sums$sum[zlg_beide_sums$type == "gesamt"]
 
@@ -201,7 +202,7 @@ zlg_beide_sums$sum[zlg_beide_sums$type == "SG_gesamt"] /
 # hinzufügen müsste): 22,4%
 
 (zlg_beide_sums$sum[zlg_beide_sums$type == "gesamt"] /
-  zlg_beide_sums$sum[zlg_beide_sums$type == "checkpoint"]) - 1
+    zlg_beide_sums$sum[zlg_beide_sums$type == "checkpoint"]) - 1
 
 ## Plots
 
@@ -230,7 +231,8 @@ erf_gruppe_rel_plot # Warnung ignorieren
 ### Verschiedene Szenarien vergleichen #########################################
 
 # Für jedes mit euch besprochene Szenario wurde ein neuer Datensatz erzeugt
-# Danach werden die Modelle darauf angewandt
+# (in data_general, data_group, data_night und data_temp)
+# Hier werden die Modelle darauf angewandt
 
 # Datensätze der Szenarien laden
 
@@ -242,6 +244,8 @@ data_general_20 <- readRDS(file = "Daten/data_general_20.RDS")
 data_general_30 <- readRDS(file = "Daten/data_general_30.RDS")
 data_general_40 <- readRDS(file = "Daten/data_general_40.RDS")
 data_general_50 <- readRDS(file = "Daten/data_general_50.RDS")
+data_general_60 <- readRDS(file = "Daten/data_general_60.RDS")
+data_general_70 <- readRDS(file = "Daten/data_general_70.RDS")
 
 # Je mehr Menschen, desto mehr wird unterschätzt
 
@@ -351,15 +355,15 @@ scenarios_day_model <-
 # Liste mit Plots je Szenario für das Tagesmodell
 
 plots_scenarios_day_model <- list(day_model_plots,
-                                   plots_day_model(day_model_general),
-                                   plots_day_model(day_model_group),
-                                   plots_day_model(day_model_night),
-                                   plots_day_model(day_model_temp))
+                                  plots_day_model(day_model_general),
+                                  plots_day_model(day_model_group),
+                                  plots_day_model(day_model_night),
+                                  plots_day_model(day_model_temp))
 
 # Liste mit Vergleichsplots
 
 day_model_comparison_plots <- 
-day_model_comparison_plots_function(plots_scenarios_day_model)
+  day_model_comparison_plots_function(plots_scenarios_day_model)
 
 # Hier werden tatsächlich Plots ausgegeben
 
@@ -460,7 +464,9 @@ general_day_model <-
        day_model_function(data_general_20$date_data),
        day_model_function(data_general_30$date_data),
        day_model_function(data_general_40$date_data),
-       day_model_function(data_general_50$date_data))
+       day_model_function(data_general_50$date_data),
+       day_model_function(data_general_60$date_data),
+       day_model_function(data_general_70$date_data))
 
 # Liste mit Plots je Anteil
 
@@ -470,7 +476,9 @@ plots_general_day_model <-
        plots_day_model(general_day_model[[3]]),
        plots_day_model(general_day_model[[4]]),
        plots_day_model(general_day_model[[5]]),
-       plots_day_model(general_day_model[[6]]))
+       plots_day_model(general_day_model[[6]]),
+       plots_day_model(general_day_model[[7]]),
+       plots_day_model(general_day_model[[8]]))
 
 # Liste mit Vergleichsplots
 
@@ -506,7 +514,9 @@ general_time_model <-
        time_model_function(data_general_20$min_data),
        time_model_function(data_general_30$min_data),
        time_model_function(data_general_40$min_data),
-       time_model_function(data_general_50$min_data))
+       time_model_function(data_general_50$min_data),
+       time_model_function(data_general_60$min_data),
+       time_model_function(data_general_70$min_data))
 
 # Liste mit Plots je Anteil
 
@@ -516,7 +526,9 @@ plots_general_time_model <-
        plots_time_model(general_time_model[[3]]),
        plots_time_model(general_time_model[[4]]),
        plots_time_model(general_time_model[[5]]),
-       plots_time_model(general_time_model[[6]]))
+       plots_time_model(general_time_model[[6]]),
+       plots_time_model(general_time_model[[7]]),
+       plots_time_model(general_time_model[[8]]))
 
 # Liste mit Vergleichsplots
 
@@ -543,6 +555,8 @@ grid.arrange(time_model_general_comparison_plots$grid)
 # time_model_general_comparison_plots$date_time_30
 # time_model_general_comparison_plots$date_time_40
 # time_model_general_comparison_plots$date_time_50
+# time_model_general_comparison_plots$date_time_60
+# time_model_general_comparison_plots$date_time_70
 
 
 # Tabellen mit p-Werten für das jeweilige Modell
